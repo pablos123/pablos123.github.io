@@ -1,0 +1,64 @@
+baseurl = "localhost"
+languageCode = "en-us"
+paginate = 10
+theme = "hello-friend-ng"
+title = "🧙"
+
+[params]
+dateform = "Jan 2, 2006"
+dateformNum = "2006-01-02"
+dateformNumTime = "2006-01-02 15:04"
+dateformShort = "Jan 2"
+
+# Set disableReadOtherPosts to true in order to hide the links to other posts.
+disableReadOtherPosts = false
+# Enable sharing buttons, if you like
+enableSharingButtons = true
+# Show a global language switcher in the navigation bar
+enableGlobalLanguageMenu = false
+# Metadata mostly used in document's head
+description = "My homepage and blog"
+
+images = [""]
+keywords = "homepage, blog"
+
+copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+homeSubtitle = "Software Developer // Full Stack . Books . Cinema . Games . Music"
+readOtherPosts = "Read other posts"
+subtitle = "firelink"
+
+[params.logo]
+logoHomeLink = "/"
+logoText = "/home/pab"
+
+[[params.social]]
+name = "github"
+url = "https://github.com/pablos123"
+[[params.social]]
+name = "letterboxd"
+url = "https://letterboxd.com/pablos123/"
+[[params.social]]
+name = "steam"
+url = "https://steamcommunity.com/id/pablosaavedra"
+[[params.social]]
+name = "instagram"
+url = "https://www.instagram.com/pablo.saavedra_"
+
+[taxonomies]
+category = "blog"
+series = "series"
+tag = "tags"
+
+# And you can even create generic menu
+[[menu.main]]
+identifier = "blog"
+name = "Blog"
+url = "/posts"
+[[menu.main]]
+identifier = "trans"
+name = "Translations"
+url = "/translations"
+[[menu.main]]
+identifier = "things"
+name = "Things"
+url = "/things"
