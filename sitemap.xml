@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>localhost/tags/digitalizacion/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/tags/entrevista/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/posts/entrevista_fontanarrosa_revista_tataj_1986/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/tags/fontanarrosa/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/posts/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/tags/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/</loc>
+    <lastmod>2023-06-29T18:49:17-03:00</lastmod>
+  </url><url>
+    <loc>localhost/blog/</loc>
+  </url><url>
+    <loc>localhost/series/</loc>
+  </url>
+</urlset>
