@@ -1,7 +1,8 @@
-baseurl = "localhost"
+baseurl = "https://pablos123.github.io/"
 languageCode = "en-us"
 paginate = 10
 theme = "hello-friend-ng"
+publishDir = "docs"
 title = "🧙"
 
 [params]
