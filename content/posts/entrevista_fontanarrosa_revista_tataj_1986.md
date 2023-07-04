@@ -1,5 +1,5 @@
 ---
-title: "Entrevista a Fontanarrosa - Revista Tataj (1986)"
+title: "Entrevista a Fontanarrosa - Revista JATAJ (1986)"
 date: 2023-06-29T18:49:17-03:00
 draft: false
 toc: false
@@ -10,7 +10,7 @@ tags:
   - digitalizacion
 ---
 
-Hace un tiempo encontré esta entrevista que se le hizo a Roberto publicada por la revista Tataj entre libros viejos de gente también vieja que ya no está.
+Hace un tiempo encontré esta entrevista que se le hizo a Roberto publicada por la revista JATAJ entre libros viejos de gente también vieja que ya no está.
 Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
 
 
