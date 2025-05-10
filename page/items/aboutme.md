@@ -1,53 +1,41 @@
-I'm Pablo Saavedra, born (in 1997) and living in Rosario-Argentina. Not in a particular order I like a lot:
+Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I love both consuming and doing almost everything that (I consider) involves a creative process:
 
-- Reading
 - Programming
-- Music
-- Cinema
+- Reading
 - Gaming
-- Coffe
+- Cinema
+- Music
+- Art
+- ...
 
-But love a lot more too.
+I also like autum 🍂
 
 ---
 
-I'm a full stack developer with 5+ YOE, currently doing mainly DevOps tasks involving Ansible, Python and Bash.
+I'm a full-stack developer with 5+ YOE, currently focusing on DevOps tasks involving Ansible, Python, and Bash. I'm employed at a company where I do a lot of hands-on coding.
 
-I'm currently employed in a company in which I do a lot of coding. Like really coding.
+In addition to handling maintenance work (because technical debt is tautological) I also get to implement new features, which I really enjoy.
 
-Besides doing a lot of maintainance, because the technical debt is tautological, I get to implement a lot of new things.
-
-I work or worked a lot with these programming languages:
+Technologies I work with regularly:
 
 - Python (Django and vanilla)
+- Perl
 - Ansible
 - Bash
-- Perl
-- Javascript
-- HTML, CSS
 
-I worked less or make personal or university projects with others:
+I've also worked with many other languages on [personal](https://pablos123.github.io/items/projects/projects.html) or university projects.
 
-- C
-- C++
-- Lua
-- PHP
-- R
-- Erlang
-- Haskell
-- Racket
+I use Linux as my daily driver both at home and at work, I enjoy learning about it and tinkering with my [environment](https://github.com/pablos123/environment).
 
-I'm currently studying CS and I don't think I will be finishing soon. I like it though.
+I have virtually no contact with Windows.
 
 ---
 
-I try to use LLM's the least possible.
-
-I probably will use them for discussing naming or grammatical problems, I try to keep them away from my code projects.
+I try to use LLMs as little as possible. I might rely on them for naming or grammar discussions, but I prefer to keep them away from my code.
 
 ---
 
 Languages:
 
 - Spanish (Native)
-- English
+- English (Fluent)

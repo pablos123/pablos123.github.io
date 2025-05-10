@@ -18,6 +18,8 @@ make_index() {
         <a href='./items/projects/projects.html'>Projects</a><br>
         <a href='./items/articles/articles.html'>Articles</a><br>
         <a href='./items/aboutme.html'>About me</a><br>
+        ·<br>
+        <a href='https://github.com/pablos123'>GitHub</a> <a href='https://linkedin.com/in/pablo-saavedra-06b6251aa'>LinkedIn</a><br>
         $(cat page/tail.template)" > docs/index.html
 
     sed -i 's@SHARED_DIR@./shared@;s@BACK_BUTTON@./index.html@' docs/index.html
