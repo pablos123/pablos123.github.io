@@ -2,7 +2,7 @@
 <!-- Hey! Hope you are well -->
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="SHARED_DIR/icon.png">
     <link rel="stylesheet" href="SHARED_DIR/style.css" />
     <title>pablos123</title>
@@ -22,7 +22,6 @@
   </head>
   <body class="dark">
     <header>
-      <a href="BACK_BUTTON">⮜┈ノ</a>
-      <a type="button" id="theme"> ☾.. 𖤓 </a>
+      <a href="BACK_BUTTON">Go Back</a> | <a type="button" id="theme">Dark..Light</a>
     </header>
 
