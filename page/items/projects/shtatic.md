@@ -4,5 +4,3 @@ I wanted to build this website and every tool felt like a little too much for a 
 
 [Files](https://github.com/pablos123/pablos123.github.io)
 
-[URL](https://pablos123.github.io/)
-
