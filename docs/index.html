@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../page/shared/icon.png">
+    <link rel="stylesheet" href="../page/shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      let d = 1;
+      window.onload = () => {
+        document.getElementById("theme").addEventListener(
+          "click",
+          () => {
+              document.body.classList.add( d ? "light" : "dark")
+              document.body.classList.remove( d ? "dark" : "light")
+              d = !d
+          }
+        );
+      }
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="./index.html">⮜┈ノ</a>
+      <a type="button" id="theme"> ☾.. 𖤓 </a>
+    </header><main class='menu'>
+        <a href='./items/projects/projects.html'>Projects</a><br>
+        <a href='./items/articles/articles.html'>Articles</a><br>
+        <a href='./items/aboutme.html'>About me</a><br>
+            </main>
+
+    <footer>
+      Made with a <a href="https://github.com/pablos123/bashic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>

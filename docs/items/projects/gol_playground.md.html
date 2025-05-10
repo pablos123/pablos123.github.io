@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../../page/shared/icon.png">
+    <link rel="stylesheet" href="../../../page/shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      let d = 1;
+      window.onload = () => {
+        document.getElementById("theme").addEventListener(
+          "click",
+          () => {
+              document.body.classList.add( d ? "light" : "dark")
+              document.body.classList.remove( d ? "dark" : "light")
+              d = !d
+          }
+        );
+      }
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="./projects.html">⮜┈ノ</a>
+      <a type="button" id="theme"> ☾.. 𖤓 </a>
+    </header>
+            <main class='article'>
+            <h1 id="game-of-life-playground">Game of Life Playground</h1>
+<p>Wanted to learn how to make graphics with Javascript. Also I love
+watching Game of Life’s cells moving around.</p>
+<h2 id="files">Files</h2>
+<h2 id="url">Url</h2>
+                </main>
+
+    <footer>
+      Made with a <a href="https://github.com/pablos123/bashic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>

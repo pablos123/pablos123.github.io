@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../../../page/shared/icon.png">
+    <link rel="stylesheet" href="../../../page/shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      let d = 1;
+      window.onload = () => {
+        document.getElementById("theme").addEventListener(
+          "click",
+          () => {
+              document.body.classList.add( d ? "light" : "dark")
+              document.body.classList.remove( d ? "dark" : "light")
+              d = !d
+          }
+        );
+      }
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="./projects.html">⮜┈ノ</a>
+      <a type="button" id="theme"> ☾.. 𖤓 </a>
+    </header>
+            <main class='article'>
+            <h1 id="shtatic">shtatic</h1>
+<p>I wanted to build this website in which you are reading and every
+tool felt like a little too much for a tiny static web page. I tried
+HUGO but they’re all very similar. So I built a 62 lines of POSIX shell
+script that does the job.</p>
+<p><a
+href="https://github.com/pablos123/pablos123.github.io">Files</a></p>
+<p><a href="https://pablos123.github.io/">URL</a></p>
+                </main>
+
+    <footer>
+      Made with a <a href="https://github.com/pablos123/bashic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>

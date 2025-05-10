@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="gol.css" />
+
+    <meta charset="UTF-8" />
+    <title>GOL</title>
+  </head>
+
+  <body>
+    <canvas id="gol-canvas"></canvas>
+    <canvas id="grid-canvas"></canvas>
+    <input class="input-color" id="pencil-color" type="color" />
+    <input class="input-color" id="background-color" type="color" />
+    <button id="play-button"><i class="nf nf-md-play_pause"></i></button>
+    <button id="pencil-button">
+      <i class="nf nf-md-lead_pencil"></i
+      ><span class="dot" id="current-pencil-color"></span>
+    </button>
+    <button id="background-button">
+      <i class="nf nf-fa-picture_o"></i
+      ><span class="dot" id="current-background-color"></span>
+    </button>
+    <button id="grid-button"><i class="nf nf-md-grid"></i></button>
+    <button id="clear-button"><i class="nf nf-md-delete_empty"></i></button>
+    <input id="speed-range" type="range" step="any" />
+  </body>
+
+  <script src="gol.js"></script>
+</html>
