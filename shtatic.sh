@@ -14,7 +14,8 @@ main() {
 }
 
 make_index() {
-    echo "$(cat page/head.template)<main class='menu'>
+    echo "$(cat page/head.template)
+        <main class='menu'>
         <a href='./items/projects/projects.html'>Projects</a><br>
         <a href='./items/articles/articles.html'>Articles</a><br>
         <a href='./items/aboutme.html'>About me</a><br>
@@ -26,7 +27,8 @@ make_index() {
 }
 
 make_aboutme() {
-    echo "$(cat page/head.template)<main class='article'>
+    echo "$(cat page/head.template)
+        <main class='article'>
         $(pandoc -f markdown -t html5 page/items/aboutme.md)
         $(cat page/tail.template)" > docs/items/aboutme.html
 
@@ -44,9 +46,9 @@ make_articles_and_projects() {
             i=$(basename "${i}")
 
             echo "$(cat page/head.template)
-            <main class='article'>
-            $(pandoc -f markdown -t html5 "page/items/${d}/${i}")
-            $(cat page/tail.template)" > "docs/items/${d}/${i}.html"
+                <main class='article'>
+                $(pandoc -f markdown -t html5 "page/items/${d}/${i}")
+                $(cat page/tail.template)" > "docs/items/${d}/${i}.html"
 
             sed -i "s@SHARED_DIR@../../shared@;s@BACK_BUTTON@./${d}.html@" "docs/items/${d}/${i}.html"
 
