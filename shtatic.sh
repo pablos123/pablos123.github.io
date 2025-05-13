@@ -23,7 +23,7 @@ make_index() {
         <a href='https://github.com/pablos123'>GitHub</a> <a href='https://linkedin.com/in/pablo-saavedra-06b6251aa'>LinkedIn</a><br>
         $(cat page/tail.template)" > docs/index.html
 
-    sed -i 's@SHARED_DIR@./shared@;s@BACK_BUTTON@./index.html@' docs/index.html
+    sed -i 's@SHARED_DIR@./shared@;s@BACK_BUTTON@@' docs/index.html
 }
 
 make_aboutme() {
