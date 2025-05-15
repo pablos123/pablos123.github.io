@@ -2,14 +2,44 @@
 
 set -e
 
+trap 'kill_server; trap - EXIT; exit' EXIT INT HUP TERM
+
+kill_server() {
+    if [ -n "${spid}" ]; then
+        echo "Killing server..."
+        kill -9 "${spid}"
+    fi
+}
+
 main() {
+    [ ! -d "page" ] && exit 1
+
+    build
+
+    [ "${1}" = "-s" ] && serve
+}
+
+serve() {
+    python3 -m http.server 7392 -d "docs" & spid=$!
+    sleep 2
+
+    lso=$(command ls -l --time=mtime --full-time page/*)
+    while true; do
+        lso_check="$(command ls -l --time=mtime --full-time page/*)"
+        if [ ! "${lso}" = "${lso_check}" ]; then
+            build
+            lso="${lso_check}"
+        fi
+        sleep 1
+    done
+}
+
+build() {
+    echo "Building..."
     rm -rf docs/items docs/index.html
     mkdir -p docs/items
-
     make_index
-
     make_aboutme
-
     make_articles_and_projects
 }
 
@@ -20,7 +50,7 @@ make_index() {
         <a href='./items/articles/articles.html'>Articles</a><br>
         <a href='./items/aboutme.html'>About me</a><br>
         ·<br>
-        <a href='https://github.com/pablos123'>GitHub</a> <a href='https://linkedin.com/in/pablo-saavedra-06b6251aa'>LinkedIn</a><br>
+        <a href='https://github.com/pablos123'>GitHub</a><br>
         $(cat page/tail.template)" > docs/index.html
 
     sed -i 's@SHARED_DIR@./shared@;s@BACK_BUTTON@@' docs/index.html
@@ -62,4 +92,4 @@ make_articles_and_projects() {
     done
 }
 
-main
+main "$@"
