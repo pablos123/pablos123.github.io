@@ -2,48 +2,51 @@
 
 set -e
 
-trap 'kill_server; trap - EXIT; exit' EXIT INT HUP TERM
+trap _stop_server INT HUP TERM
 
-kill_server() {
+main() {
+    [ ! -d "./page" ] &&
+        exit 1
+
+    _build
+
+    [ "${1}" = "-s" ] &&
+        _start_server
+}
+
+
+_stop_server() {
     if [ -n "${spid}" ]; then
         echo "Killing server..."
         kill -9 "${spid}"
     fi
 }
 
-main() {
-    [ ! -d "page" ] && exit 1
-
-    build
-
-    [ "${1}" = "-s" ] && serve
-}
-
-serve() {
-    python3 -m http.server 7392 -d "docs" & spid=$!
+_start_server() {
+    python3 -m http.server 7392 -d "./docs" & spid=$!
     sleep 2
 
     lso=$(command ls -l --time=mtime --full-time page/*)
     while true; do
         lso_check="$(command ls -l --time=mtime --full-time page/*)"
         if [ ! "${lso}" = "${lso_check}" ]; then
-            build
+            _build
             lso="${lso_check}"
         fi
         sleep 1
     done
 }
 
-build() {
+_build() {
     echo "Building..."
     rm -rf docs/items docs/index.html
     mkdir -p docs/items
-    make_index
-    make_aboutme
-    make_articles_and_projects
+    _build_index
+    _build_aboutme
+    _build_articles_and_projects
 }
 
-make_index() {
+_build_index() {
     echo "$(cat page/head.template)
         <main class='menu'>
         <a href='./items/projects/projects.html'>Projects</a><br>
@@ -56,7 +59,7 @@ make_index() {
     sed -i 's@SHARED_DIR@./shared@;s@BACK_BUTTON@@' docs/index.html
 }
 
-make_aboutme() {
+_build_aboutme() {
     echo "$(cat page/head.template)
         <main class='article'>
         $(pandoc -f markdown -t html5 page/items/aboutme.md)
@@ -65,7 +68,7 @@ make_aboutme() {
     sed -i 's@SHARED_DIR@../shared@;s@BACK_BUTTON@../index.html@' docs/items/aboutme.html
 }
 
-make_articles_and_projects() {
+_build_articles_and_projects() {
     for d in projects articles; do
         mkdir -p "docs/items/${d}"
 
