@@ -15,13 +15,6 @@ main() {
 }
 
 
-_stop_server() {
-    if [ -n "${spid}" ]; then
-        echo "Killing server..."
-        kill -9 "${spid}"
-    fi
-}
-
 _start_server() {
     python3 -m http.server 7392 -d "./docs" & spid=$!
     sleep 2
@@ -35,6 +28,13 @@ _start_server() {
         fi
         sleep 1
     done
+}
+
+_stop_server() {
+    if [ -n "${spid}" ]; then
+        echo "Killing server..."
+        kill -9 "${spid}"
+    fi
 }
 
 _build() {
