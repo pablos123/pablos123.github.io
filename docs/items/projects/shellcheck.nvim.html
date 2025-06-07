@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../../shared/icon.png" />
+    <link rel="stylesheet" href="../../shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      window.onload = () => {
+        let theme = false;
+
+        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
+
+        const set_theme = () => {
+          document.body.classList.add(theme ? "light" : "dark");
+          document.body.classList.remove(theme ? "dark" : "light");
+          document.cookie = `theme=${theme}; path=/`;
+        };
+
+        set_theme();
+
+        document.getElementById("theme").addEventListener("click", () => {
+          theme = !theme;
+          set_theme();
+        });
+      };
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="./projects.html">Go Back</a> |
+      <a type="button" id="theme">Dark..Light</a>
+    </header>
+  </body>
+</html>
+                <main class='article'>
+                <h1 id="shellcheck.nvim">shellcheck.nvim</h1>
+<p>I started coding a lot of shell scripts at work and in my spare time
+so I wanted <a href="https://www.shellcheck.net/">ShellCheck</a>’s
+diagnostics inside Neovim without needing to set up an LS or an agnostic
+LS like <code>null-ls</code>.</p>
+<p><a href="https://github.com/pablos123/shellcheck.nvim">Files</a></p>
+                    </main>
+
+    <footer>
+      Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>
