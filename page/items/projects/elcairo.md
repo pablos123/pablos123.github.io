@@ -1,5 +1,5 @@
 # elcairo
 
-En su momento iba muchísimo al El Cairo, un cine de mi ciudad y nunca entendía la página cuando entraba para ver los horarios. Era muy enquilombada.
+Voy mucho al El Cairo, un cine de mi ciudad y nunca entiendo la página cuando entro a ver los horarios. Es un quilombo.
 
 [Files](https://github.com/pablos123/elcairo)
