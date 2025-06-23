@@ -1,6 +1,6 @@
 # Entrevista a Fontanarrosa - JATAJ (1986)
 
-![](../../../shared/images/Roberto_Fontanarrosa.png "Roberto Fontanarrosa")
+![Foto: Ricardo Ceppi](../../../shared/images/Roberto_Fontanarrosa.png "Roberto Fontanarrosa")
 
 Hace un tiempo encontré esta entrevista que se le hizo a Roberto publicada por la revista JATAJ (Año II - Nro. IV - Septiembre 1986) entre libros viejos de gente también vieja que ya no está.
 
