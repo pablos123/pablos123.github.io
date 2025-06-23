@@ -1,0 +1,89 @@
+# Entrevista a Bill Bruford - Batería Total (2006)
+
+![Foto: James Cumpsty](../../../shared/images/bill_bruford.jpg "Bill Bruford")
+
+Bill Bruford es de los mayores referentes que tengo como baterista. En la revista número 87 de Batería Total en el año 2006 se le hizo una entrevista.
+
+Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
+
+## Bill Bruford _Delicatessen_
+
+- **Todo el mundo tiene una primera experiencia que le marca: una película, un concierto, un músico... ¿Recuerdas cuál fue el momento en el que sentiste que la batería te había atrapado?**
+
+> Recuerdo que tenía doce o trece cuando esto me ocurrió. En aquella época estaba continuamente escuchando emisoras de radio y viendo programas musicales de gran éxito de la BBC donde salían los grandes monstruos del jazz norteamericano. Recuerdo perfectamente a muchos de ellos en directo, a Art Blakey, Max Roach, Phillie Joe Jones, y lo mucho que me gustaba todo aquello y el interés que tuve por saber cómo tocaban, cómo hacían todas aquellas cosas; en definitiva, en imitarlos.
+
+- **Entonces ¿El jazz fue tu verdadera escuela?**
+
+> Claro, es lo que escuchaba en aquella época. A fin de cuentas crecí escuchando jazz, aunque, si bien es cierto que los Beatles y los Rolling Stones también me interesaban, pero instrumentalmente aprendí con Art Blakey y Max Roach.
+
+- **En 1968 se forma Yes ¿Cómo recuerdas aquella experiencia?**
+
+> Fue una pequeña locura. Recuerdo que leí un pequeño anuncio en la prensa de alguien que buscaba baterista, así que contacté con Jon Anderson y Chris Squire, los responsables del anuncio. Quedamos por la noche y hablamos del tema. Recuerdo que estuvimos tocando durante veinte minutos en plan _jam session_ sobre In The Midnight Hour; el clásico de Wilson Pickett. El resto vino solo.
+
+- **¿Qué fue lo primero que hicisteis?**
+
+> Versiones. Todo el mundo lo hacía. A fin de cuentas era un modo perfecto para conocerse. Comenzamos así, tocando versiones de los Beach Boys, Fifth Dimention o The Beatles, reconvirtiéndolas y llevándolas a nuestro terreno, adaptándolas con arreglos personales. Poco a poco fuimos creando nuestro propio estilo, nuestro sonido y los temas fueron apareciendo irremediablemente hasta grabar nuestro primer álbum.
+
+- **Sé que han pasado muchos años pero... ¿Con qué disco del grupo te quedarías hoy en día? ¿Quizá con Close To The Edge (Atlantic, 1972)?**
+
+> Es verdad, han pasado muchos años desde aquello. Supongo que es inevitable, pero todo mundo continúa preguntándome por aquella etapa. De todos modos, te diré que Close To The Edge es uno de los mejores trabajos del grupo, sino el mejor; es un disco excelente, sin duda.
+
+- **Con Yes utilizaste decenas de instrumentos de percusión, algunos muy habituales (como congas) pero otros mucho más improvisados, botellas de leche, _wah-wahs_ y cosas así. Fue una etapa de experimentación total. Probabais todo lo que se os ocurría ¿No?**
+
+> Era el momento de hacer este tipo de cosas. Recuerdo que algunas grabaciones no se realizaban con la calma que, teóricamente, sería la adecuada para estos casos sino que una misma toma podía hacerse en diferentes días. Por el camino, entre sesión y sesión, unos cuantos conciertos en Manchester, Sheffield o Edimburgo. Al cabo de unos días, volvíamos a montar otra vez todo el equipo y retomábamos el trabajo de estudio en la misma toma; una auténtica locura. De este modo, un día tenías una idea, otro día llegabas con otra energía... Muchas veces, sólo por el hecho de experimentar en las grabaciones hacía que improvisáramos con cualquier cosa que tuviéramos al alcance, ya fuesen unas botellas de leche o cualquier otra cosa. Evidentemente, de un día para otro las cosas cambiaban mucho, pero ocurrían así. Posteriormente, con King Crimson también toqué gran cantidad de instrumentos de percusión como timbales, rototoms, baterías electrónicas...
+
+- **¿Crees que King Crimson ha sido tu mejor experiencia profesional en el campo del rock?**
+
+> King Crimson fue una gran banda y un gran proyecto, pero una experiencia «terrible» para un baterista, básicamente porque todo lo que hacíamos no se había hecho antes. King Crimson fue un proyecto muy ecléctico, había elementos de música clásica de ascendencia minimalista, había jazz, y todo ello con el rock como argumento común disco tras disco. Además, el grupo aportó un número importante de elementos electrónicos, como sintetizadores, guitarras y un sinfín de instrumentos que hizo de King Crimson un proyecto muy complejo para cualquier baterista. Al fin y al cabo, en el grupo florecieron las influencias de todos los músicos que formábamos aquella historia. Es algo que se puede apreciar en los discos que grabamos.
+
+- **Hablemos de Red (EG, 1974), uno de los grandes trabajos del grupo. Si no me corriges, Red fue grabado, en su mayoría, en primeras y segundas tomas ¿Crees que este hecho fue determinante para el resultado final del álbum?**
+
+> Red coincidió con un momento muy delicado para el grupo. Recuerdo que la sintonía entre Robert Fripp, John Wetton y yo se había esfumado, así que tuvimos que arreglárnoslas como pudimos (especialmente John y yo). Ninguno de nosotros sabía qué dirección tomaría el disco pero, poco a poco, las sesiones de estudio fueron mejorando y el disco comenzó a funcionar. Al final, incluso yo mismo quedé satisfecho de algunas de las baterías que grabé para aquél álbum, como la que aparece en One More Red Nightmare. Años más tarde, vino Discipline (EG, 1981) y Absent Lovers: Live In Montreal, 1984 (Discipline, 1998), uno de mis favoritos.
+
+- **En 1979 firmas en solitario One Of A Kind (EG, 1979) ¿Cómo surgió el proyecto? ¿Qué opinas del álbum ahora que han pasado más de veinticinco años?**
+
+> Después de Feels Good To Me (EG, 1978), vino One Of A Kind. Recuerdo que en aquella sesión estaban Dave Stewart, Jeff Berlin, Allan Holdsworth y yo. El disco no tuvo un gran recibimiento en Inglaterra aunque las críticas mejoraron mucho en Estados Unidos. Creo que fue el mejor trabajo que hicimos en aquella época y con aquella formación. De todos modos, no me gusta escuchar lo que hice hace tiempo. Con los años te das cuentas de los errores que cometiste y...
+
+- **Hablemos de Earthworks, de cómo empezó y la evolución que ha tenido a lo largo de los años...**
+
+> Earthworks fue un cambio muy importante para mí, ya que siempre había tocado con guitarristas (Fripp, Holdsworth, Belew...). El concepto cambiaba radicalmente. Todo comenzó en 1986, así que ya han pasado veinte años. La evolución del grupo también ha sido substancial hasta llegar a nuestro actual trabajo, Earthworks Underground Orchestra (Summerfold, 2006)
+
+- **¿Qué hay en este Earthworks Underground Orchestra que lo haga tan especial?**
+
+> Para ese álbum me fui a Nueva York en busca de músicos a los que les interesase el nuevo proyecto. Una vez allí, conseguí la banda que buscaba, artistas de la talla de Henry Hey, Steve Wilson, Jon Owens, Rocky Ciccarone, Chris Karlie... Grabamos el repertorio en dos noches en el Iridium Jazz Club. La idea fue recopilar material de otros discos de Earthworks junto a temas de Tim Garland -que, entre otras cosas, realiza tareas como director musical del álbum- y darle la vuelta a todo el repertorio con nuevos arreglos. Es un disco que me encanta.
+
+- **Viendo vuestro directo, aprecié una notable tendencia hacia la música latina en algunos momentos ¿Es la música que estás escuchando últimamente?**
+
+> No sólo latin jazz. Actualmente escucho prácticamente de todo: música africana, música asiática... Intento tener mis sentidos lo más abiertos que puedo y procuro no asentarme rítmicamente en ningún estilo en concreto.
+
+- **A lo largo de tu carrera has trabajado con mucha gente: Alan Holdsworth, Robert Fripp, Larry Corriel... ¿Tienes a alguien en tu libreta de artistas pendientes?**
+
+> Siempre te apetecería tocar con ese o aquel artista, pero mi idea en la actualidad no es tocar con músicos de renombrado bagaje sino con gente de calidad que todavía no haya despegado pero que, por su talento creativo, lo van a hacer en cualquier momento. Hay cientos de músicos increíbles por ahí. Sólo en Nueva York los hay montones...
+
+- **Así que, de algún modo, te has apartado de los grandes proyectos.**
+
+> Actualmente lo que realmente me motiva es la música, no el dinero. Sólo me muevo por el interés musical, por aprender trabajando...
+
+- **Creo que la siguiente pregunta viene bastante acorde con lo que hemos hablado anteriormente. Así que, hablemos del reciente proyecto junto a Luis Conte, Chad Wackerman y Doudou N'Diaye...**
+
+> Exacto. World Drummers Ensemble es una magnífica aventura. Erk Willemsen -responsable de la revista musical alemana Slagwekkrant que, a su vez, es responsable de un importante festival de percusión que se llama Big Bang International Percussion Festival- supo reunir a cuatro músicos de diferentes culturas, provenientes de diferentes estilos, con el objetivo de intercambiar ideas en un proyecto de lo más ecléctico. Fue una experiencia inolvidable, muy excitante y enriquecedora. Dialogamos musicalmente entre Luis, Chad y Doudou N'Diaye Rose. Luis y Chad son muy conocidos pero Doudou es un maravilloso percusionista senegalés menos conocido de setenta y cinco años que nos impresionó y del cual pude aprender mucho. Esa es un poco la idea inicial.
+
+- **World Drummers Ensemble ¿Es algo así como unas conversaciones rítmicas?**
+
+> Eso es. Cada uno trajo algo de su propia cosecha para intercambiar. Además, hay una revisión rítmica del Self Portrait de Max Roach, así como un interesantísimo corte de ascendencia turca. Doudou no habla apenas inglés, así que fíjate hasta qué punto es interesante la idea. Con esto sólo quiero decirte que todo surgió del ritmo, del sentimiento, del sonido, de la expresividad de cada uno... Summerfold Records se ha responsabilizado de este trabajo y ha conseguido editar en un solo CD (grabado por ambas caras: en una audio y en la otra imagen) todo el material.
+
+- **A lo largo de los años has tenido decenas de baterías ¿Según el proyecto cambiabas de _kit_?**
+
+> Es verdad que he tenido muchas baterías y que el _kit_ que utilicé en mi etapa con Yes era diferente al que luego utilicé con King Crimson. También es verdad que he tocado con baterías clásicas, electrónicas, rototoms, gongtoms... ¡qué sé yo! Pienso que es fantástico ir cambiando de equipo, variando el sonido, probando... Dependiendo de la necesidad. Supongo que el sonido de la banda te da la dirección correcta respecto al sonido que debes conseguir en tu faceta rítmica. No creo que sea muy apropiado tener una sola batería; pienso que es mucho más adecuado tener un amplio abanico de posibilidades en cuanto a tu equipo, para poder adaptarte a las circunstancias musicales que se te vayan presentando.
+
+- **Nos encontramos en un momento muy delicado en lo que a la música se refiere ¿Cómo ves el panorama musical actual (Internet, la piratería...)?**
+
+> Actualmente hay mucho movimiento en torno a la música. Es un momento de cambios importantes, de eso no tengo ninguna duda. Hay muchos formatos en los que se puede plasmar música. Para los músicos esto representa cambios y, a su vez, les obliga a flexibilizar sus decisiones para poder asimilar esto momentos difíciles. Además, los músicos son conscientes de que si no existen plataformas para escuchar su música, nadie podrá saber lo que están haciendo. Para tener una continuidad necesitas renovar tus ideas, crear música nueva; y para poder hacerlo necesitas un soporte que te permita hacerlo. Vamos a ver.
+
+- **Quizá sea bueno para los músicos alternativos...**
+
+> Yo no creo que las descargas sean algo negativo. Es más, no lo son para la música menos comercial. Mucho artistas tienen parte de su obra colgada en sus webs y cualquiera se la puede bajar.
+
+- **Para terminar, hablemos de tus proyectos de futuro.**
+
+Últimamente estoy muy metido en mi propio sello, Summerfold Records; trabajando en proyectos ajenos vinculados al sello. Nada personal.

@@ -1,22 +1,22 @@
-# Entrevista a Fontanarrosa - Revista JATAJ (1986)
+# Entrevista a Fontanarrosa - JATAJ (1986)
+
+![](../../../shared/images/Roberto_Fontanarrosa.png "Roberto Fontanarrosa")
 
 Hace un tiempo encontré esta entrevista que se le hizo a Roberto publicada por la revista JATAJ (Año II - Nro. IV - Septiembre 1986) entre libros viejos de gente también vieja que ya no está.
-Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
 
+Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
 
 ## Humor... ¿Para qué?
 
-
-*Y usted... ¿de qué se ríe?*
-
+*Y usted... ¿De qué se ríe?*
 
 ¿El humor sólo le produce risa? ¿O se puede construir desde él? ¿Cuál es la función social del humorista? Para Fontanarrosa, lo importante es que usted se ría; todo lo demás es la interpretación que él hace de la realidad.
 
----
+______________________________________________________________________
 
 - **El entretenimiento ¿Es una vía válida para llegar a la gente?**
 
-> Creo que es elemental. Yo cada vez pienso más en que todo tipo de producto que se inserte en el espectáculo, puede ser grosero, puede ser burdo, puede ser lo que sea, pero no puede ser aburrido. Y con respecto a eso, siempre me acuerdo de una frase que creo leí de Coppola, que por ahí puede ser un poco drástica: "nada que me aburra puede ser bueno". Incluso si vos pretendieras hacer un mensaje a alguien o decir algo, lo tenés que meter en una envoltura entretenida y amena, porque indudablemente es mucho más efectivo. Yo a veces veo por televisión programas como Plaza Sésamo, por ejemplo, y pienso que cosa entretenida que puede llegar a ser un programa educacional para chicos a través de ese tipo de presentaciones. O que distinto sería si los libros de textos pudiesen venir en historietas, en una forma amena, en vez de esos libros infernales que no te motivan para nada. Realmente, creo que si una persona intenta decir algo, contar algo, fundamentalmente debe hacerlo de una manera placentera, para que no aburra ni pese. Y eso lo mido a través de mi experiencia personal: estoy seguro de que si yo me divierto haciendo una cosa, lo más probable es que divierta.
+> Creo que es elemental. Yo cada vez pienso más en que todo tipo de producto que se inserte en el espectáculo, puede ser grosero, puede ser burdo, puede ser lo que sea, pero no puede ser aburrido. Y con respecto a eso, siempre me acuerdo de una frase que creo leí de Coppola, que por ahí puede ser un poco drástica: «nada que me aburra puede ser bueno». Incluso si vos pretendieras hacer un mensaje a alguien o decir algo, lo tenés que meter en una envoltura entretenida y amena, porque indudablemente es mucho más efectivo. Yo a veces veo por televisión programas como Plaza Sésamo, por ejemplo, y pienso que cosa entretenida que puede llegar a ser un programa educacional para chicos a través de ese tipo de presentaciones. O que distinto sería si los libros de textos pudiesen venir en historietas, en una forma amena, en vez de esos libros infernales que no te motivan para nada. Realmente, creo que si una persona intenta decir algo, contar algo, fundamentalmente debe hacerlo de una manera placentera, para que no aburra ni pese. Y eso lo mido a través de mi experiencia personal: estoy seguro de que si yo me divierto haciendo una cosa, lo más probable es que divierta.
 
 - **El humor de Fontanarrosa, ya sea a través de chistes, historietas o como escritor ¿Hacia dónde apunta?**
 
@@ -48,11 +48,11 @@ Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
 
 - **Al referirnos a la escritura, hablaste de una necesidad de narrar, de contar algo. ¿No buscás, al mismo tiempo, hacer pensar o repensar a la gente problemas cotidianos o temas universales?**
 
-> Yo doy mi versión de la cosa. Por ahí eso de "hacer pensar" suena un poco duro, porque es como suponer que la gente no piensa. Por eso, yo sólo doy mi versión, que puede plantearle a alguien algo, o no. Depende de la persona que lo lea. Es como cuando te hablan de una película con determinado mensaje, y vos la vas a ver y no te produce absolutamente nada, porque para tu caso personal, ese no es el mensaje. Y por ahí, yo voy a ver una película espantosa que trata de un dibujante de alrededor de cuarenta años, que tiene un hijo de tres y me digo: ¡pucha, esto es para mí! Es bastante relativo. Pero en líneas generales, no hago un llamamiento al pensamiento.
+> Yo doy mi versión de la cosa. Por ahí eso de «hacer pensar» suena un poco duro, porque es como suponer que la gente no piensa. Por eso, yo sólo doy mi versión, que puede plantearle a alguien algo, o no. Depende de la persona que lo lea. Es como cuando te hablan de una película con determinado mensaje, y vos la vas a ver y no te produce absolutamente nada, porque para tu caso personal, ese no es el mensaje. Y por ahí, yo voy a ver una película espantosa que trata de un dibujante de alrededor de cuarenta años, que tiene un hijo de tres y me digo: ¡pucha, esto es para mí! Es bastante relativo. Pero en líneas generales, no hago un llamamiento al pensamiento.
 
 - **Pero hay una crítica...**
 
-> Hay un vistazo, un punto de vista mío a tal o cual cosa. Si eso a alguien le hace replantear determinadas cosas, por ahí mejor. Pero, en muchos de esos planteos míos, ¿qué me hace suponer que tengo la visión acertada? Nada. Yo puedo decir: a mí me parece esto, y nada más. En mi caso no hay ninguna intención de esclarecimiento de nadie, porque para hacerlo, yo debería ser un esclarecido, cosa que no soy. Tampoco quiero plantear una cosa totalmente ingenua de mi parte. Obviamente, en todos los órdenes de la vida, uno trata de reflejar lo que piensa, y hasta intentamos convencer a los demás de que nuestras convicciones son más fuertes que las de los demás. Pero de todas maneras, trato de quitarle a la cosa todo lo que sea un tono pedagógico, y más que nada, procuro no pontificar. Porque sino, tengo miedo de caer en esa moda de los pequeños afiches o las tarjetitas que dicen: Felicidad es... tal cosa; Amistad es... tal cosa; La Vida es... Pucha, ¡qué cosa! Fulanito de tal me viene a decir cómo es la amistad, la vida y las grandes incógnitas del universo... Me parece totalmente pretencioso.
+> Hay un vistazo, un punto de vista mío a tal o cual cosa. Si eso a alguien le hace replantear determinadas cosas, por ahí mejor. Pero, en muchos de esos planteos míos ¿Qué me hace suponer que tengo la visión acertada? Nada. Yo puedo decir: a mí me parece esto, y nada más. En mi caso no hay ninguna intención de esclarecimiento de nadie, porque para hacerlo, yo debería ser un esclarecido, cosa que no soy. Tampoco quiero plantear una cosa totalmente ingenua de mi parte. Obviamente, en todos los órdenes de la vida, uno trata de reflejar lo que piensa, y hasta intentamos convencer a los demás de que nuestras convicciones son más fuertes que las de los demás. Pero de todas maneras, trato de quitarle a la cosa todo lo que sea un tono pedagógico, y más que nada, procuro no pontificar. Porque sino, tengo miedo de caer en esa moda de los pequeños afiches o las tarjetitas que dicen: Felicidad es... tal cosa; Amistad es... tal cosa; La Vida es... Pucha, ¡qué cosa! Fulanito de tal me viene a decir cómo es la amistad, la vida y las grandes incógnitas del universo... Me parece totalmente pretencioso.
 
 - **¿Qué querés cambiar, por medio del humor?**
 

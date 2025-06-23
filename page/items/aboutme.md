@@ -10,7 +10,7 @@ Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I love bo
 
 I also like autum 🍂
 
----
+______________________________________________________________________
 
 I'm a full-stack developer with 5+ YOE, currently focusing on DevOps tasks involving Ansible, Python, and Bash. I'm employed at a company where I do a lot of hands-on coding.
 
@@ -29,11 +29,11 @@ I use Linux as my daily driver both at home and at work, I enjoy learning about 
 
 I have virtually no contact with Windows.
 
----
+______________________________________________________________________
 
 I try to use LLMs as little as possible. I might rely on them for naming or grammar discussions, but I prefer to keep them away from my code.
 
----
+______________________________________________________________________
 
 Languages:
 
