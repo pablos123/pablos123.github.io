@@ -86,4 +86,4 @@ Me tomé la libertad de corregir errores ortográficos. Dejo la digitalización:
 
 - **Para terminar, hablemos de tus proyectos de futuro.**
 
-Últimamente estoy muy metido en mi propio sello, Summerfold Records; trabajando en proyectos ajenos vinculados al sello. Nada personal.
+> Últimamente estoy muy metido en mi propio sello, Summerfold Records; trabajando en proyectos ajenos vinculados al sello. Nada personal.
