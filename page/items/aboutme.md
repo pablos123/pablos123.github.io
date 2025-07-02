@@ -1,14 +1,13 @@
-Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I love both consuming and doing almost everything that (I consider) involves a creative process:
+Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I'm passionate about:
 
-- Programming
+- Drumming
 - Reading
-- Gaming
-- Cinema
-- Music
-- Art
+- Programming
 - ...
 
-I also like autum 🍂
+They all involve a strong creative process and rely heavily on imagination.
+
+I also like [cinema](https://letterboxd.com/pablos123/) and autum 🍂
 
 ______________________________________________________________________
 
@@ -18,16 +17,16 @@ In addition to handling maintenance work (because technical debt is tautological
 
 Technologies I work with regularly:
 
-- Python (Django and vanilla)
-- Perl
 - Ansible
 - Bash
+- Python (Django and vanilla)
+- Perl
 
-I've also worked with many other languages on [personal](https://pablos123.github.io/items/projects/projects.html) or university projects.
+I've also worked with many other languages on [personal](https://pablos123.github.io/items/projects/projects.html) or [university](https://github.com/pablos123/dump/tree/main/lcc) projects.
 
 I use Linux as my daily driver both at home and at work, I enjoy learning about it and tinkering with my [environment](https://github.com/pablos123/environment).
 
-I have virtually no contact with Windows.
+I have virtually no contact with other Operating Systems.
 
 ______________________________________________________________________
 
