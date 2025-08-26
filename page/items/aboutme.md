@@ -5,9 +5,9 @@ Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I'm passi
 - Programming
 - ...
 
-They all involve a strong creative process and rely heavily on imagination.
+I like the fact that they all involve a strong creative process and rely heavily on imagination.
 
-I also like [cinema](https://letterboxd.com/pablos123/) and autum 🍂
+I also like [cinema](https://letterboxd.com/pablos123/) and autum 🍂.
 
 ______________________________________________________________________
 
@@ -26,11 +26,7 @@ I've also worked with many other languages on [personal](https://pablos123.githu
 
 I use Linux as my daily driver both at home and at work, I enjoy learning about it and tinkering with my [environment](https://github.com/pablos123/environment).
 
-I have virtually no contact with other Operating Systems.
-
-______________________________________________________________________
-
-I try to use LLMs as little as possible. I might rely on them for naming or grammar discussions, but I prefer to keep them away from my code.
+I have virtually no contact with other operating systems.
 
 ______________________________________________________________________
 
