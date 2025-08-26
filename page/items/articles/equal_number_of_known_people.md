@@ -15,9 +15,9 @@ Primero que nada asumamos que:
 Podemos representar entonces el grupo de personas como $G = (V, E)$, un
 grafo simple, donde:
 
--   $V = \{\text{personas en el grupo}\}$ y $|V| = n \geq 2$.
+-   $V = \{\text{personas en el grupo}\}$ y $|V| = n \geq 2$
 
--   $E = \{(u, v) : u \text{ conoce a } v ;\ u,v \in V\}$ y $|E| = m$.
+-   $E = \{(u, v) : u \text{ conoce a } v ;\ u,v \in V\}$ y $|E| = m$
 
 Por lo tanto y en definitiva, quiero ver que en un grafo simple de dos o
 más vértices, dos de ellos tienen el mismo grado.
@@ -35,7 +35,7 @@ Esto es,
 $\exists\ v \in V\ :\ d(v) = 0 \Rightarrow \nexists\ u \in V\ :\ d(u) = n - 1$.
 
 Luego, tenemos que $Im(d) \not \subseteq \{0, .., n - 1\}$ y de aquí
-$|Im(d)| \leq n - 1$
+$|Im(d)| \leq n - 1$.
 
 Como $|Dom(d)| = |V| = n$ tenemos que $d$ no puede ser biyectiva por el
 principio del palomar.
