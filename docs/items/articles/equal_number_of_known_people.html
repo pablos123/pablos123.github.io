@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../../shared/icon.png" />
+    <link rel="stylesheet" href="../../shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      window.onload = () => {
+        let theme = false;
+
+        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
+
+        const set_theme = () => {
+          document.body.classList.add(theme ? "light" : "dark");
+          document.body.classList.remove(theme ? "dark" : "light");
+          document.cookie = `theme=${theme}; path=/`;
+        };
+
+        set_theme();
+
+        document.getElementById("theme").addEventListener("click", () => {
+          theme = !theme;
+          set_theme();
+        });
+      };
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="./articles.html">Go Back</a> |
+      <a id="theme">Dark..Light</a>
+    </header>
+  </body>
+</html>
+                <main class='article'>
+                <h1 id="demostración---mismos-conocidos">Demostración - Mismos
+Conocidos</h1>
+<p>Demostración de que en todo grupo de dos o más personas existen
+siempre dos personas que tienen exactamente el mismo número de conocidos
+en el grupo.</p>
+<p>Primero que nada asumamos que:</p>
+<ul>
+<li><p>nadie del grupo se conoce a sí mismo;</p></li>
+<li><p>nadie del grupo conoce a una persona más de una vez;</p></li>
+<li><p>nadie del grupo conoce a una persona sin que esa persona lo
+conozca.</p></li>
+</ul>
+<p>Podemos representar entonces el grupo de personas como <span
+class="math inline"><em>G</em> = (<em>V</em>,<em>E</em>)</span>, un
+grafo simple, donde:</p>
+<ul>
+<li><p><span class="math inline"><em>V</em> = {personas en el
+grupo}</span> y <span
+class="math inline">|<em>V</em>| = <em>n</em> ≥ 2</span>.</p></li>
+<li><p><span
+class="math inline"><em>E</em> = {(<em>u</em>,<em>v</em>) : <em>u</em>
+conoce a <em>v</em>; <em>u</em>, <em>v</em> ∈ <em>V</em>}</span> y <span
+class="math inline">|<em>E</em>| = <em>m</em></span>.</p></li>
+</ul>
+<p>Por lo tanto y en definitiva, quiero ver que en un grafo simple de
+dos o más vértices, dos de ellos tienen el mismo grado.</p>
+<p>Sea <span class="math inline"><em>d</em></span> la función que asigna
+a cada vértice de <span class="math inline"><em>V</em></span> su número
+de vecinos:</p>
+<p><span
+class="math display"><em>d</em> : <em>V</em>(<em>G</em>) → ℕ<sub>0</sub></span></p>
+<p><span
+class="math display"><em>v</em> ↦ |<em>N</em>(<em>v</em>)|</span></p>
+<p>Si alguien no conoce a nadie es claro que nadie puede conocer a
+todos. Esto es, si <span
+class="math inline">∃ <em>v</em> ∈ <em>V</em> : <em>d</em>(<em>v</em>) = 0 ⇒ ∄ <em>u</em> ∈ <em>V</em> : <em>d</em>(<em>u</em>) = <em>n</em> − 1</span>.</p>
+<p>Luego, tenemos que <span
+class="math inline"><em>I</em><em>m</em>(<em>d</em>) ⊈ {0, .., <em>n</em> − 1}</span>
+y de aquí <span
+class="math inline">|<em>I</em><em>m</em>(<em>d</em>)| ≤ <em>n</em> − 1</span></p>
+<p>Como <span
+class="math inline">|<em>D</em><em>o</em><em>m</em>(<em>d</em>)| = |<em>V</em>| = <em>n</em></span>
+tenemos que <span class="math inline"><em>d</em></span> no puede ser
+biyectiva por el principio del palomar.</p>
+<p>Luego existen <span
+class="math inline"><em>u</em>, <em>v</em> ∈ <em>V</em></span> distintos
+tal que <span
+class="math inline"><em>d</em>(<em>u</em>) = <em>d</em>(<em>v</em>)</span>.</p>
+<p>Por lo tanto en un grupo de dos o más personas existen siempre dos
+personas que tienen exactamente el mismo número de conocidos.</p>
+<p><span class="math inline">◼</span></p>
+                    </main>
+
+    <footer>
+      Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>
