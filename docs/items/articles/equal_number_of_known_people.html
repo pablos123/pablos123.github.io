@@ -52,11 +52,12 @@ conozca.</p></li>
 class="math inline"><em>G</em> = (<em>V</em>,<em>E</em>)</span>, un
 grafo simple, donde:</p>
 <ul>
-<li><p><span class="math inline">$V = {\text{personas en el
-grupo}}$</span> y <span class="math inline">$|V| = n \geq
-2$</span></p></li>
-<li><p><span class="math inline">$E = {(u, v) : u \text{ conoce a } v
-;\ u,v \in V}$</span> y <span
+<li><p><span class="math inline"><em>V</em> = personas en el
+grupo</span> y <span
+class="math inline">|<em>V</em>| = <em>n</em> ≥ 2</span></p></li>
+<li><p><span
+class="math inline"><em>E</em> = (<em>u</em>,<em>v</em>) : <em>u</em>
+conoce a <em>v</em>; <em>u</em>, <em>v</em> ∈ <em>V</em></span> y <span
 class="math inline">|<em>E</em>| = <em>m</em></span></p></li>
 </ul>
 <p>Es decir, quiero ver que en un grafo simple de dos o más vértices,
@@ -64,27 +65,30 @@ dos de ellos tienen el mismo grado.</p>
 <p>Sea <span class="math inline"><em>d</em></span> la función que asigna
 a cada vértice de <span class="math inline"><em>V</em></span> su número
 de vecinos:</p>
-<p><span class="math display">$$d: V(G) \rightarrow
-\mathbb{N}\_{0}$$</span></p>
-<p><span class="math display">$$v \mapsto |N(v)|$$</span></p>
+<p><span
+class="math inline"><em>d</em> : <em>V</em>(<em>G</em>) → ℕ<sub>0</sub></span></p>
+<p><span
+class="math inline"><em>v</em> ↦ |<em>N</em>(<em>v</em>)|</span></p>
 <p>Si alguien no conoce a nadie es claro que nadie puede conocer a
 todos.</p>
-<p>Esto es, <span class="math inline">$\exists\ v \in V\ :\ d(v) =
-0 \Rightarrow \nexists\ u \in V\ :\ d(u) = n - 1$</span>.</p>
-<p>Luego, tenemos que <span class="math inline">$Im(d) \not \subseteq
-{0, .., n - 1}$</span> y de aquí <span class="math inline">$|Im(d)|
-\leq n - 1$</span>.</p>
+<p>Esto es, <span
+class="math inline">∃ <em>v</em> ∈ <em>V</em> : <em>d</em>(<em>v</em>) = 0 ⇒ ∄ <em>u</em> ∈ <em>V</em> : <em>d</em>(<em>u</em>) = <em>n</em> − 1</span>.</p>
+<p>Luego, tenemos que <span
+class="math inline"><em>I</em><em>m</em>(<em>d</em>) ⊈ 0, .., <em>n</em> − 1</span>
+y de aquí <span
+class="math inline">|<em>I</em><em>m</em>(<em>d</em>)| ≤ <em>n</em> − 1</span>.</p>
 <p>Como <span
 class="math inline">|<em>D</em><em>o</em><em>m</em>(<em>d</em>)| = |<em>V</em>| = <em>n</em></span>
 tenemos que <span class="math inline"><em>d</em></span> no puede ser
 biyectiva por el principio del palomar.</p>
-<p>Luego existen <span class="math inline">$u, v \in V$</span>
-distintos tal que <span
+<p>Luego existen <span
+class="math inline"><em>u</em>, <em>v</em> ∈ <em>V</em></span> distintos
+tal que <span
 class="math inline"><em>d</em>(<em>u</em>) = <em>d</em>(<em>v</em>)</span>.</p>
 <p>Por lo tanto en un grupo de dos o más personas existen siempre dos
 personas que tienen exactamente el mismo número de conocidos en el
 grupo.</p>
-<p><span class="math inline">$\blacksquare$</span></p>
+<p><span class="math inline">◼</span></p>
                     </main>
 
     <footer>
