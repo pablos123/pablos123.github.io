@@ -12,12 +12,11 @@ Asumimos que:
 
 - nadie del grupo conoce a una persona sin que esa persona lo conozca.
 
-Podemos representar entonces el grupo de personas como $G = (V, E)$, un
-grafo simple, donde:
+Podemos representar entonces el grupo de personas como un grafo simple $G = (V,\ E)$ donde:
 
 - $V = {\text{personas en el grupo}}$ y $|V| = n \geq 2$
 
-- $E = {(u, v) : u \text{ conoce a } v ;\ u,v \in V}$ y $|E| = m$
+- $E = {(u,\ v) : u \text{ conoce a } v \text{ con } u,\ v \in V}$ y $|E| = m$
 
 Es decir, quiero ver que en un grafo simple de dos o
 más vértices, dos de ellos tienen el mismo grado.
@@ -40,7 +39,7 @@ $|Im(d)| \leq n - 1$.
 Como $|Dom(d)| = |V| = n$ tenemos que $d$ no puede ser biyectiva por el
 principio del palomar.
 
-Luego existen $u, v \in V$ distintos tal que $d(u) = d(v)$.
+Luego existen $u,\ v \in V$ distintos tal que $d(u) = d(v)$.
 
 Por lo tanto en un grupo de dos o más personas existen siempre dos
 personas que tienen exactamente el mismo número de conocidos en el grupo.
