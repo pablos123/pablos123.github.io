@@ -1,6 +1,7 @@
     </main>
 
     <footer>
+      <a href="BACK_BUTTON">Go Back</a> |
       Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
     </footer>
 
