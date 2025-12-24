@@ -3,7 +3,7 @@ body {
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
   margin: 0;
-  font-size: 1.5vmax;
+  font-size: clamp(16px, 1.5vmax, 28px);
   text-align: center;
 }
 
@@ -44,7 +44,8 @@ img {
 .article {
   display: flex;
   margin: 0 auto 0 auto;
-  padding: 0 17% 0 17%;
+  padding: 0 5% 0 5%;
+  max-width: 1200px;
   flex-direction: column;
   align-items: start;
   text-align: start;
@@ -63,4 +64,56 @@ img {
 #theme {
   cursor: pointer;
   user-select: none;
+}
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .article {
+    padding: 0 8% 0 8%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: clamp(14px, 4vw, 20px);
+  }
+
+  header {
+    font-size: 85%;
+    margin: 8px auto auto auto;
+  }
+
+  footer {
+    font-size: 75%;
+    margin: auto auto 8px auto;
+  }
+
+  .article {
+    padding: 0 4% 0 4%;
+  }
+
+  header a {
+    display: inline-block;
+    padding: 4px 8px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+  body {
+    font-size: clamp(12px, 5vw, 18px);
+  }
+
+  header {
+    font-size: 90%;
+  }
+
+  footer {
+    font-size: 80%;
+  }
+
+  .article {
+    padding: 0 3% 0 3%;
+  }
 }

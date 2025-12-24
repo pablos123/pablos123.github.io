@@ -222,3 +222,144 @@ input[type="color"] {
 #grid-canvas {
   z-index: 1;
 }
+
+/* Tablet and below */
+@media (max-width: 1024px) {
+  button {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+
+  input[type="range"] {
+    width: 220px;
+  }
+
+  #play-button {
+    margin-right: 190px;
+  }
+
+  #pencil-button {
+    margin-right: 145px;
+  }
+
+  #background-button {
+    margin-right: 100px;
+  }
+
+  #grid-button {
+    margin-right: 55px;
+  }
+
+  #clear-button {
+    margin-right: 10px;
+  }
+
+  #pencil-color {
+    margin-right: 145px;
+  }
+
+  #background-color {
+    margin-right: 100px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  button {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  input[type="range"] {
+    width: 180px;
+    margin-top: 52px;
+    margin-right: 8px;
+  }
+
+  #play-button {
+    margin-right: 156px;
+  }
+
+  #pencil-button {
+    margin-right: 120px;
+  }
+
+  #background-button {
+    margin-right: 84px;
+  }
+
+  #grid-button {
+    margin-right: 48px;
+  }
+
+  #clear-button {
+    margin-right: 12px;
+  }
+
+  #pencil-color {
+    margin-right: 120px;
+  }
+
+  #background-color {
+    margin-right: 84px;
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+  button {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+
+  input[type="range"] {
+    width: 140px;
+    margin-top: 46px;
+    margin-right: 6px;
+  }
+
+  input[type="color"] {
+    width: 32px;
+    height: 32px;
+  }
+
+  #play-button {
+    margin-right: 122px;
+  }
+
+  #pencil-button {
+    margin-right: 94px;
+  }
+
+  #background-button {
+    margin-right: 66px;
+  }
+
+  #grid-button {
+    margin-right: 38px;
+  }
+
+  #clear-button {
+    margin-right: 10px;
+  }
+
+  #pencil-color {
+    margin-right: 94px;
+  }
+
+  #background-color {
+    margin-right: 66px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
+}
