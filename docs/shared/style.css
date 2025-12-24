@@ -5,6 +5,7 @@ body {
   margin: 0;
   font-size: clamp(16px, 1.5vmax, 28px);
   text-align: center;
+  user-select: none;
 }
 
 header {
@@ -29,13 +30,6 @@ a:hover {
   text-decoration: underline;
 }
 
-@media (hover: none) {
-  a:hover,
-  a:active {
-    text-decoration: none;
-  }
-}
-
 figure {
   margin: 0;
 }
@@ -57,6 +51,7 @@ img {
   flex-direction: column;
   align-items: start;
   text-align: start;
+  user-select: text;
 }
 
 .dark {
@@ -77,6 +72,10 @@ img {
 @media (max-width: 1024px) {
   .article {
     padding: 0 8% 0 8%;
+  }
+
+  a:hover, a:active {
+    text-decoration: none;
   }
 }
 
@@ -104,6 +103,10 @@ img {
     display: inline-block;
     padding: 4px 8px;
   }
+
+  a:hover, a:active {
+    text-decoration: none;
+  }
 }
 
 /* Very small mobile */
@@ -122,5 +125,9 @@ img {
 
   .article {
     padding: 0 3% 0 3%;
+  }
+
+  a:hover, a:active {
+    text-decoration: none;
   }
 }
