@@ -30,7 +30,8 @@ a:hover {
 }
 
 @media (hover: none) {
-  a:hover {
+  a:hover,
+  a:active {
     text-decoration: none;
   }
 }
