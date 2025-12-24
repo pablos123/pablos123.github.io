@@ -64,6 +64,17 @@ img {
 #theme {
   cursor: pointer;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#theme:hover {
+  text-decoration: underline;
+}
+
+@media (hover: none) {
+  #theme:hover {
+    text-decoration: none;
+  }
 }
 
 /* Tablet and below */

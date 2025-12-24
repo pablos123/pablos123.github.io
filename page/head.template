@@ -32,5 +32,5 @@
     <header>
       <a href="/">Home</a> |
       <a href="BACK_BUTTON">Go Back</a> |
-      <a id="theme">Dark..Light</a>
+      <a id="theme">Theme</a>
     </header>
