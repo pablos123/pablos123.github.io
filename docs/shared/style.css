@@ -22,10 +22,17 @@ footer {
 a {
   text-decoration: none;
   color: #689d6a;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+@media (hover: none) {
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 figure {
@@ -63,18 +70,6 @@ img {
 
 #theme {
   cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-#theme:hover {
-  text-decoration: underline;
-}
-
-@media (hover: none) {
-  #theme:hover {
-    text-decoration: none;
-  }
 }
 
 /* Tablet and below */
