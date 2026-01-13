@@ -33,7 +33,7 @@ Si alguien no conoce a nadie es claro que nadie puede conocer a todos.
 Esto es,
 $\exists\ v \in V\ :\ d(v) = 0 \Rightarrow \nexists\ u \in V\ :\ d(u) = n - 1$.
 
-Luego, tenemos que $Im(d) \not \subseteq {0, .., n - 1}$ y de aquí
+Luego, tenemos que $Im(d) \not \subseteq \{0,\ ...,\ n - 1\}$ y de aquí
 $|Im(d)| \leq n - 1$.
 
 Como $|Dom(d)| = |V| = n$ tenemos que $d$ no puede ser biyectiva por el
