@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../../shared/icon.png" />
+    <link rel="stylesheet" href="../../shared/style.css" />
+    <title>pablos123</title>
+    <script>
+      window.onload = () => {
+        let theme = false;
+
+        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
+
+        const set_theme = () => {
+          document.body.classList.add(theme ? "light" : "dark");
+          document.body.classList.remove(theme ? "dark" : "light");
+          document.cookie = `theme=${theme}; path=/`;
+        };
+
+        set_theme();
+
+        document.getElementById("theme").addEventListener("click", () => {
+          theme = !theme;
+          set_theme();
+        });
+      };
+    </script>
+  </head>
+  <body class="dark">
+    <header>
+      <a href="/">Home</a> |
+      <a href="./articles.html">Go Back</a> |
+      <a id="theme">Theme</a>
+    </header>
+                <main class='article'>
+                <h1 id="reglas-de-la-básica">Reglas de la Básica</h1>
+<h2 id="historia">Historia</h2>
+<p>La Básica es un juego de cartas españolas basado en la Escoba de 15
+que me enseñó mi tío hace muchos años.</p>
+<p>No hay una forma oficial de cómo jugarla, como cualquier otro juego
+de cartas.</p>
+<p>En la adolescia, con mis amigos la jugamos muchísimo y con el tiempo
+fuimos agregando reglas hasta considerarla muy particular. Por eso la
+que jugamos es la <em>Básica Real</em>, la <em>Real (rē(ə)l) Básica</em>
+o, meramente, la <em>Básica</em>, que, para nosotros, es esta y no la
+que aprendí cuando era chico.</p>
+<p>Esta es una digitalización de estas reglas a modo de manual para
+evitar discusiones y aplacar pérdidas de memoria.</p>
+<hr />
+<p>🤼 2-6 jugadores.</p>
+<p>⏰ 20-45 min.</p>
+<hr />
+<p>La Básica es un juego en equipos. Estos equipos pueden tener una, dos
+o tres personas.</p>
+<h1 id="objetivo">Objetivo</h1>
+<p>El objetivo es que tu equipo llegue o supere la cantidad de puntos
+pactada.</p>
+<h1 id="preparación">Preparación</h1>
+<p>Primero que nada se decide a cuántos puntos se va a jugar. No vaya a
+ser que después se peleen.</p>
+<p>Algunos valores estándar son:</p>
+<ul>
+<li><p>45 puntos: partida corta.</p></li>
+<li><p>65 puntos: partida normal.</p></li>
+<li><p>101 puntos: partida larga.</p></li>
+</ul>
+<details>
+<summary>
+(También puede elegirse un número arbitrario entre 30 y 101 puntos)
+</summary>
+<p>–</p>
+<button id="b1" style="user-select:none; width:120px; height:60px;">
+Seré un número
+</button>
+<p>–</p>
+<script>
+const b1 = document.getElementById('b1');
+b1.addEventListener('click',
+() => b1.textContent = `${ 30 + Math.floor(Math.random() * 71) }`);
+</script>
+<p>Estás ejecutando esto:</p>
+<pre><code>const b1 = document.getElementById(&#39;b1&#39;);
+b1.addEventListener(&#39;click&#39;,
+() =&gt; b1.textContent = `${ 30 + Math.floor(Math.random() * 71) }`);</code></pre>
+<p>Pero si preferís otra cosa, podés hacerlo como más te guste:</p>
+<pre><code>echo &quot;$(( RANDOM % 72 + 30 ))&quot;</code></pre>
+<p>–</p>
+<pre><code>from random import randint
+print(randint(30, 101))</code></pre>
+<p>–</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+void main() {
+  srandom(time(NULL));
+  printf(&quot;%d&quot;, random() % 72 + 30);
+}</code></pre>
+</details>
+<p>Luego se decide cuál de los dos equipos juega primero. Una gran
+opción para decidir es el clásico piedra, papel o tijera. Aunque se
+aceptan otros métodos como pan y queso, un partido de bolitas o una
+carrera.</p>
+<details>
+<summary>
+(También se puede tirar una moneda)
+</summary>
+<p>–</p>
+<button id="b2" style="user-select:none; width:120px; height:60px;">
+Cara: 🐲</br>Cruz: ⚔️
+</button>
+<p>–</p>
+<script>
+const b2 = document.getElementById('b2');
+const arr = ['🐲', '⚔️'];
+b2.addEventListener('click',
+() => b2.textContent = `${ arr[Math.floor(Math.random() * 2)] }`);
+</script>
+</details>
+<h1 id="juegos">Juegos</h1>
+<p>Durante varios momentos del juego se podrán cantar juegos.</p>
+<p>Esta es una lista de los juegos con los repectivos puntos:</p>
+<ul>
+<li><p>Escoba: 1 punto. (Las cartas suman quince)</p></li>
+<li><p>Full: 1 punto. (Dos cartas iguales y una distinta)</p></li>
+<li><p>Dos de chica/Dos de miseria: 2 puntos. (Las cartas suman menos de
+nueve)</p></li>
+<li><p>Tres de nueve: 3 puntos. (Las cartas suman nueve)</p></li>
+<li><p>Escalera: 3 puntos. (Valen circulares. Tres números
+consecutivos)</p></li>
+<li><p>Flor: 3 puntos. (Las cartas son del mismo)</p></li>
+<li><p>Escalera especial: 6 puntos.</p></li>
+<li><p>Pierna: 4 puntos.</p></li>
+<li><p>Básica: 20 pts. (1 2 3 de Oro)</p></li>
+</ul>
+<h1 id="comienzo-de-mano">Comienzo de mano</h1>
+<p>Cada mano comienza repartiendo tres cartas a cada jugador y colocando
+cuatro cartas boca arriba en la mesa.</p>
+<p>Luego ver</p>
+<h1 id="turnos">Turnos</h1>
+<p>Si es el primer turno de la mano entonces ver juegos de</p>
+<h1 id="juegos-de-mano">Juegos de mano</h1>
+<h1 id="juegos-de-mesa">Juegos de mesa</h1>
+<p>Los Juegos de Mesa o de Postre</p>
+<h1 id="contra-juegos">Contra-Juegos</h1>
+<p>Siempre</p>
+<h1 id="final-de-mano">Final de mano</h1>
+<h1 id="final-de-partida">Final de partida</h1>
+<p>Gana el</p>
+                    </main>
+
+    <footer>
+      <a href="./articles.html">Go Back</a> |
+      Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
+    </footer>
+
+  </body>
+
+</html>
