@@ -118,13 +118,11 @@ Esta es una lista de los juegos con los repectivos puntos suponiendo siempre tre
 |Full|1 punto|_Dos números iguales y uno distinto_|
 |Dos de Chica/Dos de Miseria|2 puntos|_Los números suman menos de nueve_|
 |Tres de Nueve|3 puntos|_Los números suman nueve_|
-|Escalera|3 puntos|_Tres números consecutivos. Valen circulares_|
+|Escalera|3 puntos|_Los números son consecutivos. Valen circulares_|
 |Flor|3 puntos|_Las cartas son del mismo palo_|
 |Pierna|4 puntos|_Tres números iguales_|
 |Escalera Especial|6 puntos|_Los números son 1, 2 y 3. Si se canta_ Escalera Especial _no se puede cantar escalera_|
 |Básica|20 puntos|_1 2 3 de Oro. Si se canta_ Básica _no se puede cantar ningún otro juego_|
-
-# Contra-Juegos
 
 # Comienzo de mano
 Cada mano comienza repartiendo tres cartas a cada jugador y colocando cuatro cartas boca arriba en la mesa.
@@ -132,10 +130,22 @@ Cada mano comienza repartiendo tres cartas a cada jugador y colocando cuatro car
 En el momento que se colocan las cartas los jugadores pueden cantar **juegos de mesa**.
 
 # Turnos
-Si es el primer turno de la mano entonces ver juegos de
+Cada turno comienza repartiendo tres cartas a cada jugador.
+
+En el primer turno de cada ronda cada jugador puede cantar **juegos de mano** mientras se tengan las tres cartas en la mano.
+
+Si se canta un **juego de mano** entonces se deberá jugar con todas las cartas boca arriba sobre la mesa para que las vean todos los jugadores.
+
+Cada turno consiste en juntar cartas de la mesa con una carta de tu mano de tal forma que todas las cartas sumen 15 puntos.
+
+Si no se tiene una carta que cumpla esto se deberá tirar una carta a la mesa.
 
 # Juegos de mano
-Los
+Los juegos de mano sólo se pueden cantar teniendo las tres cartas en la mano. Cada jugador puede cantarlos . Ese otro jugador canta un contra-juego y anula ambos puntos en el momento de hacerlo.
+
+Ambos jugadores seguirán jugando con las tres cartas boca arriba sobre la mesa, si el jugador que ...
+
+Se puede cantar un máximo de tres juegos (o contra-juegos) de mano por turno.
 
 # Juegos de mesa
 
