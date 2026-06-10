@@ -7,30 +7,9 @@
     <link rel="icon" type="image/png" href="SHARED_DIR/icon.png" />
     <link rel="stylesheet" href="SHARED_DIR/style.css" />
     <title>pablos123</title>
-    <script>
-      window.onload = () => {
-        let theme = false;
-
-        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
-
-        const set_theme = () => {
-          document.body.classList.add(theme ? "light" : "dark");
-          document.body.classList.remove(theme ? "dark" : "light");
-          document.cookie = `theme=${theme}; path=/`;
-        };
-
-        set_theme();
-
-        document.getElementById("theme").addEventListener("click", () => {
-          theme = !theme;
-          set_theme();
-        });
-      };
-    </script>
   </head>
-  <body class="dark">
+  <body>
     <header>
       <a href="/">Home</a> |
-      <a href="BACK_BUTTON">Go Back</a> |
-      <a id="theme">Theme</a>
+      <a href="BACK_BUTTON">Go Back</a>
     </header>

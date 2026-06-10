@@ -7,42 +7,20 @@
     <link rel="icon" type="image/png" href="./shared/icon.png" />
     <link rel="stylesheet" href="./shared/style.css" />
     <title>pablos123</title>
-    <script>
-      window.onload = () => {
-        let theme = false;
-
-        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
-
-        const set_theme = () => {
-          document.body.classList.add(theme ? "light" : "dark");
-          document.body.classList.remove(theme ? "dark" : "light");
-          document.cookie = `theme=${theme}; path=/`;
-        };
-
-        set_theme();
-
-        document.getElementById("theme").addEventListener("click", () => {
-          theme = !theme;
-          set_theme();
-        });
-      };
-    </script>
   </head>
-  <body class="dark">
+  <body>
     <header>
-      <a id="theme">Theme</a>
+      <a href="./items/aboutme.html">About me</a>
     </header>
-        <main class='menu'>
-        <a href='./items/projects/projects.html'>Projects</a><br>
-        <a href='./items/articles/articles.html'>Articles</a><br>
-        <a href='./items/utilities/utilities.html'>Utilities</a><br>
-        <a href='./items/aboutme.html'>About me</a><br>
-        ·<br>
-        <a href='https://github.com/pablos123'>GitHub</a><br>
-            </main>
+<main class='menu'>
+<a href='./items/words/words.html'>Words</a><br>
+<a href='./items/builds/builds.html'>Builds</a><br>
+·<br>
+<a href='https://github.com/pablos123'>GitHub</a><br>
+    </main>
 
     <footer>
-      Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
+      Made with <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">a bash script</a>
     </footer>
 
   </body>

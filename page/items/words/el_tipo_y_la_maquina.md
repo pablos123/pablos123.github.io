@@ -1,4 +1,4 @@
-# El tipo y la máquina - Wimpi
+# El tipo y la máquina - Wimpi (1953)
 
 Antes el tipo escribía con una pluma de ganso, y era muy fácil que le saliera *La Divina Comedia*. Hoy escribe a máquina, y es muy difícil que no le salga una gansada.
 

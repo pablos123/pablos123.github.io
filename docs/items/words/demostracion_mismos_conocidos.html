@@ -7,35 +7,14 @@
     <link rel="icon" type="image/png" href="../../shared/icon.png" />
     <link rel="stylesheet" href="../../shared/style.css" />
     <title>pablos123</title>
-    <script>
-      window.onload = () => {
-        let theme = false;
-
-        if (document.cookie) theme = document.cookie.split("=")[1] === "true";
-
-        const set_theme = () => {
-          document.body.classList.add(theme ? "light" : "dark");
-          document.body.classList.remove(theme ? "dark" : "light");
-          document.cookie = `theme=${theme}; path=/`;
-        };
-
-        set_theme();
-
-        document.getElementById("theme").addEventListener("click", () => {
-          theme = !theme;
-          set_theme();
-        });
-      };
-    </script>
   </head>
-  <body class="dark">
+  <body>
     <header>
       <a href="/">Home</a> |
-      <a href="./articles.html">Go Back</a> |
-      <a id="theme">Theme</a>
+      <a href="./words.html">Go Back</a>
     </header>
-                <main class='article'>
-                <h1 id="demostración---mismos-conocidos">Demostración - Mismos
+<main class='article'>
+<h1 id="demostración---mismos-conocidos">Demostración - Mismos
 Conocidos</h1>
 <p>Demostración de que en todo grupo de dos o más personas existen
 siempre dos personas que tienen exactamente el mismo número de conocidos
@@ -89,11 +68,11 @@ class="math inline"><em>d</em>(<em>u</em>) = <em>d</em>(<em>v</em>)</span>.<
 personas que tienen exactamente el mismo número de conocidos en el
 grupo.</p>
 <p><span class="math inline">◼</span></p>
-                    </main>
+    </main>
 
     <footer>
-      <a href="./articles.html">Go Back</a> |
-      Made with a <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">POSIX shell script</a>
+      <a href="./words.html">Go Back</a> |
+      Made with <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">a bash script</a>
     </footer>
 
   </body>

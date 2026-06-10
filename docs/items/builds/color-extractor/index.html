@@ -157,7 +157,7 @@
       line-height: 2;
       white-space: nowrap;
       z-index: 1000;
-      pointer-events: none;
+      pointer-events: auto;
       box-shadow: 0 4px 16px rgba(0,0,0,0.6);
     }
 
@@ -168,10 +168,20 @@
       margin-bottom: 2px;
     }
 
-    #tooltip .conv {
-      color: var(--fg2);
+    #tooltip .copy-row {
       display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font: inherit;
+      color: var(--fg2);
+      cursor: pointer;
+      padding: 1px 5px;
+      border-radius: 3px;
     }
+    #tooltip .copy-row:hover { background: var(--bg2); color: var(--fg); }
+    #tooltip .copy-row.copied { color: var(--green); }
 
     .empty {
       color: var(--gray);
@@ -430,17 +440,61 @@
     // ─── Render ──────────────────────────────────────────────────────────────────
 
     const tip = document.getElementById('tooltip');
+    let hideTimer = null;
+
+    function copyRow(btn) {
+      const value = btn.dataset.copy;
+      const done = () => {
+        const prev = btn.textContent;
+        tip.style.width = tip.offsetWidth + 'px';
+        btn.textContent = 'copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = prev;
+          btn.classList.remove('copied');
+          tip.style.width = '';
+        }, 900);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done).catch(() => fallbackCopy(value, done));
+      } else {
+        fallbackCopy(value, done);
+      }
+    }
+
+    function fallbackCopy(value, done) {
+      const ta = document.createElement('textarea');
+      ta.value = value;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (_) {}
+      document.body.removeChild(ta);
+    }
 
     function populateTip(w) {
+      const row = v => `<button class="copy-row" data-copy="${escHtml(v)}">${escHtml(v)}</button>`;
       tip.innerHTML =
-        `<span class="orig">${w.dataset.orig}</span>` +
-        `<span class="conv">${w.dataset.hex}</span>` +
-        `<span class="conv">${w.dataset.rgb}</span>` +
-        `<span class="conv">${w.dataset.hsl}</span>`;
+        `<span class="orig">${escHtml(w.dataset.orig)}</span>` +
+        row(w.dataset.hex) +
+        row(w.dataset.rgb) +
+        row(w.dataset.hsl);
     }
+
+    function cancelHide() { if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; } }
+    function scheduleHide() { cancelHide(); hideTimer = setTimeout(hideTip, 220); }
+
+    tip.addEventListener('mouseenter', cancelHide);
+    tip.addEventListener('mouseleave', scheduleHide);
+    tip.addEventListener('click', e => {
+      const btn = e.target.closest('.copy-row');
+      if (btn) copyRow(btn);
+    });
 
     function showTip(e) {
       const w = e.currentTarget;
+      cancelHide();
       populateTip(w);
       tip.style.display = 'block';
       moveTip(e);
@@ -482,7 +536,7 @@
       container.querySelectorAll('.swatch-wrap').forEach(w => {
         w.addEventListener('mouseenter', showTip);
         w.addEventListener('mousemove',  moveTip);
-        w.addEventListener('mouseleave', hideTip);
+        w.addEventListener('mouseleave', scheduleHide);
         if ('ontouchstart' in window) {
           w.addEventListener('touchstart',  showTipTouch, { passive: false });
           w.addEventListener('touchmove',   hideTip,      { passive: true });
@@ -643,7 +697,7 @@
 
     if ('ontouchstart' in window) {
       document.addEventListener('touchstart', e => {
-        if (!e.target.closest('.swatch-wrap')) hideTip();
+        if (!e.target.closest('.swatch-wrap') && !e.target.closest('#tooltip')) hideTip();
       }, { passive: true });
     }
 

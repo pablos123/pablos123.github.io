@@ -18,11 +18,12 @@ In addition to handling maintenance work (because technical debt is tautological
 Technologies I work with regularly:
 
 - Ansible
+- Docker
 - Bash
 - Python (Django and vanilla)
 - Perl
 
-I've also worked with many other languages on [personal](https://pablos123.github.io/items/projects/projects.html) or [university](https://github.com/pablos123/dump/tree/main/lcc) projects.
+I've also worked with many other languages on [personal](https://pablos123.github.io/items/builds/builds.html) or [university](https://github.com/pablos123/dump/tree/main/lcc) projects.
 
 I use Linux as my daily driver both at home and at work, I enjoy learning about it and tinkering with my [environment](https://github.com/pablos123/environment).
 
