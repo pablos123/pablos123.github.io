@@ -1,0 +1,862 @@
+{
+  "A": [
+    {
+      "term": "Abercrombie",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a know-it-all."
+        }
+      ]
+    },
+    {
+      "term": "Ace",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Aces",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "perfection."
+        }
+      ]
+    },
+    {
+      "term": "Action",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "proposition."
+        }
+      ]
+    },
+    {
+      "term": "Airbags",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "lungs."
+        }
+      ]
+    },
+    {
+      "term": "Alligator",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a jitterbug."
+        }
+      ]
+    },
+    {
+      "term": "Alreet",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "absolutely okay."
+        }
+      ]
+    },
+    {
+      "term": "Angle",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a clever idea."
+        }
+      ]
+    },
+    {
+      "term": "Anxious",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "good."
+        }
+      ]
+    },
+    {
+      "term": "Apple",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the globe."
+        }
+      ]
+    },
+    {
+      "term": "Apron",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "counter-man or bartender."
+        }
+      ]
+    },
+    {
+      "term": "Aquarium",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "domicile."
+        }
+      ]
+    },
+    {
+      "term": "Armstrongs",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "high register musical notes."
+        }
+      ]
+    },
+    {
+      "term": "Artillery",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "baked beans."
+        }
+      ]
+    }
+  ],
+  "B": [
+    {
+      "term": "Backcap",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an answer."
+        }
+      ]
+    },
+    {
+      "term": "Backs",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "counterfeit money."
+        }
+      ]
+    },
+    {
+      "term": "Bagpipe",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one who talks too much, or a vacuum cleaner."
+        }
+      ]
+    },
+    {
+      "term": "Banana",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mulatto."
+        }
+      ]
+    },
+    {
+      "term": "Bank",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a toilet."
+        }
+      ]
+    },
+    {
+      "term": "Banter",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pretty young girl."
+        }
+      ]
+    },
+    {
+      "term": "Barbecue",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "beautiful girl."
+        }
+      ]
+    },
+    {
+      "term": "Bark",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the skin."
+        }
+      ]
+    },
+    {
+      "term": "Barkers",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pair of shoes."
+        }
+      ]
+    },
+    {
+      "term": "Barrelhouse",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "loud or unrestrained music."
+        }
+      ]
+    },
+    {
+      "term": "Bash",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to overeat."
+        }
+      ]
+    },
+    {
+      "term": "Bat",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "old romantic woman."
+        }
+      ]
+    },
+    {
+      "term": "Battle",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "ugly girl."
+        }
+      ]
+    },
+    {
+      "term": "Beagle",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a frankfurter."
+        }
+      ]
+    },
+    {
+      "term": "Beam",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a great person."
+        },
+        {
+          "pos": "v.",
+          "def": "to strike the bull's eye."
+        }
+      ]
+    },
+    {
+      "term": "Beans",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "loose change."
+        }
+      ]
+    },
+    {
+      "term": "Beast",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gloomy person."
+        }
+      ]
+    },
+    {
+      "term": "Beat",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "worn out."
+        }
+      ]
+    },
+    {
+      "term": "Beaver",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a beard."
+        }
+      ]
+    },
+    {
+      "term": "Beef",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a complaint."
+        }
+      ]
+    },
+    {
+      "term": "Beige",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "light-colored person."
+        }
+      ]
+    },
+    {
+      "term": "Belch",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to talk too much."
+        }
+      ]
+    },
+    {
+      "term": "Bender",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a wild spree."
+        }
+      ]
+    },
+    {
+      "term": "Benders",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "knees, elbows, arms."
+        }
+      ]
+    },
+    {
+      "term": "Benny",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an overcoat."
+        }
+      ]
+    },
+    {
+      "term": "Berry",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a dollar."
+        }
+      ]
+    },
+    {
+      "term": "Bible",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the true facts."
+        }
+      ]
+    },
+    {
+      "term": "Billposter",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a forger."
+        }
+      ]
+    },
+    {
+      "term": "Bim",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a girl."
+        }
+      ]
+    },
+    {
+      "term": "Birdbrain",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "moronic individual."
+        }
+      ]
+    },
+    {
+      "term": "Birdwood",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a cigarette."
+        }
+      ]
+    },
+    {
+      "term": "Biscuit",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the head."
+        }
+      ]
+    },
+    {
+      "term": "Black",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "nightfall."
+        }
+      ]
+    },
+    {
+      "term": "Bleeding",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to change the subject of conversation."
+        }
+      ]
+    },
+    {
+      "term": "Blinkers",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "eyes."
+        }
+      ]
+    },
+    {
+      "term": "Blip",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "five-cent coin."
+        },
+        {
+          "pos": "adj.",
+          "def": "superlative."
+        }
+      ]
+    },
+    {
+      "term": "Blood",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tomato juice."
+        }
+      ]
+    },
+    {
+      "term": "Blow",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to go away, or brag."
+        }
+      ]
+    },
+    {
+      "term": "Bombs",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "eggs."
+        }
+      ]
+    },
+    {
+      "term": "Bondage",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "being in debt."
+        }
+      ]
+    },
+    {
+      "term": "Bone",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Bonfire",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a cigarette stub."
+        }
+      ]
+    },
+    {
+      "term": "Boodle",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "lots of money."
+        }
+      ]
+    },
+    {
+      "term": "Boofer",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "singer of popular songs."
+        }
+      ]
+    },
+    {
+      "term": "Boogieman",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a jiving male."
+        }
+      ]
+    },
+    {
+      "term": "Boot",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to clarify or understand."
+        },
+        {
+          "pos": "n.",
+          "def": "an error."
+        }
+      ]
+    },
+    {
+      "term": "Bounce",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a jumpy rhythm."
+        }
+      ]
+    },
+    {
+      "term": "Brainstorm",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an idea."
+        }
+      ]
+    },
+    {
+      "term": "Brawtus",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "good measure."
+        }
+      ]
+    },
+    {
+      "term": "Break",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pause in music."
+        }
+      ]
+    },
+    {
+      "term": "Bree",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl friend."
+        }
+      ]
+    },
+    {
+      "term": "Bright",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "day."
+        }
+      ]
+    },
+    {
+      "term": "Brighty",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "very intelligent."
+        }
+      ]
+    },
+    {
+      "term": "Broom",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a cigar."
+        },
+        {
+          "pos": "v.",
+          "def": "to run away."
+        }
+      ]
+    },
+    {
+      "term": "Brush",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mustache."
+        }
+      ]
+    },
+    {
+      "term": "B.T.O.",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "big-time operator."
+        }
+      ]
+    },
+    {
+      "term": "Buck",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "colored male."
+        }
+      ]
+    },
+    {
+      "term": "Buffalo",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "five cents."
+        }
+      ]
+    },
+    {
+      "term": "Bug",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a problem."
+        }
+      ]
+    },
+    {
+      "term": "Bughouse",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tourist camp."
+        }
+      ]
+    },
+    {
+      "term": "Bull",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a woman's woman."
+        }
+      ]
+    },
+    {
+      "term": "Bullets",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "beans."
+        }
+      ]
+    },
+    {
+      "term": "Bump",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to kill."
+        }
+      ]
+    },
+    {
+      "term": "Bushed",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "exhausted."
+        }
+      ]
+    },
+    {
+      "term": "Butter",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "insincerity."
+        }
+      ]
+    },
+    {
+      "term": "Butterfly",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pretty girl."
+        }
+      ]
+    },
+    {
+      "term": "Button",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "exactitude."
+        }
+      ]
+    },
+    {
+      "term": "Buy",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bargain."
+        }
+      ]
+    },
+    {
+      "term": "Buzz",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to kiss."
+        }
+      ]
+    },
+    {
+      "term": "Buzzsaw",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gossiper."
+        }
+      ]
+    }
+  ]
+}

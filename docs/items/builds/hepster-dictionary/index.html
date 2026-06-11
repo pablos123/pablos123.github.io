@@ -55,6 +55,51 @@
       line-height: 1.5;
     }
 
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ctl-sep {
+      align-self: stretch;
+      width: 1px;
+      background: var(--bg2);
+      margin: 2px 3px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg);
+      color: var(--fg2);
+      border: 1px solid var(--chip, var(--bg2));
+      border-radius: 4px;
+      padding: 4px 9px;
+      font-family: inherit;
+      font-size: 11px;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .chip:hover { filter: brightness(1.15); }
+    .chip.active {
+      background: var(--chip, var(--yellow));
+      color: var(--bg);
+      border-color: var(--chip, var(--yellow));
+    }
+    .info-btn {
+      cursor: pointer;
+      opacity: 0.7;
+      font-size: 12px;
+    }
+    .info-btn:hover { opacity: 1; }
+
     .search-row {
       display: flex;
       align-items: center;
@@ -82,6 +127,45 @@
       color: var(--gray);
       white-space: nowrap;
       flex-shrink: 0;
+    }
+
+    /* Filters: deliberately quieter than the dict chips. A '»' reveals plain-text
+       toggles (on = readable, off = dimmed + struck through). */
+    .filter-toggle {
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1;
+      padding: 2px 4px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .filter-toggle:hover { color: var(--fg2); }
+    .filter-toggle.open { transform: rotate(180deg); }
+    .toggles {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+    .toggles[hidden] { display: none; }
+    .toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--fg2);
+      cursor: pointer;
+    }
+    .toggle:hover { color: var(--fg); }
+    .toggle:not(.active) {
+      color: var(--gray);
+      text-decoration: line-through;
     }
 
     .body {
@@ -120,11 +204,12 @@
       overflow-y: auto;
       padding: 18px 26px 60px;
       scrollbar-width: thin;
-      scrollbar-color: var(--bg2) var(--bg);
+      scrollbar-color: var(--bg2) transparent;
     }
-    .entries::-webkit-scrollbar { width: 8px; }
-    .entries::-webkit-scrollbar-track { background: var(--bg); }
-    .entries::-webkit-scrollbar-thumb { background: var(--bg2); border-radius: 4px; }
+    .entries::-webkit-scrollbar { width: 5px; }
+    .entries::-webkit-scrollbar-track { background: transparent; }
+    .entries::-webkit-scrollbar-thumb { background: var(--bg2); border-radius: 3px; }
+    .entries::-webkit-scrollbar-thumb:hover { background: var(--gray); }
 
     .letter-group { margin-bottom: 26px; }
 
@@ -143,11 +228,29 @@
       max-width: 760px;
     }
 
+    .src-block { margin-top: 4px; }
+    /* Multi-source headword: each def block marked by a dict-colored left bar. */
+    .src-block.tinted {
+      border-left: 2px solid var(--c);
+      padding-left: 9px;
+      margin-left: 1px;
+    }
+
     .term {
       color: var(--aqua);
       font-weight: bold;
       font-size: 13px;
     }
+    /* Provenance: one dot per source dictionary, in that dict's color. */
+    .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+    .dot + .dot { margin-left: 3px; }
 
     .def {
       color: var(--fg2);
@@ -210,11 +313,94 @@
       font-size: 13px;
       padding: 20px 0;
     }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 10;
+    }
+    .modal-backdrop[hidden] { display: none; }
+    .modal {
+      background: var(--bg1);
+      border: 1px solid var(--bg2);
+      border-radius: 6px;
+      max-width: 560px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 22px 24px;
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: var(--bg2) transparent;
+    }
+    .modal::-webkit-scrollbar { width: 5px; }
+    .modal::-webkit-scrollbar-track { background: transparent; }
+    .modal::-webkit-scrollbar-thumb { background: var(--bg2); border-radius: 3px; }
+    .modal::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--fg); }
+    .modal-title { color: var(--yellow); font-size: 15px; margin-bottom: 4px; }
+    .modal-meta { color: var(--gray); font-size: 11px; margin-bottom: 12px; }
+    .modal-info { color: var(--fg2); font-size: 13px; line-height: 1.6; }
+    .modal-info mark {
+      background: none;
+      color: var(--fg);
+      font-weight: bold;
+      padding: 0;
+    }
+    .modal-info p { margin-bottom: 10px; }
+    .foreword-label {
+      color: var(--gray);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 14px 0 6px;
+    }
+    .modal-info blockquote.foreword {
+      border-left: 2px solid var(--bg2);
+      padding-left: 12px;
+      margin: 0;
+      font-style: italic;
+      color: var(--fg2);
+    }
+    .modal-info .foreword-sign {
+      font-style: normal;
+      color: var(--gray);
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="title">Cab Calloway's "Hepster's Dictionary"</div>
+    <div class="title">The Great Hepster's Dictionary</div>
+    <div class="subtitle" id="subtitle"></div>
+    <div class="controls">
+      <div class="chips" id="chips"></div>
+      <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="toggles" title="filters">&raquo;</button>
+      <div class="toggles" id="toggles" hidden>
+        <button class="toggle active" type="button" data-toggle="words"    aria-pressed="true" title="show single-word entries">words</button>
+        <button class="toggle active" type="button" data-toggle="phrases"  aria-pressed="true" title="show multi-word phrase entries">phrases</button>
+        <span class="ctl-sep" aria-hidden="true"></span>
+        <button class="toggle active" type="button" data-toggle="examples" aria-pressed="true" title="show example sentences">examples</button>
+        <button class="toggle active" type="button" data-toggle="syn"      aria-pressed="true" title="show synonyms">synonyms</button>
+        <button class="toggle active" type="button" data-toggle="abbrv"    aria-pressed="true" title="show abbreviations">abbreviations</button>
+        <button class="toggle active" type="button" data-toggle="markers"  aria-pressed="true" title="show dictionary color markers">markers</button>
+      </div>
+    </div>
     <div class="search-row">
       <input id="search" type="text" placeholder="search a term or its meaning&hellip;" spellcheck="false" autocomplete="off" autofocus>
       <span id="count"></span>
@@ -225,296 +411,89 @@
     <div class="entries" id="entries"></div>
   </div>
 
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
   <script>
     // ─── Data ────────────────────────────────────────────────────────────────────
     // Keyed by initial letter. Entry: { term, senses: [{ pos, def, ex?: [[quote, gloss?]] }], syn?, abbrv? }
-    const DATA = {
-      "A": [
-        { term: "Ain't coming on that tab", senses: [{ pos: "v.", def: "won't accept the proposition." }], abbrv: ["I ain't coming"] },
-        { term: "Alligator", senses: [{ pos: "n.", def: "jitterbug." }] },
-        { term: "Apple", senses: [{ pos: "n.", def: "the big town, the main stem, Harlem." }] },
-        { term: "Armstrongs", senses: [{ pos: "n.", def: "musical notes in the upper register, high trumpet notes." }] },
-      ],
-      "B": [
-        { term: "Barbecue", senses: [{ pos: "n.", def: "the girl friend, a beauty." }] },
-        { term: "Barrelhouse", senses: [{ pos: "adj.", def: "free and easy." }] },
-        { term: "Battle", senses: [{ pos: "n.", def: "a homely woman, a crone." }] },
-        { term: "Beat", senses: [{ pos: "adj.", def: "tired, exhausted.", ex: [["You look beat."], ["I feel beat."]] }, { pos: "adj.", def: "lacking anything.", ex: [["I am beat for my cash."], ["I am beat to my socks.", "(lacking everything)"]] }] },
-        { term: "Beat it out", senses: [{ pos: "v.", def: "play it hot, emphasize the rhythm." }] },
-        { term: "Beat up", senses: [{ pos: "adj.", def: "sad, uncomplimentary, tired." }] },
-        { term: "Beat up the chops", senses: [{ pos: "v.", def: "to talk, converse, be loquacious." }], syn: ["Beat up the gums"] },
-        { term: "Beef", senses: [{ pos: "v.", def: "to say, to state.", ex: [["He beefed to me that, etc."]] }] },
-        { term: "Bible", senses: [{ pos: "n.", def: "the gospel truth.", ex: [["It's the bible!"]] }] },
-        { term: "Black", senses: [{ pos: "n.", def: "night." }] },
-        { term: "Black and tan", senses: [{ pos: "n.", def: "dark and light colored folks. Not colored and white folks as erroneously assumed." }] },
-        { term: "Blew their wigs", senses: [{ pos: "adj.", def: "excited with enthusiasm, gone crazy." }] },
-        { term: "Blip", senses: [{ pos: "n.", def: "something very good.", ex: [["That's a blip."], ["She's a blip."]] }] },
-        { term: "Blow the top", senses: [{ pos: "v.", def: "to be overcome with emotion (delight).", ex: [["You'll blow your top when you hear this one."]] }] },
-        { term: "Boogie-woogie", senses: [{ pos: "n.", def: "harmony with accented bass." }] },
-        { term: "Boot", senses: [{ pos: "v.", def: "to give.", ex: [["Boot me that glove."]] }] },
-        { term: "Break it up", senses: [{ pos: "v.", def: "to win applause, to stop the show." }] },
-        { term: "Bree", senses: [{ pos: "n.", def: "girl." }] },
-        { term: "Bright", senses: [{ pos: "n.", def: "day." }] },
-        { term: "Brightnin'", senses: [{ pos: "n.", def: "daybreak." }] },
-        { term: "Bring down", senses: [{ pos: "n.", def: "something depressing.", ex: [["That's a bring down."]] }, { pos: "v.", def: "to depress, to dishearten.", ex: [["That brings me down."]] }] },
-        { term: "Buddy Ghee", senses: [{ pos: "n.", def: "fellow." }] },
-        { term: "Bust your conk", senses: [{ pos: "v.", def: "apply yourself diligently, break your neck." }] },
-      ],
-      "C": [
-        { term: "Canary", senses: [{ pos: "n.", def: "girl vocalist." }] },
-        { term: "Capped", senses: [{ pos: "v.", def: "outdone, surpassed." }] },
-        { term: "Cat", senses: [{ pos: "n.", def: "musician in swing band." }] },
-        { term: "Chick", senses: [{ pos: "n.", def: "girl." }] },
-        { term: "Chime", senses: [{ pos: "n.", def: "hour.", ex: [["I got in at six chimes."]] }] },
-        { term: "Chirp", senses: [{ pos: "n.", def: "female singer." }] },
-        { term: "Clambake", senses: [{ pos: "n.", def: "ad lib session, every man for himself, a jam session not in the groove." }] },
-        { term: "Cogs", senses: [{ pos: "n.", def: "sunglasses." }] },
-        { term: "Collar", senses: [{ pos: "v.", def: "to get, to obtain, to comprehend.", ex: [["I gotta collar me some food."], ["Do you collar this jive?"]] }] },
-        { term: "Come again", senses: [{ pos: "v.", def: "try it over, do better than you are doing, I don't understand you." }] },
-        { term: "Comes on like gangbusters", senses: [{ pos: "v.", def: "plays, sings, or dances in a terrific manner, par excellence in any department." }], syn: ["Comes on like test pilot"], abbrv: ["That singer really comes on!"] },
-        { term: "Cop", senses: [{ pos: "v.", def: "to get, to obtain (see collar; knock)." }] },
-        { term: "Corny", senses: [{ pos: "adj.", def: "old-fashioned, stale." }] },
-        { term: "Creeps out like the shadow", senses: [{ pos: "v.", def: "comes on, but in smooth, suave, sophisticated manner." }] },
-        { term: "Crumb crushers", senses: [{ pos: "n.", def: "teeth." }] },
-        { term: "Cubby", senses: [{ pos: "n.", def: "room, flat, home." }] },
-        { term: "Cups", senses: [{ pos: "n.", def: "sleep.", ex: [["I gotta catch some cups."]] }] },
-        { term: "Cut out", senses: [{ pos: "v.", def: "to leave, to depart.", ex: [["It's time to cut out."], ["I cut out from the joint in early bright."]] }] },
-        { term: "Cut rate", senses: [{ pos: "n.", def: "a low, cheap person.", ex: [["Don't play me cut rate, Jack!"]] }] },
-      ],
-      "D": [
-        { term: "Dicty", senses: [{ pos: "adj.", def: "high-class, nifty, smart." }] },
-        { term: "Dig", senses: [{ pos: "v.", def: "meet.", ex: [["I'll plant you now and dig you later."]] }, { pos: "v.", def: "look, see.", ex: [["Dig the chick on your left duke."]] }, { pos: "v.", def: "comprehend, understand.", ex: [["Do you dig this jive?"]] }] },
-        { term: "Dim", senses: [{ pos: "n.", def: "evening." }] },
-        { term: "Dime note", senses: [{ pos: "n.", def: "ten-dollar bill." }] },
-        { term: "Doghouse", senses: [{ pos: "n.", def: "bass fiddle." }] },
-        { term: "Dome", senses: [{ pos: "n.", def: "ordinary place to live in.", ex: [["I live in a righteous dome."]] }] },
-        { term: "Doss", senses: [{ pos: "n.", def: "sleep.", ex: [["I'm a little beat for my doss."]] }] },
-        { term: "Down with it", senses: [{ pos: "adj.", def: "through with it." }] },
-        { term: "Drape", senses: [{ pos: "n.", def: "suit of clothes, dress, costume." }] },
-        { term: "Dreamers", senses: [{ pos: "n.", def: "bed covers, blankets." }] },
-        { term: "Dry-goods", senses: [{ pos: "n.", def: "same as drape." }] },
-        { term: "Duke", senses: [{ pos: "n.", def: "hand, mitt." }] },
-        { term: "Dutchess", senses: [{ pos: "n.", def: "girl." }] },
-      ],
-      "E": [
-        { term: "Early black", senses: [{ pos: "n.", def: "evening." }] },
-        { term: "Early bright", senses: [{ pos: "n.", def: "morning." }] },
-        { term: "Evil", senses: [{ pos: "adj.", def: "in ill humor, in a nasty temper." }] },
-      ],
-      "F": [
-        { term: "Fall out", senses: [{ pos: "v.", def: "to be overcome with emotion.", ex: [["The cats fell out when he took that solo."]] }] },
-        { term: "Fews and two", senses: [{ pos: "n.", def: "money or cash in small quantity." }] },
-        { term: "Final", senses: [{ pos: "v.", def: "to leave, to go home.", ex: [["I finaled to my pad.", "(went to bed)"], ["We copped a final.", "(went home)"]] }] },
-        { term: "Fine dinner", senses: [{ pos: "n.", def: "a good-looking girl." }] },
-        { term: "Focus", senses: [{ pos: "v.", def: "to look, to see." }] },
-        { term: "Foghorn", senses: [{ pos: "n.", def: "tuba." }] },
-        { term: "Foxy", senses: [{ pos: "v.", def: "shrewd." }] },
-        { term: "Frame", senses: [{ pos: "n.", def: "the body." }] },
-        { term: "Fraughty issue", senses: [{ pos: "n.", def: "a very sad message, a deplorable state of affairs." }] },
-        { term: "Freeby", senses: [{ pos: "n.", def: "no charge, gratis.", ex: [["The meal was a freeby."]] }] },
-        { term: "Frisking the whiskers", senses: [{ pos: "v.", def: "what the cats do when they are warming up for a swing session." }] },
-        { term: "Frolic pad", senses: [{ pos: "n.", def: "place of entertainment, theater, nightclub." }] },
-        { term: "Fromby", senses: [{ pos: "adj.", def: "a frompy queen is a battle or faust." }] },
-        { term: "Front", senses: [{ pos: "n.", def: "a suit of clothes." }] },
-        { term: "Fruiting", senses: [{ pos: "v.", def: "fickle, fooling around with no particular object." }] },
-        { term: "Fry", senses: [{ pos: "v.", def: "to go to get hair straightened." }] },
-      ],
-      "G": [
-        { term: "Gabriels", senses: [{ pos: "n.", def: "trumpet players." }] },
-        { term: "Gammin'", senses: [{ pos: "adj.", def: "showing off, flirtatious." }] },
-        { term: "Gasser", senses: [{ pos: "n, adj.", def: "sensational.", ex: [["When it comes to dancing, she's a gasser."]] }] },
-        { term: "Gate-mouth", senses: [{ pos: "n.", def: "a male person (a salutation)." }], abbrv: ["Gate"] },
-        { term: "Get in there", senses: [{ pos: "exclamation.", def: "go to work, get busy, make it hot, give all you've got." }] },
-        { term: "Gimme some skin", senses: [{ pos: "v.", def: "shake hands." }] },
-        { term: "Git Box", senses: [{ pos: "n.", def: "guitar." }], syn: ["Belly-Fiddle"] },
-        { term: "Glims", senses: [{ pos: "n.", def: "the eyes." }] },
-        { term: "Got your boots on", senses: [{ pos: "adj.", def: "you know what it is all about, you are a hep cat, you are wise." }] },
-        { term: "Got your glasses on", senses: [{ pos: "adj.", def: "you are ritzy or snooty, you fail to recognize your friends, you are up-stage." }] },
-        { term: "Gravy", senses: [{ pos: "n.", def: "profits." }] },
-        { term: "Grease", senses: [{ pos: "v.", def: "to eat." }] },
-        { term: "Groovy", senses: [{ pos: "adj.", def: "fine.", ex: [["I feel groovy."]] }] },
-        { term: "Ground grippers", senses: [{ pos: "n.", def: "new shoes." }] },
-        { term: "Growl", senses: [{ pos: "n.", def: "vibrant notes from a trumpet." }] },
-        { term: "Gut-bucket", senses: [{ pos: "adj.", def: "low-down music." }] },
-        { term: "Guzzlin' foam", senses: [{ pos: "v.", def: "drinking beer." }] },
-      ],
-      "H": [
-        { term: "Hard", senses: [{ pos: "adj.", def: "fine, good.", ex: [["That's a hard tie you're wearing."]] }] },
-        { term: "Hard spiel", senses: [{ pos: "n.", def: "interesting line of talk." }] },
-        { term: "Have a ball", senses: [{ pos: "v.", def: "to enjoy yourself, stage a celebration.", ex: [["I had myself a ball last night."]] }] },
-        { term: "Hep cat", senses: [{ pos: "n.", def: "a guy who knows all the answers, understands jive." }] },
-        { term: "Hide-beater", senses: [{ pos: "n.", def: "a drummer (see skin-beater)." }] },
-        { term: "Hincty", senses: [{ pos: "adj.", def: "conceited, snooty." }] },
-        { term: "Hip", senses: [{ pos: "adj.", def: "wise, sophisticated, anyone with boots on.", ex: [["She's a hip chick."]] }] },
-        { term: "Home-cooking", senses: [{ pos: "n.", def: "something very dinner (see fine dinner)." }] },
-        { term: "Hot", senses: [{ pos: "adj.", def: "musically torrid; before swing, tunes were hot or bands were hot." }] },
-        { term: "Hummer", senses: [{ pos: "n.", def: "exceptionally good.", ex: [["Man, that boy is a hummer."]] }] },
-        { term: "Hype", senses: [{ pos: "n, v.", def: "build up for a loan, wooing a girl, persuasive talk." }] },
-      ],
-      "I": [
-        { term: "Icky", senses: [{ pos: "n.", def: "one who is not hip, a stupid person, can't collar the jive." }] },
-        { term: "Igg", senses: [{ pos: "v.", def: "to ignore someone.", ex: [["Don't igg me!"]] }] },
-        { term: "In the groove", senses: [{ pos: "adj.", def: "perfect, no deviation, down the alley." }] },
-        { term: "Ironworks", senses: [{ pos: "n.", def: "vibraphone." }] },
-      ],
-      "J": [
-        { term: "Jack", senses: [{ pos: "n.", def: "name for all male friends (see gate; pops)." }] },
-        { term: "Jam", senses: [{ pos: "n.", def: "improvised swing music.", ex: [["That's swell jam."]] }, { pos: "v.", def: "to play such music.", ex: [["That cat surely can jam."]] }] },
-        { term: "Jeff", senses: [{ pos: "n.", def: "a pest, a bore, an icky." }] },
-        { term: "Jelly", senses: [{ pos: "n.", def: "anything free, on the house." }] },
-        { term: "Jitterbug", senses: [{ pos: "n.", def: "a swing fan." }] },
-        { term: "Jive", senses: [{ pos: "n.", def: "Harlemese speech." }] },
-        { term: "Joint is jumping", senses: [{ pos: "adj.", def: "the place is lively, the club is leaping with fun." }] },
-        { term: "Jumped in port", senses: [{ pos: "v.", def: "arrived in town." }] },
-      ],
-      "K": [
-        { term: "Kick", senses: [{ pos: "n.", def: "a pocket.", ex: [["I've got five bucks in my kick."]] }] },
-        { term: "Kill me", senses: [{ pos: "v.", def: "show me a good time, send me." }] },
-        { term: "Killer-diller", senses: [{ pos: "n.", def: "a great thrill." }] },
-        { term: "Knock", senses: [{ pos: "v.", def: "give.", ex: [["Knock me a kiss."]] }] },
-        { term: "Kopasetic", senses: [{ pos: "adj.", def: "absolutely okay, the tops." }] },
-      ],
-      "L": [
-        { term: "Lamp", senses: [{ pos: "v.", def: "to see, to look at." }] },
-        { term: "Land o'darkness", senses: [{ pos: "n.", def: "Harlem." }] },
-        { term: "Lane", senses: [{ pos: "n.", def: "a male, usually a nonprofessional." }] },
-        { term: "Latch on", senses: [{ pos: "v.", def: "grab, take hold, get wise to." }] },
-        { term: "Lay some iron", senses: [{ pos: "v.", def: "to tap dance.", ex: [["Jack, you really laid some iron that last show!"]] }] },
-        { term: "Lay your racket", senses: [{ pos: "v.", def: "to jive, to sell an idea, to promote a proposition." }] },
-        { term: "Lead sheet", senses: [{ pos: "n.", def: "a topcoat." }] },
-        { term: "Left raise", senses: [{ pos: "n.", def: "left side.", ex: [["Dig the chick on your left raise."]] }] },
-        { term: "Licking the chops", senses: [{ pos: "v.", def: "see frisking the whiskers." }] },
-        { term: "Licks", senses: [{ pos: "n.", def: "hot musical phrases." }] },
-        { term: "Licorice Stick", senses: [{ pos: "n.", def: "clarinet." }], syn: ["Gob Stick"] },
-        { term: "Lily whites", senses: [{ pos: "n.", def: "bed sheets." }] },
-        { term: "Line", senses: [{ pos: "n.", def: "cost, price, money. Also, in replying, all figures are doubled.", ex: [["What is the line on this drape?", "(how much does this suit cost)"], ["Have you got the line in the mouse?", "(do you have the cash in your pocket)"], ["This drape is line forty.", "(this suit costs twenty dollars)"]] }] },
-        { term: "Lock up", senses: [{ pos: "v.", def: "to acquire something exclusively.", ex: [["He's got that chick locked up."], ["I'm gonna lock up that deal."]] }] },
-      ],
-      "M": [
-        { term: "Main kick", senses: [{ pos: "n.", def: "the stage." }] },
-        { term: "Main on the hitch", senses: [{ pos: "n.", def: "husband." }] },
-        { term: "Main queen", senses: [{ pos: "n.", def: "favorite girl friend, sweetheart." }] },
-        { term: "Man in gray", senses: [{ pos: "n.", def: "the postman." }] },
-        { term: "Mash me a fin", senses: [{ pos: "command.", def: "Give me five dollars." }] },
-        { term: "Mellow", senses: [{ pos: "adj.", def: "all right, fine.", ex: [["That's mellow, Jack."]] }] },
-        { term: "Melted out", senses: [{ pos: "adj.", def: "broke." }] },
-        { term: "Mess", senses: [{ pos: "n.", def: "something good.", ex: [["That last drink was a mess."]] }] },
-        { term: "Meter", senses: [{ pos: "n.", def: "quarter, twenty-five cents." }] },
-        { term: "Mezz", senses: [{ pos: "n.", def: "anything supreme, genuine.", ex: [["This is really the mezz."]] }] },
-        { term: "Mitt pounding", senses: [{ pos: "n.", def: "applause." }] },
-        { term: "Moo juice", senses: [{ pos: "n.", def: "milk." }] },
-        { term: "Mouse", senses: [{ pos: "n.", def: "pocket.", ex: [["I've got a meter in the mouse."]] }] },
-        { term: "Muggin'", senses: [{ pos: "v.", def: "making 'em laugh, putting on the jive.", ex: [["Muggin' lightly.", "(light staccato swing)"], ["muggin' heavy.", "(heavy staccato swing)"]] }] },
-        { term: "Murder", senses: [{ pos: "n.", def: "something excellent or terrific.", ex: [["That's solid murder, gate!"]] }] },
-      ],
-      "N": [
-        { term: "Neigho, pops", senses: [{ pos: "exclamation.", def: "Nothing doing, pal." }] },
-        { term: "Nickel note", senses: [{ pos: "n.", def: "five-dollar bill." }] },
-        { term: "Nicklette", senses: [{ pos: "n.", def: "automatic phonograph, music box." }] },
-        { term: "Nix out", senses: [{ pos: "v.", def: "to eliminate, get rid of.", ex: [["I nixed that chick out last week."], ["I nixed my garments.", "(undressed)"]] }] },
-        { term: "Nod", senses: [{ pos: "n.", def: "sleep.", ex: [["I think I'll cop a nod."]] }] },
-      ],
-      "O": [
-        { term: "Ofay", senses: [{ pos: "n.", def: "white person." }] },
-        { term: "Off the cob", senses: [{ pos: "adj.", def: "corny, out of date." }] },
-        { term: "Off-time jive", senses: [{ pos: "n.", def: "a sorry excuse, saying the wrong thing." }] },
-        { term: "Orchestration", senses: [{ pos: "n.", def: "an overcoat." }] },
-        { term: "Out of the world", senses: [{ pos: "adj.", def: "perfect rendition.", ex: [["That sax chorus was out of the world."]] }] },
-        { term: "Ow!", senses: [{ pos: "exclamation.", def: "an exclamation with varied meaning. When a beautiful chick passes by, it's Ow!; and when someone pulls an awful pun, it's also Ow!" }] },
-      ],
-      "P": [
-        { term: "Pad", senses: [{ pos: "n.", def: "bed." }] },
-        { term: "Pecking", senses: [{ pos: "n.", def: "a dance introduced at the Cotton Club in 1937." }] },
-        { term: "Peola", senses: [{ pos: "n.", def: "a light person, almost white." }] },
-        { term: "Pigeon", senses: [{ pos: "n.", def: "a young girl." }] },
-        { term: "Plumbing", senses: [{ pos: "n.", def: "saxophone." }], syn: ["Reeds"] },
-        { term: "Pops", senses: [{ pos: "n.", def: "salutation for all males (see gate; Jack)." }] },
-        { term: "Pounders", senses: [{ pos: "n.", def: "policemen." }] },
-      ],
-      "Q": [
-        { term: "Queen", senses: [{ pos: "n.", def: "a beautiful girl." }] },
-      ],
-      "R": [
-        { term: "Rank", senses: [{ pos: "v.", def: "to lower." }] },
-        { term: "Ready", senses: [{ pos: "adj.", def: "100 per cent in every way.", ex: [["That fried chicken was ready."]] }] },
-        { term: "Ride", senses: [{ pos: "v.", def: "to swing, to keep perfect tempo in playing or singing." }] },
-        { term: "Riff", senses: [{ pos: "n.", def: "hot lick, musical phrase." }] },
-        { term: "Righteous", senses: [{ pos: "adj.", def: "splendid, okay.", ex: [["That was a righteous queen I dug you with last black."]] }] },
-        { term: "Rock me", senses: [{ pos: "v.", def: "send me, kill me, move me with rhythm." }] },
-        { term: "Ruff", senses: [{ pos: "n.", def: "quarter, twenty-five cents." }] },
-        { term: "Rug cutter", senses: [{ pos: "n.", def: "a very good dancer, an active jitterbug." }] },
-      ],
-      "S": [
-        { term: "Sad", senses: [{ pos: "adj.", def: "very bad.", ex: [["That was the saddest meal I ever collared."]] }] },
-        { term: "Sadder than a map", senses: [{ pos: "adj.", def: "terrible.", ex: [["That man is sadder than a map."]] }] },
-        { term: "Salty", senses: [{ pos: "adj.", def: "angry, ill-tempered." }] },
-        { term: "Sam got you", senses: [{ pos: "exclamation.", def: "you've been drafted into the army." }] },
-        { term: "Send", senses: [{ pos: "v.", def: "to arouse the emotions. (joyful).", ex: [["That sends me!"]] }] },
-        { term: "Set of seven brights", senses: [{ pos: "n.", def: "one week." }] },
-        { term: "Sharp", senses: [{ pos: "adj.", def: "neat, smart, tricky.", ex: [["That hat is sharp as a tack."]] }] },
-        { term: "Signify", senses: [{ pos: "v.", def: "to declare yourself, to brag, to boast." }] },
-        { term: "Skin-beater", senses: [{ pos: "n.", def: "drummer (see hide-beater)." }] },
-        { term: "Skins", senses: [{ pos: "n.", def: "drums." }] },
-        { term: "Sky piece", senses: [{ pos: "n.", def: "hat." }] },
-        { term: "Slave", senses: [{ pos: "v.", def: "to work, whether arduous labor or not." }] },
-        { term: "Slide your jib", senses: [{ pos: "v.", def: "to talk freely." }] },
-        { term: "Snatcher", senses: [{ pos: "n.", def: "detective." }] },
-        { term: "So help me", senses: [{ pos: "exclamation.", def: "it's the truth, that's a fact." }] },
-        { term: "Solid", senses: [{ pos: "adj.", def: "great, swell, okay." }] },
-        { term: "Sounded off", senses: [{ pos: "v.", def: "began a program or conversation." }] },
-        { term: "Spark Jiver", senses: [{ pos: "n.", def: "electric organ." }] },
-        { term: "Spoutin'", senses: [{ pos: "v.", def: "talking too much." }] },
-        { term: "Square", senses: [{ pos: "n.", def: "an unhep person (see icky; Jeff)." }] },
-        { term: "Squeak-Box", senses: [{ pos: "n.", def: "violin." }] },
-        { term: "Squeeze-Box", senses: [{ pos: "n.", def: "accordion." }], syn: ["Groan-Box"] },
-        { term: "Stache", senses: [{ pos: "v.", def: "to file, to hide away, to secrete." }] },
-        { term: "Stand one up", senses: [{ pos: "v.", def: "to play one cheap, to assume one is a cut-rate." }] },
-        { term: "Storehouse", senses: [{ pos: "n.", def: "piano." }], syn: ["Ivories"] },
-        { term: "Suitcase", senses: [{ pos: "n.", def: "drums." }], syn: ["Hides", "Skins"] },
-        { term: "Susie-Q", senses: [{ pos: "n.", def: "a dance introduced at the Cotton Club in 1936." }] },
-      ],
-      "T": [
-        { term: "Take it slow", senses: [{ pos: "v.", def: "be careful." }] },
-        { term: "Take off", senses: [{ pos: "v.", def: "play a solo." }] },
-        { term: "The man", senses: [{ pos: "n.", def: "the law." }] },
-        { term: "Threads", senses: [{ pos: "n.", def: "suit, dress or costume (see drape; dry-goods)." }] },
-        { term: "Tick", senses: [{ pos: "n.", def: "minute, moment. Also, ticks are doubled in accounting time, just as money is doubled in giving line.", ex: [["I'll dig you in a few ticks."], ["I finaled to the pad this early bright at tick twenty.", "(I got to bed this morning at ten o'clock)"]] }] },
-        { term: "Timber", senses: [{ pos: "n.", def: "toothpick." }] },
-        { term: "To be stashed", senses: [{ pos: "v.", def: "to stand or remain." }] },
-        { term: "To dribble", senses: [{ pos: "v.", def: "to stutter.", ex: [["He talked in dribbles."]] }] },
-        { term: "Togged to the bricks", senses: [{ pos: "adj.", def: "dressed to kill, from head to toe." }] },
-        { term: "Too much", senses: [{ pos: "adj.", def: "term of highest praise.", ex: [["You are too much!"]] }] },
-        { term: "Tram", senses: [{ pos: "n.", def: "trombone." }], syn: ["Slush-Pump"] },
-        { term: "Trickeration", senses: [{ pos: "n.", def: "struttin' your stuff, muggin' lightly and politely." }] },
-        { term: "Trilly", senses: [{ pos: "v.", def: "to leave, to depart.", ex: [["Well, I guess I'll trilly."]] }] },
-        { term: "Truck", senses: [{ pos: "v.", def: "to go somewhere.", ex: [["I think I'll truck on down to the ginmill (bar)."]] }] },
-        { term: "Trucking", senses: [{ pos: "n.", def: "a dance introduced at the Cotton Club in 1933." }] },
-        { term: "Twister to the slammer", senses: [{ pos: "n.", def: "the key to the door." }] },
-        { term: "Two cents", senses: [{ pos: "n.", def: "two dollars." }] },
-      ],
-      "U": [
-        { term: "Unhep", senses: [{ pos: "adj.", def: "not wise to the jive, said of an icky, a Jeff, a square." }] },
-      ],
-      "V": [
-        { term: "V-8", senses: [{ pos: "n.", def: "a chick who spurns company, is independent, is not amenable." }] },
-        { term: "Vine", senses: [{ pos: "n.", def: "a suit of clothes." }] },
-      ],
-      "W": [
-        { term: "What's your story?", senses: [{ pos: "exclamation.", def: "What do you want? What have you got to say for yourself? How are tricks? What excuse can you offer?", ex: [["I don't know what his story is."]] }] },
-        { term: "Whipped up", senses: [{ pos: "adj.", def: "worn out, exhausted, beat for your everything." }] },
-        { term: "Woodpile", senses: [{ pos: "n.", def: "xylophone." }] },
-        { term: "Wren", senses: [{ pos: "n.", def: "a chick, a queen." }] },
-        { term: "Wrong riff", senses: [{ pos: "n.", def: "the wrong thing said or done.", ex: [["You're coming up on the wrong riff."]] }] },
-      ],
-      "Y": [
-        { term: "Yarddog", senses: [{ pos: "n.", def: "uncouth, badly attired, unattractive male or female." }] },
-        { term: "Yeah, man", senses: [{ pos: "exclamation.", def: "an exclamation of assent." }] },
-      ],
-      "Z": [
-        { term: "Zoot", senses: [{ pos: "adj.", def: "exaggerated." }] },
-        { term: "Zoot suit", senses: [{ pos: "n.", def: "the ultimate in clothes. The only totally and truly American civilian suit." }] },
-      ],
-    };
+    const DICTIONARIES = [
+      {
+        id: "calloway",
+        name: "Calloway",
+        title: 'Cab Calloway\'s "Hepster\'s Dictionary"',
+        author: "Cab Calloway",
+        year: 1944,
+        color: "var(--green)",
+        info: `<p>In 1938, jazz bandleader and singer <strong>Cab Calloway</strong>
+                published <mark>the first dictionary by an African-American</mark>,
+                <em>Cab Calloway's Cat-ologue: A "Hepster's" Dictionary</em>, which became
+                the <mark>official jive language reference book of the New York Public
+                Library</mark>. In 1939, Calloway published an accompanying book,
+                <em>Professor Cab Calloway's Swingformation Bureau</em>, which instructed
+                readers how to apply the words and phrases from the dictionary. He
+                released several editions until 1944, the last being <em>The New Cab
+                Calloway's Hepsters Dictionary: Language of Jive</em>.</p>
+               <div class="foreword-label">From the 1944 foreword</div>
+               <blockquote class="foreword">
+                 <p>Some six years ago I compiled the first glossary of words,
+                  expressions, and the general patois employed by musicians and
+                  entertainers in New York's teeming Harlem. That the general public
+                  agreed with me is amply evidenced by the fact that the present issue is
+                  the sixth edition since 1938 and is the official jive language reference
+                  book of the New York Public Library.</p>
+                 <p>"Jive talk" is now an everyday part of the English language. Its usage
+                  is now accepted in the movies, on the stage, and in the song products of
+                  Tin Pan Alley. It is reasonable to assume that jive will find new
+                  avenues in such hitherto remote places as Australia, the South Pacific,
+                  North Africa, China, Italy, France, Sicily, and inevitably Germany and
+                  wherever our Armed Forces may serve.</p>
+                 <p>I don't want to lend the impression here that the many words contained
+                  in this edition are the figments of my imagination. They were gathered
+                  from every conceivable source. Many first saw the light of printer's ink
+                  in Billy Rowe's widely read column "The Notebook," in the Pittsburgh
+                  Courier.</p>
+                 <p>To the many persons who have contributed to this and the other
+                  editions, this volume is respectfully and gratefully dedicated.</p>
+                 <p class="foreword-sign">— Cab Calloway</p>
+               </blockquote>`,
+        file: "data/calloway.json",
+      },
+      {
+        id: "hepcats",
+        name: "Hepcats",
+        title: 'Hepcats "Jive Talk" Dictionary',
+        author: "Lou Shelly (ed.)",
+        year: 1945,
+        color: "var(--blue)",
+        info: `<p>Edited by <strong>Lou Shelly</strong> and published in 1945 by the
+                T.W.O. Charles Company, <em>Jive Talk</em> bills itself as
+                <mark>the most complete dictionary of jive words and phrases</mark> of its
+                day &mdash; over a thousand entries gathered as the Harlem idiom spread
+                &ldquo;from one end of the land to the other.&rdquo;</p>
+               <div class="foreword-label">From the foreword, &ldquo;Are You Jive Wise?&rdquo;</div>
+               <blockquote class="foreword">
+                 <p>In the old days the people greeted a new ruler with the cry: &ldquo;The
+                  King is dead, long live the King!&rdquo; Today there's a strange shout:
+                  &ldquo;Webster is dead, long live the Hepster!&rdquo;</p>
+                 <p>A new language has been born and with its usual lustiness youth has made
+                  jive talk heard from one end of the land to the other. The Negro who
+                  travelled from Africa to Harlem picked up the language of the ofays and
+                  embellished it with his rich, racy idioms. It soon became an
+                  incomprehensible dialect to all save those who were hep.</p>
+                 <p>The Editors feel that jive talk is here to stay and believe that this
+                  book is the most complete dictionary of jive words and phrases ever
+                  presented. It may be of no assistance to an Abercrombie but we're sure it
+                  will help most people a great deal.</p>
+                 <p class="foreword-sign">— The Editors</p>
+               </blockquote>`,
+        file: "data/hepcats.json",
+      },
+    ];
 
     // ─── Helpers ─────────────────────────────────────────────────────────────────
     const ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -534,8 +513,61 @@
       return safe.replace(re, "<mark>$1</mark>");
     }
 
-    // Total entry count across all letter buckets (for the "n / total" readout).
-    const TOTAL = Object.values(DATA).reduce((n, arr) => n + arr.length, 0);
+    // id -> dictionary, for quick lookups during render.
+    const DICT_BY_ID = Object.fromEntries(DICTIONARIES.map(d => [d.id, d]));
+
+    // Merge key: case-insensitive, whitespace-trimmed headword.
+    function normTerm(t) { return t.trim().toLowerCase(); }
+
+    // Merge entries across the active scope into { letter: mergedEntries[] }, where a
+    // merged entry is { term, letter, sources: [{ dictId, senses, syn, abbrv }] }.
+    // Same normalized term across dictionaries collapses into one headword.
+    function buildIndex(scopeId) {
+      const dicts = scopeId === "all"
+        ? DICTIONARIES
+        : DICTIONARIES.filter(d => d.id === scopeId);
+      const map = new Map();                         // normKey -> mergedEntry
+      for (const d of dicts) {
+        for (const l of ALPHA) {
+          const bucket = d.data[l];
+          if (!bucket) continue;
+          for (const e of bucket) {
+            const key = normTerm(e.term);
+            let m = map.get(key);
+            // kind ("word"/"phrase") is a property of the headword, so the first source
+            // sets it; same normalized term across dicts shares the same kind.
+            if (!m) { m = { term: e.term, letter: l, kind: e.kind, sources: [] }; map.set(key, m); }
+            m.sources.push({ dictId: d.id, senses: e.senses, syn: e.syn, abbrv: e.abbrv });
+          }
+        }
+      }
+      const groups = {};
+      for (const l of ALPHA) groups[l] = [];
+      for (const m of map.values()) groups[m.letter].push(m);
+      for (const l of ALPHA)
+        groups[l].sort((a, b) => normTerm(a.term).localeCompare(normTerm(b.term), "en"));
+      return groups;
+    }
+
+    // Does one source (a dict's entry body) match the query?
+    function sourceMatches(src, ql) {
+      for (const s of src.senses) {
+        if (s.def.toLowerCase().includes(ql)) return true;
+        if (show.examples && s.ex) for (const ex of s.ex) if (ex.join(" ").toLowerCase().includes(ql)) return true;
+      }
+      // syn/abbrv are searched only while their field toggle is on (mirrors examples).
+      const inList = (arr) => arr && arr.some(x => x.toLowerCase().includes(ql));
+      return (show.syn && inList(src.syn)) || (show.abbrv && inList(src.abbrv));
+    }
+
+    // Filter a merged entry against the query. A headword hit keeps every source;
+    // otherwise keep only the sources whose body matches. null = no match.
+    function matchEntry(m, ql) {
+      if (!ql) return m;
+      if (m.term.toLowerCase().includes(ql)) return m;
+      const srcs = m.sources.filter(s => sourceMatches(s, ql));
+      return srcs.length ? { term: m.term, letter: m.letter, kind: m.kind, sources: srcs } : null;
+    }
 
     // An example is [quote, gloss?]: the quote is italicized between guillemets, the
     // optional gloss (a parenthetical translation) follows in roman text.
@@ -582,27 +614,59 @@
         const mark = `<span class="smark"><span class="snum">${i + 1}.</span>` +
                      (s.pos ? `<span class="spos">${escHtml(s.pos)}</span>` : "") + `</span>`;
         let body = `<div class="def-text">${renderDef(s.def, term, q)}</div>`;
-        if (s.ex) for (const e of s.ex) body += renderExample(e, q);
+        if (show.examples && s.ex) for (const e of s.ex) body += renderExample(e, q);
         h += `<div class="sense">${mark}<div class="sbody">${body}</div></div>`;
       });
       return h + "</div>";
     }
 
-    // Does an entry match the search query (term, any definition, example or reference)?
-    function entryMatches(e, ql) {
-      if (e.term.toLowerCase().includes(ql)) return true;
-      for (const s of e.senses) {
-        if (s.def.toLowerCase().includes(ql)) return true;
-        if (s.ex) for (const ex of s.ex) if (ex.join(" ").toLowerCase().includes(ql)) return true;
-      }
-      const inList = (arr) => arr && arr.some(x => x.toLowerCase().includes(ql));
-      return inList(e.syn) || inList(e.abbrv);
-    }
-
     // ─── Render ──────────────────────────────────────────────────────────────────
+    // Active filter: "all" (search every dictionary) or a dictionary id.
+    let activeId = "all";
+    // Toggle state. words/phrases are entry filters (hide that kind of headword);
+    // examples/syn/abbrv are field-visibility toggles (gate both render AND search).
+    const show = { words: true, phrases: true, examples: true, syn: true, abbrv: true, markers: true };
+
     const entriesEl = document.getElementById("entries");
     const countEl   = document.getElementById("count");
     const railEl    = document.getElementById("rail");
+    const chipsEl   = document.getElementById("chips");
+    const subtitleEl = document.getElementById("subtitle");
+
+    function buildChips() {
+      // Each dict chip carries its color via --chip: colored border when idle, filled
+      // when active. "All" uses a neutral gray.
+      let h = `<button class="chip" data-id="all" style="--chip:var(--yellow)">All</button>`;
+      for (const d of DICTIONARIES) {
+        h += `<button class="chip" data-id="${escHtml(d.id)}" style="--chip:${d.color}">${escHtml(d.name)}` +
+             `<span class="info-btn" data-info="${escHtml(d.id)}" aria-label="about ${escHtml(d.name)}" title="about ${escHtml(d.name)}">&#9432;</span>` +
+             `</button>`;
+      }
+      chipsEl.innerHTML = h;
+      updateChips();
+    }
+
+    function updateChips() {
+      chipsEl.querySelectorAll(".chip").forEach(c =>
+        c.classList.toggle("active", c.dataset.id === activeId));
+      subtitleEl.textContent = activeId === "all"
+        ? "All dictionaries"
+        : DICT_BY_ID[activeId].title;
+    }
+
+    const modalEl   = document.getElementById("modal");
+    const modalBody = document.getElementById("modal-body");
+
+    function openModal(id) {
+      const d = DICT_BY_ID[id];
+      if (!d) return;
+      modalBody.innerHTML =
+        `<h2 class="modal-title" id="modal-title" style="color:${d.color}">${escHtml(d.title)}</h2>` +
+        `<div class="modal-meta">${escHtml(d.author)} &middot; ${escHtml(String(d.year))}</div>` +
+        `<div class="modal-info">${d.info}</div>`;
+      modalEl.hidden = false;
+    }
+    function closeModal() { modalEl.hidden = true; }
 
     function buildRail() {
       railEl.innerHTML = ALPHA.map(l =>
@@ -612,18 +676,28 @@
     function render(q) {
       const query = q.trim();
       const ql = query.toLowerCase();
+      const fullIndex = buildIndex(activeId);
 
-      // DATA is already keyed by initial letter; just filter each bucket.
+      // words/phrases toggles filter which headwords exist at all; counts are kind-aware.
+      const kindOK = (m) => m.kind === "phrase" ? show.phrases : show.words;
+
+      // total = distinct headwords in scope that pass the kind filter (query-independent).
+      let total = 0;
+      for (const l of ALPHA) for (const m of fullIndex[l]) if (kindOK(m)) total++;
+
       const groups = {};
       let count = 0;
       for (const l of ALPHA) {
-        const bucket = DATA[l];
-        if (!bucket) continue;
-        const items = ql ? bucket.filter(e => entryMatches(e, ql)) : bucket;
+        const items = [];
+        for (const m of fullIndex[l]) {
+          if (!kindOK(m)) continue;
+          const kept = matchEntry(m, ql);
+          if (kept) items.push(kept);
+        }
         if (items.length) { groups[l] = items; count += items.length; }
       }
 
-      countEl.textContent = count + " / " + TOTAL;
+      countEl.textContent = count + " / " + total;
 
       const present = new Set(Object.keys(groups));
       railEl.querySelectorAll("a").forEach(a =>
@@ -634,23 +708,39 @@
         return;
       }
 
+      const refLine = (lbl, arr) => (arr && arr.length)
+        ? `<div class="ref"><span class="ref-label">${lbl}</span> ` +
+          arr.map(s => `<span class="synref">${highlight(s, query)}</span>`).join(", ") +
+          `</div>`
+        : "";
+
       let html = "";
       for (const l of ALPHA) {
         const items = groups[l];
         if (!items) continue;
         html += `<section class="letter-group"><h2 class="letter" id="letter-${l}">${l}</h2>`;
-        for (const e of items) {
-          const refLine = (label, arr) => (arr && arr.length)
-            ? `<div class="ref"><span class="ref-label">${label}</span> ` +
-              arr.map(s => `<span class="synref">${highlight(s, query)}</span>`).join(", ") +
-              `</div>`
-            : "";
-          html += `<div class="entry">` +
-                    `<span class="term">${highlight(e.term, query)}</span>` +
-                    buildSenses(e.senses, e.term, query) +
-                    refLine("syn.", e.syn) +
-                    refLine("abbrv.", e.abbrv) +
-                  `</div>`;
+        for (const m of items) {
+          // Provenance shown as a colored dot per source dict beside the (single-color)
+          // headword; a word in both dicts gets two dots.
+          const dots = show.markers ? m.sources.map(src => {
+            const dict = DICT_BY_ID[src.dictId];
+            return `<span class="dot" style="background:${dict.color}" title="${escHtml(dict.name)}"></span>`;
+          }).join("") : "";
+          html += `<div class="entry"><span class="term">${highlight(m.term, query)}</span>${dots}`;
+          // When a word has defs from more than one dict, each def block gets a
+          // dict-colored left bar so you can tell which definition is whose.
+          const multi = show.markers && m.sources.length > 1;
+          for (const src of m.sources) {
+            const block = multi
+              ? ` class="src-block tinted" style="--c:${DICT_BY_ID[src.dictId].color}"`
+              : ` class="src-block"`;
+            html += `<div${block}>` +
+                      buildSenses(src.senses, m.term, query) +
+                      (show.syn ? refLine("syn.", src.syn) : "") +
+                      (show.abbrv ? refLine("abbrv.", src.abbrv) : "") +
+                    `</div>`;
+          }
+          html += `</div>`;
         }
         html += `</section>`;
       }
@@ -664,6 +754,23 @@
       clearTimeout(timer);
       timer = setTimeout(() => render(search.value), 60);
     });
+    const filterToggle = document.getElementById("filter-toggle");
+    const togglesEl = document.getElementById("toggles");
+    filterToggle.addEventListener("click", () => {
+      const open = togglesEl.hidden;
+      togglesEl.hidden = !open;
+      filterToggle.classList.toggle("open", open);
+      filterToggle.setAttribute("aria-expanded", String(open));
+    });
+    togglesEl.addEventListener("click", e => {
+      const btn = e.target.closest(".toggle");
+      if (!btn) return;
+      const key = btn.dataset.toggle;
+      show[key] = !show[key];
+      btn.classList.toggle("active", show[key]);
+      btn.setAttribute("aria-pressed", String(show[key]));
+      render(search.value);
+    });
     railEl.addEventListener("click", e => {
       const a = e.target.closest("a");
       if (!a) return;
@@ -671,9 +778,41 @@
       const t = document.getElementById("letter-" + a.dataset.letter);
       if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+    chipsEl.addEventListener("click", e => {
+      const info = e.target.closest(".info-btn");
+      if (info) { e.stopPropagation(); openModal(info.dataset.info); return; }
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      activeId = chip.dataset.id;
+      updateChips();
+      render(search.value);
+    });
+    document.getElementById("modal-close").addEventListener("click", closeModal);
+    modalEl.addEventListener("click", e => { if (e.target === modalEl) closeModal(); });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !modalEl.hidden) closeModal();
+    });
 
-    buildRail();
-    render("");
+    // Term data lives in per-dictionary JSON (d.file); metadata stays inline above.
+    // Fetch each dict's data, attach it, then do the first render. Served over HTTP
+    // by shtatic locally and GitHub Pages in production, so fetch is available.
+    async function boot() {
+      try {
+        await Promise.all(DICTIONARIES.map(async d => {
+          const res = await fetch(d.file);
+          if (!res.ok) throw new Error(`${d.file}: ${res.status}`);
+          d.data = await res.json();
+        }));
+      } catch (err) {
+        entriesEl.innerHTML =
+          `<p class="empty">Couldn't load dictionary data (${escHtml(String(err.message || err))}).</p>`;
+        return;
+      }
+      buildRail();
+      buildChips();
+      render("");
+    }
+    boot();
   </script>
 </body>
 </html>
