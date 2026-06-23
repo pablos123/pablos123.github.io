@@ -11,6 +11,26 @@
       ]
     },
     {
+      "term": "Able Grable",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "well-built girl."
+        }
+      ]
+    },
+    {
+      "term": "Accenting the off beat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "stressing the 2nd & 4th beats."
+        }
+      ]
+    },
+    {
       "term": "Ace",
       "kind": "word",
       "senses": [
@@ -41,12 +61,72 @@
       ]
     },
     {
+      "term": "Action on traction",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "prepared to proceed."
+        }
+      ]
+    },
+    {
+      "term": "Advance the spark",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Get ready."
+        }
+      ]
+    },
+    {
+      "term": "Ain't comin' on that tab",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Don't count on me."
+        }
+      ]
+    },
+    {
       "term": "Airbags",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "lungs."
+        }
+      ]
+    },
+    {
+      "term": "Alan Laddy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "male sex appeal."
+        }
+      ]
+    },
+    {
+      "term": "All bung up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "completely bewildered."
+        }
+      ]
+    },
+    {
+      "term": "Alley cat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "street corner loafer."
         }
       ]
     },
@@ -61,12 +141,32 @@
       ]
     },
     {
+      "term": "Alligator bait",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "colored Florida cracker."
+        }
+      ]
+    },
+    {
       "term": "Alreet",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "absolutely okay."
+        }
+      ]
+    },
+    {
+      "term": "Angel cake",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "perfect femininity."
         }
       ]
     },
@@ -139,9 +239,29 @@
           "def": "baked beans."
         }
       ]
+    },
+    {
+      "term": "Axle grease",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "butter."
+        }
+      ]
     }
   ],
   "B": [
+    {
+      "term": "Baby kisser",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "politician."
+        }
+      ]
+    },
     {
       "term": "Backcap",
       "kind": "word",
@@ -163,6 +283,16 @@
       ]
     },
     {
+      "term": "Bad news",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "discharge notice."
+        }
+      ]
+    },
+    {
       "term": "Bagpipe",
       "kind": "word",
       "senses": [
@@ -173,12 +303,52 @@
       ]
     },
     {
+      "term": "Bag with a sag",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unattractive stout girl."
+        }
+      ]
+    },
+    {
+      "term": "Ball chain",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the wife."
+        }
+      ]
+    },
+    {
+      "term": "Balloon room",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smoke room."
+        }
+      ]
+    },
+    {
       "term": "Banana",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "mulatto."
+        }
+      ]
+    },
+    {
+      "term": "Banana peel",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "yellow girl."
         }
       ]
     },
@@ -263,6 +433,16 @@
       ]
     },
     {
+      "term": "Battery acid",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "coffee."
+        }
+      ]
+    },
+    {
       "term": "Battle",
       "kind": "word",
       "senses": [
@@ -327,6 +507,134 @@
       ]
     },
     {
+      "term": "Beat for the yolk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "lack of money."
+        }
+      ]
+    },
+    {
+      "term": "Beatin' boogie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "playing jive rhythm."
+        }
+      ]
+    },
+    {
+      "term": "Beatin' chops",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "talking too much."
+        }
+      ]
+    },
+    {
+      "term": "Beating the books",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "winning at the races or cramming for a school examination."
+        }
+      ]
+    },
+    {
+      "term": "Beatin' the skins",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "striking the drums."
+        }
+      ]
+    },
+    {
+      "term": "Beat it out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Play it hot."
+        }
+      ]
+    },
+    {
+      "term": "Beat my own skin",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "applauding."
+        }
+      ]
+    },
+    {
+      "term": "Beat the rocks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "pounding the pavement."
+        }
+      ]
+    },
+    {
+      "term": "Beat to my socks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "very tired."
+        }
+      ]
+    },
+    {
+      "term": "Beat up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "small coins."
+        },
+        {
+          "pos": "adj.",
+          "def": "worn out."
+        },
+        {
+          "pos": "adj.",
+          "def": "homely."
+        }
+      ]
+    },
+    {
+      "term": "Beat with the heat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "very warm."
+        }
+      ]
+    },
+    {
+      "term": "Beau boy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the boy friend."
+        }
+      ]
+    },
+    {
       "term": "Beaver",
       "kind": "word",
       "senses": [
@@ -343,6 +651,36 @@
         {
           "pos": "n.",
           "def": "a complaint."
+        }
+      ]
+    },
+    {
+      "term": "Before Abe",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a slave."
+        }
+      ]
+    },
+    {
+      "term": "Beggin' for chirp",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "pleading for rhythm."
+        }
+      ]
+    },
+    {
+      "term": "Behind the grind",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "behind in your studies."
         }
       ]
     },
@@ -417,6 +755,76 @@
       ]
     },
     {
+      "term": "Big bruiser",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "handsome male."
+        }
+      ]
+    },
+    {
+      "term": "Big ditch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Atlantic ocean."
+        }
+      ]
+    },
+    {
+      "term": "Big drip",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Niagara Falls."
+        }
+      ]
+    },
+    {
+      "term": "Big lips",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a masher."
+        }
+      ]
+    },
+    {
+      "term": "Big mouth",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "loud person."
+        }
+      ]
+    },
+    {
+      "term": "Big talk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "boasting."
+        }
+      ]
+    },
+    {
+      "term": "Big time operator",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "boy friend."
+        }
+      ]
+    },
+    {
       "term": "Billposter",
       "kind": "word",
       "senses": [
@@ -477,12 +885,32 @@
       ]
     },
     {
+      "term": "Black widow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a wallflower."
+        }
+      ]
+    },
+    {
       "term": "Bleeding",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to change the subject of conversation."
+        }
+      ]
+    },
+    {
+      "term": "Blindfolded scales lady",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "court house."
         }
       ]
     },
@@ -521,12 +949,112 @@
       ]
     },
     {
+      "term": "Blot out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "eliminate."
+        }
+      ]
+    },
+    {
       "term": "Blow",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to go away, or brag."
+        }
+      ]
+    },
+    {
+      "term": "Blow in",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "spending freely."
+        }
+      ]
+    },
+    {
+      "term": "Blow your top",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to grow excited."
+        }
+      ]
+    },
+    {
+      "term": "Blow your wig",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "uncontrollably excited."
+        }
+      ]
+    },
+    {
+      "term": "Bluff cuffs with the solid sender",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a zoot suit."
+        }
+      ]
+    },
+    {
+      "term": "B.O.",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "offensive body odor."
+        }
+      ]
+    },
+    {
+      "term": "Bobby socks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "teen-agers (female)."
+        }
+      ]
+    },
+    {
+      "term": "Body snatcher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a male wolf."
+        }
+      ]
+    },
+    {
+      "term": "Boiled owl",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "intoxicated person."
+        }
+      ]
+    },
+    {
+      "term": "Boiler plate",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "formal attire."
         }
       ]
     },
@@ -561,12 +1089,32 @@
       ]
     },
     {
+      "term": "Bone orchard",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sad music hall."
+        }
+      ]
+    },
+    {
       "term": "Bonfire",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a cigarette stub."
+        }
+      ]
+    },
+    {
+      "term": "Booby trap",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl with marriage intentions."
         }
       ]
     },
@@ -601,6 +1149,26 @@
       ]
     },
     {
+      "term": "Boogie woogie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "barrel house rhythm (8 to the bar)."
+        }
+      ]
+    },
+    {
+      "term": "Boom boom",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a pistol."
+        }
+      ]
+    },
+    {
       "term": "Boot",
       "kind": "word",
       "senses": [
@@ -615,12 +1183,102 @@
       ]
     },
     {
+      "term": "Boot me",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Introduce me."
+        }
+      ]
+    },
+    {
+      "term": "Boots on",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "prepared."
+        }
+      ]
+    },
+    {
+      "term": "Bottle neck",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "petting in the park."
+        }
+      ]
+    },
+    {
+      "term": "Boulevard cowboy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wild driver."
+        }
+      ]
+    },
+    {
       "term": "Bounce",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a jumpy rhythm."
+        }
+      ]
+    },
+    {
+      "term": "Bow wow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a gun."
+        }
+      ]
+    },
+    {
+      "term": "Boy beautiful",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "glib talker."
+        }
+      ]
+    },
+    {
+      "term": "Boy scout",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an immature male."
+        }
+      ]
+    },
+    {
+      "term": "Brace o' broads",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "shoulders."
+        }
+      ]
+    },
+    {
+      "term": "Brace o' hookers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "arms."
         }
       ]
     },
@@ -645,12 +1303,32 @@
       ]
     },
     {
+      "term": "Bread basket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stomach."
+        }
+      ]
+    },
+    {
       "term": "Break",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "pause in music."
+        }
+      ]
+    },
+    {
+      "term": "Break it up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "stop the performance."
         }
       ]
     },
@@ -685,6 +1363,26 @@
       ]
     },
     {
+      "term": "Bring down",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "depress."
+        }
+      ]
+    },
+    {
+      "term": "Bronx cheer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "disapproving lip noise."
+        }
+      ]
+    },
+    {
       "term": "Broom",
       "kind": "word",
       "senses": [
@@ -699,8 +1397,38 @@
       ]
     },
     {
+      "term": "Brother act",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "false friend."
+        }
+      ]
+    },
+    {
+      "term": "Brown abes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pennies."
+        }
+      ]
+    },
+    {
       "term": "Brush",
       "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mustache."
+        }
+      ]
+    },
+    {
+      "term": "Brush mush",
+      "kind": "phrase",
       "senses": [
         {
           "pos": "n.",
@@ -719,6 +1447,16 @@
       ]
     },
     {
+      "term": "Bubble dancing",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dishwashing."
+        }
+      ]
+    },
+    {
       "term": "Buck",
       "kind": "word",
       "senses": [
@@ -729,12 +1467,32 @@
       ]
     },
     {
+      "term": "Bucket of blood",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tavern of ill-repute."
+        }
+      ]
+    },
+    {
       "term": "Buffalo",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "five cents."
+        }
+      ]
+    },
+    {
+      "term": "Buffalo heads",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "nickels."
         }
       ]
     },
@@ -759,6 +1517,26 @@
       ]
     },
     {
+      "term": "Bug out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "large abdomen."
+        }
+      ]
+    },
+    {
+      "term": "Builder upper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "publicity man."
+        }
+      ]
+    },
+    {
       "term": "Bull",
       "kind": "word",
       "senses": [
@@ -779,6 +1557,46 @@
       ]
     },
     {
+      "term": "Bull fiddle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the bass viol."
+        }
+      ]
+    },
+    {
+      "term": "Bull horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the tuba."
+        }
+      ]
+    },
+    {
+      "term": "Bull session",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a male gabfest."
+        }
+      ]
+    },
+    {
+      "term": "Bull's wool",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stolen goods."
+        }
+      ]
+    },
+    {
       "term": "Bump",
       "kind": "word",
       "senses": [
@@ -789,12 +1607,72 @@
       ]
     },
     {
+      "term": "Bum pen",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "crowded sleeping quarters (usually in a jail)."
+        }
+      ]
+    },
+    {
+      "term": "Bumpin' your gums",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "talking too much."
+        }
+      ]
+    },
+    {
+      "term": "Bunch of fives",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your fists."
+        }
+      ]
+    },
+    {
+      "term": "Bundle from heaven",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "baby or laundry."
+        }
+      ]
+    },
+    {
       "term": "Bushed",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "exhausted."
+        }
+      ]
+    },
+    {
+      "term": "Bust loose",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "eliminating inhibitions."
+        }
+      ]
+    },
+    {
+      "term": "Bust your conk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Do the best you can."
         }
       ]
     },
@@ -829,6 +1707,16 @@
       ]
     },
     {
+      "term": "Button up your lip",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Don't talk."
+        }
+      ]
+    },
+    {
       "term": "Buy",
       "kind": "word",
       "senses": [
@@ -849,8 +1737,28 @@
       ]
     },
     {
+      "term": "Buzzard meat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "chicken or turkey."
+        }
+      ]
+    },
+    {
       "term": "Buzzsaw",
       "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gossiper."
+        }
+      ]
+    },
+    {
+      "term": "Buzz saw",
+      "kind": "phrase",
       "senses": [
         {
           "pos": "n.",
@@ -877,6 +1785,16 @@
         {
           "pos": "n.",
           "def": "a sissy."
+        }
+      ]
+    },
+    {
+      "term": "Call off all bets",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to die."
         }
       ]
     },
@@ -911,6 +1829,36 @@
       ]
     },
     {
+      "term": "Cart wheel",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "silver dollar."
+        }
+      ]
+    },
+    {
+      "term": "Cash in checks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dying."
+        }
+      ]
+    },
+    {
+      "term": "Castor oiler",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "doctor."
+        }
+      ]
+    },
+    {
       "term": "Cat",
       "kind": "word",
       "senses": [
@@ -921,12 +1869,62 @@
       ]
     },
     {
+      "term": "Cat eyes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "three on a pair of dice."
+        }
+      ]
+    },
+    {
+      "term": "Cat's meow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "singing male."
+        }
+      ]
+    },
+    {
+      "term": "Cat's not in",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "out of uniform."
+        }
+      ]
+    },
+    {
+      "term": "Cat that cracks the whip",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a playboy."
+        }
+      ]
+    },
+    {
       "term": "Cattle",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "girls."
+        }
+      ]
+    },
+    {
+      "term": "Cattle train",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a large automobile."
         }
       ]
     },
@@ -971,6 +1969,26 @@
       ]
     },
     {
+      "term": "Chair warmer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "lazy musician."
+        }
+      ]
+    },
+    {
+      "term": "Chamber of commerce",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "men's room."
+        }
+      ]
+    },
+    {
       "term": "Charge",
       "kind": "word",
       "senses": [
@@ -1011,6 +2029,26 @@
       ]
     },
     {
+      "term": "Chicken a la king",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your number one girl."
+        }
+      ]
+    },
+    {
+      "term": "Chicks that play hard",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "party girls."
+        }
+      ]
+    },
+    {
       "term": "Chime",
       "kind": "word",
       "senses": [
@@ -1027,6 +2065,16 @@
         {
           "pos": "n.",
           "def": "an alarm clock."
+        }
+      ]
+    },
+    {
+      "term": "Chimer bell",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your heart."
         }
       ]
     },
@@ -1057,6 +2105,26 @@
         {
           "pos": "n.",
           "def": "girl vocalist."
+        }
+      ]
+    },
+    {
+      "term": "Chit chatter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "idle chatter."
+        }
+      ]
+    },
+    {
+      "term": "Chittering chopper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "loose tooth."
         }
       ]
     },
@@ -1101,6 +2169,16 @@
       ]
     },
     {
+      "term": "Cinderella tale",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a success story."
+        }
+      ]
+    },
+    {
       "term": "Clambake",
       "kind": "word",
       "senses": [
@@ -1117,6 +2195,26 @@
         {
           "pos": "n.",
           "def": "one who has attained success."
+        }
+      ]
+    },
+    {
+      "term": "Clip artist",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "confidence man."
+        }
+      ]
+    },
+    {
+      "term": "Clip joint",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "night club that overcharges."
         }
       ]
     },
@@ -1151,12 +2249,72 @@
       ]
     },
     {
+      "term": "Cluck in the clink",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dunce in jail."
+        }
+      ]
+    },
+    {
+      "term": "C note",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one-hundred-dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Coffee bags",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "trousers pockets."
+        }
+      ]
+    },
+    {
+      "term": "Coffin nails",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cigarettes."
+        }
+      ]
+    },
+    {
+      "term": "Coffin varnish",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bad liquor."
+        }
+      ]
+    },
+    {
       "term": "Cogs",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "sunglasses."
+        }
+      ]
+    },
+    {
+      "term": "Coke frame",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "attractive body build."
         }
       ]
     },
@@ -1171,12 +2329,62 @@
       ]
     },
     {
+      "term": "Cold cut",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "uninteresting person."
+        }
+      ]
+    },
+    {
+      "term": "Cold deck",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "marked cards."
+        }
+      ]
+    },
+    {
+      "term": "Cold meat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "corpse."
+        }
+      ]
+    },
+    {
+      "term": "Cold meat party",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "funeral."
+        }
+      ]
+    },
+    {
       "term": "Collar",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to catch on."
+        }
+      ]
+    },
+    {
+      "term": "Collar a broom",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "leave in haste."
         }
       ]
     },
@@ -1211,6 +2419,16 @@
       ]
     },
     {
+      "term": "Come again",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "repeat."
+        }
+      ]
+    },
+    {
       "term": "Comeback",
       "kind": "word",
       "senses": [
@@ -1227,6 +2445,16 @@
         {
           "pos": "n.",
           "def": "person making the grade."
+        }
+      ]
+    },
+    {
+      "term": "Come to school",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to agree with."
         }
       ]
     },
@@ -1261,6 +2489,36 @@
       ]
     },
     {
+      "term": "Cookie pusher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "counter man."
+        }
+      ]
+    },
+    {
+      "term": "Cooking on the front burner",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "tops."
+        }
+      ]
+    },
+    {
+      "term": "Cooking with gas",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "doing very well."
+        }
+      ]
+    },
+    {
       "term": "Cooler",
       "kind": "word",
       "senses": [
@@ -1291,12 +2549,92 @@
       ]
     },
     {
+      "term": "Cop a squat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to sit down."
+        }
+      ]
+    },
+    {
+      "term": "Copper nose",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "chronic drinker."
+        }
+      ]
+    },
+    {
       "term": "Corn",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "dated entertainment or money."
+        }
+      ]
+    },
+    {
+      "term": "Corn fed",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "amateur musician."
+        }
+      ]
+    },
+    {
+      "term": "Corn on the cob",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "country hick."
+        }
+      ]
+    },
+    {
+      "term": "Cough up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to pay on demand."
+        }
+      ]
+    },
+    {
+      "term": "Cow express",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "shoes."
+        }
+      ]
+    },
+    {
+      "term": "Cow juice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "milk."
+        }
+      ]
+    },
+    {
+      "term": "Crab your act",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "interfere with your presentation."
         }
       ]
     },
@@ -1331,6 +2669,16 @@
       ]
     },
     {
+      "term": "Creakin' gates",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mediocre orchestra."
+        }
+      ]
+    },
+    {
       "term": "Creampuff",
       "kind": "word",
       "senses": [
@@ -1341,12 +2689,32 @@
       ]
     },
     {
+      "term": "Cream puff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "weakling."
+        }
+      ]
+    },
+    {
       "term": "Creep",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "pesky person."
+        }
+      ]
+    },
+    {
+      "term": "Creep joint",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "poorly furnished room."
         }
       ]
     },
@@ -1367,6 +2735,39 @@
         {
           "pos": "v.",
           "def": "to strike on the head."
+        }
+      ]
+    },
+    {
+      "term": "Crumb crunchers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "teeth."
+        }
+      ],
+      "syn": [
+        "Crum crunchers"
+      ]
+    },
+    {
+      "term": "Crumb hall",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dining room."
+        }
+      ]
+    },
+    {
+      "term": "Crumb stash",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "kitchen."
         }
       ]
     },
@@ -1421,12 +2822,32 @@
       ]
     },
     {
+      "term": "Cuddle bunny",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "lovable gal."
+        }
+      ]
+    },
+    {
       "term": "Cuff",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "free."
+        }
+      ]
+    },
+    {
+      "term": "Cuff on stuff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to retard."
         }
       ]
     },
@@ -1461,12 +2882,32 @@
       ]
     },
     {
+      "term": "Cute package",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cute gal."
+        }
+      ]
+    },
+    {
       "term": "Cuter",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "twenty-five-cent piece."
+        }
+      ]
+    },
+    {
+      "term": "Cut out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "getting away early."
         }
       ]
     }
@@ -1483,12 +2924,72 @@
       ]
     },
     {
+      "term": "Dance hall",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "execution chamber."
+        }
+      ]
+    },
+    {
+      "term": "Dating duet",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "always together."
+        }
+      ]
+    },
+    {
       "term": "Dead",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "empty."
+        }
+      ]
+    },
+    {
+      "term": "Dead pan",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "fixed expression."
+        }
+      ]
+    },
+    {
+      "term": "Dead pigeon",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "uninteresting companion."
+        }
+      ]
+    },
+    {
+      "term": "Dead president",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "paper money."
+        }
+      ]
+    },
+    {
+      "term": "Deal from the bottom",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "cheating."
         }
       ]
     },
@@ -1503,6 +3004,26 @@
       ]
     },
     {
+      "term": "Deep six",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the grave."
+        }
+      ]
+    },
+    {
+      "term": "Deep sugar",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "honeyed words."
+        }
+      ]
+    },
+    {
       "term": "Den",
       "kind": "word",
       "senses": [
@@ -1513,12 +3034,62 @@
       ]
     },
     {
+      "term": "Desk piano",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "typewriter."
+        }
+      ]
+    },
+    {
       "term": "Deuce",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "two-dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Deuce of haircuts",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "two weeks."
+        }
+      ]
+    },
+    {
+      "term": "Deuce of peepers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the eyes."
+        }
+      ]
+    },
+    {
+      "term": "Deuce of squares",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "two pseudo hepcats."
+        }
+      ]
+    },
+    {
+      "term": "Deuce of ticks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "two minutes."
         }
       ]
     },
@@ -1573,12 +3144,52 @@
       ]
     },
     {
+      "term": "Diggin' the discs",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dancing to hot records."
+        }
+      ]
+    },
+    {
+      "term": "Dig it",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to understand."
+        }
+      ]
+    },
+    {
       "term": "Dim",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "twilight."
+        }
+      ]
+    },
+    {
+      "term": "Dime note",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "ten-dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Dims and brights",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "days and nights."
         }
       ]
     },
@@ -1603,12 +3214,72 @@
       ]
     },
     {
+      "term": "Dirt disher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "scandal-monger."
+        }
+      ]
+    },
+    {
+      "term": "Disc jockey",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Victrola record (program) player."
+        }
+      ]
+    },
+    {
+      "term": "Dish delish",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pretty gal."
+        }
+      ]
+    },
+    {
+      "term": "Do a bunk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "run away."
+        }
+      ]
+    },
+    {
+      "term": "Do a garbo",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "remain aloof."
+        }
+      ]
+    },
+    {
       "term": "Dog",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "mediocre song or proposition."
+        }
+      ]
+    },
+    {
+      "term": "Dog face",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "homely person."
         }
       ]
     },
@@ -1629,6 +3300,16 @@
         {
           "pos": "n.",
           "def": "your head."
+        }
+      ]
+    },
+    {
+      "term": "Don Ameche",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "telephone."
         }
       ]
     },
@@ -1663,6 +3344,50 @@
       ]
     },
     {
+      "term": "Double C",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a searching examination."
+        }
+      ]
+    },
+    {
+      "term": "Double in brass",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "playing two characters in a show."
+        }
+      ]
+    },
+    {
+      "term": "Double sawbuck",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "twenty dollars."
+        },
+        {
+          "pos": "n.",
+          "def": "a twenty-year jail sentence."
+        }
+      ]
+    },
+    {
+      "term": "Douse the glim",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "put out the light."
+        }
+      ]
+    },
+    {
       "term": "Drag",
       "kind": "word",
       "senses": [
@@ -1677,12 +3402,42 @@
       ]
     },
     {
+      "term": "Drag a date",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "taking your sweetheart to a dance."
+        }
+      ]
+    },
+    {
+      "term": "Drag a weed",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to puff a cigarette."
+        }
+      ]
+    },
+    {
       "term": "Drape",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "suit."
+        }
+      ]
+    },
+    {
+      "term": "Drape shape",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "enviable build."
         }
       ]
     },
@@ -1707,12 +3462,32 @@
       ]
     },
     {
+      "term": "Dream up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an original composition."
+        }
+      ]
+    },
+    {
       "term": "Dribble",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to stutter or talk without coherence."
+        }
+      ]
+    },
+    {
+      "term": "Dried barker",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "fur-piece."
         }
       ]
     },
@@ -1747,12 +3522,12 @@
       ]
     },
     {
-      "term": "Drumsticks",
-      "kind": "word",
+      "term": "Droolin' with schoolin'",
+      "kind": "phrase",
       "senses": [
         {
-          "pos": "n.",
-          "def": "attractive legs."
+          "pos": "adj.",
+          "def": "overeducated."
         }
       ]
     },
@@ -1763,6 +3538,26 @@
         {
           "pos": "adj.",
           "def": "through."
+        }
+      ]
+    },
+    {
+      "term": "Drumsticks",
+      "kind": "word",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "attractive legs."
+        }
+      ]
+    },
+    {
+      "term": "Dry goods",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clothing."
         }
       ]
     },
@@ -1787,12 +3582,32 @@
       ]
     },
     {
+      "term": "Duck soup",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "simple task."
+        }
+      ]
+    },
+    {
       "term": "Dukes",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "your fists."
+        }
+      ]
+    },
+    {
+      "term": "Dumb bunny",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stupid person."
         }
       ]
     },
@@ -1805,9 +3620,49 @@
           "def": "to leave."
         }
       ]
+    },
+    {
+      "term": "Dust bin",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the grave."
+        }
+      ]
     }
   ],
   "E": [
+    {
+      "term": "Eager beaver",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "willing fellow."
+        }
+      ]
+    },
+    {
+      "term": "Early black",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "early evening."
+        }
+      ]
+    },
+    {
+      "term": "Early bright",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "early morning."
+        }
+      ]
+    },
     {
       "term": "Easy",
       "kind": "word",
@@ -1825,6 +3680,26 @@
         {
           "pos": "n.",
           "def": "colored man or obstacle."
+        }
+      ]
+    },
+    {
+      "term": "Eighty eight",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "piano."
+        }
+      ]
+    },
+    {
+      "term": "Embalming fluid",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bad liquor."
         }
       ]
     },
@@ -1867,6 +3742,16 @@
           "def": "detective."
         }
       ]
+    },
+    {
+      "term": "Eye opener",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "beautiful girl."
+        }
+      ]
     }
   ],
   "F": [
@@ -1881,12 +3766,32 @@
       ]
     },
     {
+      "term": "Face lace",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "whiskers."
+        }
+      ]
+    },
+    {
       "term": "Fade",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to cover the bet."
+        }
+      ]
+    },
+    {
+      "term": "Fag hag",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl chain smoker."
         }
       ]
     },
@@ -1907,6 +3812,26 @@
         {
           "pos": "v.",
           "def": "to be convicted."
+        }
+      ]
+    },
+    {
+      "term": "False alarm",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "divorced man or woman."
+        }
+      ]
+    },
+    {
+      "term": "Fancy pants",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "high-toned person."
         }
       ]
     },
@@ -1941,6 +3866,26 @@
       ]
     },
     {
+      "term": "Few tickers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a few moments."
+        }
+      ]
+    },
+    {
+      "term": "Filling station",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "small town."
+        }
+      ]
+    },
+    {
       "term": "Filly",
       "kind": "word",
       "senses": [
@@ -1971,12 +3916,82 @@
       ]
     },
     {
+      "term": "Final trill",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dying."
+        }
+      ]
+    },
+    {
+      "term": "Fine banana",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "yellow colored girl."
+        }
+      ]
+    },
+    {
+      "term": "Fine dinner",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "very pretty girl."
+        }
+      ]
+    },
+    {
+      "term": "Fine fryer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "young pretty girl."
+        }
+      ]
+    },
+    {
       "term": "Finger",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "an informer."
+        }
+      ]
+    },
+    {
+      "term": "Fire eater",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "quarrelsome person."
+        }
+      ]
+    },
+    {
+      "term": "Fire extinguisher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "chaperone."
+        }
+      ]
+    },
+    {
+      "term": "First thirty",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "month of January."
         }
       ]
     },
@@ -1991,12 +4006,42 @@
       ]
     },
     {
+      "term": "Fish hooks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your fingers."
+        }
+      ]
+    },
+    {
+      "term": "Five spot",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "five-dollar bill."
+        }
+      ]
+    },
+    {
       "term": "Fixer",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "one skilled in evasion."
+        }
+      ]
+    },
+    {
+      "term": "Flag spot",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bus stop."
         }
       ]
     },
@@ -2027,6 +4072,16 @@
         {
           "pos": "n.",
           "def": "your ears."
+        }
+      ]
+    },
+    {
+      "term": "Flip the grip",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "shake hands."
         }
       ]
     },
@@ -2071,6 +4126,46 @@
       ]
     },
     {
+      "term": "Fluff fluff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a cute girl."
+        }
+      ]
+    },
+    {
+      "term": "Fly chick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a hep chick."
+        }
+      ]
+    },
+    {
+      "term": "Flyer with a roof higher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "western hat."
+        }
+      ]
+    },
+    {
+      "term": "Fly swatter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a brush."
+        }
+      ]
+    },
+    {
       "term": "Fog",
       "kind": "word",
       "senses": [
@@ -2087,6 +4182,16 @@
         {
           "pos": "n.",
           "def": "your fingers."
+        }
+      ]
+    },
+    {
+      "term": "Fourth of July",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gun fight."
         }
       ]
     },
@@ -2131,12 +4236,62 @@
       ]
     },
     {
+      "term": "Free lunch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "easy going."
+        }
+      ]
+    },
+    {
+      "term": "Freeze on to",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to take possession of."
+        }
+      ]
+    },
+    {
+      "term": "Fresh water",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "good looking."
+        }
+      ]
+    },
+    {
       "term": "Fried",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "drunk."
+        }
+      ]
+    },
+    {
+      "term": "Frigid midget",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unresponsive undersized person."
+        }
+      ]
+    },
+    {
+      "term": "Frisking the whiskers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "tuning up for a swing session."
         }
       ]
     },
@@ -2151,6 +4306,16 @@
       ]
     },
     {
+      "term": "Frolic pad",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "high class cafe."
+        }
+      ]
+    },
+    {
       "term": "Front",
       "kind": "word",
       "senses": [
@@ -2161,12 +4326,32 @@
       ]
     },
     {
+      "term": "Front yard",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a stick pin."
+        }
+      ]
+    },
+    {
       "term": "Fruit",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to run around."
+        }
+      ]
+    },
+    {
+      "term": "Fruit salad",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "medals."
         }
       ]
     },
@@ -2193,6 +4378,16 @@
   ],
   "G": [
     {
+      "term": "Gabble gather",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a hen party."
+        }
+      ]
+    },
+    {
       "term": "Gaff",
       "kind": "word",
       "senses": [
@@ -2209,6 +4404,16 @@
         {
           "pos": "n.",
           "def": "intoxicating liquor."
+        }
+      ]
+    },
+    {
+      "term": "Gam case",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hosiery."
         }
       ]
     },
@@ -2243,6 +4448,16 @@
       ]
     },
     {
+      "term": "Gangbuster in a two way stretch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mother-in-law."
+        }
+      ]
+    },
+    {
       "term": "Gaper",
       "kind": "word",
       "senses": [
@@ -2263,12 +4478,32 @@
       ]
     },
     {
+      "term": "Gas house",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "saloon or tavern."
+        }
+      ]
+    },
+    {
       "term": "Gasper",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "cigarette."
+        }
+      ]
+    },
+    {
+      "term": "Gas pipe",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "trombone."
         }
       ]
     },
@@ -2333,6 +4568,36 @@
       ]
     },
     {
+      "term": "Get in there",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to start."
+        }
+      ]
+    },
+    {
+      "term": "Get outside of",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "eating or drinking."
+        }
+      ]
+    },
+    {
+      "term": "Giddy gertie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "foolish female."
+        }
+      ]
+    },
+    {
       "term": "Giggle",
       "kind": "word",
       "senses": [
@@ -2359,6 +4624,56 @@
         {
           "pos": "n.",
           "def": "eyes."
+        }
+      ]
+    },
+    {
+      "term": "Give it a miss",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to omit something."
+        }
+      ]
+    },
+    {
+      "term": "Give it a whirl",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "trying something for the first time."
+        }
+      ]
+    },
+    {
+      "term": "Give the fast brush",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to snub."
+        }
+      ]
+    },
+    {
+      "term": "Give the gate",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "ending friendly relations."
+        }
+      ]
+    },
+    {
+      "term": "Glad eye",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "flirting."
         }
       ]
     },
@@ -2393,12 +4708,62 @@
       ]
     },
     {
+      "term": "Glory roll",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bank account."
+        }
+      ]
+    },
+    {
       "term": "Goat",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "new club member."
+        }
+      ]
+    },
+    {
+      "term": "Go by",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to snub."
+        }
+      ]
+    },
+    {
+      "term": "Go down",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cellar."
+        }
+      ]
+    },
+    {
+      "term": "Gold bricker",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a phoney."
+        }
+      ]
+    },
+    {
+      "term": "Gone gosling",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hopeless person."
         }
       ]
     },
@@ -2413,6 +4778,26 @@
       ]
     },
     {
+      "term": "Good deal",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wholesome girl."
+        }
+      ]
+    },
+    {
+      "term": "Good joe",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "popular guy."
+        }
+      ]
+    },
+    {
       "term": "Goola",
       "kind": "word",
       "senses": [
@@ -2423,12 +4808,82 @@
       ]
     },
     {
+      "term": "Goon bait",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "jerky female."
+        }
+      ]
+    },
+    {
+      "term": "Got her glasses on",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "snooty (for a girl)."
+        }
+      ]
+    },
+    {
+      "term": "Gotta glim for a bim",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an eye."
+        }
+      ]
+    },
+    {
+      "term": "Got your boots on",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "hep to the jive."
+        }
+      ]
+    },
+    {
+      "term": "Go up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "top floor apartment."
+        }
+      ]
+    },
+    {
+      "term": "Go up salt river",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to die."
+        }
+      ]
+    },
+    {
       "term": "Grabbers",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "your hands."
+        }
+      ]
+    },
+    {
+      "term": "Grab the ozone",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Please go."
         }
       ]
     },
@@ -2453,6 +4908,16 @@
       ]
     },
     {
+      "term": "Grape cat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wine drinker."
+        }
+      ]
+    },
+    {
       "term": "Grapevine",
       "kind": "word",
       "senses": [
@@ -2473,12 +4938,32 @@
       ]
     },
     {
+      "term": "Grass reefers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "marijuana cigarettes."
+        }
+      ]
+    },
+    {
       "term": "Gravel",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "gossip."
+        }
+      ]
+    },
+    {
+      "term": "Graveyard stew",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "milk toast."
         }
       ]
     },
@@ -2503,12 +4988,62 @@
       ]
     },
     {
+      "term": "Grease the guggle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to eat."
+        }
+      ]
+    },
+    {
+      "term": "Grease the skids",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "getting rid of someone."
+        }
+      ]
+    },
+    {
+      "term": "Great shakes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "important."
+        }
+      ]
+    },
+    {
+      "term": "Green stuff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "folding money."
+        }
+      ]
+    },
+    {
       "term": "Groan",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "bass viol."
+        }
+      ]
+    },
+    {
+      "term": "Groan box",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bass fiddle."
         }
       ]
     },
@@ -2529,6 +5064,16 @@
         {
           "pos": "adj.",
           "def": "superlative."
+        }
+      ]
+    },
+    {
+      "term": "Ground apples",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bricks."
         }
       ]
     },
@@ -2559,6 +5104,36 @@
         {
           "pos": "n.",
           "def": "a wrestler."
+        }
+      ]
+    },
+    {
+      "term": "Gruesome twosome",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "engaged couple."
+        }
+      ]
+    },
+    {
+      "term": "Grunt and groan racket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wrestling."
+        }
+      ]
+    },
+    {
+      "term": "Grunt horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tuba."
         }
       ]
     },
@@ -2601,6 +5176,26 @@
           "def": "lowdown blues or joint."
         }
       ]
+    },
+    {
+      "term": "Guy goony",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "man crazy."
+        }
+      ]
+    },
+    {
+      "term": "Guzzlin' foam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "drinkin' beer."
+        }
+      ]
     }
   ],
   "H": [
@@ -2611,6 +5206,26 @@
         {
           "pos": "v.",
           "def": "to write inferior material."
+        }
+      ]
+    },
+    {
+      "term": "Hag bag",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a chick with no personality."
+        }
+      ]
+    },
+    {
+      "term": "Half a stretch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "half a block away."
         }
       ]
     },
@@ -2645,6 +5260,16 @@
       ]
     },
     {
+      "term": "Hang paper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "forging checks."
+        }
+      ]
+    },
+    {
       "term": "Happify",
       "kind": "word",
       "senses": [
@@ -2665,12 +5290,106 @@
       ]
     },
     {
+      "term": "Hard hitting",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "smart looking."
+        }
+      ]
+    },
+    {
+      "term": "Hard john",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "F.B.I. agent."
+        }
+      ]
+    },
+    {
+      "term": "Hard oil",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "piece of butter."
+        }
+      ]
+    },
+    {
+      "term": "Hard playing chick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "loose girl."
+        }
+      ]
+    },
+    {
+      "term": "Hard skull fry",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a new haircut."
+        }
+      ]
+    },
+    {
+      "term": "Hard spiel",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "convincing conversation."
+        }
+      ]
+    },
+    {
+      "term": "Hard stuff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "money."
+        },
+        {
+          "pos": "n.",
+          "def": "alcoholic liquor."
+        }
+      ]
+    },
+    {
       "term": "Hardware",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "flashy jewelry."
+        }
+      ]
+    },
+    {
+      "term": "Harlem toothpick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "keen knife."
+        }
+      ]
+    },
+    {
+      "term": "Having a ball",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "having a beetic time."
         }
       ]
     },
@@ -2685,6 +5404,16 @@
       ]
     },
     {
+      "term": "Head chick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your sweetheart."
+        }
+      ]
+    },
+    {
       "term": "Headlights",
       "kind": "word",
       "senses": [
@@ -2695,12 +5424,62 @@
       ]
     },
     {
+      "term": "Heated hell",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the worst."
+        }
+      ]
+    },
+    {
       "term": "Heater",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a big cigar."
+        }
+      ]
+    },
+    {
+      "term": "Heavy heart",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the boy friend."
+        }
+      ]
+    },
+    {
+      "term": "Heavy heat stretch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hot summer."
+        }
+      ]
+    },
+    {
+      "term": "Heavy lard",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sad story."
+        }
+      ]
+    },
+    {
+      "term": "Heavy wet",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "rainy weather."
         }
       ]
     },
@@ -2725,12 +5504,52 @@
       ]
     },
     {
+      "term": "Hen party",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gathering of old maids."
+        }
+      ]
+    },
+    {
+      "term": "Hen tracking",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your signature."
+        }
+      ]
+    },
+    {
       "term": "Hep",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "one who has been smartened up."
+        }
+      ]
+    },
+    {
+      "term": "Hep gee",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one in the know."
+        }
+      ]
+    },
+    {
+      "term": "Hep to",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "well informed."
         }
       ]
     },
@@ -2755,6 +5574,26 @@
       ]
     },
     {
+      "term": "Hide beater",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the drummer."
+        }
+      ]
+    },
+    {
+      "term": "Hi de ho",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Exclamation of joy."
+        }
+      ]
+    },
+    {
       "term": "Hides",
       "kind": "word",
       "senses": [
@@ -2771,6 +5610,26 @@
         {
           "pos": "v.",
           "def": "to steal another man's girl."
+        }
+      ]
+    },
+    {
+      "term": "High powered",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "good looking."
+        }
+      ]
+    },
+    {
+      "term": "High stepper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "man who lives above his means."
         }
       ]
     },
@@ -2805,6 +5664,66 @@
       ]
     },
     {
+      "term": "Hinges creaking",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "getting along in years."
+        }
+      ]
+    },
+    {
+      "term": "Hip chick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart female."
+        }
+      ]
+    },
+    {
+      "term": "Hipped spade",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart Negro."
+        }
+      ]
+    },
+    {
+      "term": "Hi, Sugar, are you rationed?",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Are you escorted?"
+        }
+      ]
+    },
+    {
+      "term": "Hit it off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "agreeing."
+        }
+      ]
+    },
+    {
+      "term": "Hobby horses",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Waacs."
+        }
+      ]
+    },
+    {
       "term": "Hocks",
       "kind": "word",
       "senses": [
@@ -2825,12 +5744,32 @@
       ]
     },
     {
+      "term": "Home cooked",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "the best."
+        }
+      ]
+    },
+    {
       "term": "Homey",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "someone from your hometown."
+        }
+      ]
+    },
+    {
+      "term": "Honey chile",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an alreet gal."
         }
       ]
     },
@@ -2875,6 +5814,16 @@
       ]
     },
     {
+      "term": "Hoopla spreader",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "promoter."
+        }
+      ]
+    },
+    {
       "term": "Hop",
       "kind": "word",
       "senses": [
@@ -2895,12 +5844,82 @@
       ]
     },
     {
+      "term": "Horse around",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to fool around."
+        }
+      ]
+    },
+    {
+      "term": "Horse opera",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "western motion pictures."
+        }
+      ]
+    },
+    {
       "term": "Hot",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "playing music in a torrid manner."
+        }
+      ]
+    },
+    {
+      "term": "Hot bed",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cheap flop house."
+        }
+      ]
+    },
+    {
+      "term": "Hot licks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "fast musical tempo."
+        }
+      ]
+    },
+    {
+      "term": "Hot piano",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "jive piano playing."
+        }
+      ]
+    },
+    {
+      "term": "Hotsy totsy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "under control."
+        }
+      ]
+    },
+    {
+      "term": "House without chairs",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dance hall."
         }
       ]
     },
@@ -2935,12 +5954,42 @@
       ]
     },
     {
+      "term": "Hung up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "mixed up."
+        }
+      ]
+    },
+    {
       "term": "Hunk",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "stalwart male."
+        }
+      ]
+    },
+    {
+      "term": "Hunk of lead",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "doughnut."
+        }
+      ]
+    },
+    {
+      "term": "Hushy hush",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gun."
         }
       ]
     },
@@ -2997,12 +6046,52 @@
       ]
     },
     {
+      "term": "Ice cold Kate",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unresponsive girl."
+        }
+      ]
+    },
+    {
+      "term": "Ice palace",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart jewelry store."
+        }
+      ]
+    },
+    {
       "term": "Icky",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "conservative person."
+        }
+      ]
+    },
+    {
+      "term": "Icky vicki",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stupid gal."
+        }
+      ]
+    },
+    {
+      "term": "Idea pot",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the head."
         }
       ]
     },
@@ -3027,6 +6116,16 @@
       ]
     },
     {
+      "term": "In and outer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "door."
+        }
+      ]
+    },
+    {
       "term": "Index",
       "kind": "word",
       "senses": [
@@ -3037,12 +6136,72 @@
       ]
     },
     {
+      "term": "In hock",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "being in prison."
+        }
+      ]
+    },
+    {
       "term": "Insider",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a pocket."
+        }
+      ]
+    },
+    {
+      "term": "In the doghouse",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "out of favor."
+        }
+      ]
+    },
+    {
+      "term": "In the groove",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "perfect timing."
+        }
+      ]
+    },
+    {
+      "term": "In there",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "superlative performance."
+        }
+      ]
+    },
+    {
+      "term": "Iron horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cornet."
+        }
+      ]
+    },
+    {
+      "term": "Iron man",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "silver dollar."
         }
       ]
     },
@@ -3059,6 +6218,16 @@
   ],
   "J": [
     {
+      "term": "Jack rolling",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "robbing a drunk."
+        }
+      ]
+    },
+    {
       "term": "Jackson",
       "kind": "word",
       "senses": [
@@ -3069,12 +6238,32 @@
       ]
     },
     {
+      "term": "Jail bait",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "young girl."
+        }
+      ]
+    },
+    {
       "term": "Jam",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to improvise in a jazz band."
+        }
+      ]
+    },
+    {
+      "term": "Jam session",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dance, improvised music."
         }
       ]
     },
@@ -3099,12 +6288,62 @@
       ]
     },
     {
+      "term": "Jenny Lind",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl singer."
+        }
+      ]
+    },
+    {
+      "term": "Jerk of all trades",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "inconsequential person."
+        }
+      ]
+    },
+    {
+      "term": "Jesse James killer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "heavy hair pomade."
+        }
+      ]
+    },
+    {
+      "term": "Jibber jabber",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "senseless talk."
+        }
+      ]
+    },
+    {
       "term": "Jillion",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a lot of people or money."
+        }
+      ]
+    },
+    {
+      "term": "Jingle jangle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "silver coins."
         }
       ]
     },
@@ -3149,12 +6388,82 @@
       ]
     },
     {
+      "term": "Jive cutter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "modern dancer."
+        }
+      ]
+    },
+    {
+      "term": "Jive floor",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "where the hepcats hop."
+        }
+      ]
+    },
+    {
+      "term": "Jive jargon",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "language of the hepcats."
+        }
+      ]
+    },
+    {
       "term": "Jiver",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "hepcat who knows the ropes."
+        }
+      ]
+    },
+    {
+      "term": "Joe blow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "musician who swings."
+        }
+      ]
+    },
+    {
+      "term": "Joint's jumping",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "everybody's having fun."
+        }
+      ]
+    },
+    {
+      "term": "Joy hemp",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a reefer."
+        }
+      ]
+    },
+    {
+      "term": "Joy juice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "liquor."
         }
       ]
     },
@@ -3187,9 +6496,79 @@
           "def": "jiving to swing music."
         }
       ]
+    },
+    {
+      "term": "Jumped in port",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "just arrived."
+        }
+      ]
+    },
+    {
+      "term": "Jumping with joy juice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "intoxicated."
+        }
+      ]
+    },
+    {
+      "term": "Jumpin' jack",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "boy dancer."
+        }
+      ]
+    },
+    {
+      "term": "Jumpin' jill",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl dancer."
+        }
+      ]
+    },
+    {
+      "term": "Junior jerk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stupid teen-ager."
+        }
+      ]
     }
   ],
   "K": [
+    {
+      "term": "Khaki wacky",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl who goes for men in uniform."
+        }
+      ]
+    },
+    {
+      "term": "Kick in",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "pay up."
+        }
+      ]
+    },
     {
       "term": "Kicks",
       "kind": "word",
@@ -3221,12 +6600,82 @@
       ]
     },
     {
+      "term": "Killer diller",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "thrilling."
+        }
+      ]
+    },
+    {
       "term": "Killjoy",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "policeman."
+        }
+      ]
+    },
+    {
+      "term": "Kill joy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "policeman."
+        }
+      ]
+    },
+    {
+      "term": "Kill me",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Thrill me."
+        }
+      ]
+    },
+    {
+      "term": "King size",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "pleasantly big."
+        }
+      ]
+    },
+    {
+      "term": "Kink in the konk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "headache."
+        }
+      ]
+    },
+    {
+      "term": "Kiss off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to die."
+        }
+      ]
+    },
+    {
+      "term": "Kitchen scrap",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hash."
         }
       ]
     },
@@ -3257,6 +6706,36 @@
         {
           "pos": "v.",
           "def": "to let one have it."
+        }
+      ]
+    },
+    {
+      "term": "Knock a nod",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to doze off."
+        }
+      ]
+    },
+    {
+      "term": "Knockin' the keys",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "playing hot piano."
+        }
+      ]
+    },
+    {
+      "term": "Knock me a kiss",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Won't you give me a kiss?"
         }
       ]
     },
@@ -3313,12 +6792,62 @@
       ]
     },
     {
+      "term": "Land o' darkness",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Negro section."
+        }
+      ]
+    },
+    {
       "term": "Lane",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a wise guy."
+        }
+      ]
+    },
+    {
+      "term": "Lap happy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl who likes the boys."
+        }
+      ]
+    },
+    {
+      "term": "Last out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dying."
+        }
+      ]
+    },
+    {
+      "term": "Last shout",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "latest fashion."
+        }
+      ]
+    },
+    {
+      "term": "Last waltz",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "last walk to the death chamber."
         }
       ]
     },
@@ -3333,12 +6862,102 @@
       ]
     },
     {
+      "term": "Latch for the gate to your front yard",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a stick-pin."
+        }
+      ]
+    },
+    {
+      "term": "Latch on",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "stick to or understand."
+        }
+      ]
+    },
+    {
+      "term": "Laughing soup",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "liquor."
+        }
+      ]
+    },
+    {
+      "term": "Lay down the cow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "put your shoes away."
+        }
+      ]
+    },
+    {
+      "term": "Lay iron",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "tap dance."
+        }
+      ]
+    },
+    {
+      "term": "Lay your racket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "explain your proposition."
+        }
+      ]
+    },
+    {
+      "term": "Lead pipe",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "unpopular."
+        }
+      ]
+    },
+    {
+      "term": "Lead sheet",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an overcoat."
+        }
+      ]
+    },
+    {
       "term": "Leaky",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "one who talks too much."
+        }
+      ]
+    },
+    {
+      "term": "Left raise",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your left side."
         }
       ]
     },
@@ -3363,6 +6982,26 @@
       ]
     },
     {
+      "term": "Let's mop",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Let's dance."
+        }
+      ]
+    },
+    {
+      "term": "Let's squirm worm",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Let's dance honey."
+        }
+      ]
+    },
+    {
       "term": "Lick",
       "kind": "word",
       "senses": [
@@ -3373,12 +7012,82 @@
       ]
     },
     {
+      "term": "Licking the chops",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "jivecats warming up."
+        }
+      ]
+    },
+    {
+      "term": "Licorice stick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clarinet."
+        }
+      ]
+    },
+    {
       "term": "Lift",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to plagiarize or thrill."
+        }
+      ]
+    },
+    {
+      "term": "Light drip drizzle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "rainy weather."
+        }
+      ]
+    },
+    {
+      "term": "Lightning and thunder",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "whisky and soda."
+        }
+      ]
+    },
+    {
+      "term": "Light operator",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one who doesn't make good."
+        }
+      ]
+    },
+    {
+      "term": "Light splash",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "shower bath."
+        }
+      ]
+    },
+    {
+      "term": "Lily whites",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clean bedsheets."
         }
       ]
     },
@@ -3403,12 +7112,146 @@
       ]
     },
     {
+      "term": "Line the flue",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "time to eat."
+        }
+      ]
+    },
+    {
       "term": "Lip",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "an attorney."
+        }
+      ]
+    },
+    {
+      "term": "Lip sputter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "musician who plays a wind instrument."
+        }
+      ]
+    },
+    {
+      "term": "Little tub",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "small drum."
+        }
+      ]
+    },
+    {
+      "term": "Lob around",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "hang around."
+        }
+      ]
+    },
+    {
+      "term": "Locked up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "under control."
+        }
+      ]
+    },
+    {
+      "term": "Long duster",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your favorite cigarette."
+        }
+      ]
+    },
+    {
+      "term": "Long hair",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "symphony musician."
+        }
+      ]
+    },
+    {
+      "term": "Long white roll",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "ready-made cigarette."
+        }
+      ]
+    },
+    {
+      "term": "Long with links",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an elaborate key chain."
+        }
+      ]
+    },
+    {
+      "term": "Loose as a goose",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tightwad."
+        }
+      ]
+    },
+    {
+      "term": "Love letter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "criticism."
+        },
+        {
+          "pos": "n.",
+          "def": "a stone."
+        }
+      ]
+    },
+    {
+      "term": "Low down",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sweet melancholy music."
+        }
+      ]
+    },
+    {
+      "term": "Low quarters",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sport shoes."
         }
       ]
     },
@@ -3423,12 +7266,42 @@
       ]
     },
     {
+      "term": "Luscious mushin'",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "delightful love making."
+        }
+      ]
+    },
+    {
+      "term": "Lush head",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "chronic drinker."
+        }
+      ]
+    },
+    {
       "term": "Lushie",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a drunkard."
+        }
+      ]
+    },
+    {
+      "term": "Lush stash",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cheap cafe."
         }
       ]
     }
@@ -3465,12 +7338,82 @@
       ]
     },
     {
+      "term": "Main drag",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "main street."
+        }
+      ]
+    },
+    {
+      "term": "Main kick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a stage."
+        }
+      ]
+    },
+    {
+      "term": "Main queen",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your favorite girl friend."
+        }
+      ]
+    },
+    {
       "term": "Make",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to win the affections of the opposite sex."
+        }
+      ]
+    },
+    {
+      "term": "Make tracks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "hurry home."
+        }
+      ]
+    },
+    {
+      "term": "Male robbery",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to steal another's sweetheart."
+        }
+      ]
+    },
+    {
+      "term": "Man on the hitch",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your husband."
+        }
+      ]
+    },
+    {
+      "term": "Man size",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "difficult."
         }
       ]
     },
@@ -3485,12 +7428,32 @@
       ]
     },
     {
+      "term": "Marble town",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a graveyard."
+        }
+      ]
+    },
+    {
       "term": "Mash",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to give."
+        }
+      ]
+    },
+    {
+      "term": "Mash me a fin",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Loan me five."
         }
       ]
     },
@@ -3505,12 +7468,72 @@
       ]
     },
     {
+      "term": "Mass action man",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "communist."
+        }
+      ]
+    },
+    {
+      "term": "Meat hocks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the hands."
+        }
+      ]
+    },
+    {
       "term": "Mellow",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "superlative."
+        }
+      ]
+    },
+    {
+      "term": "Mellow fellow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a satisfactory person."
+        }
+      ]
+    },
+    {
+      "term": "Mellow mouse",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "attractive female."
+        }
+      ]
+    },
+    {
+      "term": "Mellow roof",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your head."
+        }
+      ]
+    },
+    {
+      "term": "Melted out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "without funds."
         }
       ]
     },
@@ -3535,12 +7558,42 @@
       ]
     },
     {
+      "term": "Meter in my mouse",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "quarter in my pocket."
+        }
+      ]
+    },
+    {
       "term": "Mezz",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "perfection."
+        }
+      ]
+    },
+    {
+      "term": "Middle aisled",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "married."
+        }
+      ]
+    },
+    {
+      "term": "Midnight snack",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "small pretty girl."
         }
       ]
     },
@@ -3561,6 +7614,46 @@
         {
           "pos": "n.",
           "def": "your ears."
+        }
+      ]
+    },
+    {
+      "term": "Mister speaker",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gun."
+        }
+      ]
+    },
+    {
+      "term": "Mittens off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "unrestrained."
+        }
+      ]
+    },
+    {
+      "term": "Mitt flopper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hand shaker."
+        }
+      ]
+    },
+    {
+      "term": "Mitt pounding",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "applauding."
         }
       ]
     },
@@ -3595,12 +7688,32 @@
       ]
     },
     {
+      "term": "Moo juice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "milk."
+        }
+      ]
+    },
+    {
       "term": "Moola",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "money."
+        }
+      ]
+    },
+    {
+      "term": "Moola momma",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wealthy widow."
         }
       ]
     },
@@ -3625,12 +7738,32 @@
       ]
     },
     {
+      "term": "Moth ball",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an aggravating person."
+        }
+      ]
+    },
+    {
       "term": "Mouse",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a pocket."
+        }
+      ]
+    },
+    {
+      "term": "Mow the lawn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "combing the hair."
         }
       ]
     },
@@ -3645,6 +7778,16 @@
       ]
     },
     {
+      "term": "Mud opera",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "carnival."
+        }
+      ]
+    },
+    {
       "term": "Muggin",
       "kind": "word",
       "senses": [
@@ -3655,12 +7798,32 @@
       ]
     },
     {
+      "term": "Mumps with the bumps",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sweater girl."
+        }
+      ]
+    },
+    {
       "term": "Murder",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to reach perfection."
+        }
+      ]
+    },
+    {
+      "term": "Muscle bound",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "big stupid person."
         }
       ]
     },
@@ -3681,6 +7844,16 @@
         {
           "pos": "n.",
           "def": "a foolish thinker."
+        }
+      ]
+    },
+    {
+      "term": "Mystery food",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hash."
         }
       ]
     }
@@ -3717,12 +7890,82 @@
       ]
     },
     {
+      "term": "Navy beans",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "block busters."
+        }
+      ]
+    },
+    {
+      "term": "Neatly stacked",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "perfect figure."
+        }
+      ]
+    },
+    {
+      "term": "Neck happy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "cooperative at romancing."
+        }
+      ]
+    },
+    {
       "term": "Needle",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "soft drink."
+        }
+      ]
+    },
+    {
+      "term": "Neighbo pops",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "That's out brother."
+        }
+      ]
+    },
+    {
+      "term": "New double six",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "New Years."
+        }
+      ]
+    },
+    {
+      "term": "Nickel nurser",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tightwad."
+        }
+      ]
+    },
+    {
+      "term": "Nix out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to erase."
         }
       ]
     },
@@ -3757,12 +8000,42 @@
       ]
     },
     {
+      "term": "No go",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "not interested."
+        }
+      ]
+    },
+    {
+      "term": "Nose paint",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "liquor."
+        }
+      ]
+    },
+    {
       "term": "Number",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a person."
+        }
+      ]
+    },
+    {
+      "term": "Number one on your hep parade",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "favorite girl friend."
         }
       ]
     },
@@ -3799,6 +8072,56 @@
       ]
     },
     {
+      "term": "Ofay sweet smell",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "scented talcum powder (white)."
+        }
+      ]
+    },
+    {
+      "term": "Off beat cymbal",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sock cymbal."
+        }
+      ]
+    },
+    {
+      "term": "Office piano",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "typewriter."
+        }
+      ]
+    },
+    {
+      "term": "Off the cob",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "outmoded."
+        }
+      ]
+    },
+    {
+      "term": "Offtime jive",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "talking out of turn."
+        }
+      ]
+    },
+    {
       "term": "Oil",
       "kind": "word",
       "senses": [
@@ -3829,6 +8152,36 @@
       ]
     },
     {
+      "term": "Old man mose",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Father Time."
+        }
+      ]
+    },
+    {
+      "term": "Old saw",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "former beau."
+        }
+      ]
+    },
+    {
+      "term": "Old Smokey",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "electric chair."
+        }
+      ]
+    },
+    {
       "term": "Onion",
       "kind": "word",
       "senses": [
@@ -3839,12 +8192,112 @@
       ]
     },
     {
+      "term": "On the ball",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "up to the minute."
+        }
+      ]
+    },
+    {
+      "term": "On the beach",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "being unemployed."
+        }
+      ]
+    },
+    {
+      "term": "On the beam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "hitting on high."
+        }
+      ]
+    },
+    {
+      "term": "On the buttered side",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a hep chick."
+        }
+      ]
+    },
+    {
+      "term": "On the cuff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to charge."
+        }
+      ]
+    },
+    {
+      "term": "On the hoof",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an easy pick-up."
+        }
+      ]
+    },
+    {
+      "term": "On the horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "telephoning."
+        }
+      ]
+    },
+    {
+      "term": "On the noggin",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "exactitude."
+        }
+      ]
+    },
+    {
+      "term": "On tick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "charge account."
+        }
+      ]
+    },
+    {
       "term": "Orchestration",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a topcoat or benny."
+        }
+      ]
+    },
+    {
+      "term": "Out of this world",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "superlative."
         }
       ]
     }
@@ -3891,6 +8344,16 @@
       ]
     },
     {
+      "term": "Pair of pipes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the singing voice."
+        }
+      ]
+    },
+    {
       "term": "Pan",
       "kind": "word",
       "senses": [
@@ -3921,12 +8384,52 @@
       ]
     },
     {
+      "term": "Paper doll",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "leave hurriedly."
+        }
+      ]
+    },
+    {
+      "term": "Paper hanger",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one who deals in counterfeit money."
+        }
+      ]
+    },
+    {
+      "term": "Paper men",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drummers who read music."
+        }
+      ]
+    },
+    {
       "term": "Paws",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "your hands."
+        }
+      ]
+    },
+    {
+      "term": "Pay off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a customer."
         }
       ]
     },
@@ -3951,12 +8454,32 @@
       ]
     },
     {
+      "term": "Peeling a green banana",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "romancing a young girl."
+        }
+      ]
+    },
+    {
       "term": "Pegs",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "your trousers."
+        }
+      ]
+    },
+    {
+      "term": "Pencil pusher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "office clerk."
         }
       ]
     },
@@ -4035,6 +8558,16 @@
       ]
     },
     {
+      "term": "Pick up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "eating a hurried meal."
+        }
+      ]
+    },
+    {
       "term": "Pidgeon",
       "kind": "word",
       "senses": [
@@ -4065,6 +8598,16 @@
       ]
     },
     {
+      "term": "Pile of bricks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "large house."
+        }
+      ]
+    },
+    {
       "term": "Pillars",
       "kind": "word",
       "senses": [
@@ -4091,6 +8634,16 @@
         {
           "pos": "n.",
           "def": "a bomb."
+        }
+      ]
+    },
+    {
+      "term": "Pine drape",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "coffin."
         }
       ]
     },
@@ -4155,6 +8708,26 @@
       ]
     },
     {
+      "term": "Playing high hat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "tapping cymbals with the foot pedals."
+        }
+      ]
+    },
+    {
+      "term": "Plays a hot piano",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "jive piano player."
+        }
+      ]
+    },
+    {
       "term": "Plug",
       "kind": "word",
       "senses": [
@@ -4205,6 +8778,16 @@
       ]
     },
     {
+      "term": "Poppa stoppa",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart old man."
+        }
+      ]
+    },
+    {
       "term": "Popper",
       "kind": "word",
       "senses": [
@@ -4225,6 +8808,46 @@
       ]
     },
     {
+      "term": "Post toasty",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "corny character."
+        }
+      ]
+    },
+    {
+      "term": "Potato masher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drumstick."
+        }
+      ]
+    },
+    {
+      "term": "Pot lids",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the cymbals."
+        }
+      ]
+    },
+    {
+      "term": "Pots and pans",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drums."
+        }
+      ]
+    },
+    {
       "term": "Pounder",
       "kind": "word",
       "senses": [
@@ -4235,12 +8858,72 @@
       ]
     },
     {
+      "term": "Poundin' the bean",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "thinking hard."
+        }
+      ]
+    },
+    {
+      "term": "Pour man",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bartender."
+        }
+      ]
+    },
+    {
+      "term": "Prayer dukes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the knees."
+        }
+      ]
+    },
+    {
+      "term": "Press my flesh",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Shake my hand."
+        }
+      ]
+    },
+    {
       "term": "Pretzel",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "French horn."
+        }
+      ]
+    },
+    {
+      "term": "Pretzel bender",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "French horn player."
+        }
+      ]
+    },
+    {
+      "term": "Puddle hopper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "old jalopy."
         }
       ]
     },
@@ -4275,6 +8958,16 @@
       ]
     },
     {
+      "term": "Punch bowl",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the boxing arena."
+        }
+      ]
+    },
+    {
       "term": "Puss",
       "kind": "word",
       "senses": [
@@ -4283,9 +8976,69 @@
           "def": "your face."
         }
       ]
+    },
+    {
+      "term": "Pussy with a fluid drive",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "skunk."
+        }
+      ]
+    },
+    {
+      "term": "Put the bee on",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to borrow money."
+        }
+      ]
+    },
+    {
+      "term": "Putty blower",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "trombone."
+        }
+      ]
     }
   ],
   "R": [
+    {
+      "term": "Racket jacket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "zoot suit."
+        }
+      ]
+    },
+    {
+      "term": "Rackin' up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "thinking."
+        }
+      ]
+    },
+    {
+      "term": "Rafters are rockin'",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unrestrained exuberance."
+        }
+      ]
+    },
     {
       "term": "Rag",
       "kind": "word",
@@ -4293,6 +9046,26 @@
         {
           "pos": "v.",
           "def": "to play in syncopation."
+        }
+      ]
+    },
+    {
+      "term": "Rag out",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "dressed in latest fashion."
+        }
+      ]
+    },
+    {
+      "term": "Rah rah drapes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "collegiate clothing."
         }
       ]
     },
@@ -4317,12 +9090,42 @@
       ]
     },
     {
+      "term": "Rat hole",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "trousers pocket."
+        }
+      ]
+    },
+    {
+      "term": "Raw meat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "anger."
+        }
+      ]
+    },
+    {
       "term": "Razzberry",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "ridicule."
+        }
+      ]
+    },
+    {
+      "term": "Razzle dazzle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "deception."
         }
       ]
     },
@@ -4343,6 +9146,26 @@
         {
           "pos": "adj.",
           "def": "perfectly."
+        }
+      ]
+    },
+    {
+      "term": "Red eye",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "catsup."
+        }
+      ]
+    },
+    {
+      "term": "Red ink",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Italian wine."
         }
       ]
     },
@@ -4377,6 +9200,16 @@
       ]
     },
     {
+      "term": "Ride tune",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "rhythm song."
+        }
+      ]
+    },
+    {
       "term": "Riding",
       "kind": "word",
       "senses": [
@@ -4397,6 +9230,16 @@
       ]
     },
     {
+      "term": "Riffs and rills",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "great expectations."
+        }
+      ]
+    },
+    {
       "term": "Righteous",
       "kind": "word",
       "senses": [
@@ -4407,12 +9250,52 @@
       ]
     },
     {
+      "term": "Righteous riff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "interesting conversation."
+        }
+      ]
+    },
+    {
+      "term": "Right out of the feed box",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "authentic information."
+        }
+      ]
+    },
+    {
+      "term": "Rigid digit",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a pointing finger."
+        }
+      ]
+    },
+    {
       "term": "Rind",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to skin."
+        }
+      ]
+    },
+    {
+      "term": "Rink rat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "skating rink enthusiast."
         }
       ]
     },
@@ -4443,6 +9326,36 @@
         {
           "pos": "n.",
           "def": "precious stone."
+        }
+      ]
+    },
+    {
+      "term": "Rock candy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "expensive diamonds."
+        }
+      ]
+    },
+    {
+      "term": "Rock crusher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "accordion."
+        }
+      ]
+    },
+    {
+      "term": "Rock me",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Get me in the mood."
         }
       ]
     },
@@ -4507,12 +9420,32 @@
       ]
     },
     {
+      "term": "Round trip",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "anything unusually good or outstanding."
+        }
+      ]
+    },
+    {
       "term": "Rubber",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "an automobile."
+        }
+      ]
+    },
+    {
+      "term": "Rubber heel",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a disagreeable person."
         }
       ]
     },
@@ -4537,6 +9470,16 @@
       ]
     },
     {
+      "term": "Rug cutter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an excellent dancer."
+        }
+      ]
+    },
+    {
       "term": "Rugged",
       "kind": "word",
       "senses": [
@@ -4548,6 +9491,26 @@
     }
   ],
   "S": [
+    {
+      "term": "Sadder than John J. Anthony",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "sick."
+        }
+      ]
+    },
+    {
+      "term": "Sad Sal",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "old fashioned."
+        }
+      ]
+    },
     {
       "term": "Safe",
       "kind": "word",
@@ -4585,6 +9548,16 @@
         {
           "pos": "adj.",
           "def": "rough."
+        }
+      ]
+    },
+    {
+      "term": "San got you",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "joining the Army or Navy."
         }
       ]
     },
@@ -4639,6 +9612,16 @@
       ]
     },
     {
+      "term": "Scratch crib",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cheap lodging."
+        }
+      ]
+    },
+    {
       "term": "Scratch sheet",
       "kind": "word",
       "senses": [
@@ -4649,12 +9632,42 @@
       ]
     },
     {
+      "term": "Scratch sheet papa",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "horse betting sweetheart."
+        }
+      ]
+    },
+    {
       "term": "Screamers",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "newspaper headlines."
+        }
+      ]
+    },
+    {
+      "term": "Screaming gasser",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "police patrol."
+        }
+      ]
+    },
+    {
+      "term": "Screw dudie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "crazy character."
         }
       ]
     },
@@ -4679,6 +9692,26 @@
       ]
     },
     {
+      "term": "Scutter the swill",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "hurry with the food."
+        }
+      ]
+    },
+    {
+      "term": "Second front",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girdle."
+        }
+      ]
+    },
+    {
       "term": "Send",
       "kind": "word",
       "senses": [
@@ -4689,12 +9722,42 @@
       ]
     },
     {
+      "term": "Send me",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Bring me ecstasy."
+        }
+      ]
+    },
+    {
+      "term": "Set of seven brights",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "seven days."
+        }
+      ]
+    },
+    {
       "term": "Sharp",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "one of smart appearance."
+        }
+      ]
+    },
+    {
+      "term": "Sharp stuff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "clever."
         }
       ]
     },
@@ -4729,6 +9792,26 @@
       ]
     },
     {
+      "term": "Short frills",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "short walks."
+        }
+      ]
+    },
+    {
+      "term": "Shutter bugs",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "camera fans."
+        }
+      ]
+    },
+    {
       "term": "Shutters",
       "kind": "word",
       "senses": [
@@ -4749,12 +9832,42 @@
       ]
     },
     {
+      "term": "Singing school",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "place where the third degree is administered."
+        }
+      ]
+    },
+    {
+      "term": "Sizzling platter",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hot music record."
+        }
+      ]
+    },
+    {
       "term": "Skate",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to get away with something."
+        }
+      ]
+    },
+    {
+      "term": "Skin beater",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a drummer."
         }
       ]
     },
@@ -4769,6 +9882,26 @@
       ]
     },
     {
+      "term": "Sky piece",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "headgear."
+        }
+      ]
+    },
+    {
+      "term": "Sky pocket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "inside pocket."
+        }
+      ]
+    },
+    {
       "term": "Slanters",
       "kind": "word",
       "senses": [
@@ -4779,12 +9912,92 @@
       ]
     },
     {
+      "term": "Sleigh ride",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to fool someone."
+        }
+      ]
+    },
+    {
+      "term": "Slicing their chops",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "talking too much."
+        }
+      ]
+    },
+    {
+      "term": "Slick chick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "everything desirable."
+        }
+      ]
+    },
+    {
+      "term": "Slide your jib",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to talk freely."
+        }
+      ]
+    },
+    {
+      "term": "Slip horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "trombone."
+        }
+      ]
+    },
+    {
+      "term": "Slip stick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clarinet."
+        }
+      ]
+    },
+    {
+      "term": "Slops and slugs",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "coffee and doughnuts."
+        }
+      ]
+    },
+    {
       "term": "Slum",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "paste jewelry."
+        }
+      ]
+    },
+    {
+      "term": "Slum joint",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "jewelry store."
         }
       ]
     },
@@ -4819,6 +10032,16 @@
       ]
     },
     {
+      "term": "Smoke screen",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a deodorant."
+        }
+      ]
+    },
+    {
       "term": "Snacketeer",
       "kind": "word",
       "senses": [
@@ -4835,6 +10058,26 @@
         {
           "pos": "n.",
           "def": "tonsils."
+        }
+      ]
+    },
+    {
+      "term": "Snake eyes",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "two on a pair of dice."
+        }
+      ]
+    },
+    {
+      "term": "Snap a snapper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Light a match."
         }
       ]
     },
@@ -4869,6 +10112,16 @@
       ]
     },
     {
+      "term": "Snazzy chassis",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "well built."
+        }
+      ]
+    },
+    {
       "term": "Sneezer",
       "kind": "word",
       "senses": [
@@ -4885,6 +10138,26 @@
         {
           "pos": "n.",
           "def": "handkerchief."
+        }
+      ]
+    },
+    {
+      "term": "Sniffle stopper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "handkerchief."
+        }
+      ]
+    },
+    {
+      "term": "Sniff powder",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to run away."
         }
       ]
     },
@@ -4915,6 +10188,26 @@
         {
           "pos": "n.",
           "def": "tattletale newspaper columnist."
+        }
+      ]
+    },
+    {
+      "term": "Snitch pad",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "note pad."
+        }
+      ]
+    },
+    {
+      "term": "Snootie cutie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hard-to-get girl."
         }
       ]
     },
@@ -4959,6 +10252,26 @@
       ]
     },
     {
+      "term": "Sock frock",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your best outfit."
+        }
+      ]
+    },
+    {
+      "term": "Soft top",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a bar stool."
+        }
+      ]
+    },
+    {
       "term": "Soldier",
       "kind": "word",
       "senses": [
@@ -4979,12 +10292,42 @@
       ]
     },
     {
+      "term": "Solid sender",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "great performer."
+        }
+      ]
+    },
+    {
+      "term": "Solid square",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an alright hick."
+        }
+      ]
+    },
+    {
       "term": "Solitaire",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to commit suicide."
+        }
+      ]
+    },
+    {
+      "term": "Sound off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "do all the talking."
         }
       ]
     },
@@ -5039,6 +10382,16 @@
       ]
     },
     {
+      "term": "Spin a wren",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dancing with a woman."
+        }
+      ]
+    },
+    {
       "term": "Splash",
       "kind": "word",
       "senses": [
@@ -5085,6 +10438,16 @@
         {
           "pos": "v.",
           "def": "to talk verbosely."
+        }
+      ]
+    },
+    {
+      "term": "Spring the traps",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "playing the drums and gadgets."
         }
       ]
     },
@@ -5139,12 +10502,32 @@
       ]
     },
     {
+      "term": "Squeak stick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clarinet."
+        }
+      ]
+    },
+    {
       "term": "Squeezer",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a tight belt."
+        }
+      ]
+    },
+    {
+      "term": "Star dusting",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "in love."
         }
       ]
     },
@@ -5179,12 +10562,42 @@
       ]
     },
     {
+      "term": "Steam fiddle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "calliope."
+        }
+      ]
+    },
+    {
+      "term": "Stem gazer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "admirer of female limbs."
+        }
+      ]
+    },
+    {
       "term": "Stems",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "legs."
+        }
+      ]
+    },
+    {
+      "term": "Step off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "curbstone."
         }
       ]
     },
@@ -5269,6 +10682,16 @@
       ]
     },
     {
+      "term": "Stone crusher",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a stomp."
+        }
+      ]
+    },
+    {
       "term": "Stool",
       "kind": "word",
       "senses": [
@@ -5329,6 +10752,56 @@
       ]
     },
     {
+      "term": "Strictly barbecued",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "fashion-plate."
+        }
+      ]
+    },
+    {
+      "term": "Strictly cut plug",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "very well pleased."
+        }
+      ]
+    },
+    {
+      "term": "Strictly military",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drummer using lot of unnecessary strokes."
+        }
+      ]
+    },
+    {
+      "term": "Strictly solid",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an alreet fellow."
+        }
+      ]
+    },
+    {
+      "term": "Strictly stock",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an ordinary girl."
+        }
+      ]
+    },
+    {
       "term": "Striders",
       "kind": "word",
       "senses": [
@@ -5379,12 +10852,42 @@
       ]
     },
     {
+      "term": "Stud hoss",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Salutation between males."
+        }
+      ]
+    },
+    {
+      "term": "Stuff stealing",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "copying."
+        }
+      ]
+    },
+    {
       "term": "Stumble",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to get into a bad predicament."
+        }
+      ]
+    },
+    {
+      "term": "Stumble and fall",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "get into trouble and be jailed."
         }
       ]
     },
@@ -5399,12 +10902,62 @@
       ]
     },
     {
+      "term": "Stupid cupid",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stupid person."
+        }
+      ]
+    },
+    {
       "term": "Suds",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "beaucoup money."
+        }
+      ]
+    },
+    {
+      "term": "Suffering from shorts",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "no funds."
+        }
+      ]
+    },
+    {
+      "term": "Sugar puss",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sweet face."
+        }
+      ]
+    },
+    {
+      "term": "Super drawers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "woolen underwear."
+        }
+      ]
+    },
+    {
+      "term": "Super duper",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "something extra special."
         }
       ]
     },
@@ -5422,12 +10975,52 @@
       ]
     },
     {
+      "term": "Super solid",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "at the head of the class."
+        }
+      ]
+    },
+    {
+      "term": "Sweet talk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "endearing terms."
+        }
+      ]
+    },
+    {
       "term": "Swellelegant",
       "kind": "word",
       "senses": [
         {
           "pos": "adj.",
           "def": "wonderful."
+        }
+      ]
+    },
+    {
+      "term": "Swinging gate",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "male dancer."
+        }
+      ]
+    },
+    {
+      "term": "Swing music",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "an improvised musical session."
         }
       ]
     },
@@ -5450,6 +11043,16 @@
           "def": "to gobble."
         }
       ]
+    },
+    {
+      "term": "Swoon set",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bobby sox worshipers."
+        }
+      ]
     }
   ],
   "T": [
@@ -5464,12 +11067,82 @@
       ]
     },
     {
+      "term": "Tab action",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "attempt to borrow."
+        }
+      ]
+    },
+    {
+      "term": "Table topping",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "making the night club rounds."
+        }
+      ]
+    },
+    {
+      "term": "Tag line",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "climaxing a story."
+        }
+      ]
+    },
+    {
       "term": "Tailor made",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "a cigarette."
+        }
+      ]
+    },
+    {
+      "term": "Take a gander",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Take a look."
+        }
+      ]
+    },
+    {
+      "term": "Take off",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "musical solo."
+        }
+      ]
+    },
+    {
+      "term": "Taking a bow",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "getting credit for."
+        }
+      ]
+    },
+    {
+      "term": "Takin' the gas pipe",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "mortified."
         }
       ]
     },
@@ -5494,6 +11167,36 @@
       ]
     },
     {
+      "term": "Tea fight",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a party."
+        }
+      ]
+    },
+    {
+      "term": "Tear bucket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dramatic actress."
+        }
+      ]
+    },
+    {
+      "term": "Tear jerker",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "song with pathos."
+        }
+      ]
+    },
+    {
       "term": "Tears",
       "kind": "word",
       "senses": [
@@ -5504,12 +11207,52 @@
       ]
     },
     {
+      "term": "Technicolor gal",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "girl with too much make-up."
+        }
+      ]
+    },
+    {
       "term": "Ten",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "the toes."
+        }
+      ]
+    },
+    {
+      "term": "The horn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the famous trumpeter."
+        }
+      ]
+    },
+    {
+      "term": "The voice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the famous crooner."
+        }
+      ]
+    },
+    {
+      "term": "They're a thing",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sweethearts."
         }
       ]
     },
@@ -5544,6 +11287,16 @@
       ]
     },
     {
+      "term": "Throw a curve",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "break a promise."
+        }
+      ]
+    },
+    {
       "term": "Tick",
       "kind": "word",
       "senses": [
@@ -5574,6 +11327,26 @@
       ]
     },
     {
+      "term": "Tiger meat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "beef."
+        }
+      ]
+    },
+    {
+      "term": "Tiger sweat",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "whiskey."
+        }
+      ]
+    },
+    {
       "term": "Timbers",
       "kind": "word",
       "senses": [
@@ -5600,6 +11373,36 @@
         {
           "pos": "n.",
           "def": "the doorbell."
+        }
+      ]
+    },
+    {
+      "term": "Toad sticker",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "knife."
+        }
+      ]
+    },
+    {
+      "term": "Togged to the bricks",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "dressed in the latest fashion."
+        }
+      ]
+    },
+    {
+      "term": "Tonsil tickler",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "singer."
         }
       ]
     },
@@ -5644,6 +11447,36 @@
       ]
     },
     {
+      "term": "Torch song",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "burning love ballad."
+        }
+      ]
+    },
+    {
+      "term": "Totem pole",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tall person."
+        }
+      ]
+    },
+    {
+      "term": "Town crier",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gossip spreader."
+        }
+      ]
+    },
+    {
       "term": "Track",
       "kind": "word",
       "senses": [
@@ -5664,12 +11497,52 @@
       ]
     },
     {
+      "term": "Tricky icky",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart aleck."
+        }
+      ]
+    },
+    {
+      "term": "Tricky vicki",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart girl."
+        }
+      ]
+    },
+    {
+      "term": "Trig the wig",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Think hard."
+        }
+      ]
+    },
+    {
       "term": "Trill",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to leave."
+        }
+      ]
+    },
+    {
+      "term": "Trim and slim",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a neat little package."
         }
       ]
     },
@@ -5724,6 +11597,26 @@
       ]
     },
     {
+      "term": "Twenty twenty",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "excellent."
+        }
+      ]
+    },
+    {
+      "term": "Twister to the slammer",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "the key for the door."
+        }
+      ]
+    },
+    {
       "term": "Twosome",
       "kind": "word",
       "senses": [
@@ -5735,6 +11628,16 @@
     }
   ],
   "U": [
+    {
+      "term": "Uncanny fanny",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smart girl."
+        }
+      ]
+    },
     {
       "term": "Uncle",
       "kind": "word",
@@ -5752,6 +11655,26 @@
         {
           "pos": "v.",
           "def": "to hang."
+        }
+      ]
+    },
+    {
+      "term": "Unravel the gravel",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "dish out gossip."
+        }
+      ]
+    },
+    {
+      "term": "Up for grabs",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "easy to make gal."
         }
       ]
     },
@@ -5788,6 +11711,16 @@
       ]
     },
     {
+      "term": "Vacuum cleaner",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your lungs."
+        }
+      ]
+    },
+    {
       "term": "Vaseline",
       "kind": "word",
       "senses": [
@@ -5804,6 +11737,16 @@
         {
           "pos": "n.",
           "def": "suit of clothing."
+        }
+      ]
+    },
+    {
+      "term": "Violin cases",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "large shoes."
         }
       ]
     },
@@ -5840,6 +11783,26 @@
       ]
     },
     {
+      "term": "Walk back",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "rear apartment."
+        }
+      ]
+    },
+    {
+      "term": "Walking the plank",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "falling in love."
+        }
+      ]
+    },
+    {
       "term": "Walrus",
       "kind": "word",
       "senses": [
@@ -5850,12 +11813,42 @@
       ]
     },
     {
+      "term": "War paint",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cosmetics."
+        }
+      ]
+    },
+    {
       "term": "Washer",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "cafe."
+        }
+      ]
+    },
+    {
+      "term": "Water works",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "profuse tears."
+        }
+      ]
+    },
+    {
+      "term": "Weak a smile",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to be in the nude."
         }
       ]
     },
@@ -5880,6 +11873,16 @@
       ]
     },
     {
+      "term": "We the people",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a wise guy."
+        }
+      ]
+    },
+    {
       "term": "Wham",
       "kind": "word",
       "senses": [
@@ -5890,12 +11893,92 @@
       ]
     },
     {
+      "term": "What's cookin'?",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "What's doing."
+        }
+      ]
+    },
+    {
+      "term": "What's your line, Frankenstein",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "What's your business."
+        }
+      ]
+    },
+    {
+      "term": "Wheel chair",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a car."
+        }
+      ]
+    },
+    {
       "term": "Whip",
       "kind": "word",
       "senses": [
         {
           "pos": "v.",
           "def": "to tell."
+        }
+      ]
+    },
+    {
+      "term": "Whip it to me",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "Tell it to me."
+        }
+      ]
+    },
+    {
+      "term": "Whipped up",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "worn out."
+        }
+      ]
+    },
+    {
+      "term": "Whips and jingle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "adj.",
+          "def": "downcast."
+        }
+      ]
+    },
+    {
+      "term": "Whistle bait",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gal on the make."
+        }
+      ]
+    },
+    {
+      "term": "White one",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your shirt."
         }
       ]
     },
@@ -5916,6 +11999,26 @@
         {
           "pos": "n.",
           "def": "the lungs."
+        }
+      ]
+    },
+    {
+      "term": "Wind pumps",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "your lungs."
+        }
+      ]
+    },
+    {
+      "term": "Windy city",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "from Chicago."
         }
       ]
     },
@@ -5960,12 +12063,32 @@
       ]
     },
     {
+      "term": "Woo woo",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Exclamation of approval."
+        }
+      ]
+    },
+    {
       "term": "Works",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "everything."
+        }
+      ]
+    },
+    {
+      "term": "Wrong riff",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "speaking out of turn."
         }
       ]
     }
@@ -6008,6 +12131,68 @@
         {
           "pos": "n.",
           "def": "one-hundred-dollar bill."
+        }
+      ]
+    },
+    {
+      "term": "Yeah, man",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "Agreeable."
+        }
+      ]
+    },
+    {
+      "term": "Yellow eye",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "yolk of an egg."
+        }
+      ]
+    },
+    {
+      "term": "Y.M.C.A.",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "v.",
+          "def": "to deceive."
+        }
+      ]
+    },
+    {
+      "term": "You melt me Jackson",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "exclamation.",
+          "def": "I'm thrilled."
+        }
+      ]
+    },
+    {
+      "term": "Young bantam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "young girl."
+        }
+      ]
+    }
+  ],
+  "Z": [
+    {
+      "term": "Zoot suit",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hepcat's clothes."
         }
       ]
     }
