@@ -1,2800 +1,2800 @@
 {
-  "A": [
+ "A": [
+  {
+   "term": "Ain't coming on that tab",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Ain't coming on that tab",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "won't accept the proposition."
-        }
+     "pos": "v.",
+     "def": "won't accept the proposition."
+    }
+   ],
+   "abbrv": [
+    "I ain't coming"
+   ]
+  },
+  {
+   "term": "Alligator",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "jitterbug."
+    }
+   ]
+  },
+  {
+   "term": "Apple",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the big town, the main stem, Harlem."
+    }
+   ]
+  },
+  {
+   "term": "Armstrongs",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "musical notes in the upper register, high trumpet notes."
+    }
+   ]
+  }
+ ],
+ "B": [
+  {
+   "term": "Barbecue",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the girl friend, a beauty."
+    }
+   ]
+  },
+  {
+   "term": "Barrelhouse",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "free and easy."
+    }
+   ]
+  },
+  {
+   "term": "Battle",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a homely woman, a crone."
+    }
+   ]
+  },
+  {
+   "term": "Beat",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "tired, exhausted.",
+     "ex": [
+      [
+       "You look beat."
       ],
-      "abbrv": [
-        "I ain't coming"
+      [
+       "I feel beat."
       ]
+     ]
     },
     {
-      "term": "Alligator",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "jitterbug."
-        }
-      ]
-    },
-    {
-      "term": "Apple",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the big town, the main stem, Harlem."
-        }
-      ]
-    },
-    {
-      "term": "Armstrongs",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "musical notes in the upper register, high trumpet notes."
-        }
-      ]
-    }
-  ],
-  "B": [
-    {
-      "term": "Barbecue",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the girl friend, a beauty."
-        }
-      ]
-    },
-    {
-      "term": "Barrelhouse",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "free and easy."
-        }
-      ]
-    },
-    {
-      "term": "Battle",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a homely woman, a crone."
-        }
-      ]
-    },
-    {
-      "term": "Beat",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "tired, exhausted.",
-          "ex": [
-            [
-              "You look beat."
-            ],
-            [
-              "I feel beat."
-            ]
-          ]
-        },
-        {
-          "pos": "adj.",
-          "def": "lacking anything.",
-          "ex": [
-            [
-              "I am beat for my cash."
-            ],
-            [
-              "I am beat to my socks.",
-              "(lacking everything)"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Beat it out",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "play it hot, emphasize the rhythm."
-        }
-      ]
-    },
-    {
-      "term": "Beat up",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "sad, uncomplimentary, tired."
-        }
-      ]
-    },
-    {
-      "term": "Beat up the chops",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to talk, converse, be loquacious."
-        }
+     "pos": "adj.",
+     "def": "lacking anything.",
+     "ex": [
+      [
+       "I am beat for my cash."
       ],
-      "syn": [
-        "Beat up the gums"
+      [
+       "I am beat to my socks.",
+       "(lacking everything)"
       ]
-    },
-    {
-      "term": "Beef",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to say, to state.",
-          "ex": [
-            [
-              "He beefed to me that, etc."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Bible",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the gospel truth.",
-          "ex": [
-            [
-              "It's the bible!"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Black",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "night."
-        }
-      ]
-    },
-    {
-      "term": "Black and tan",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "dark and light colored folks. Not colored and white folks as erroneously assumed."
-        }
-      ]
-    },
-    {
-      "term": "Blew their wigs",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "excited with enthusiasm, gone crazy."
-        }
-      ]
-    },
-    {
-      "term": "Blip",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "something very good.",
-          "ex": [
-            [
-              "That's a blip."
-            ],
-            [
-              "She's a blip."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Blow the top",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to be overcome with emotion (delight).",
-          "ex": [
-            [
-              "You'll blow your top when you hear this one."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Boogie-woogie",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "harmony with accented bass."
-        }
-      ]
-    },
-    {
-      "term": "Boot",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to give.",
-          "ex": [
-            [
-              "Boot me that glove."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Break it up",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to win applause, to stop the show."
-        }
-      ]
-    },
-    {
-      "term": "Bree",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "girl."
-        }
-      ]
-    },
-    {
-      "term": "Bright",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "day."
-        }
-      ]
-    },
-    {
-      "term": "Brightnin'",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "daybreak."
-        }
-      ]
-    },
-    {
-      "term": "Bring down",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "something depressing.",
-          "ex": [
-            [
-              "That's a bring down."
-            ]
-          ]
-        },
-        {
-          "pos": "v.",
-          "def": "to depress, to dishearten.",
-          "ex": [
-            [
-              "That brings me down."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Buddy Ghee",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "fellow."
-        }
-      ]
-    },
-    {
-      "term": "Bust your conk",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "apply yourself diligently, break your neck."
-        }
-      ]
+     ]
     }
-  ],
-  "C": [
+   ]
+  },
+  {
+   "term": "Beat it out",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Canary",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "girl vocalist."
-        }
+     "pos": "v.",
+     "def": "play it hot, emphasize the rhythm."
+    }
+   ]
+  },
+  {
+   "term": "Beat up",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "sad, uncomplimentary, tired."
+    }
+   ]
+  },
+  {
+   "term": "Beat up the chops",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to talk, converse, be loquacious."
+    }
+   ],
+   "syn": [
+    "Beat up the gums"
+   ]
+  },
+  {
+   "term": "Beef",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to say, to state.",
+     "ex": [
+      [
+       "He beefed to me that, etc."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Bible",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Capped",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "outdone, surpassed."
-        }
+     "pos": "n.",
+     "def": "the gospel truth.",
+     "ex": [
+      [
+       "It's the bible!"
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Black",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Cat",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "musician in swing band."
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "night."
+    }
+   ]
+  },
+  {
+   "term": "Black and tan",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Chick",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "girl."
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "dark and light colored folks. Not colored and white folks as erroneously assumed."
+    }
+   ]
+  },
+  {
+   "term": "Blew their wigs",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Chime",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "hour.",
-          "ex": [
-            [
-              "I got in at six chimes."
-            ]
-          ]
-        }
-      ]
-    },
+     "pos": "adj.",
+     "def": "excited with enthusiasm, gone crazy."
+    }
+   ]
+  },
+  {
+   "term": "Blip",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Chirp",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "female singer."
-        }
-      ]
-    },
-    {
-      "term": "Clambake",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "ad lib session, every man for himself, a jam session not in the groove."
-        }
-      ]
-    },
-    {
-      "term": "Cogs",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "sunglasses."
-        }
-      ]
-    },
-    {
-      "term": "Collar",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to get, to obtain, to comprehend.",
-          "ex": [
-            [
-              "I gotta collar me some food."
-            ],
-            [
-              "Do you collar this jive?"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Come again",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "try it over, do better than you are doing, I don't understand you."
-        }
-      ]
-    },
-    {
-      "term": "Comes on like gangbusters",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "plays, sings, or dances in a terrific manner, par excellence in any department."
-        }
+     "pos": "n.",
+     "def": "something very good.",
+     "ex": [
+      [
+       "That's a blip."
       ],
-      "syn": [
-        "Comes on like test pilot"
+      [
+       "She's a blip."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Blow the top",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to be overcome with emotion (delight).",
+     "ex": [
+      [
+       "You'll blow your top when you hear this one."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Boogie-woogie",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "harmony with accented bass."
+    }
+   ]
+  },
+  {
+   "term": "Boot",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to give.",
+     "ex": [
+      [
+       "Boot me that glove."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Break it up",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to win applause, to stop the show."
+    }
+   ]
+  },
+  {
+   "term": "Bree",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "girl."
+    }
+   ]
+  },
+  {
+   "term": "Bright",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "day."
+    }
+   ]
+  },
+  {
+   "term": "Brightnin'",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "daybreak."
+    }
+   ]
+  },
+  {
+   "term": "Bring down",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "something depressing.",
+     "ex": [
+      [
+       "That's a bring down."
+      ]
+     ]
+    },
+    {
+     "pos": "v.",
+     "def": "to depress, to dishearten.",
+     "ex": [
+      [
+       "That brings me down."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Buddy Ghee",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "fellow."
+    }
+   ]
+  },
+  {
+   "term": "Bust your conk",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "apply yourself diligently, break your neck."
+    }
+   ]
+  }
+ ],
+ "C": [
+  {
+   "term": "Canary",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "girl vocalist."
+    }
+   ]
+  },
+  {
+   "term": "Capped",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "outdone, surpassed."
+    }
+   ]
+  },
+  {
+   "term": "Cat",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "musician in swing band."
+    }
+   ]
+  },
+  {
+   "term": "Chick",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "girl."
+    }
+   ]
+  },
+  {
+   "term": "Chime",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "hour.",
+     "ex": [
+      [
+       "I got in at six chimes."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Chirp",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "female singer."
+    }
+   ]
+  },
+  {
+   "term": "Clambake",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "ad lib session, every man for himself, a jam session not in the groove."
+    }
+   ]
+  },
+  {
+   "term": "Cogs",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "sunglasses."
+    }
+   ]
+  },
+  {
+   "term": "Collar",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to get, to obtain, to comprehend.",
+     "ex": [
+      [
+       "I gotta collar me some food."
       ],
-      "abbrv": [
-        "That singer really comes on!"
+      [
+       "Do you collar this jive?"
       ]
-    },
-    {
-      "term": "Cop",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to get, to obtain (see collar; knock)."
-        }
-      ]
-    },
-    {
-      "term": "Corny",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "old-fashioned, stale."
-        }
-      ]
-    },
-    {
-      "term": "Creeps out like the shadow",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "comes on, but in smooth, suave, sophisticated manner."
-        }
-      ]
-    },
-    {
-      "term": "Crumb crushers",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "teeth."
-        }
-      ]
-    },
-    {
-      "term": "Cubby",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "room, flat, home."
-        }
-      ]
-    },
-    {
-      "term": "Cups",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "sleep.",
-          "ex": [
-            [
-              "I gotta catch some cups."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Cut out",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to leave, to depart.",
-          "ex": [
-            [
-              "It's time to cut out."
-            ],
-            [
-              "I cut out from the joint in early bright."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Cut rate",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a low, cheap person.",
-          "ex": [
-            [
-              "Don't play me cut rate, Jack!"
-            ]
-          ]
-        }
-      ]
+     ]
     }
-  ],
-  "D": [
+   ]
+  },
+  {
+   "term": "Come again",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Dicty",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "high-class, nifty, smart."
-        }
-      ]
-    },
-    {
-      "term": "Dig",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "meet.",
-          "ex": [
-            [
-              "I'll plant you now and dig you later."
-            ]
-          ]
-        },
-        {
-          "pos": "v.",
-          "def": "look, see.",
-          "ex": [
-            [
-              "Dig the chick on your left duke."
-            ]
-          ]
-        },
-        {
-          "pos": "v.",
-          "def": "comprehend, understand.",
-          "ex": [
-            [
-              "Do you dig this jive?"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Dim",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "evening."
-        }
-      ]
-    },
-    {
-      "term": "Dime note",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "ten-dollar bill."
-        }
-      ]
-    },
-    {
-      "term": "Doghouse",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "bass fiddle."
-        }
-      ]
-    },
-    {
-      "term": "Dome",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "ordinary place to live in.",
-          "ex": [
-            [
-              "I live in a righteous dome."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Doss",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "sleep.",
-          "ex": [
-            [
-              "I'm a little beat for my doss."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Down with it",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "through with it."
-        }
-      ]
-    },
-    {
-      "term": "Drape",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "suit of clothes, dress, costume."
-        }
-      ]
-    },
-    {
-      "term": "Dreamers",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "bed covers, blankets."
-        }
-      ]
-    },
-    {
-      "term": "Dry-goods",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "same as drape."
-        }
-      ]
-    },
-    {
-      "term": "Duke",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "hand, mitt."
-        }
-      ]
-    },
-    {
-      "term": "Dutchess",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "girl."
-        }
-      ]
+     "pos": "v.",
+     "def": "try it over, do better than you are doing, I don't understand you."
     }
-  ],
-  "E": [
+   ]
+  },
+  {
+   "term": "Comes on like gangbusters",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Early black",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "evening."
-        }
-      ]
-    },
-    {
-      "term": "Early bright",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "morning."
-        }
-      ]
-    },
-    {
-      "term": "Evil",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "in ill humor, in a nasty temper."
-        }
-      ]
+     "pos": "v.",
+     "def": "plays, sings, or dances in a terrific manner, par excellence in any department."
     }
-  ],
-  "F": [
+   ],
+   "syn": [
+    "Comes on like test pilot"
+   ],
+   "abbrv": [
+    "That singer really comes on!"
+   ]
+  },
+  {
+   "term": "Cop",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Fall out",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to be overcome with emotion.",
-          "ex": [
-            [
-              "The cats fell out when he took that solo."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Fews and two",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "money or cash in small quantity."
-        }
-      ]
-    },
-    {
-      "term": "Final",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to leave, to go home.",
-          "ex": [
-            [
-              "I finaled to my pad.",
-              "(went to bed)"
-            ],
-            [
-              "We copped a final.",
-              "(went home)"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Fine dinner",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a good-looking girl."
-        }
-      ]
-    },
-    {
-      "term": "Focus",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to look, to see."
-        }
-      ]
-    },
-    {
-      "term": "Foghorn",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "tuba."
-        }
-      ]
-    },
-    {
-      "term": "Foxy",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "shrewd."
-        }
-      ]
-    },
-    {
-      "term": "Frame",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the body."
-        }
-      ]
-    },
-    {
-      "term": "Fraughty issue",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a very sad message, a deplorable state of affairs."
-        }
-      ]
-    },
-    {
-      "term": "Freeby",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "no charge, gratis.",
-          "ex": [
-            [
-              "The meal was a freeby."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Frisking the whiskers",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "what the cats do when they are warming up for a swing session."
-        }
-      ]
-    },
-    {
-      "term": "Frolic pad",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "place of entertainment, theater, nightclub."
-        }
-      ]
-    },
-    {
-      "term": "Fromby",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "a frompy queen is a battle or faust."
-        }
-      ]
-    },
-    {
-      "term": "Front",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a suit of clothes."
-        }
-      ]
-    },
-    {
-      "term": "Fruiting",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "fickle, fooling around with no particular object."
-        }
-      ]
-    },
-    {
-      "term": "Fry",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to go to get hair straightened."
-        }
-      ]
+     "pos": "v.",
+     "def": "to get, to obtain (see collar; knock)."
     }
-  ],
-  "G": [
+   ]
+  },
+  {
+   "term": "Corny",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Gabriels",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "trumpet players."
-        }
+     "pos": "adj.",
+     "def": "old-fashioned, stale."
+    }
+   ]
+  },
+  {
+   "term": "Creeps out like the shadow",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "comes on, but in smooth, suave, sophisticated manner."
+    }
+   ]
+  },
+  {
+   "term": "Crumb crushers",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "teeth."
+    }
+   ]
+  },
+  {
+   "term": "Cubby",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "room, flat, home."
+    }
+   ]
+  },
+  {
+   "term": "Cups",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "sleep.",
+     "ex": [
+      [
+       "I gotta catch some cups."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Cut out",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Gammin'",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "showing off, flirtatious."
-        }
-      ]
-    },
-    {
-      "term": "Gasser",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n, adj.",
-          "def": "sensational.",
-          "ex": [
-            [
-              "When it comes to dancing, she's a gasser."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Gate-mouth",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a male person (a salutation)."
-        }
+     "pos": "v.",
+     "def": "to leave, to depart.",
+     "ex": [
+      [
+       "It's time to cut out."
       ],
-      "abbrv": [
-        "Gate"
+      [
+       "I cut out from the joint in early bright."
       ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Cut rate",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a low, cheap person.",
+     "ex": [
+      [
+       "Don't play me cut rate, Jack!"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "D": [
+  {
+   "term": "Dicty",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "high-class, nifty, smart."
+    }
+   ]
+  },
+  {
+   "term": "Dig",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "meet.",
+     "ex": [
+      [
+       "I'll plant you now and dig you later."
+      ]
+     ]
     },
     {
-      "term": "Get in there",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "go to work, get busy, make it hot, give all you've got."
-        }
+     "pos": "v.",
+     "def": "look, see.",
+     "ex": [
+      [
+       "Dig the chick on your left duke."
       ]
+     ]
     },
     {
-      "term": "Gimme some skin",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "shake hands."
-        }
+     "pos": "v.",
+     "def": "comprehend, understand.",
+     "ex": [
+      [
+       "Do you dig this jive?"
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Dim",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Git Box",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "guitar."
-        }
+     "pos": "n.",
+     "def": "evening."
+    }
+   ]
+  },
+  {
+   "term": "Dime note",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "ten-dollar bill."
+    }
+   ]
+  },
+  {
+   "term": "Doghouse",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "bass fiddle."
+    }
+   ]
+  },
+  {
+   "term": "Dome",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "ordinary place to live in.",
+     "ex": [
+      [
+       "I live in a righteous dome."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Doss",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "sleep.",
+     "ex": [
+      [
+       "I'm a little beat for my doss."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Down with it",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "through with it."
+    }
+   ]
+  },
+  {
+   "term": "Drape",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "suit of clothes, dress, costume."
+    }
+   ]
+  },
+  {
+   "term": "Dreamers",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "bed covers, blankets."
+    }
+   ]
+  },
+  {
+   "term": "Dry-goods",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "same as drape."
+    }
+   ]
+  },
+  {
+   "term": "Duke",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "hand, mitt."
+    }
+   ]
+  },
+  {
+   "term": "Dutchess",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "girl."
+    }
+   ]
+  }
+ ],
+ "E": [
+  {
+   "term": "Early black",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "evening."
+    }
+   ]
+  },
+  {
+   "term": "Early bright",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "morning."
+    }
+   ]
+  },
+  {
+   "term": "Evil",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "in ill humor, in a nasty temper."
+    }
+   ]
+  }
+ ],
+ "F": [
+  {
+   "term": "Fall out",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to be overcome with emotion.",
+     "ex": [
+      [
+       "The cats fell out when he took that solo."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Fews and two",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "money or cash in small quantity."
+    }
+   ]
+  },
+  {
+   "term": "Final",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to leave, to go home.",
+     "ex": [
+      [
+       "I finaled to my pad.",
+       "(went to bed)"
       ],
-      "syn": [
-        "Belly-Fiddle"
+      [
+       "We copped a final.",
+       "(went home)"
       ]
-    },
-    {
-      "term": "Glims",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the eyes."
-        }
-      ]
-    },
-    {
-      "term": "Got your boots on",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "you know what it is all about, you are a hep cat, you are wise."
-        }
-      ]
-    },
-    {
-      "term": "Got your glasses on",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "you are ritzy or snooty, you fail to recognize your friends, you are up-stage."
-        }
-      ]
-    },
-    {
-      "term": "Gravy",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "profits."
-        }
-      ]
-    },
-    {
-      "term": "Grease",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to eat."
-        }
-      ]
-    },
-    {
-      "term": "Groovy",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "fine.",
-          "ex": [
-            [
-              "I feel groovy."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Ground grippers",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "new shoes."
-        }
-      ]
-    },
-    {
-      "term": "Growl",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "vibrant notes from a trumpet."
-        }
-      ]
-    },
-    {
-      "term": "Gut-bucket",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "low-down music."
-        }
-      ]
-    },
-    {
-      "term": "Guzzlin' foam",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "drinking beer."
-        }
-      ]
+     ]
     }
-  ],
-  "H": [
+   ]
+  },
+  {
+   "term": "Fine dinner",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Hard",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "fine, good.",
-          "ex": [
-            [
-              "That's a hard tie you're wearing."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Hard spiel",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "interesting line of talk."
-        }
-      ]
-    },
-    {
-      "term": "Have a ball",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to enjoy yourself, stage a celebration.",
-          "ex": [
-            [
-              "I had myself a ball last night."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Hep cat",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a guy who knows all the answers, understands jive."
-        }
-      ]
-    },
-    {
-      "term": "Hide-beater",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a drummer (see skin-beater)."
-        }
-      ]
-    },
-    {
-      "term": "Hincty",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "conceited, snooty."
-        }
-      ]
-    },
-    {
-      "term": "Hip",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "wise, sophisticated, anyone with boots on.",
-          "ex": [
-            [
-              "She's a hip chick."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Home-cooking",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "something very dinner (see fine dinner)."
-        }
-      ]
-    },
-    {
-      "term": "Hot",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "musically torrid; before swing, tunes were hot or bands were hot."
-        }
-      ]
-    },
-    {
-      "term": "Hummer",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "exceptionally good.",
-          "ex": [
-            [
-              "Man, that boy is a hummer."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Hype",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n, v.",
-          "def": "build up for a loan, wooing a girl, persuasive talk."
-        }
-      ]
+     "pos": "n.",
+     "def": "a good-looking girl."
     }
-  ],
-  "I": [
+   ]
+  },
+  {
+   "term": "Focus",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Icky",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "one who is not hip, a stupid person, can't collar the jive."
-        }
-      ]
-    },
-    {
-      "term": "Igg",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to ignore someone.",
-          "ex": [
-            [
-              "Don't igg me!"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "In the groove",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "perfect, no deviation, down the alley."
-        }
-      ]
-    },
-    {
-      "term": "Ironworks",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "vibraphone."
-        }
-      ]
+     "pos": "v.",
+     "def": "to look, to see."
     }
-  ],
-  "J": [
+   ]
+  },
+  {
+   "term": "Foghorn",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Jack",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "name for all male friends (see gate; pops)."
-        }
-      ]
-    },
-    {
-      "term": "Jam",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "improvised swing music.",
-          "ex": [
-            [
-              "That's swell jam."
-            ]
-          ]
-        },
-        {
-          "pos": "v.",
-          "def": "to play such music.",
-          "ex": [
-            [
-              "That cat surely can jam."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Jeff",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a pest, a bore, an icky."
-        }
-      ]
-    },
-    {
-      "term": "Jelly",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "anything free, on the house."
-        }
-      ]
-    },
-    {
-      "term": "Jitterbug",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a swing fan."
-        }
-      ]
-    },
-    {
-      "term": "Jive",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "Harlemese speech."
-        }
-      ]
-    },
-    {
-      "term": "Joint is jumping",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "the place is lively, the club is leaping with fun."
-        }
-      ]
-    },
-    {
-      "term": "Jumped in port",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "arrived in town."
-        }
-      ]
+     "pos": "n.",
+     "def": "tuba."
     }
-  ],
-  "K": [
+   ]
+  },
+  {
+   "term": "Foxy",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Kick",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a pocket.",
-          "ex": [
-            [
-              "I've got five bucks in my kick."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Kill me",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "show me a good time, send me."
-        }
-      ]
-    },
-    {
-      "term": "Killer-diller",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a great thrill."
-        }
-      ]
-    },
-    {
-      "term": "Knock",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "give.",
-          "ex": [
-            [
-              "Knock me a kiss."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Kopasetic",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "absolutely okay, the tops."
-        }
-      ]
+     "pos": "v.",
+     "def": "shrewd."
     }
-  ],
-  "L": [
+   ]
+  },
+  {
+   "term": "Frame",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Lamp",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to see, to look at."
-        }
+     "pos": "n.",
+     "def": "the body."
+    }
+   ]
+  },
+  {
+   "term": "Fraughty issue",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a very sad message, a deplorable state of affairs."
+    }
+   ]
+  },
+  {
+   "term": "Freeby",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "no charge, gratis.",
+     "ex": [
+      [
+       "The meal was a freeby."
       ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Frisking the whiskers",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "what the cats do when they are warming up for a swing session."
+    }
+   ]
+  },
+  {
+   "term": "Frolic pad",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "place of entertainment, theater, nightclub."
+    }
+   ]
+  },
+  {
+   "term": "Fromby",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "a frompy queen is a battle or faust."
+    }
+   ]
+  },
+  {
+   "term": "Front",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a suit of clothes."
+    }
+   ]
+  },
+  {
+   "term": "Fruiting",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "fickle, fooling around with no particular object."
+    }
+   ]
+  },
+  {
+   "term": "Fry",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to go to get hair straightened."
+    }
+   ]
+  }
+ ],
+ "G": [
+  {
+   "term": "Gabriels",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "trumpet players."
+    }
+   ]
+  },
+  {
+   "term": "Gammin'",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "showing off, flirtatious."
+    }
+   ]
+  },
+  {
+   "term": "Gasser",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n, adj.",
+     "def": "sensational.",
+     "ex": [
+      [
+       "When it comes to dancing, she's a gasser."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Gate-mouth",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a male person (a salutation)."
+    }
+   ],
+   "abbrv": [
+    "Gate"
+   ]
+  },
+  {
+   "term": "Get in there",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "go to work, get busy, make it hot, give all you've got."
+    }
+   ]
+  },
+  {
+   "term": "Gimme some skin",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "shake hands."
+    }
+   ]
+  },
+  {
+   "term": "Git Box",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "guitar."
+    }
+   ],
+   "syn": [
+    "Belly-Fiddle"
+   ]
+  },
+  {
+   "term": "Glims",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the eyes."
+    }
+   ]
+  },
+  {
+   "term": "Got your boots on",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "you know what it is all about, you are a hep cat, you are wise."
+    }
+   ]
+  },
+  {
+   "term": "Got your glasses on",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "you are ritzy or snooty, you fail to recognize your friends, you are up-stage."
+    }
+   ]
+  },
+  {
+   "term": "Gravy",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "profits."
+    }
+   ]
+  },
+  {
+   "term": "Grease",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to eat."
+    }
+   ]
+  },
+  {
+   "term": "Groovy",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "fine.",
+     "ex": [
+      [
+       "I feel groovy."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Ground grippers",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "new shoes."
+    }
+   ]
+  },
+  {
+   "term": "Growl",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "vibrant notes from a trumpet."
+    }
+   ]
+  },
+  {
+   "term": "Gut-bucket",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "low-down music."
+    }
+   ]
+  },
+  {
+   "term": "Guzzlin' foam",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "drinking beer."
+    }
+   ]
+  }
+ ],
+ "H": [
+  {
+   "term": "Hard",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "fine, good.",
+     "ex": [
+      [
+       "That's a hard tie you're wearing."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Hard spiel",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "interesting line of talk."
+    }
+   ]
+  },
+  {
+   "term": "Have a ball",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to enjoy yourself, stage a celebration.",
+     "ex": [
+      [
+       "I had myself a ball last night."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Hep cat",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a guy who knows all the answers, understands jive."
+    }
+   ]
+  },
+  {
+   "term": "Hide-beater",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a drummer (see skin-beater)."
+    }
+   ]
+  },
+  {
+   "term": "Hincty",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "conceited, snooty."
+    }
+   ]
+  },
+  {
+   "term": "Hip",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "wise, sophisticated, anyone with boots on.",
+     "ex": [
+      [
+       "She's a hip chick."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Home-cooking",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "something very dinner (see fine dinner)."
+    }
+   ]
+  },
+  {
+   "term": "Hot",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "musically torrid; before swing, tunes were hot or bands were hot."
+    }
+   ]
+  },
+  {
+   "term": "Hummer",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "exceptionally good.",
+     "ex": [
+      [
+       "Man, that boy is a hummer."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Hype",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n, v.",
+     "def": "build up for a loan, wooing a girl, persuasive talk."
+    }
+   ]
+  }
+ ],
+ "I": [
+  {
+   "term": "Icky",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "one who is not hip, a stupid person, can't collar the jive."
+    }
+   ]
+  },
+  {
+   "term": "Igg",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to ignore someone.",
+     "ex": [
+      [
+       "Don't igg me!"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "In the groove",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "perfect, no deviation, down the alley."
+    }
+   ]
+  },
+  {
+   "term": "Ironworks",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "vibraphone."
+    }
+   ]
+  }
+ ],
+ "J": [
+  {
+   "term": "Jack",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "name for all male friends (see gate; pops)."
+    }
+   ]
+  },
+  {
+   "term": "Jam",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "improvised swing music.",
+     "ex": [
+      [
+       "That's swell jam."
+      ]
+     ]
     },
     {
-      "term": "Land o'darkness",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "Harlem."
-        }
+     "pos": "v.",
+     "def": "to play such music.",
+     "ex": [
+      [
+       "That cat surely can jam."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Jeff",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Lane",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a male, usually a nonprofessional."
-        }
+     "pos": "n.",
+     "def": "a pest, a bore, an icky."
+    }
+   ]
+  },
+  {
+   "term": "Jelly",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "anything free, on the house."
+    }
+   ]
+  },
+  {
+   "term": "Jitterbug",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a swing fan."
+    }
+   ]
+  },
+  {
+   "term": "Jive",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "Harlemese speech."
+    }
+   ]
+  },
+  {
+   "term": "Joint is jumping",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "the place is lively, the club is leaping with fun."
+    }
+   ]
+  },
+  {
+   "term": "Jumped in port",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "arrived in town."
+    }
+   ]
+  }
+ ],
+ "K": [
+  {
+   "term": "Kick",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a pocket.",
+     "ex": [
+      [
+       "I've got five bucks in my kick."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Kill me",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Latch on",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "grab, take hold, get wise to."
-        }
+     "pos": "v.",
+     "def": "show me a good time, send me."
+    }
+   ]
+  },
+  {
+   "term": "Killer-diller",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a great thrill."
+    }
+   ]
+  },
+  {
+   "term": "Knock",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "give.",
+     "ex": [
+      [
+       "Knock me a kiss."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Kopasetic",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Lay some iron",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to tap dance.",
-          "ex": [
-            [
-              "Jack, you really laid some iron that last show!"
-            ]
-          ]
-        }
+     "pos": "adj.",
+     "def": "absolutely okay, the tops."
+    }
+   ]
+  }
+ ],
+ "L": [
+  {
+   "term": "Lamp",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to see, to look at."
+    }
+   ]
+  },
+  {
+   "term": "Land o'darkness",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "Harlem."
+    }
+   ]
+  },
+  {
+   "term": "Lane",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a male, usually a nonprofessional."
+    }
+   ]
+  },
+  {
+   "term": "Latch on",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "grab, take hold, get wise to."
+    }
+   ]
+  },
+  {
+   "term": "Lay some iron",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to tap dance.",
+     "ex": [
+      [
+       "Jack, you really laid some iron that last show!"
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Lay your racket",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Lay your racket",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to jive, to sell an idea, to promote a proposition."
-        }
+     "pos": "v.",
+     "def": "to jive, to sell an idea, to promote a proposition."
+    }
+   ]
+  },
+  {
+   "term": "Lead sheet",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a topcoat."
+    }
+   ]
+  },
+  {
+   "term": "Left raise",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "left side.",
+     "ex": [
+      [
+       "Dig the chick on your left raise."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Licking the chops",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Lead sheet",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a topcoat."
-        }
-      ]
-    },
+     "pos": "v.",
+     "def": "see frisking the whiskers."
+    }
+   ]
+  },
+  {
+   "term": "Licks",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Left raise",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "left side.",
-          "ex": [
-            [
-              "Dig the chick on your left raise."
-            ]
-          ]
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "hot musical phrases."
+    }
+   ]
+  },
+  {
+   "term": "Licorice Stick",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Licking the chops",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "see frisking the whiskers."
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "clarinet."
+    }
+   ],
+   "syn": [
+    "Gob Stick"
+   ]
+  },
+  {
+   "term": "Lily whites",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Licks",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "hot musical phrases."
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "bed sheets."
+    }
+   ]
+  },
+  {
+   "term": "Line",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Licorice Stick",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "clarinet."
-        }
+     "pos": "n.",
+     "def": "cost, price, money. Also, in replying, all figures are doubled.",
+     "ex": [
+      [
+       "What is the line on this drape?",
+       "(how much does this suit cost)"
       ],
-      "syn": [
-        "Gob Stick"
-      ]
-    },
-    {
-      "term": "Lily whites",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "bed sheets."
-        }
-      ]
-    },
-    {
-      "term": "Line",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "cost, price, money. Also, in replying, all figures are doubled.",
-          "ex": [
-            [
-              "What is the line on this drape?",
-              "(how much does this suit cost)"
-            ],
-            [
-              "Have you got the line in the mouse?",
-              "(do you have the cash in your pocket)"
-            ],
-            [
-              "This drape is line forty.",
-              "(this suit costs twenty dollars)"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Lock up",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to acquire something exclusively.",
-          "ex": [
-            [
-              "He's got that chick locked up."
-            ],
-            [
-              "I'm gonna lock up that deal."
-            ]
-          ]
-        }
-      ]
-    }
-  ],
-  "M": [
-    {
-      "term": "Main kick",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the stage."
-        }
-      ]
-    },
-    {
-      "term": "Main on the hitch",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "husband."
-        }
-      ]
-    },
-    {
-      "term": "Main queen",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "favorite girl friend, sweetheart."
-        }
-      ]
-    },
-    {
-      "term": "Man in gray",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the postman."
-        }
-      ]
-    },
-    {
-      "term": "Mash me a fin",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "command.",
-          "def": "Give me five dollars."
-        }
-      ]
-    },
-    {
-      "term": "Mellow",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "all right, fine.",
-          "ex": [
-            [
-              "That's mellow, Jack."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Melted out",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "broke."
-        }
-      ]
-    },
-    {
-      "term": "Mess",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "something good.",
-          "ex": [
-            [
-              "That last drink was a mess."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Meter",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "quarter, twenty-five cents."
-        }
-      ]
-    },
-    {
-      "term": "Mezz",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "anything supreme, genuine.",
-          "ex": [
-            [
-              "This is really the mezz."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Mitt pounding",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "applause."
-        }
-      ]
-    },
-    {
-      "term": "Moo juice",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "milk."
-        }
-      ]
-    },
-    {
-      "term": "Mouse",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "pocket.",
-          "ex": [
-            [
-              "I've got a meter in the mouse."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Muggin'",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "making 'em laugh, putting on the jive.",
-          "ex": [
-            [
-              "Muggin' lightly.",
-              "(light staccato swing)"
-            ],
-            [
-              "muggin' heavy.",
-              "(heavy staccato swing)"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Murder",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "something excellent or terrific.",
-          "ex": [
-            [
-              "That's solid murder, gate!"
-            ]
-          ]
-        }
-      ]
-    }
-  ],
-  "N": [
-    {
-      "term": "Neigho, pops",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "Nothing doing, pal."
-        }
-      ]
-    },
-    {
-      "term": "Nickel note",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "five-dollar bill."
-        }
-      ]
-    },
-    {
-      "term": "Nicklette",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "automatic phonograph, music box."
-        }
-      ]
-    },
-    {
-      "term": "Nix out",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to eliminate, get rid of.",
-          "ex": [
-            [
-              "I nixed that chick out last week."
-            ],
-            [
-              "I nixed my garments.",
-              "(undressed)"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Nod",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "sleep.",
-          "ex": [
-            [
-              "I think I'll cop a nod."
-            ]
-          ]
-        }
-      ]
-    }
-  ],
-  "O": [
-    {
-      "term": "Ofay",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "white person."
-        }
-      ]
-    },
-    {
-      "term": "Off the cob",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "corny, out of date."
-        }
-      ]
-    },
-    {
-      "term": "Off-time jive",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a sorry excuse, saying the wrong thing."
-        }
-      ]
-    },
-    {
-      "term": "Orchestration",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "an overcoat."
-        }
-      ]
-    },
-    {
-      "term": "Out of the world",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "perfect rendition.",
-          "ex": [
-            [
-              "That sax chorus was out of the world."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Ow!",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "an exclamation with varied meaning. When a beautiful chick passes by, it's Ow!; and when someone pulls an awful pun, it's also Ow!"
-        }
-      ]
-    }
-  ],
-  "P": [
-    {
-      "term": "Pad",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "bed."
-        }
-      ]
-    },
-    {
-      "term": "Pecking",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a dance introduced at the Cotton Club in 1937."
-        }
-      ]
-    },
-    {
-      "term": "Peola",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a light person, almost white."
-        }
-      ]
-    },
-    {
-      "term": "Pigeon",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a young girl."
-        }
-      ]
-    },
-    {
-      "term": "Plumbing",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "saxophone."
-        }
+      [
+       "Have you got the line in the mouse?",
+       "(do you have the cash in your pocket)"
       ],
-      "syn": [
-        "Reeds"
+      [
+       "This drape is line forty.",
+       "(this suit costs twenty dollars)"
       ]
-    },
-    {
-      "term": "Pops",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "salutation for all males (see gate; Jack)."
-        }
-      ]
-    },
-    {
-      "term": "Pounders",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "policemen."
-        }
-      ]
+     ]
     }
-  ],
-  "Q": [
+   ]
+  },
+  {
+   "term": "Lock up",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Queen",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a beautiful girl."
-        }
-      ]
-    }
-  ],
-  "R": [
-    {
-      "term": "Rank",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to lower."
-        }
-      ]
-    },
-    {
-      "term": "Ready",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "100 per cent in every way.",
-          "ex": [
-            [
-              "That fried chicken was ready."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Ride",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to swing, to keep perfect tempo in playing or singing."
-        }
-      ]
-    },
-    {
-      "term": "Riff",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "hot lick, musical phrase."
-        }
-      ]
-    },
-    {
-      "term": "Righteous",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "splendid, okay.",
-          "ex": [
-            [
-              "That was a righteous queen I dug you with last black."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Rock me",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "send me, kill me, move me with rhythm."
-        }
-      ]
-    },
-    {
-      "term": "Ruff",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "quarter, twenty-five cents."
-        }
-      ]
-    },
-    {
-      "term": "Rug cutter",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a very good dancer, an active jitterbug."
-        }
-      ]
-    }
-  ],
-  "S": [
-    {
-      "term": "Sad",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "very bad.",
-          "ex": [
-            [
-              "That was the saddest meal I ever collared."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Sadder than a map",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "terrible.",
-          "ex": [
-            [
-              "That man is sadder than a map."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Salty",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "angry, ill-tempered."
-        }
-      ]
-    },
-    {
-      "term": "Sam got you",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "you've been drafted into the army."
-        }
-      ]
-    },
-    {
-      "term": "Send",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to arouse the emotions. (joyful).",
-          "ex": [
-            [
-              "That sends me!"
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Set of seven brights",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "one week."
-        }
-      ]
-    },
-    {
-      "term": "Sharp",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "neat, smart, tricky.",
-          "ex": [
-            [
-              "That hat is sharp as a tack."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Signify",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to declare yourself, to brag, to boast."
-        }
-      ]
-    },
-    {
-      "term": "Skin-beater",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "drummer (see hide-beater)."
-        }
-      ]
-    },
-    {
-      "term": "Skins",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "drums."
-        }
-      ]
-    },
-    {
-      "term": "Sky piece",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "hat."
-        }
-      ]
-    },
-    {
-      "term": "Slave",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to work, whether arduous labor or not."
-        }
-      ]
-    },
-    {
-      "term": "Slide your jib",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to talk freely."
-        }
-      ]
-    },
-    {
-      "term": "Snatcher",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "detective."
-        }
-      ]
-    },
-    {
-      "term": "So help me",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "it's the truth, that's a fact."
-        }
-      ]
-    },
-    {
-      "term": "Solid",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "great, swell, okay."
-        }
-      ]
-    },
-    {
-      "term": "Sounded off",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "began a program or conversation."
-        }
-      ]
-    },
-    {
-      "term": "Spark Jiver",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "electric organ."
-        }
-      ]
-    },
-    {
-      "term": "Spoutin'",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "talking too much."
-        }
-      ]
-    },
-    {
-      "term": "Square",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "an unhep person (see icky; Jeff)."
-        }
-      ]
-    },
-    {
-      "term": "Squeak-Box",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "violin."
-        }
-      ]
-    },
-    {
-      "term": "Squeeze-Box",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "accordion."
-        }
+     "pos": "v.",
+     "def": "to acquire something exclusively.",
+     "ex": [
+      [
+       "He's got that chick locked up."
       ],
-      "syn": [
-        "Groan-Box"
+      [
+       "I'm gonna lock up that deal."
       ]
-    },
+     ]
+    }
+   ]
+  }
+ ],
+ "M": [
+  {
+   "term": "Main kick",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Stache",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to file, to hide away, to secrete."
-        }
+     "pos": "n.",
+     "def": "the stage."
+    }
+   ]
+  },
+  {
+   "term": "Main on the hitch",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "husband."
+    }
+   ]
+  },
+  {
+   "term": "Main queen",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "favorite girl friend, sweetheart."
+    }
+   ]
+  },
+  {
+   "term": "Man in gray",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the postman."
+    }
+   ]
+  },
+  {
+   "term": "Mash me a fin",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "command.",
+     "def": "Give me five dollars."
+    }
+   ]
+  },
+  {
+   "term": "Mellow",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "all right, fine.",
+     "ex": [
+      [
+       "That's mellow, Jack."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Melted out",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Stand one up",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to play one cheap, to assume one is a cut-rate."
-        }
+     "pos": "adj.",
+     "def": "broke."
+    }
+   ]
+  },
+  {
+   "term": "Mess",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "something good.",
+     "ex": [
+      [
+       "That last drink was a mess."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Meter",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Storehouse",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "piano."
-        }
+     "pos": "n.",
+     "def": "quarter, twenty-five cents."
+    }
+   ]
+  },
+  {
+   "term": "Mezz",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "anything supreme, genuine.",
+     "ex": [
+      [
+       "This is really the mezz."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Mitt pounding",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "applause."
+    }
+   ]
+  },
+  {
+   "term": "Moo juice",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "milk."
+    }
+   ]
+  },
+  {
+   "term": "Mouse",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "pocket.",
+     "ex": [
+      [
+       "I've got a meter in the mouse."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Muggin'",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "making 'em laugh, putting on the jive.",
+     "ex": [
+      [
+       "Muggin' lightly.",
+       "(light staccato swing)"
       ],
-      "syn": [
-        "Ivories"
+      [
+       "muggin' heavy.",
+       "(heavy staccato swing)"
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Murder",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Suitcase",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "drums."
-        }
+     "pos": "n.",
+     "def": "something excellent or terrific.",
+     "ex": [
+      [
+       "That's solid murder, gate!"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "N": [
+  {
+   "term": "Neigho, pops",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "Nothing doing, pal."
+    }
+   ]
+  },
+  {
+   "term": "Nickel note",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "five-dollar bill."
+    }
+   ]
+  },
+  {
+   "term": "Nicklette",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "automatic phonograph, music box."
+    }
+   ]
+  },
+  {
+   "term": "Nix out",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to eliminate, get rid of.",
+     "ex": [
+      [
+       "I nixed that chick out last week."
       ],
-      "syn": [
-        "Hides",
-        "Skins"
+      [
+       "I nixed my garments.",
+       "(undressed)"
       ]
-    },
-    {
-      "term": "Susie-Q",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a dance introduced at the Cotton Club in 1936."
-        }
-      ]
+     ]
     }
-  ],
-  "T": [
+   ]
+  },
+  {
+   "term": "Nod",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Take it slow",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "be careful."
-        }
+     "pos": "n.",
+     "def": "sleep.",
+     "ex": [
+      [
+       "I think I'll cop a nod."
       ]
-    },
+     ]
+    }
+   ]
+  }
+ ],
+ "O": [
+  {
+   "term": "Ofay",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Take off",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "play a solo."
-        }
+     "pos": "n.",
+     "def": "white person."
+    }
+   ]
+  },
+  {
+   "term": "Off the cob",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "corny, out of date."
+    }
+   ]
+  },
+  {
+   "term": "Off-time jive",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a sorry excuse, saying the wrong thing."
+    }
+   ]
+  },
+  {
+   "term": "Orchestration",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "an overcoat."
+    }
+   ]
+  },
+  {
+   "term": "Out of the world",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "perfect rendition.",
+     "ex": [
+      [
+       "That sax chorus was out of the world."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Ow!",
+   "kind": "word",
+   "senses": [
     {
-      "term": "The man",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the law."
-        }
+     "pos": "exclamation.",
+     "def": "an exclamation with varied meaning. When a beautiful chick passes by, it's Ow!; and when someone pulls an awful pun, it's also Ow!"
+    }
+   ]
+  }
+ ],
+ "P": [
+  {
+   "term": "Pad",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "bed."
+    }
+   ]
+  },
+  {
+   "term": "Pecking",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a dance introduced at the Cotton Club in 1937."
+    }
+   ]
+  },
+  {
+   "term": "Peola",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a light person, almost white."
+    }
+   ]
+  },
+  {
+   "term": "Pigeon",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a young girl."
+    }
+   ]
+  },
+  {
+   "term": "Plumbing",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "saxophone."
+    }
+   ],
+   "syn": [
+    "Reeds"
+   ]
+  },
+  {
+   "term": "Pops",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "salutation for all males (see gate; Jack)."
+    }
+   ]
+  },
+  {
+   "term": "Pounders",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "policemen."
+    }
+   ]
+  }
+ ],
+ "Q": [
+  {
+   "term": "Queen",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a beautiful girl."
+    }
+   ]
+  }
+ ],
+ "R": [
+  {
+   "term": "Rank",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to lower."
+    }
+   ]
+  },
+  {
+   "term": "Ready",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "100 per cent in every way.",
+     "ex": [
+      [
+       "That fried chicken was ready."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Ride",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Threads",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "suit, dress or costume (see drape; dry-goods)."
-        }
+     "pos": "v.",
+     "def": "to swing, to keep perfect tempo in playing or singing."
+    }
+   ]
+  },
+  {
+   "term": "Riff",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "hot lick, musical phrase."
+    }
+   ]
+  },
+  {
+   "term": "Righteous",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "splendid, okay.",
+     "ex": [
+      [
+       "That was a righteous queen I dug you with last black."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Rock me",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Tick",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "minute, moment. Also, ticks are doubled in accounting time, just as money is doubled in giving line.",
-          "ex": [
-            [
-              "I'll dig you in a few ticks."
-            ],
-            [
-              "I finaled to the pad this early bright at tick twenty.",
-              "(got to bed this morning at ten o'clock)"
-            ]
-          ]
-        }
+     "pos": "v.",
+     "def": "send me, kill me, move me with rhythm."
+    }
+   ]
+  },
+  {
+   "term": "Ruff",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "quarter, twenty-five cents."
+    }
+   ]
+  },
+  {
+   "term": "Rug cutter",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a very good dancer, an active jitterbug."
+    }
+   ]
+  }
+ ],
+ "S": [
+  {
+   "term": "Sad",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "very bad.",
+     "ex": [
+      [
+       "That was the saddest meal I ever collared."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Sadder than a map",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Timber",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "toothpick."
-        }
+     "pos": "adj.",
+     "def": "terrible.",
+     "ex": [
+      [
+       "That man is sadder than a map."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Salty",
+   "kind": "word",
+   "senses": [
     {
-      "term": "To be stashed",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to stand or remain."
-        }
+     "pos": "adj.",
+     "def": "angry, ill-tempered."
+    }
+   ]
+  },
+  {
+   "term": "Sam got you",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "you've been drafted into the army."
+    }
+   ]
+  },
+  {
+   "term": "Send",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to arouse the emotions. (joyful).",
+     "ex": [
+      [
+       "That sends me!"
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Set of seven brights",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "To dribble",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to stutter.",
-          "ex": [
-            [
-              "He talked in dribbles."
-            ]
-          ]
-        }
+     "pos": "n.",
+     "def": "one week."
+    }
+   ]
+  },
+  {
+   "term": "Sharp",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "neat, smart, tricky.",
+     "ex": [
+      [
+       "That hat is sharp as a tack."
       ]
-    },
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Signify",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Togged to the bricks",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "dressed to kill, from head to toe."
-        }
-      ]
-    },
+     "pos": "v.",
+     "def": "to declare yourself, to brag, to boast."
+    }
+   ]
+  },
+  {
+   "term": "Skin-beater",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Too much",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "term of highest praise.",
-          "ex": [
-            [
-              "You are too much!"
-            ]
-          ]
-        }
-      ]
-    },
+     "pos": "n.",
+     "def": "drummer (see hide-beater)."
+    }
+   ]
+  },
+  {
+   "term": "Skins",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Tram",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "trombone."
-        }
+     "pos": "n.",
+     "def": "drums."
+    }
+   ]
+  },
+  {
+   "term": "Sky piece",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "hat."
+    }
+   ]
+  },
+  {
+   "term": "Slave",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to work, whether arduous labor or not."
+    }
+   ]
+  },
+  {
+   "term": "Slide your jib",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to talk freely."
+    }
+   ]
+  },
+  {
+   "term": "Snatcher",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "detective."
+    }
+   ]
+  },
+  {
+   "term": "So help me",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "it's the truth, that's a fact."
+    }
+   ]
+  },
+  {
+   "term": "Solid",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "great, swell, okay."
+    }
+   ]
+  },
+  {
+   "term": "Sounded off",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "began a program or conversation."
+    }
+   ]
+  },
+  {
+   "term": "Spark Jiver",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "electric organ."
+    }
+   ]
+  },
+  {
+   "term": "Spoutin'",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "talking too much."
+    }
+   ]
+  },
+  {
+   "term": "Square",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "an unhep person (see icky; Jeff)."
+    }
+   ]
+  },
+  {
+   "term": "Squeak-Box",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "violin."
+    }
+   ]
+  },
+  {
+   "term": "Squeeze-Box",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "accordion."
+    }
+   ],
+   "syn": [
+    "Groan-Box"
+   ]
+  },
+  {
+   "term": "Stache",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to file, to hide away, to secrete."
+    }
+   ]
+  },
+  {
+   "term": "Stand one up",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to play one cheap, to assume one is a cut-rate."
+    }
+   ]
+  },
+  {
+   "term": "Storehouse",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "piano."
+    }
+   ],
+   "syn": [
+    "Ivories"
+   ]
+  },
+  {
+   "term": "Suitcase",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "drums."
+    }
+   ],
+   "syn": [
+    "Hides",
+    "Skins"
+   ]
+  },
+  {
+   "term": "Susie-Q",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a dance introduced at the Cotton Club in 1936."
+    }
+   ]
+  }
+ ],
+ "T": [
+  {
+   "term": "Take it slow",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "be careful."
+    }
+   ]
+  },
+  {
+   "term": "Take off",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "play a solo."
+    }
+   ]
+  },
+  {
+   "term": "The man",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the law."
+    }
+   ]
+  },
+  {
+   "term": "Threads",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "suit, dress or costume (see drape; dry-goods)."
+    }
+   ]
+  },
+  {
+   "term": "Tick",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "minute, moment. Also, ticks are doubled in accounting time, just as money is doubled in giving line.",
+     "ex": [
+      [
+       "I'll dig you in a few ticks."
       ],
-      "syn": [
-        "Slush-Pump"
+      [
+       "I finaled to the pad this early bright at tick twenty.",
+       "(got to bed this morning at ten o'clock)"
       ]
-    },
-    {
-      "term": "Trickeration",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "struttin' your stuff, muggin' lightly and politely."
-        }
-      ]
-    },
-    {
-      "term": "Trilly",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to leave, to depart.",
-          "ex": [
-            [
-              "Well, I guess I'll trilly."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Truck",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "v.",
-          "def": "to go somewhere.",
-          "ex": [
-            [
-              "I think I'll truck on down to the ginmill (bar)."
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "term": "Trucking",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a dance introduced at the Cotton Club in 1933."
-        }
-      ]
-    },
-    {
-      "term": "Twister to the slammer",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the key to the door."
-        }
-      ]
-    },
-    {
-      "term": "Two cents",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "two dollars."
-        }
-      ]
+     ]
     }
-  ],
-  "U": [
+   ]
+  },
+  {
+   "term": "Timber",
+   "kind": "word",
+   "senses": [
     {
-      "term": "Unhep",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "not wise to the jive, said of an icky, a Jeff, a square."
-        }
-      ]
+     "pos": "n.",
+     "def": "toothpick."
     }
-  ],
-  "V": [
+   ]
+  },
+  {
+   "term": "To be stashed",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "V-8",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a chick who spurns company, is independent, is not amenable."
-        }
-      ]
-    },
-    {
-      "term": "Vine",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a suit of clothes."
-        }
-      ]
+     "pos": "v.",
+     "def": "to stand or remain."
     }
-  ],
-  "W": [
+   ]
+  },
+  {
+   "term": "To dribble",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "What's your story?",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "What do you want? What have you got to say for yourself? How are tricks? What excuse can you offer?",
-          "ex": [
-            [
-              "I don't know what his story is."
-            ]
-          ]
-        }
+     "pos": "v.",
+     "def": "to stutter.",
+     "ex": [
+      [
+       "He talked in dribbles."
       ]
-    },
-    {
-      "term": "Whipped up",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "worn out, exhausted, beat for your everything."
-        }
-      ]
-    },
-    {
-      "term": "Woodpile",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "xylophone."
-        }
-      ]
-    },
-    {
-      "term": "Wren",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "a chick, a queen."
-        }
-      ]
-    },
-    {
-      "term": "Wrong riff",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the wrong thing said or done.",
-          "ex": [
-            [
-              "You're coming up on the wrong riff."
-            ]
-          ]
-        }
-      ]
+     ]
     }
-  ],
-  "Y": [
+   ]
+  },
+  {
+   "term": "Togged to the bricks",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Yarddog",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "uncouth, badly attired, unattractive male or female."
-        }
-      ]
-    },
-    {
-      "term": "Yeah, man",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "exclamation.",
-          "def": "an exclamation of assent."
-        }
-      ]
+     "pos": "adj.",
+     "def": "dressed to kill, from head to toe."
     }
-  ],
-  "Z": [
+   ]
+  },
+  {
+   "term": "Too much",
+   "kind": "phrase",
+   "senses": [
     {
-      "term": "Zoot",
-      "kind": "word",
-      "senses": [
-        {
-          "pos": "adj.",
-          "def": "exaggerated."
-        }
+     "pos": "adj.",
+     "def": "term of highest praise.",
+     "ex": [
+      [
+       "You are too much!"
       ]
-    },
-    {
-      "term": "Zoot suit",
-      "kind": "phrase",
-      "senses": [
-        {
-          "pos": "n.",
-          "def": "the ultimate in clothes. The only totally and truly American civilian suit."
-        }
-      ]
+     ]
     }
-  ]
+   ]
+  },
+  {
+   "term": "Tram",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "trombone."
+    }
+   ],
+   "syn": [
+    "Slush-Pump"
+   ]
+  },
+  {
+   "term": "Trickeration",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "struttin' your stuff, muggin' lightly and politely."
+    }
+   ]
+  },
+  {
+   "term": "Trilly",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to leave, to depart.",
+     "ex": [
+      [
+       "Well, I guess I'll trilly."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Truck",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to go somewhere.",
+     "ex": [
+      [
+       "I think I'll truck on down to the ginmill (bar)."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Trucking",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a dance introduced at the Cotton Club in 1933."
+    }
+   ]
+  },
+  {
+   "term": "Twister to the slammer",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the key to the door."
+    }
+   ]
+  },
+  {
+   "term": "Two cents",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "two dollars."
+    }
+   ]
+  }
+ ],
+ "U": [
+  {
+   "term": "Unhep",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "not wise to the jive, said of an icky, a Jeff, a square."
+    }
+   ]
+  }
+ ],
+ "V": [
+  {
+   "term": "V-8",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a chick who spurns company, is independent, is not amenable."
+    }
+   ]
+  },
+  {
+   "term": "Vine",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a suit of clothes."
+    }
+   ]
+  }
+ ],
+ "W": [
+  {
+   "term": "What's your story?",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "What do you want? What have you got to say for yourself? How are tricks? What excuse can you offer?",
+     "ex": [
+      [
+       "I don't know what his story is."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "term": "Whipped up",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "worn out, exhausted, beat for your everything."
+    }
+   ]
+  },
+  {
+   "term": "Woodpile",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "xylophone."
+    }
+   ]
+  },
+  {
+   "term": "Wren",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "a chick, a queen."
+    }
+   ]
+  },
+  {
+   "term": "Wrong riff",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the wrong thing said or done.",
+     "ex": [
+      [
+       "You're coming up on the wrong riff."
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "Y": [
+  {
+   "term": "Yarddog",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "uncouth, badly attired, unattractive male or female."
+    }
+   ]
+  },
+  {
+   "term": "Yeah, man",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "exclamation.",
+     "def": "an exclamation of assent."
+    }
+   ]
+  }
+ ],
+ "Z": [
+  {
+   "term": "Zoot",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "adj.",
+     "def": "exaggerated."
+    }
+   ]
+  },
+  {
+   "term": "Zoot suit",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "the ultimate in clothes. The only totally and truly American civilian suit."
+    }
+   ]
+  }
+ ]
 }
