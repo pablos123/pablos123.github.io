@@ -11,6 +11,16 @@
       ]
     },
     {
+      "term": "Abhorrence from Florence",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "jerk."
+        }
+      ]
+    },
+    {
       "term": "Able Grable",
       "kind": "phrase",
       "senses": [
@@ -161,6 +171,16 @@
       ]
     },
     {
+      "term": "Amico from Tampico",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "friend."
+        }
+      ]
+    },
+    {
       "term": "Angel cake",
       "kind": "phrase",
       "senses": [
@@ -241,6 +261,16 @@
       ]
     },
     {
+      "term": "Austin from Boston",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "midget."
+        }
+      ]
+    },
+    {
       "term": "Axle grease",
       "kind": "phrase",
       "senses": [
@@ -313,6 +343,26 @@
       ]
     },
     {
+      "term": "Bail 'em from Salem",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bondsman."
+        }
+      ]
+    },
+    {
+      "term": "Baiter from Decatur",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "decoy."
+        }
+      ]
+    },
+    {
       "term": "Ball chain",
       "kind": "phrase",
       "senses": [
@@ -339,6 +389,16 @@
         {
           "pos": "n.",
           "def": "mulatto."
+        }
+      ]
+    },
+    {
+      "term": "Banana from Savannah",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mulattress."
         }
       ]
     },
@@ -449,6 +509,26 @@
         {
           "pos": "n.",
           "def": "ugly girl."
+        }
+      ]
+    },
+    {
+      "term": "Batty from Cincinnati",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "goof."
+        }
+      ]
+    },
+    {
+      "term": "Bazooka from Paducah",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "corny musician."
         }
       ]
     },
@@ -645,6 +725,16 @@
       ]
     },
     {
+      "term": "Bedpan from Japan",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unglamorous person."
+        }
+      ]
+    },
+    {
       "term": "Beef",
       "kind": "word",
       "senses": [
@@ -755,6 +845,16 @@
       ]
     },
     {
+      "term": "Big bore from Saginaw",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one without sex appeal."
+        }
+      ]
+    },
+    {
       "term": "Big bruiser",
       "kind": "phrase",
       "senses": [
@@ -785,6 +885,16 @@
       ]
     },
     {
+      "term": "Big fork from New York",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "heavy eater."
+        }
+      ]
+    },
+    {
       "term": "Big lips",
       "kind": "phrase",
       "senses": [
@@ -801,6 +911,26 @@
         {
           "pos": "n.",
           "def": "loud person."
+        }
+      ]
+    },
+    {
+      "term": "Big snort from Bridgeport",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bragger."
+        }
+      ]
+    },
+    {
+      "term": "Big star from Navarre",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unusually attractive damsel."
         }
       ]
     },
@@ -969,6 +1099,16 @@
       ]
     },
     {
+      "term": "Blower from Iowa",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "boaster."
+        }
+      ]
+    },
+    {
       "term": "Blow in",
       "kind": "phrase",
       "senses": [
@@ -1010,7 +1150,7 @@
     },
     {
       "term": "B.O.",
-      "kind": "phrase",
+      "kind": "word",
       "senses": [
         {
           "pos": "n.",
@@ -1283,12 +1423,32 @@
       ]
     },
     {
+      "term": "Brain from Maine",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wise guy."
+        }
+      ]
+    },
+    {
       "term": "Brainstorm",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "an idea."
+        }
+      ]
+    },
+    {
+      "term": "Brawly from Raleigh",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "strong-arm gangster."
         }
       ]
     },
@@ -1369,6 +1529,16 @@
         {
           "pos": "v.",
           "def": "depress."
+        }
+      ]
+    },
+    {
+      "term": "Broken blades from Palisades",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Jersey sports."
         }
       ]
     },
@@ -1463,6 +1633,16 @@
         {
           "pos": "n.",
           "def": "colored male."
+        }
+      ]
+    },
+    {
+      "term": "Bucket from Nantucket",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "heavy drinker."
         }
       ]
     },
@@ -1999,6 +2179,16 @@
       ]
     },
     {
+      "term": "Chassis from Tallahassee",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "coke-frame."
+        }
+      ]
+    },
+    {
       "term": "Chew",
       "kind": "word",
       "senses": [
@@ -2089,12 +2279,32 @@
       ]
     },
     {
+      "term": "Chinchilla from Manila",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cuddle bunny."
+        }
+      ]
+    },
+    {
       "term": "Chippie",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "glamour girl."
+        }
+      ]
+    },
+    {
+      "term": "Chippy from Mississippi",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "glamor girl."
         }
       ]
     },
@@ -2189,12 +2399,32 @@
       ]
     },
     {
+      "term": "Claw from Nassau",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "beggar."
+        }
+      ]
+    },
+    {
       "term": "Clicker",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "one who has attained success."
+        }
+      ]
+    },
+    {
+      "term": "Climber from Lima",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "second story burglar."
         }
       ]
     },
@@ -2235,6 +2465,16 @@
         {
           "pos": "n.",
           "def": "the heart."
+        }
+      ]
+    },
+    {
+      "term": "Clown from Allentown",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "stupid person."
         }
       ]
     },
@@ -2469,6 +2709,16 @@
       ]
     },
     {
+      "term": "Conquers from Yonkers",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "muggers."
+        }
+      ]
+    },
+    {
       "term": "Cooch",
       "kind": "word",
       "senses": [
@@ -2579,6 +2829,16 @@
       ]
     },
     {
+      "term": "Corn butt from Connecticut",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "object of ridicule."
+        }
+      ]
+    },
+    {
       "term": "Corn fed",
       "kind": "phrase",
       "senses": [
@@ -2595,6 +2855,16 @@
         {
           "pos": "n.",
           "def": "country hick."
+        }
+      ]
+    },
+    {
+      "term": "Corridor from Florida",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Southern thin man."
         }
       ]
     },
@@ -2729,6 +2999,16 @@
       ]
     },
     {
+      "term": "Crooner from Altoona",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Dutch vocalist."
+        }
+      ]
+    },
+    {
       "term": "Crown",
       "kind": "word",
       "senses": [
@@ -2778,6 +3058,16 @@
         {
           "pos": "n.",
           "def": "the pavement."
+        }
+      ]
+    },
+    {
+      "term": "Crusher from Russia",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wrestler."
         }
       ]
     },
@@ -2914,6 +3204,16 @@
   ],
   "D": [
     {
+      "term": "Damper from Tampa",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wet towel."
+        }
+      ]
+    },
+    {
       "term": "Dance",
       "kind": "word",
       "senses": [
@@ -2960,6 +3260,16 @@
         {
           "pos": "n.",
           "def": "fixed expression."
+        }
+      ]
+    },
+    {
+      "term": "Dead pidge from Cambridge",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hopeless person."
         }
       ]
     },
@@ -3164,6 +3474,16 @@
       ]
     },
     {
+      "term": "Dilly from Philly",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "dumbbell."
+        }
+      ]
+    },
+    {
       "term": "Dim",
       "kind": "word",
       "senses": [
@@ -3310,6 +3630,26 @@
         {
           "pos": "n.",
           "def": "telephone."
+        }
+      ]
+    },
+    {
+      "term": "Dooda from Bermuda",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one in sport clothes."
+        }
+      ]
+    },
+    {
+      "term": "Doorway from Norway",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hallway necker."
         }
       ]
     },
@@ -3562,6 +3902,16 @@
       ]
     },
     {
+      "term": "Dub from Hub",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "educated dunce."
+        }
+      ]
+    },
+    {
       "term": "Duchess",
       "kind": "word",
       "senses": [
@@ -3704,6 +4054,16 @@
       ]
     },
     {
+      "term": "Embargo from Chicago",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "one who hesitates."
+        }
+      ]
+    },
+    {
       "term": "Enamel",
       "kind": "word",
       "senses": [
@@ -3816,6 +4176,16 @@
       ]
     },
     {
+      "term": "Fall ins from New Orleans",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Southern camp followers."
+        }
+      ]
+    },
+    {
       "term": "False alarm",
       "kind": "phrase",
       "senses": [
@@ -3862,6 +4232,16 @@
         {
           "pos": "n.",
           "def": "your fingers."
+        }
+      ]
+    },
+    {
+      "term": "Feel from Mobile",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "easy touch."
         }
       ]
     },
@@ -3986,6 +4366,16 @@
       ]
     },
     {
+      "term": "Fire from Hawaii",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hula dancer."
+        }
+      ]
+    },
+    {
       "term": "First thirty",
       "kind": "phrase",
       "senses": [
@@ -4046,12 +4436,42 @@
       ]
     },
     {
+      "term": "Flash Flo from Buffalo",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pickup."
+        }
+      ]
+    },
+    {
       "term": "Flat",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "an uninteresting person."
+        }
+      ]
+    },
+    {
+      "term": "Fleece from Greece",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pushover."
+        }
+      ]
+    },
+    {
+      "term": "Flersy from Jersey",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "giddy gal."
         }
       ]
     },
@@ -4082,6 +4502,16 @@
         {
           "pos": "v.",
           "def": "shake hands."
+        }
+      ]
+    },
+    {
+      "term": "Flooga from Chattanooga",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "ne'er-do-well."
         }
       ]
     },
@@ -4136,6 +4566,16 @@
       ]
     },
     {
+      "term": "Fluke from Dubuque",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "unusually lucky person."
+        }
+      ]
+    },
+    {
       "term": "Fly chick",
       "kind": "phrase",
       "senses": [
@@ -4176,6 +4616,16 @@
       ]
     },
     {
+      "term": "Forger from Georgia",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "paper-hanger."
+        }
+      ]
+    },
+    {
       "term": "Forks",
       "kind": "word",
       "senses": [
@@ -4192,6 +4642,16 @@
         {
           "pos": "n.",
           "def": "gun fight."
+        }
+      ]
+    },
+    {
+      "term": "Frails from Wales",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "foreigners (female)."
         }
       ]
     },
@@ -4362,6 +4822,16 @@
         {
           "pos": "v.",
           "def": "to mechanically straighten kinky hair."
+        }
+      ]
+    },
+    {
+      "term": "Fuse from Vera Cruz",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hot jiver."
         }
       ]
     },
@@ -4558,6 +5028,16 @@
       ]
     },
     {
+      "term": "Gazette from Lafayette",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "reporter."
+        }
+      ]
+    },
+    {
       "term": "G.B.",
       "kind": "word",
       "senses": [
@@ -4628,6 +5108,16 @@
       ]
     },
     {
+      "term": "Gipsy from Poughkeepsie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wanderer."
+        }
+      ]
+    },
+    {
       "term": "Give it a miss",
       "kind": "phrase",
       "senses": [
@@ -4644,6 +5134,16 @@
         {
           "pos": "v.",
           "def": "trying something for the first time."
+        }
+      ]
+    },
+    {
+      "term": "Giver from Fall River",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "miser."
         }
       ]
     },
@@ -4678,6 +5178,16 @@
       ]
     },
     {
+      "term": "Glam toast from Gold Coast",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "movie star."
+        }
+      ]
+    },
+    {
       "term": "Glapad",
       "kind": "word",
       "senses": [
@@ -4704,6 +5214,16 @@
         {
           "pos": "n.",
           "def": "a dunce."
+        }
+      ]
+    },
+    {
+      "term": "Gloria from Peoria",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "head chick."
         }
       ]
     },
@@ -4754,6 +5274,16 @@
         {
           "pos": "n.",
           "def": "a phoney."
+        }
+      ]
+    },
+    {
+      "term": "Gone goose from Syracuse",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hopeless person."
         }
       ]
     },
@@ -4864,6 +5394,16 @@
         {
           "pos": "v.",
           "def": "to die."
+        }
+      ]
+    },
+    {
+      "term": "Goy from Troy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gentile (male)."
         }
       ]
     },
@@ -5054,6 +5594,16 @@
         {
           "pos": "n.",
           "def": "sentimental singer of songs."
+        }
+      ]
+    },
+    {
+      "term": "Groan from Bayonne",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "crooner."
         }
       ]
     },
@@ -5260,6 +5810,16 @@
       ]
     },
     {
+      "term": "Hanger from Bangor",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "joy-killer."
+        }
+      ]
+    },
+    {
       "term": "Hang paper",
       "kind": "phrase",
       "senses": [
@@ -5380,6 +5940,16 @@
         {
           "pos": "n.",
           "def": "keen knife."
+        }
+      ]
+    },
+    {
+      "term": "Harris from Paris",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "radio comedian."
         }
       ]
     },
@@ -5554,12 +6124,42 @@
       ]
     },
     {
+      "term": "Herby from Derby",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hick."
+        }
+      ]
+    },
+    {
       "term": "Herd",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "pack of Camel cigarettes."
+        }
+      ]
+    },
+    {
+      "term": "Herring from Bering",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "poor fish."
+        }
+      ]
+    },
+    {
+      "term": "Hexes from Texas",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "evil spirits."
         }
       ]
     },
@@ -6206,6 +6806,16 @@
       ]
     },
     {
+      "term": "Itch from Greenwich",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pain-in-the-neck."
+        }
+      ]
+    },
+    {
       "term": "Ivories",
       "kind": "word",
       "senses": [
@@ -6294,6 +6904,16 @@
         {
           "pos": "n.",
           "def": "girl singer."
+        }
+      ]
+    },
+    {
+      "term": "Jerk from Albuquerque",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "moron."
         }
       ]
     },
@@ -6428,6 +7048,16 @@
       ]
     },
     {
+      "term": "Joan from Cologne",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cosmetician."
+        }
+      ]
+    },
+    {
       "term": "Joe blow",
       "kind": "phrase",
       "senses": [
@@ -6550,12 +7180,62 @@
   ],
   "K": [
     {
+      "term": "Katy from Haiti",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "party girl."
+        }
+      ]
+    },
+    {
+      "term": "Keen from Aberdeen",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sharp trader."
+        }
+      ]
+    },
+    {
+      "term": "Keen wart from McKeesport",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "smooth shorty."
+        }
+      ]
+    },
+    {
+      "term": "Keno from Reno",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sharper."
+        }
+      ]
+    },
+    {
       "term": "Khaki wacky",
       "kind": "phrase",
       "senses": [
         {
           "pos": "n.",
           "def": "girl who goes for men in uniform."
+        }
+      ]
+    },
+    {
+      "term": "Khayam from Siam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "poet."
         }
       ]
     },
@@ -6660,6 +7340,16 @@
       ]
     },
     {
+      "term": "Kiss from Annapolis",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "wet smack."
+        }
+      ]
+    },
+    {
       "term": "Kiss off",
       "kind": "phrase",
       "senses": [
@@ -6686,6 +7376,16 @@
         {
           "pos": "v.",
           "def": "to air mail or exchange."
+        }
+      ]
+    },
+    {
+      "term": "Kitten from Britain",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "English jitter jill."
         }
       ]
     },
@@ -6758,6 +7458,16 @@
           "def": "everything's fine."
         }
       ]
+    },
+    {
+      "term": "Kosher from Nova Scotia",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Canadian Hebrew."
+        }
+      ]
     }
   ],
   "L": [
@@ -6808,6 +7518,16 @@
         {
           "pos": "n.",
           "def": "a wise guy."
+        }
+      ]
+    },
+    {
+      "term": "Lantern from Scranton",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "live wire."
         }
       ]
     },
@@ -6892,6 +7612,16 @@
       ]
     },
     {
+      "term": "Law from Arkansas",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Western justice."
+        }
+      ]
+    },
+    {
       "term": "Lay down the cow",
       "kind": "phrase",
       "senses": [
@@ -6948,6 +7678,16 @@
         {
           "pos": "n.",
           "def": "one who talks too much."
+        }
+      ]
+    },
+    {
+      "term": "Leery from Erie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "skeptic."
         }
       ]
     },
@@ -7052,6 +7792,16 @@
       ]
     },
     {
+      "term": "Lighter from Decatur",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "eight on a pair of dice."
+        }
+      ]
+    },
+    {
       "term": "Lightning and thunder",
       "kind": "phrase",
       "senses": [
@@ -7142,6 +7892,26 @@
       ]
     },
     {
+      "term": "Little Joe from Kokomo",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "four on a pair of dice."
+        }
+      ]
+    },
+    {
+      "term": "Little Joe from Mexico",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "greaser."
+        }
+      ]
+    },
+    {
       "term": "Little tub",
       "kind": "phrase",
       "senses": [
@@ -7222,6 +7992,26 @@
       ]
     },
     {
+      "term": "Lothario from Ontario",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "fast worker."
+        }
+      ]
+    },
+    {
+      "term": "Loud squawk from Montauk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "chronic complainer."
+        }
+      ]
+    },
+    {
       "term": "Love letter",
       "kind": "phrase",
       "senses": [
@@ -7256,12 +8046,32 @@
       ]
     },
     {
+      "term": "Lucky from Kentucky",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a favorite."
+        }
+      ]
+    },
+    {
       "term": "Lugs",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "big ears."
+        }
+      ]
+    },
+    {
+      "term": "Lurkie from Turkey",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hanger-on."
         }
       ]
     },
@@ -7292,6 +8102,16 @@
         {
           "pos": "n.",
           "def": "a drunkard."
+        }
+      ]
+    },
+    {
+      "term": "Lush lamb from Alabam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "sucker."
         }
       ]
     },
@@ -7394,6 +8214,16 @@
         {
           "pos": "v.",
           "def": "to steal another's sweetheart."
+        }
+      ]
+    },
+    {
+      "term": "Manna from Havanna",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "easy money."
         }
       ]
     },
@@ -7538,6 +8368,16 @@
       ]
     },
     {
+      "term": "Menace from Venice",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "knife-wielder."
+        }
+      ]
+    },
+    {
       "term": "Messy",
       "kind": "word",
       "senses": [
@@ -7678,6 +8518,16 @@
       ]
     },
     {
+      "term": "Moist pad from Trinidad",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "foreign night club operator."
+        }
+      ]
+    },
+    {
       "term": "Moocher",
       "kind": "word",
       "senses": [
@@ -7704,6 +8554,16 @@
         {
           "pos": "n.",
           "def": "money."
+        }
+      ]
+    },
+    {
+      "term": "Moola from Honolulu",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Hawaiian U.S. currency."
         }
       ]
     },
@@ -7838,6 +8698,16 @@
       ]
     },
     {
+      "term": "Mute from Butte",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tight-lipped person."
+        }
+      ]
+    },
+    {
       "term": "Muttonhead",
       "kind": "word",
       "senses": [
@@ -7906,6 +8776,16 @@
         {
           "pos": "adj.",
           "def": "perfect figure."
+        }
+      ]
+    },
+    {
+      "term": "Necker from Mecca",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "nymphomaniac."
         }
       ]
     },
@@ -8006,6 +8886,16 @@
         {
           "pos": "adj.",
           "def": "not interested."
+        }
+      ]
+    },
+    {
+      "term": "Noisy from Boise",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "big mouth."
         }
       ]
     },
@@ -8182,6 +9072,16 @@
       ]
     },
     {
+      "term": "O Ma from Omaha",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "motherly woman."
+        }
+      ]
+    },
+    {
       "term": "Onion",
       "kind": "word",
       "senses": [
@@ -8278,6 +9178,16 @@
         {
           "pos": "n.",
           "def": "charge account."
+        }
+      ]
+    },
+    {
+      "term": "Open mirth from Leavenworth",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "jail comedian."
         }
       ]
     },
@@ -8434,6 +9344,16 @@
       ]
     },
     {
+      "term": "P.D. from Normandy",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "old song."
+        }
+      ]
+    },
+    {
       "term": "Pecking",
       "kind": "word",
       "senses": [
@@ -8460,6 +9380,16 @@
         {
           "pos": "v.",
           "def": "romancing a young girl."
+        }
+      ]
+    },
+    {
+      "term": "Peeper from Topeka",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "keyhole observer."
         }
       ]
     },
@@ -8508,6 +9438,16 @@
       ]
     },
     {
+      "term": "Pester from Chester",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "bore."
+        }
+      ]
+    },
+    {
       "term": "Peterman",
       "kind": "word",
       "senses": [
@@ -8538,12 +9478,32 @@
       ]
     },
     {
+      "term": "Phooey from St. Louis",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "braggart."
+        }
+      ]
+    },
+    {
       "term": "Piccolo",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "juke box."
+        }
+      ]
+    },
+    {
+      "term": "Pic from New Brunswick",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "photographer."
         }
       ]
     },
@@ -8618,6 +9578,16 @@
       ]
     },
     {
+      "term": "Pill from Louisville",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "doctor."
+        }
+      ]
+    },
+    {
       "term": "Pinchers",
       "kind": "word",
       "senses": [
@@ -8654,6 +9624,16 @@
         {
           "pos": "n.",
           "def": "pretty white girl."
+        }
+      ]
+    },
+    {
+      "term": "Pistol from Bristol",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "mobster."
         }
       ]
     },
@@ -8888,6 +9868,16 @@
       ]
     },
     {
+      "term": "Presser from Odessa",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "tailor."
+        }
+      ]
+    },
+    {
       "term": "Press my flesh",
       "kind": "phrase",
       "senses": [
@@ -8914,6 +9904,16 @@
         {
           "pos": "n.",
           "def": "French horn player."
+        }
+      ]
+    },
+    {
+      "term": "Pronto from Toronto",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hurry-up guy."
         }
       ]
     },
@@ -9320,6 +10320,26 @@
       ]
     },
     {
+      "term": "Roamer from Tacoma",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "traveler."
+        }
+      ]
+    },
+    {
+      "term": "Robin Hood from Hollywood",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "plagiarizer."
+        }
+      ]
+    },
+    {
       "term": "Rock",
       "kind": "word",
       "senses": [
@@ -9366,6 +10386,16 @@
         {
           "pos": "n.",
           "def": "a very tall building."
+        }
+      ]
+    },
+    {
+      "term": "Rod from Cape Cod",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "hitch hiker."
         }
       ]
     },
@@ -9502,12 +10532,32 @@
       ]
     },
     {
+      "term": "Sad sacks from Halifax",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Canadian soldiers."
+        }
+      ]
+    },
+    {
       "term": "Sad Sal",
       "kind": "phrase",
       "senses": [
         {
           "pos": "adj.",
           "def": "old fashioned."
+        }
+      ]
+    },
+    {
+      "term": "Sad snore from Singapore",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "heavy sleeper."
         }
       ]
     },
@@ -9542,6 +10592,16 @@
       ]
     },
     {
+      "term": "Salt skin from Brooklyn",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "grafter."
+        }
+      ]
+    },
+    {
       "term": "Salty",
       "kind": "word",
       "senses": [
@@ -9558,6 +10618,16 @@
         {
           "pos": "v.",
           "def": "joining the Army or Navy."
+        }
+      ]
+    },
+    {
+      "term": "Santa from Atlanta",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "easy mark."
         }
       ]
     },
@@ -9742,6 +10812,36 @@
       ]
     },
     {
+      "term": "Shain from Spain",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pretty girl."
+        }
+      ]
+    },
+    {
+      "term": "Shake from Salt Lake",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "well wisher."
+        }
+      ]
+    },
+    {
+      "term": "Shanko from Waco",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "grifter."
+        }
+      ]
+    },
+    {
       "term": "Sharp",
       "kind": "word",
       "senses": [
@@ -9768,6 +10868,16 @@
         {
           "pos": "n.",
           "def": "newspaper."
+        }
+      ]
+    },
+    {
+      "term": "Shiksie from Dixie",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gentile (female)."
         }
       ]
     },
@@ -9808,6 +10918,16 @@
         {
           "pos": "n.",
           "def": "camera fans."
+        }
+      ]
+    },
+    {
+      "term": "Shutter from Calcutta",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "blind tiger operator."
         }
       ]
     },
@@ -9878,6 +10998,16 @@
         {
           "pos": "n.",
           "def": "one who is tops in his profession."
+        }
+      ]
+    },
+    {
+      "term": "Skunk from Podunk",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "objectional male."
         }
       ]
     },
@@ -10022,6 +11152,16 @@
       ]
     },
     {
+      "term": "Small time tell from New Rochelle",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "squealer."
+        }
+      ]
+    },
+    {
       "term": "Smoke",
       "kind": "word",
       "senses": [
@@ -10102,6 +11242,16 @@
       ]
     },
     {
+      "term": "Snatchers from Natchez",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "kidnappers."
+        }
+      ]
+    },
+    {
       "term": "Snazzy",
       "kind": "word",
       "senses": [
@@ -10118,6 +11268,16 @@
         {
           "pos": "adj.",
           "def": "well built."
+        }
+      ]
+    },
+    {
+      "term": "Snazzy sport from Newport",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "classy fashion plate."
         }
       ]
     },
@@ -10232,12 +11392,32 @@
       ]
     },
     {
+      "term": "Snow from Fresno",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drug addict."
+        }
+      ]
+    },
+    {
       "term": "Snuffer",
       "kind": "word",
       "senses": [
         {
           "pos": "n.",
           "def": "your nose."
+        }
+      ]
+    },
+    {
+      "term": "Soak from Holyoke",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "drunkard."
         }
       ]
     },
@@ -10462,6 +11642,16 @@
       ]
     },
     {
+      "term": "Square from Delaware",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "a conservative."
+        }
+      ]
+    },
+    {
       "term": "Squat",
       "kind": "word",
       "senses": [
@@ -10502,6 +11692,16 @@
       ]
     },
     {
+      "term": "Squawl from Portugal",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "madman."
+        }
+      ]
+    },
+    {
       "term": "Squeak stick",
       "kind": "phrase",
       "senses": [
@@ -10518,6 +11718,16 @@
         {
           "pos": "n.",
           "def": "a tight belt."
+        }
+      ]
+    },
+    {
+      "term": "Staples from Naples",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "spongers."
         }
       ]
     },
@@ -10912,6 +12122,16 @@
       ]
     },
     {
+      "term": "Style from Nile",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Greek costume."
+        }
+      ]
+    },
+    {
       "term": "Suds",
       "kind": "word",
       "senses": [
@@ -11021,6 +12241,16 @@
         {
           "pos": "n.",
           "def": "an improvised musical session."
+        }
+      ]
+    },
+    {
+      "term": "Swing sway from Mandalay",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "cooch dancer."
         }
       ]
     },
@@ -11143,6 +12373,16 @@
         {
           "pos": "adj.",
           "def": "mortified."
+        }
+      ]
+    },
+    {
+      "term": "Talkie from Milwaukee",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "big mouth."
         }
       ]
     },
@@ -11273,6 +12513,16 @@
         {
           "pos": "n.",
           "def": "your head."
+        }
+      ]
+    },
+    {
+      "term": "Thirst from Amherst",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "light drinker."
         }
       ]
     },
@@ -11457,12 +12707,32 @@
       ]
     },
     {
+      "term": "Torpedo from Toledo",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gunman."
+        }
+      ]
+    },
+    {
       "term": "Totem pole",
       "kind": "phrase",
       "senses": [
         {
           "pos": "n.",
           "def": "tall person."
+        }
+      ]
+    },
+    {
+      "term": "Toter from Dakota",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "gunsel."
         }
       ]
     },
@@ -11593,6 +12863,16 @@
         {
           "pos": "v.",
           "def": "to dance."
+        }
+      ]
+    },
+    {
+      "term": "Tunic from Munich",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "clothes lover."
         }
       ]
     },
@@ -11893,6 +13173,16 @@
       ]
     },
     {
+      "term": "Wham from Amsterdam",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "swell fellow."
+        }
+      ]
+    },
+    {
       "term": "What's cookin'?",
       "kind": "phrase",
       "senses": [
@@ -12083,6 +13373,26 @@
       ]
     },
     {
+      "term": "Wreck from Quebec",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "weakling."
+        }
+      ]
+    },
+    {
+      "term": "Wren from Cheyenne",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "Western girl."
+        }
+      ]
+    },
+    {
       "term": "Wrong riff",
       "kind": "phrase",
       "senses": [
@@ -12156,7 +13466,7 @@
     },
     {
       "term": "Y.M.C.A.",
-      "kind": "phrase",
+      "kind": "word",
       "senses": [
         {
           "pos": "v.",
@@ -12186,6 +13496,16 @@
     }
   ],
   "Z": [
+    {
+      "term": "Zany from Allegheny",
+      "kind": "phrase",
+      "senses": [
+        {
+          "pos": "n.",
+          "def": "pixillated person."
+        }
+      ]
+    },
     {
       "term": "Zoot suit",
       "kind": "phrase",
