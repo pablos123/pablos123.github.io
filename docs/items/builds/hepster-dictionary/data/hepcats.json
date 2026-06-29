@@ -85,8 +85,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Get ready."
+     "pos": "command.",
+     "def": "get ready."
     }
    ]
   },
@@ -739,8 +739,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Play it hot."
+     "pos": "command.",
+     "def": "play it hot."
     }
    ]
   },
@@ -1577,8 +1577,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Introduce me."
+     "pos": "command.",
+     "def": "introduce me."
     }
    ]
   },
@@ -2255,8 +2255,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Do the best you can."
+     "pos": "command.",
+     "def": "do the best you can."
     }
    ]
   },
@@ -2345,8 +2345,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Don't talk."
+     "pos": "command.",
+     "def": "don't talk."
     }
    ]
   },
@@ -3468,8 +3468,11 @@
    "senses": [
     {
      "pos": "adj.",
-     "def": "see Kopasetic."
+     "def": "everything's fine."
     }
+   ],
+   "syn": [
+    "Kopasetic"
    ]
   },
   {
@@ -3780,6 +3783,19 @@
      "pos": "v.",
      "def": "to strike on the head."
     }
+   ]
+  },
+  {
+   "term": "Crum crunchers",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "teeth."
+    }
+   ],
+   "syn": [
+    "Crumb crunchers"
    ]
   },
   {
@@ -6175,6 +6191,19 @@
    ]
   },
   {
+   "term": "G.I. struggle",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "dance held on the Post."
+    }
+   ],
+   "syn": [
+    "G.I. hop"
+   ]
+  },
+  {
    "term": "G.I. war",
    "kind": "phrase",
    "senses": [
@@ -6917,8 +6946,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Please go."
+     "pos": "command.",
+     "def": "please go."
     }
    ]
   },
@@ -7242,7 +7271,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "a person who talks much about regulations and \"soldier's rights\"."
+     "def": "a person who talks much about regulations and soldier's rights."
     }
    ]
   },
@@ -9229,8 +9258,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Thrill me."
+     "pos": "command.",
+     "def": "thrill me."
     }
    ]
   },
@@ -9379,8 +9408,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Won't you give me a kiss?"
+     "pos": "command.",
+     "def": "won't you give me a kiss?"
     }
    ]
   },
@@ -9412,6 +9441,9 @@
      "pos": "adj.",
      "def": "everything's fine."
     }
+   ],
+   "syn": [
+    "Copasetic"
    ]
   },
   {
@@ -10377,8 +10409,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Loan me five."
+     "pos": "command.",
+     "def": "loan me five."
     }
    ]
   },
@@ -10626,7 +10658,7 @@
     },
     {
      "pos": "n.",
-     "def": "a \"yes man.\""
+     "def": "a yes-man."
     }
    ]
   },
@@ -11068,7 +11100,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "New Years."
+     "def": "New Year's."
     }
    ]
   },
@@ -11389,7 +11421,7 @@
    ]
   },
   {
-   "term": "Old man mose",
+   "term": "Old man Mose",
    "kind": "phrase",
    "senses": [
     {
@@ -12268,7 +12300,7 @@
    "senses": [
     {
      "pos": "v.",
-     "def": "flattering superiors—handshaking."
+     "def": "flattering superiors, handshaking."
     }
    ]
   },
@@ -12447,8 +12479,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Shake my hand."
+     "pos": "command.",
+     "def": "shake my hand."
     }
    ]
   },
@@ -13114,8 +13146,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Get me in the mood."
+     "pos": "command.",
+     "def": "get me in the mood."
     }
    ]
   },
@@ -13145,7 +13177,7 @@
    "senses": [
     {
      "pos": "exclamation.",
-     "def": "expression used instead of \"Okay\" or \"Right\" in the Air Corps."
+     "def": "expression used instead of okay or right in the Air Corps."
     }
    ]
   },
@@ -13726,8 +13758,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Bring me ecstasy."
+     "pos": "command.",
+     "def": "bring me ecstasy."
     }
    ]
   },
@@ -14394,8 +14426,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Light a match."
+     "pos": "command.",
+     "def": "light a match."
     }
    ]
   },
@@ -14635,7 +14667,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "NCO's living quarters and area—because their wives do own laundry."
+     "def": "NCO's living quarters and area, because their wives do own laundry."
     }
    ]
   },
@@ -15821,8 +15853,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Take a look."
+     "pos": "command.",
+     "def": "take a look."
     }
    ]
   },
@@ -15838,6 +15870,19 @@
      "pos": "v.",
      "def": "to leave at a high rate of speed."
     }
+   ]
+  },
+  {
+   "term": "Take-on",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to reenlist."
+    }
+   ],
+   "syn": [
+    "Re-up"
    ]
   },
   {
@@ -15878,6 +15923,19 @@
      "pos": "n.",
      "def": "full dress hat."
     }
+   ]
+  },
+  {
+   "term": "Tarzan",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "your fellow."
+    }
+   ],
+   "syn": [
+    "Superman"
    ]
   },
   {
@@ -16375,8 +16433,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Think hard."
+     "pos": "command.",
+     "def": "think hard."
     }
    ]
   },
@@ -16905,8 +16963,8 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
-     "def": "Tell it to me."
+     "pos": "command.",
+     "def": "tell it to me."
     }
    ]
   },

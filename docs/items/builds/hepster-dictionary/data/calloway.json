@@ -111,7 +111,7 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
+     "pos": "command.",
      "def": "play it hot, emphasize the rhythm."
     }
    ]
@@ -140,6 +140,19 @@
    ]
   },
   {
+   "term": "Beat up the gums",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "to talk, converse, be loquacious."
+    }
+   ],
+   "syn": [
+    "Beat up the chops"
+   ]
+  },
+  {
    "term": "Beef",
    "kind": "word",
    "senses": [
@@ -152,6 +165,19 @@
       ]
      ]
     }
+   ]
+  },
+  {
+   "term": "Belly-Fiddle",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "guitar."
+    }
+   ],
+   "syn": [
+    "Git Box"
    ]
   },
   {
@@ -336,7 +362,7 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
+     "pos": "command.",
      "def": "apply yourself diligently, break your neck."
     }
    ]
@@ -473,12 +499,25 @@
    ]
   },
   {
+   "term": "Comes on like test pilot",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "v.",
+     "def": "plays, sings, or dances in a terrific manner, par excellence in any department."
+    }
+   ],
+   "syn": [
+    "Comes on like gangbusters"
+   ]
+  },
+  {
    "term": "Cop",
    "kind": "word",
    "senses": [
     {
      "pos": "v.",
-     "def": "to get, to obtain (see collar; knock)."
+     "def": "to get, to obtain."
     }
    ]
   },
@@ -693,6 +732,9 @@
      "pos": "n.",
      "def": "suit of clothes, dress, costume."
     }
+   ],
+   "syn": [
+    "Dry-goods"
    ]
   },
   {
@@ -711,8 +753,11 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "same as drape."
+     "def": "suit of clothes, dress, costume."
     }
+   ],
+   "syn": [
+    "Drape"
    ]
   },
   {
@@ -849,7 +894,7 @@
    "kind": "word",
    "senses": [
     {
-     "pos": "v.",
+     "pos": "adj.",
      "def": "shrewd."
     }
    ]
@@ -897,6 +942,9 @@
      "pos": "v.",
      "def": "what the cats do when they are warming up for a swing session."
     }
+   ],
+   "syn": [
+    "Licking the chops"
    ]
   },
   {
@@ -915,7 +963,7 @@
    "senses": [
     {
      "pos": "adj.",
-     "def": "a frompy queen is a battle or faust."
+     "def": "a queen who is a battle or faust."
     }
    ]
   },
@@ -1043,6 +1091,19 @@
    ]
   },
   {
+   "term": "Gob Stick",
+   "kind": "phrase",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "clarinet."
+    }
+   ],
+   "syn": [
+    "Licorice Stick"
+   ]
+  },
+  {
    "term": "Got your boots on",
    "kind": "phrase",
    "senses": [
@@ -1080,6 +1141,19 @@
      "pos": "v.",
      "def": "to eat."
     }
+   ]
+  },
+  {
+   "term": "Groan-Box",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "accordion."
+    }
+   ],
+   "syn": [
+    "Squeeze-Box"
    ]
   },
   {
@@ -1195,8 +1269,22 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "a drummer (see skin-beater)."
+     "def": "a drummer."
     }
+   ]
+  },
+  {
+   "term": "Hides",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "drums."
+    }
+   ],
+   "syn": [
+    "Skins",
+    "Suitcase"
    ]
   },
   {
@@ -1230,7 +1318,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "something very dinner (see fine dinner)."
+     "def": "something very good."
     }
    ]
   },
@@ -1315,6 +1403,19 @@
      "def": "vibraphone."
     }
    ]
+  },
+  {
+   "term": "Ivories",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "piano."
+    }
+   ],
+   "syn": [
+    "Storehouse"
+   ]
   }
  ],
  "J": [
@@ -1324,7 +1425,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "name for all male friends (see gate; pops)."
+     "def": "name for all male friends."
     }
    ]
   },
@@ -1434,7 +1535,7 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
+     "pos": "command.",
      "def": "show me a good time, send me."
     }
    ]
@@ -1572,8 +1673,11 @@
    "senses": [
     {
      "pos": "v.",
-     "def": "see frisking the whiskers."
+     "def": "what the cats do when they are warming up for a swing session."
     }
+   ],
+   "syn": [
+    "Frisking the whiskers"
    ]
   },
   {
@@ -2032,7 +2136,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "salutation for all males (see gate; Jack)."
+     "def": "salutation for all males."
     }
    ]
   },
@@ -2086,6 +2190,19 @@
    ]
   },
   {
+   "term": "Reeds",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "saxophone."
+    }
+   ],
+   "syn": [
+    "Plumbing"
+   ]
+  },
+  {
    "term": "Ride",
    "kind": "word",
    "senses": [
@@ -2125,7 +2242,7 @@
    "kind": "phrase",
    "senses": [
     {
-     "pos": "v.",
+     "pos": "command.",
      "def": "send me, kill me, move me with rhythm."
     }
    ]
@@ -2258,7 +2375,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "drummer (see hide-beater)."
+     "def": "drummer."
     }
    ]
   },
@@ -2270,6 +2387,10 @@
      "pos": "n.",
      "def": "drums."
     }
+   ],
+   "syn": [
+    "Hides",
+    "Suitcase"
    ]
   },
   {
@@ -2300,6 +2421,19 @@
      "pos": "v.",
      "def": "to talk freely."
     }
+   ]
+  },
+  {
+   "term": "Slush-Pump",
+   "kind": "word",
+   "senses": [
+    {
+     "pos": "n.",
+     "def": "trombone."
+    }
+   ],
+   "syn": [
+    "Tram"
    ]
   },
   {
@@ -2368,7 +2502,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "an unhep person (see icky; Jeff)."
+     "def": "an unhep person."
     }
    ]
   },
@@ -2490,7 +2624,7 @@
    "senses": [
     {
      "pos": "n.",
-     "def": "suit, dress or costume (see drape; dry-goods)."
+     "def": "suit, dress or costume."
     }
    ]
   },
