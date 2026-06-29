@@ -620,7 +620,12 @@
     // Merge entries across the active scope into { letter: mergedEntries[] }, where a
     // merged entry is { term, letter, sources: [{ dictId, senses, syn, abbrv }] }.
     // Same normalized term across dictionaries collapses into one headword.
+    // Per-scope merged index, built once and cached. Scope only changes when you pick a
+    // different dictionary chip; the query never invalidates it, so there's no reason to
+    // rebuild the Map + re-sort on every keystroke.
+    const indexCache = {};
     function buildIndex(scopeId) {
+      if (indexCache[scopeId]) return indexCache[scopeId];
       const dicts = scopeId === "all"
         ? DICTIONARIES
         : DICTIONARIES.filter(d => d.id === scopeId);
@@ -634,8 +639,20 @@
             let m = map.get(key);
             // kind ("word"/"phrase") is a property of the headword, so the first source
             // sets it; same normalized term across dicts shares the same kind.
-            if (!m) { m = { term: e.term, letter: l, kind: e.kind, sources: [] }; map.set(key, m); }
-            m.sources.push({ dictId: d.id, senses: e.senses, syn: e.syn, abbrv: e.abbrv });
+            if (!m) { m = { term: e.term, _term: key, letter: l, kind: e.kind, sources: [] }; map.set(key, m); }
+            // Precompute lowercased haystacks once so search is plain substring tests (no
+            // per-keystroke toLowerCase). Kept as separate fields so the examples/syn/abbrv
+            // toggles can still gate what's searchable.
+            const exText = e.senses.some(s => s.ex)
+              ? e.senses.flatMap(s => s.ex || []).map(x => x.join(" ")).join("\n").toLowerCase()
+              : "";
+            m.sources.push({
+              dictId: d.id, senses: e.senses, syn: e.syn, abbrv: e.abbrv,
+              _def: e.senses.map(s => s.def).join("\n").toLowerCase(),
+              _ex: exText,
+              _syn: e.syn ? e.syn.join("\n").toLowerCase() : "",
+              _abbrv: e.abbrv ? e.abbrv.join("\n").toLowerCase() : "",
+            });
           }
         }
       }
@@ -643,26 +660,26 @@
       for (const l of ALPHA) groups[l] = [];
       for (const m of map.values()) groups[m.letter].push(m);
       for (const l of ALPHA)
-        groups[l].sort((a, b) => normTerm(a.term).localeCompare(normTerm(b.term), "en"));
+        groups[l].sort((a, b) => a._term.localeCompare(b._term, "en"));
+      indexCache[scopeId] = groups;
       return groups;
     }
 
     // Does one source (a dict's entry body) match the query?
     function sourceMatches(src, ql) {
-      for (const s of src.senses) {
-        if (s.def.toLowerCase().includes(ql)) return true;
-        if (show.examples && s.ex) for (const ex of s.ex) if (ex.join(" ").toLowerCase().includes(ql)) return true;
-      }
-      // syn/abbrv are searched only while their field toggle is on (mirrors examples).
-      const inList = (arr) => arr && arr.some(x => x.toLowerCase().includes(ql));
-      return (show.syn && inList(src.syn)) || (show.abbrv && inList(src.abbrv));
+      if (src._def.includes(ql)) return true;
+      // syn/abbrv/examples are searched only while their field toggle is on.
+      if (show.examples && src._ex.includes(ql)) return true;
+      if (show.syn && src._syn.includes(ql)) return true;
+      if (show.abbrv && src._abbrv.includes(ql)) return true;
+      return false;
     }
 
     // Filter a merged entry against the query. A headword hit keeps every source;
     // otherwise keep only the sources whose body matches. null = no match.
     function matchEntry(m, ql) {
       if (!ql) return m;
-      if (m.term.toLowerCase().includes(ql)) return m;
+      if (m._term.includes(ql)) return m;
       const srcs = m.sources.filter(s => sourceMatches(s, ql));
       return srcs.length ? { term: m.term, letter: m.letter, kind: m.kind, sources: srcs } : null;
     }
