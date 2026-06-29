@@ -71,6 +71,16 @@
       background: var(--bg2);
       margin: 2px 3px;
     }
+    /* tgroup keeps a toggle cluster together so it can become its own row on
+       mobile; inline on desktop, matching the surrounding gap. */
+    .tgroup {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    /* Collapse-all button: mobile-only. */
+    .ctl-toggle { display: none; }
     .chip {
       display: inline-flex;
       align-items: center;
@@ -86,9 +96,10 @@
       line-height: 1.4;
     }
     .chip:hover { filter: brightness(1.15); }
-    .chip, .toggle, .rail a, .info-btn, .modal-close {
+    .chip, .toggle, .ctl-toggle, .clear-btn, .rail a, .info-btn, .modal-close {
       user-select: none;
       -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
     }
     .chip.active {
       background: var(--chip, var(--yellow));
@@ -109,26 +120,51 @@
       margin-top: 12px;
     }
 
-    #search {
+    .search-box {
+      position: relative;
       flex: 1;
+      display: flex;
+    }
+    #search {
+      width: 100%;
       background: var(--bg);
       color: var(--fg);
       border: 1px solid var(--bg2);
       border-radius: 4px;
       outline: none;
-      padding: 9px 12px;
+      padding: 9px 32px 9px 12px;
       font-family: inherit;
       font-size: 13px;
       caret-color: var(--yellow);
     }
     #search:focus { border-color: var(--yellow); }
     #search::placeholder { color: var(--gray); opacity: 0.5; }
+    /* Clear (✕): shown only while the search has text, on both platforms. */
+    .clear-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 17px;
+      line-height: 1;
+      padding: 2px 5px;
+      cursor: pointer;
+    }
+    .clear-btn:hover { color: var(--fg); }
+    .clear-btn[hidden] { display: none; }
 
     #count {
       font-size: 11px;
       color: var(--gray);
       white-space: nowrap;
       flex-shrink: 0;
+      /* Fixed width + right-align so the result count shrinking (e.g. "3 / 1213")
+         doesn't make the flex search box grow as you type. */
+      min-width: 72px;
+      text-align: right;
     }
 
     /* Filters: deliberately quieter than the dict chips. Plain-text toggles
@@ -372,20 +408,60 @@
 
     /* ── Mobile ──────────────────────────────────────────────────────────────── */
     @media (max-width: 640px) {
-      header { padding: 12px 14px; }
+      /* Header as a column so the revealed filters can sit BELOW the search row
+         (they precede it in the DOM). */
+      header { padding: 12px 14px; display: flex; flex-direction: column; }
+      .controls { order: 1; }
       .title { font-size: 14px; }
       .subtitle { display: none; }
 
-      .chip { padding: 6px 11px; font-size: 12px; }
-
-      /* Real tap targets: the desktop toggles are zero-padding text. */
-      .toggles { gap: 8px 10px; }
-      .toggle {
-        padding: 6px 10px;
-        min-height: 32px;
+      /* Controls collapse into 3 stacked rows revealed by the search-row icon:
+         dictionaries, words/phrases, fields. No separators on mobile. */
+      .controls { flex-direction: column; align-items: stretch; gap: 8px; }
+      .ctl-sep { display: none; }
+      /* Filter icon lives in the search row (compact, thumb-reachable). */
+      .ctl-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        background: var(--bg);
+        color: var(--fg2);
         border: 1px solid var(--bg2);
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 15px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .ctl-toggle[aria-expanded="true"] {
+        background: var(--yellow);
+        color: var(--bg);
+        border-color: var(--yellow);
+      }
+
+      /* Hidden by default; the icon reveals them. */
+      .chips, .toggles { display: none; }
+      .controls.open .chips { display: flex; }
+      .controls.open .toggles {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      /* Tinier chips on mobile; ⓘ hidden (long-press a chip for its info). */
+      .chip { padding: 3px 8px; font-size: 11px; gap: 4px; }
+      .info-btn { display: none; }
+
+      /* Pill toggles, sized to match the tinier chips. */
+      .tgroup { gap: 6px 8px; }
+      .toggle {
+        padding: 3px 8px;
+        border: 1px solid var(--bg2);
+        border-radius: 4px;
+        font-size: 11px;
       }
 
       /* Alphabet rail is unusable by thumb — drop it, give entries the width. */
@@ -402,21 +478,29 @@
   <header>
     <div class="title">The Great Hepster's Dictionary</div>
     <div class="subtitle" id="subtitle"></div>
-    <div class="controls">
+    <div class="controls" id="controls">
       <div class="chips" id="chips"></div>
       <span class="ctl-sep" aria-hidden="true"></span>
       <div class="toggles" id="toggles">
-        <button class="toggle active" type="button" data-toggle="words"    aria-pressed="true" title="show single-word entries">words</button>
-        <button class="toggle active" type="button" data-toggle="phrases"  aria-pressed="true" title="show multi-word phrase entries">phrases</button>
+        <span class="tgroup">
+          <button class="toggle active" type="button" data-toggle="words"    aria-pressed="true" title="show single-word entries">words</button>
+          <button class="toggle active" type="button" data-toggle="phrases"  aria-pressed="true" title="show multi-word phrase entries">phrases</button>
+        </span>
         <span class="ctl-sep" aria-hidden="true"></span>
-        <button class="toggle active" type="button" data-toggle="examples" aria-pressed="true" title="show example sentences">examples</button>
-        <button class="toggle active" type="button" data-toggle="syn"      aria-pressed="true" title="show synonyms">synonyms</button>
-        <button class="toggle active" type="button" data-toggle="abbrv"    aria-pressed="true" title="show abbreviations">abbreviations</button>
-        <button class="toggle active" type="button" data-toggle="markers"  aria-pressed="true" title="show dictionary color markers">markers</button>
+        <span class="tgroup">
+          <button class="toggle active" type="button" data-toggle="examples" aria-pressed="true" title="show example sentences">examples</button>
+          <button class="toggle active" type="button" data-toggle="syn"      aria-pressed="true" title="show synonyms">synonyms</button>
+          <button class="toggle active" type="button" data-toggle="abbrv"    aria-pressed="true" title="show abbreviations">abbreviations</button>
+          <button class="toggle active" type="button" data-toggle="markers"  aria-pressed="true" title="show dictionary color markers">markers</button>
+        </span>
       </div>
     </div>
     <div class="search-row">
-      <input id="search" type="text" placeholder="search a term or its meaning&hellip;" spellcheck="false" autocomplete="off" autofocus>
+      <div class="search-box">
+        <input id="search" type="text" placeholder="search&hellip;" spellcheck="false" autocomplete="off" autofocus>
+        <button class="clear-btn" id="clear" type="button" aria-label="clear search" hidden>&times;</button>
+      </div>
+      <button class="ctl-toggle" id="ctl-toggle" type="button" aria-label="filters" aria-expanded="false" aria-controls="controls">&#9776;</button>
       <span id="count"></span>
     </div>
   </header>
@@ -763,10 +847,25 @@
 
     // ─── Wire up ─────────────────────────────────────────────────────────────────
     const search = document.getElementById("search");
+    const clearBtn = document.getElementById("clear");
+    const syncClear = () => { clearBtn.hidden = !search.value; };
     let timer = null;
     search.addEventListener("input", () => {
+      syncClear();
       clearTimeout(timer);
       timer = setTimeout(() => render(search.value), 60);
+    });
+    clearBtn.addEventListener("click", () => {
+      search.value = "";
+      syncClear();
+      search.focus();
+      render("");
+    });
+    const controlsEl = document.getElementById("controls");
+    const ctlToggle = document.getElementById("ctl-toggle");
+    ctlToggle.addEventListener("click", () => {
+      const open = controlsEl.classList.toggle("open");
+      ctlToggle.setAttribute("aria-expanded", String(open));
     });
     const togglesEl = document.getElementById("toggles");
     togglesEl.addEventListener("click", e => {
@@ -785,7 +884,21 @@
       const t = document.getElementById("letter-" + a.dataset.letter);
       if (t) t.scrollIntoView({ behavior: "auto", block: "start" });
     });
+    // Long-press a chip to open its info modal (the on-chip ⓘ is hidden on mobile).
+    // A fired long-press suppresses the click that would otherwise select the chip.
+    let lpTimer = null, lpFired = false;
+    const cancelLP = () => clearTimeout(lpTimer);
+    chipsEl.addEventListener("pointerdown", e => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      lpFired = false;
+      lpTimer = setTimeout(() => { lpFired = true; openModal(chip.dataset.id); }, 450);
+    });
+    chipsEl.addEventListener("pointerup", cancelLP);
+    chipsEl.addEventListener("pointerleave", cancelLP);
+    chipsEl.addEventListener("pointercancel", cancelLP);
     chipsEl.addEventListener("click", e => {
+      if (lpFired) { lpFired = false; return; }
       const info = e.target.closest(".info-btn");
       if (info) { e.stopPropagation(); openModal(info.dataset.info); return; }
       const chip = e.target.closest(".chip");
