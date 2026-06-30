@@ -708,6 +708,14 @@
     }
 
     backdrop.addEventListener('click', closeSheet);
+
+    // scrolling gesture dismisses the sheet
+    function closeSheetOnScroll() {
+      if (sheet.classList.contains('open')) closeSheet();
+    }
+    document.querySelector('.palette').addEventListener('scroll', closeSheetOnScroll, { passive: true });
+    window.addEventListener('scroll', closeSheetOnScroll, { passive: true });
+    window.addEventListener('wheel',  closeSheetOnScroll, { passive: true });
     Object.values(sheetRows).forEach(row => {
       row.addEventListener('click', () => {
         const value = row.dataset.copy;
