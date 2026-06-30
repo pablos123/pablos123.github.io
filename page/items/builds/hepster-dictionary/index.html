@@ -329,6 +329,12 @@
       border-radius: 2px;
       padding: 0 1px;
     }
+    /* Search highlight uses the CSS Custom Highlight API (no DOM mutation per keystroke).
+       ::highlight only supports a few properties — background/color are enough. */
+    ::highlight(dict-search) {
+      background: var(--yellow);
+      color: var(--bg);
+    }
 
     .empty {
       color: var(--gray);
@@ -675,15 +681,6 @@
       return false;
     }
 
-    // Filter a merged entry against the query. A headword hit keeps every source;
-    // otherwise keep only the sources whose body matches. null = no match.
-    function matchEntry(m, ql) {
-      if (!ql) return m;
-      if (m._term.includes(ql)) return m;
-      const srcs = m.sources.filter(s => sourceMatches(s, ql));
-      return srcs.length ? { term: m.term, letter: m.letter, kind: m.kind, sources: srcs } : null;
-    }
-
     // An example is [quote, gloss?]: the quote is italicized between guillemets, the
     // optional gloss (a parenthetical translation) follows in roman text.
     function renderExample(e, q) {
@@ -788,95 +785,179 @@
         `<a href="#letter-${l}" data-letter="${l}">${l}</a>`).join("");
     }
 
-    function render(q) {
-      const query = q.trim();
-      const ql = query.toLowerCase();
+    // The full entry DOM for the active scope + toggle state is built ONCE by rebuild().
+    // Typing then only flips node visibility and repaints the highlight (applySearch) — no
+    // per-keystroke innerHTML, which is what made mobile typing lag.
+    let records = [];        // [{ el, sectionEl, m, srcEls }] parallel to the .entry nodes
+    let curQuery = "";
+    const emptyEl = document.createElement("div");
+    emptyEl.className = "empty";
+    // CSS Custom Highlight API paints matches without touching the DOM. Degrades to no
+    // highlight (text still filters correctly) where unsupported (iOS < 17.2).
+    const HL_OK = typeof CSS !== "undefined" && CSS.highlights && typeof Highlight !== "undefined";
+
+    function rebuild() {
       const fullIndex = buildIndex(activeId);
-
-      // words/phrases toggles filter which headwords exist at all; counts are kind-aware.
+      // words/phrases toggles decide which headwords get built at all.
       const kindOK = (m) => m.kind === "phrase" ? show.phrases : show.words;
-
-      // total = distinct headwords in scope that pass the kind filter (query-independent).
-      let total = 0;
-      for (const l of ALPHA) for (const m of fullIndex[l]) if (kindOK(m)) total++;
-
-      const groups = {};
-      let count = 0;
-      for (const l of ALPHA) {
-        const items = [];
-        for (const m of fullIndex[l]) {
-          if (!kindOK(m)) continue;
-          const kept = matchEntry(m, ql);
-          if (kept) items.push(kept);
-        }
-        if (items.length) { groups[l] = items; count += items.length; }
-      }
-
-      countEl.textContent = count + " / " + total;
-
-      const present = new Set(Object.keys(groups));
-      railEl.querySelectorAll("a").forEach(a =>
-        a.classList.toggle("dim", !present.has(a.dataset.letter)));
-
-      if (!count) {
-        entriesEl.innerHTML = `<div class="empty">no jive found for &ldquo;${escHtml(query)}&rdquo;.</div>`;
-        return;
-      }
 
       const refLine = (lbl, arr) => (arr && arr.length)
         ? `<div class="ref"><span class="ref-label">${lbl}</span> ` +
-          arr.map(s => `<span class="synref">${highlight(s, query)}</span>`).join(", ") +
+          arr.map(s => `<span class="synref">${escHtml(s)}</span>`).join(", ") +
           `</div>`
         : "";
 
+      const meta = [];       // merged entries, in the same order as the .entry nodes
       let html = "";
       for (const l of ALPHA) {
-        const items = groups[l];
-        if (!items) continue;
-        html += `<section class="letter-group"><h2 class="letter" id="letter-${l}">${l}</h2>`;
+        const items = fullIndex[l].filter(kindOK);
+        if (!items.length) continue;
+        html += `<section class="letter-group" data-letter="${l}"><h2 class="letter" id="letter-${l}">${l}</h2>`;
         for (const m of items) {
-          // Provenance shown as a colored dot per source dict beside the (single-color)
-          // headword; a word in both dicts gets two dots.
+          // Provenance: a colored dot per source dict beside the (single-color) headword;
+          // a word in both dicts gets two dots.
           const dots = show.markers ? m.sources.map(src => {
             const dict = DICT_BY_ID[src.dictId];
             return `<span class="dot" style="background:${dict.color}" title="${escHtml(dict.name)}"></span>`;
           }).join("") : "";
-          html += `<div class="entry"><span class="term">${highlight(m.term, query)}</span>${dots}`;
-          // When a word has defs from more than one dict, each def block gets a
-          // dict-colored left bar so you can tell which definition is whose.
+          html += `<div class="entry"><span class="term">${escHtml(m.term)}</span>${dots}`;
+          // Multi-dict headword: each def block gets a dict-colored left bar.
           const multi = show.markers && m.sources.length > 1;
           for (const src of m.sources) {
             const block = multi
               ? ` class="src-block tinted" style="--c:${DICT_BY_ID[src.dictId].color}"`
               : ` class="src-block"`;
             html += `<div${block}>` +
-                      buildSenses(src.senses, m.term, query) +
+                      buildSenses(src.senses, m.term, "") +
                       (show.syn ? refLine("syn.", src.syn) : "") +
                       (show.abbrv ? refLine("abbrv.", src.abbrv) : "") +
                     `</div>`;
           }
           html += `</div>`;
+          meta.push(m);
         }
         html += `</section>`;
       }
       entriesEl.innerHTML = html;
+      entriesEl.appendChild(emptyEl);
+
+      // Zip the freshly built nodes back to their merged entries for the search path.
+      records = [];
+      entriesEl.querySelectorAll(".entry").forEach((el, i) => {
+        records.push({
+          el,
+          sectionEl: el.closest(".letter-group"),
+          m: meta[i],
+          srcEls: el.querySelectorAll(".src-block"),
+        });
+      });
+
+      applySearch(curQuery);
+    }
+
+    function applySearch(q) {
+      curQuery = q;
+      const query = q.trim();
+      const ql = query.toLowerCase();
+
+      const counts = new Map();        // sectionEl -> visible entry count
+      let count = 0;
+      for (const r of records) {
+        const m = r.m;
+        let matched, showAll;
+        if (!ql) { matched = true; showAll = true; }
+        else if (m._term.includes(ql)) { matched = true; showAll = true; }
+        else {
+          // No headword hit: show only the source blocks whose body matches.
+          showAll = false;
+          let any = false;
+          m.sources.forEach((src, i) => {
+            const hit = sourceMatches(src, ql);
+            r.srcEls[i].hidden = !hit;
+            if (hit) any = true;
+          });
+          matched = any;
+        }
+        if (showAll) for (const se of r.srcEls) se.hidden = false;
+        r.el.hidden = !matched;
+        if (matched) { count++; counts.set(r.sectionEl, (counts.get(r.sectionEl) || 0) + 1); }
+      }
+
+      const present = new Set();
+      entriesEl.querySelectorAll(".letter-group").forEach(se => {
+        const c = counts.get(se) || 0;
+        se.hidden = !c;
+        if (c) present.add(se.dataset.letter);
+      });
+
+      countEl.textContent = count + " / " + records.length;
+      railEl.querySelectorAll("a").forEach(a =>
+        a.classList.toggle("dim", !present.has(a.dataset.letter)));
+
+      emptyEl.hidden = !!count;
+      if (!count) emptyEl.innerHTML = `no jive found for &ldquo;${escHtml(query)}&rdquo;.`;
+
+      paintHighlight(ql);
+    }
+
+    // Repaint the search highlight over visible, matching text via the Highlight API —
+    // ranges only, no DOM writes, so it stays cheap as you type.
+    function paintHighlight(ql) {
+      if (!HL_OK) return;
+      const hl = new Highlight();
+      // A 1-char query highlights most of the dictionary — thousands of ranges for no real
+      // value, and the spike that makes backspace-hold janky. Paint only for 2+ chars; the
+      // filter itself still works at 1 char.
+      if (ql.length >= 2) {
+        for (const r of records) {
+          if (r.el.hidden) continue;
+          const walker = document.createTreeWalker(r.el, NodeFilter.SHOW_TEXT);
+          let node;
+          while ((node = walker.nextNode())) {
+            const sb = node.parentElement.closest(".src-block");
+            if (sb && sb.hidden) continue;     // don't highlight inside a hidden source block
+            const text = node.nodeValue.toLowerCase();
+            let idx = text.indexOf(ql);
+            while (idx !== -1) {
+              const range = document.createRange();
+              range.setStart(node, idx);
+              range.setEnd(node, idx + ql.length);
+              hl.add(range);
+              idx = text.indexOf(ql, idx + ql.length);
+            }
+          }
+        }
+      }
+      CSS.highlights.set("dict-search", hl);
     }
 
     // ─── Wire up ─────────────────────────────────────────────────────────────────
     const search = document.getElementById("search");
     const clearBtn = document.getElementById("clear");
     const syncClear = () => { clearBtn.hidden = !search.value; };
-    let timer = null;
+    // Direction-aware: growing the query shrinks the result set (cheap), so search runs
+    // immediately and the highlight tracks typing with no lag. Shrinking it — backspace,
+    // especially held — grows the set and gets expensive, so collapse the burst into one
+    // trailing run instead of firing on every auto-repeat. Skipped when nothing changed.
+    const GAP = 120;
+    let timer = 0, lastInput = "";
+    function runSearch() {
+      if (search.value === lastInput) return;
+      lastInput = search.value;
+      applySearch(search.value);
+    }
     search.addEventListener("input", () => {
       syncClear();
       clearTimeout(timer);
-      timer = setTimeout(() => render(search.value), 60);
+      if (search.value.length >= lastInput.length) runSearch();  // typing forward → now
+      else timer = setTimeout(runSearch, GAP);                   // deleting → trailing run
     });
     clearBtn.addEventListener("click", () => {
       search.value = "";
+      lastInput = "";
       syncClear();
       search.focus();
-      render("");
+      applySearch("");
     });
     const controlsEl = document.getElementById("controls");
     const ctlToggle = document.getElementById("ctl-toggle");
@@ -892,7 +973,7 @@
       show[key] = !show[key];
       btn.classList.toggle("active", show[key]);
       btn.setAttribute("aria-pressed", String(show[key]));
-      render(search.value);
+      rebuild();        // toggles change built content (and search semantics), not just visibility
     });
     railEl.addEventListener("click", e => {
       const a = e.target.closest("a");
@@ -922,7 +1003,7 @@
       if (!chip) return;
       activeId = chip.dataset.id;
       updateChips();
-      render(search.value);
+      rebuild();        // scope change rebuilds the entry list
     });
     document.getElementById("modal-close").addEventListener("click", closeModal);
     modalEl.addEventListener("click", e => { if (e.target === modalEl) closeModal(); });
@@ -947,7 +1028,7 @@
       }
       buildRail();
       buildChips();
-      render("");
+      rebuild();
     }
     boot();
   </script>
