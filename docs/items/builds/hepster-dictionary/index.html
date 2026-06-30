@@ -935,12 +935,13 @@
     const search = document.getElementById("search");
     const clearBtn = document.getElementById("clear");
     const syncClear = () => { clearBtn.hidden = !search.value; };
-    // Direction-aware: growing the query shrinks the result set (cheap), so search runs
-    // immediately and the highlight tracks typing with no lag. Shrinking it — backspace,
-    // especially held — grows the set and gets expensive, so collapse the burst into one
-    // trailing run instead of firing on every auto-repeat. Skipped when nothing changed.
-    const GAP = 120;
-    let timer = 0, lastInput = "";
+    // The only costly case is a HELD backspace: its auto-repeat fires events ~30ms apart,
+    // and each shrinking query grows the result set. Defer just that — collapse the rapid
+    // burst into one trailing run. Everything else (forward typing, a single deliberate
+    // backspace, deleting to empty) runs immediately. Discrete presses land >80ms apart, so
+    // inter-event timing tells a held key from a tapped one. Skipped when nothing changed.
+    const GAP = 120, BURST = 80;
+    let timer = 0, lastInput = "", lastEvt = 0;
     function runSearch() {
       if (search.value === lastInput) return;
       lastInput = search.value;
@@ -949,8 +950,12 @@
     search.addEventListener("input", () => {
       syncClear();
       clearTimeout(timer);
-      if (search.value.length >= lastInput.length) runSearch();  // typing forward → now
-      else timer = setTimeout(runSearch, GAP);                   // deleting → trailing run
+      const now = performance.now();
+      const heldRepeat = now - lastEvt < BURST;   // auto-repeat, not a discrete keystroke
+      lastEvt = now;
+      // shrinking (lastInput hasn't advanced, so longer) AND rapid → held backspace
+      if (search.value.length >= lastInput.length || !heldRepeat) runSearch();
+      else timer = setTimeout(runSearch, GAP);
     });
     clearBtn.addEventListener("click", () => {
       search.value = "";
