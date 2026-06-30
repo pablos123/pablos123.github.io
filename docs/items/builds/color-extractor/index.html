@@ -62,12 +62,6 @@
       letter-spacing: 0.08em;
     }
 
-    header .hint {
-      font-size: 11px;
-      color: var(--gray);
-      letter-spacing: 0.04em;
-    }
-
     .panes {
       display: flex;
       flex: 1;
@@ -395,11 +389,10 @@
 <body>
   <header>
     <span class="title">color extractor</span>
-    <span class="hint">paste anything → tap a swatch to copy</span>
   </header>
   <div class="panes">
     <div class="left">
-      <textarea id="source" placeholder="paste CSS, code, anything with colors…" spellcheck="false"></textarea>
+      <textarea id="source" placeholder="paste or type something with colors here" spellcheck="false"></textarea>
     </div>
     <div class="right">
       <div class="filters">
@@ -407,7 +400,7 @@
         <label class="filter-label"><input type="checkbox" id="f-rgb"   checked> rgb/rgba</label>
         <label class="filter-label"><input type="checkbox" id="f-hsl"   checked> hsl/hsla</label>
         <label class="filter-label"><input type="checkbox" id="f-named" checked> named</label>
-        <button id="pin-btn">save palette</button>
+        <button id="pin-btn">pin</button>
       </div>
       <div class="palette">
         <div class="swatches" id="swatches"></div>
@@ -742,7 +735,7 @@
     function render(colors) {
       const el = document.getElementById('swatches');
       if (!colors.length) {
-        el.innerHTML = '<span class="empty">no colors found — try pasting CSS or hex codes</span>';
+        el.innerHTML = '<span class="empty">no colors found</span>';
         return;
       }
       el.innerHTML = colors.map(c =>
