@@ -709,10 +709,13 @@
 
     backdrop.addEventListener('click', closeSheet);
 
-    // scrolling gesture dismisses the sheet
+    // scrolling / swipe gesture dismisses the sheet
     function closeSheetOnScroll() {
       if (sheet.classList.contains('open')) closeSheet();
     }
+    // backdrop covers the screen while open, so the scroll gesture lands here
+    backdrop.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
+    sheet.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
     document.querySelector('.palette').addEventListener('scroll', closeSheetOnScroll, { passive: true });
     window.addEventListener('scroll', closeSheetOnScroll, { passive: true });
     window.addEventListener('wheel',  closeSheetOnScroll, { passive: true });
