@@ -166,6 +166,15 @@
       position: relative;
     }
 
+    /* touch devices: no sticky hover-enlarge after tap */
+    @media (hover: none) {
+      .swatch-wrap:hover .swatch {
+        transform: none;
+        box-shadow: none;
+        z-index: auto;
+      }
+    }
+
     #tooltip {
       display: none;
       position: fixed;
