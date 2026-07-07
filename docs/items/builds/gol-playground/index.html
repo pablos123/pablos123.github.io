@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>game of life playground</title>
+  <style>
+    :root {
+      --bg:     #282828;
+      --bg1:    #3c3836;
+      --bg2:    #504945;
+      --bg3:    #665c54;
+      --fg:     #ebdbb2;
+      --fg2:    #d5c4a1;
+      --gray:   #928374;
+      --yellow: #d79921;
+      --orange: #d65d0e;
+      --red:    #cc241d;
+      --green:  #98971a;
+      --blue:   #458588;
+      --aqua:   #689d6a;
+      --purple: #b16286;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 8px 16px;
+      background: var(--bg1);
+      border-bottom: 1px solid var(--bg2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    header .title { font-size: 13px; letter-spacing: .5px; color: var(--fg); }
+    header .hint  { font-size: 11px; color: var(--gray); }
+
+    /* ─── toolbar ─────────────────────────────────────────────── */
+    .toolbar {
+      flex-shrink: 0;
+      background: var(--bg1);
+      border-bottom: 1px solid var(--bg2);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+    .group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 8px;
+      border-right: 1px solid var(--bg2);
+    }
+    .group:last-child { border-right: 0; padding-right: 0; }
+    .group .lbl { color: var(--gray); font-size: 11px; }
+
+    button.btn {
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--fg);
+      background: var(--bg2);
+      border: 1px solid var(--bg3);
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: background .12s, color .12s, border-color .12s;
+      white-space: nowrap;
+    }
+    button.btn:hover  { background: var(--bg3); }
+    button.btn:active { transform: translateY(1px); }
+    button.btn.active { background: var(--yellow); color: var(--bg); border-color: var(--yellow); }
+    button.btn.primary { background: var(--green); color: var(--bg); border-color: var(--green); }
+    button.btn.primary.playing { background: var(--orange); border-color: var(--orange); }
+    /* fixed width so the toolbar doesn't shift between play/pause labels */
+    #play { min-width: 84px; text-align: center; }
+
+    .swatch {
+      width: 26px; height: 26px;
+      border-radius: 4px;
+      border: 1px solid var(--bg3);
+      padding: 0;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+    .swatch input[type=color] {
+      position: absolute; inset: -4px;
+      width: calc(100% + 8px); height: calc(100% + 8px);
+      border: 0; padding: 0; cursor: pointer;
+      background: none;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none; appearance: none;
+      width: 110px; height: 4px;
+      background: var(--bg3);
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--yellow); cursor: pointer; border: 0;
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--yellow); cursor: pointer; border: 0;
+    }
+
+    input.num {
+      font-family: inherit; font-size: 12px;
+      width: 52px;
+      color: var(--fg);
+      background: var(--bg2);
+      border: 1px solid var(--bg3);
+      border-radius: 4px;
+      padding: 4px 6px;
+      -webkit-user-select: text; user-select: text;
+    }
+    /* custom brush dropdown */
+    .dropdown { position: relative; }
+    .sel-btn {
+      width: 172px;
+      display: inline-flex; align-items: center; justify-content: space-between;
+      gap: 10px;
+    }
+    .sel-btn #brush-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
+    .sel-btn .caret { color: var(--gray); font-size: 10px; flex-shrink: 0; }
+    .menu {
+      position: absolute; top: calc(100% + 4px); left: 0;
+      z-index: 5;
+      min-width: 190px;
+      max-height: 320px;
+      overflow-y: auto;
+      background: var(--bg1);
+      border: 1px solid var(--bg3);
+      border-radius: 6px;
+      padding: 4px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.45);
+      display: none;
+      scrollbar-width: thin;
+      scrollbar-color: var(--bg3) transparent;
+    }
+    .menu.open { display: block; }
+    .opt-group {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .6px;
+      color: var(--gray); padding: 7px 8px 3px;
+    }
+    .opt {
+      display: block; width: 100%; text-align: left;
+      font-family: inherit; font-size: 12px; color: var(--fg);
+      background: none; border: 0; border-radius: 4px;
+      padding: 5px 8px; cursor: pointer;
+    }
+    .opt:hover { background: var(--bg3); }
+    .opt.active { background: var(--yellow); color: var(--bg); }
+    .menu::-webkit-scrollbar { width: 8px; }
+    .menu::-webkit-scrollbar-track { background: transparent; }
+    .menu::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+    .menu::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+
+    /* themed scrollbars everywhere (json textarea, etc.) */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+
+    .group .x { color: var(--gray); }
+    .chk {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--fg); cursor: pointer;
+      -webkit-user-select: none; user-select: none;
+    }
+    .chk input { accent-color: var(--yellow); cursor: pointer; }
+
+    /* ─── stage ───────────────────────────────────────────────── */
+    .stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        repeating-conic-gradient(var(--bg) 0% 25%, var(--bg1) 0% 50%) 50% / 24px 24px;
+    }
+    #board {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      background: var(--bg);
+      box-shadow: 0 8px 40px rgba(0,0,0,.45);
+      cursor: crosshair;
+    }
+
+    .stat {
+      position: absolute;
+      bottom: 8px; left: 12px;
+      font-size: 11px;
+      color: var(--gray);
+      background: rgba(40,40,40,.7);
+      padding: 3px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    /* ─── desktop-only gate ───────────────────────────────────── */
+    #desktop-only {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 100;
+      background: var(--bg);
+      color: var(--fg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+      padding: 24px;
+    }
+    #desktop-only .do-title { font-size: 18px; letter-spacing: .5px; }
+    #desktop-only .do-text { font-size: 13px; color: var(--gray); max-width: 320px; line-height: 1.5; }
+
+    /* phones / narrow screens: hide the app, show the notice */
+    @media (max-width: 820px), (pointer: coarse) {
+      header, .toolbar, .stage { display: none !important; }
+      #desktop-only { display: flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="title">game of life playground</span>
+    <span class="hint">draw pixel art · left-click paint · right-click erase · then let conway dissolve it</span>
+  </header>
+
+  <div class="toolbar">
+    <div class="group">
+      <button class="btn primary" id="play">▶ play</button>
+      <button class="btn" id="step">step</button>
+      <button class="btn" id="clear">clear</button>
+      <button class="btn" id="random">random</button>
+    </div>
+
+    <div class="group">
+      <span class="lbl">speed</span>
+      <input type="range" id="speed" min="1" max="60" value="12">
+      <span class="lbl" id="speed-val" style="width:42px">12/s</span>
+    </div>
+
+    <div class="group">
+      <span class="lbl">brush</span>
+      <div class="dropdown">
+        <button class="btn sel-btn" id="brush-btn"><span id="brush-label">1×1</span><span class="caret">▾</span></button>
+        <div class="menu" id="brush-menu"></div>
+      </div>
+      <button class="btn" id="rotate" title="rotate the brush 90°">rotate ⟳</button>
+    </div>
+
+    <div class="group">
+      <span class="lbl">merge</span>
+      <div class="dropdown">
+        <button class="btn sel-btn" id="merge-btn" style="width:132px" title="how a born cell takes its color from its 3 neighbours"><span id="merge-label">random</span><span class="caret">▾</span></button>
+        <div class="menu" id="merge-menu"></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="lbl">color</span>
+      <label class="swatch" style="background:#ebdbb2"><input type="color" id="pencil" value="#ebdbb2"></label>
+      <span class="lbl">bg</span>
+      <label class="swatch" id="bg-swatch" style="background:#282828"><input type="color" id="bg" value="#282828"></label>
+      <span class="lbl">paint</span>
+      <div class="dropdown">
+        <button class="btn sel-btn" id="paint-btn" style="width:150px" title="what color to paint with"><span id="paint-label">solid (pencil)</span><span class="caret">▾</span></button>
+        <div class="menu" id="paint-menu"></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <span class="lbl">grid</span>
+      <input class="num" id="cols" type="text" inputmode="numeric" value="80">
+      <span class="x">×</span>
+      <input class="num" id="rows" type="text" inputmode="numeric" value="56">
+      <label class="chk" title="wrap = toroidal; off = infinite canvas, cells die far off-screen (applied on apply)"><input type="checkbox" id="edges" checked> edges wrap</label>
+      <button class="btn" id="apply-size">apply</button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="board"></canvas>
+    <div class="stat" id="stat">— cells alive</div>
+  </div>
+
+  <div id="desktop-only">
+    <div class="do-title">desktop only</div>
+    <div class="do-text">this game of life playground needs a mouse and a wider screen — open it on a desktop.</div>
+  </div>
+
+  <script>
+  "use strict";
+  (function () {
+    // ─── DOM ────────────────────────────────────────────────────
+    const canvas = document.getElementById('board');
+    const ctx    = canvas.getContext('2d', { alpha: true });
+    const stage  = document.getElementById('stage');
+    const stat   = document.getElementById('stat');
+
+    const $ = id => document.getElementById(id);
+
+    // ─── state ──────────────────────────────────────────────────
+    // cur/next are Int32Array over the SIMULATION grid (simCols*simRows).
+    //   0          → dead
+    //   rgb|ALIVE  → live, low 24 bits = 0xRRGGBB
+    // when edges are bounded the sim grid is bigger than the visible grid by
+    // MARGIN on every side, so cells keep living off-screen ("infinite" canvas)
+    // and only die once they drift past the margin.
+    const ALIVE = 1 << 24;
+    const MARGIN = 60;
+    let cols = 80, rows = 56;                          // visible grid (user-facing)
+    let simCols = 80, simRows = 56, offX = 0, offY = 0; // simulation grid + visible offset
+    let cur, next;
+    const DEFAULT_PENCIL = 0xebdbb2, DEFAULT_BG = '#282828';
+    let cellSize = 8;
+    let pencilColor = DEFAULT_PENCIL;
+    let bgColor = DEFAULT_BG;
+    let edgesWrap = true; // toroidal edges; committed on apply
+    let mergeMode = 'random'; // how a born cell derives its color from neighbours
+    let paintMode = 'solid'; // solid|random|full-random | a hue family | a theme name
+
+    // ─── pattern library ───────────────────────────────────────
+    // cells are non-negative [x,y] offsets from a pattern's top-left.
+    // they get centered on the clicked cell at stamp time.
+    const PULSAR = (() => {
+      const byRow = {
+        0:[2,3,4,8,9,10], 2:[0,5,7,12], 3:[0,5,7,12], 4:[0,5,7,12],
+        5:[2,3,4,8,9,10], 7:[2,3,4,8,9,10], 8:[0,5,7,12], 9:[0,5,7,12],
+        10:[0,5,7,12], 12:[2,3,4,8,9,10],
+      };
+      const out = [];
+      for (const y in byRow) for (const x of byRow[y]) out.push([x, +y]);
+      return out;
+    })();
+
+    const GOSPER = [
+      [0,4],[0,5],[1,4],[1,5],
+      [10,4],[10,5],[10,6],[11,3],[11,7],[12,2],[12,8],[13,2],[13,8],
+      [14,5],[15,3],[15,7],[16,4],[16,5],[16,6],[17,5],
+      [20,2],[20,3],[20,4],[21,2],[21,3],[21,4],[22,1],[22,5],
+      [24,0],[24,1],[24,5],[24,6],[34,2],[34,3],[35,2],[35,3],
+    ];
+
+    // solid diamond — bursts into a symmetric firework under Conway
+    const EXPLOSION = (() => {
+      const R = 3, out = [];
+      for (let y = 0; y <= 2 * R; y++)
+        for (let x = 0; x <= 2 * R; x++)
+          if (Math.abs(x - R) + Math.abs(y - R) <= R) out.push([x, y]);
+      return out;
+    })();
+
+    // drag:true  → smear while dragging (freehand blocks)
+    // drag:false → place the pattern once per click
+    const BRUSHES = {
+      '1x1':      { drag: true,  cells: [[0,0]] },
+      '2x2':      { drag: true,  cells: [[0,0],[1,0],[0,1],[1,1]] },
+      '3x3':      { drag: true,  cells: [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2]] },
+      'explosion':{ drag: false, cells: EXPLOSION },
+      'block':    { drag: false, cells: [[0,0],[1,0],[0,1],[1,1]] },
+      'beehive':  { drag: false, cells: [[1,0],[2,0],[0,1],[3,1],[1,2],[2,2]] },
+      'loaf':     { drag: false, cells: [[1,0],[2,0],[0,1],[3,1],[1,2],[3,2],[2,3]] },
+      'boat':     { drag: false, cells: [[0,0],[1,0],[0,1],[2,1],[1,2]] },
+      'tub':      { drag: false, cells: [[1,0],[0,1],[2,1],[1,2]] },
+      'blinker':  { drag: false, cells: [[0,0],[1,0],[2,0]] },
+      'toad':     { drag: false, cells: [[1,0],[2,0],[3,0],[0,1],[1,1],[2,1]] },
+      'beacon':   { drag: false, cells: [[0,0],[1,0],[0,1],[1,1],[2,2],[3,2],[2,3],[3,3]] },
+      'pulsar':   { drag: false, cells: PULSAR },
+      'glider':   { drag: false, cells: [[1,0],[2,1],[0,2],[1,2],[2,2]] },
+      'lwss':     { drag: false, cells: [[1,0],[4,0],[0,1],[0,2],[4,2],[0,3],[1,3],[2,3],[3,3]] },
+      'mwss':     { drag: false, cells: [[3,0],[1,1],[5,1],[0,2],[0,3],[5,3],[0,4],[1,4],[2,4],[3,4],[4,4]] },
+      'hwss':     { drag: false, cells: [[3,0],[4,0],[1,1],[6,1],[0,2],[0,3],[6,3],[0,4],[1,4],[2,4],[3,4],[4,4],[5,4]] },
+      'rpento':   { drag: false, cells: [[1,0],[2,0],[0,1],[1,1],[1,2]] },
+      'acorn':    { drag: false, cells: [[1,0],[3,1],[0,2],[1,2],[4,2],[5,2],[6,2]] },
+      'diehard':  { drag: false, cells: [[6,0],[0,1],[1,1],[1,2],[5,2],[6,2],[7,2]] },
+      'gun':      { drag: false, cells: GOSPER },
+      'flower':   { drag: false, cells: [[2,0],[1,1],[2,1],[3,1],[0,2],[1,2],[3,2],[4,2],[1,3],[2,3],[3,3],[2,4]] },
+      // more still lifes
+      'ship':     { drag: false, cells: [[0,0],[1,0],[0,1],[2,1],[1,2],[2,2]] },
+      'pond':     { drag: false, cells: [[1,0],[2,0],[0,1],[3,1],[0,2],[3,2],[1,3],[2,3]] },
+      'longboat': { drag: false, cells: [[0,0],[1,0],[0,1],[2,1],[1,2],[3,2],[2,3],[3,3]] },
+      'barge':    { drag: false, cells: [[1,0],[0,1],[2,1],[1,2],[3,2],[2,3]] },
+      'mango':    { drag: false, cells: [[1,0],[2,0],[0,1],[3,1],[1,2],[4,2],[2,3],[3,3]] },
+      'snake':    { drag: false, cells: [[0,0],[1,0],[3,0],[0,1],[2,1],[3,1]] },
+      'carrier':  { drag: false, cells: [[0,0],[1,0],[0,1],[3,1],[2,2],[3,2]] },
+      'eater':    { drag: false, cells: [[0,0],[1,0],[0,1],[2,1],[2,2],[2,3],[3,3]] },
+      // more oscillators
+      'clock':    { drag: false, cells: [[2,0],[0,1],[2,1],[1,2],[3,2],[1,3]] },
+      'figure8':  { drag: false, cells: [[0,0],[1,0],[2,0],[0,1],[1,1],[2,1],[0,2],[1,2],[2,2],[3,3],[4,3],[5,3],[3,4],[4,4],[5,4],[3,5],[4,5],[5,5]] },
+      'penta':    { drag: false, cells: [[2,0],[7,0],[0,1],[1,1],[3,1],[4,1],[5,1],[6,1],[8,1],[9,1],[2,2],[7,2]] },
+      // more methuselahs
+      'pihepto':  { drag: false, cells: [[0,0],[1,0],[2,0],[0,1],[2,1],[0,2],[2,2]] },
+      'herschel': { drag: false, cells: [[0,0],[0,1],[1,1],[2,1],[0,2],[2,2],[2,3]] },
+      // decorative
+      'heart':    { drag: false, cells: [[1,0],[2,0],[4,0],[5,0],[0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[1,3],[2,3],[3,3],[4,3],[5,3],[2,4],[3,4],[4,4],[3,5]] },
+      'cross':    { drag: false, cells: [[2,0],[2,1],[0,2],[1,2],[2,2],[3,2],[4,2],[2,3],[2,4]] },
+      'ring':     { drag: false, cells: [[2,0],[1,1],[3,1],[0,2],[4,2],[1,3],[3,3],[2,4]] },
+      'xmark':    { drag: false, cells: [[0,0],[4,0],[1,1],[3,1],[2,2],[1,3],[3,3],[0,4],[4,4]] },
+      'bigexplosion': { drag: false, cells: [[5,0],[6,0],[7,0],[11,0],[12,0],[13,0],[18,0],[19,0],[20,0],[24,0],[25,0],[26,0],[3,2],[8,2],[10,2],[15,2],[16,2],[21,2],[23,2],[28,2],[3,3],[8,3],[10,3],[15,3],[16,3],[21,3],[23,3],[28,3],[3,4],[8,4],[10,4],[15,4],[16,4],[21,4],[23,4],[28,4],[5,5],[6,5],[7,5],[11,5],[12,5],[13,5],[18,5],[19,5],[20,5],[24,5],[25,5],[26,5],[5,7],[6,7],[7,7],[11,7],[12,7],[13,7],[18,7],[19,7],[20,7],[24,7],[25,7],[26,7],[3,8],[8,8],[10,8],[15,8],[16,8],[21,8],[23,8],[28,8],[3,9],[8,9],[10,9],[15,9],[16,9],[21,9],[23,9],[28,9],[3,10],[8,10],[10,10],[15,10],[16,10],[21,10],[23,10],[28,10],[2,12],[3,12],[4,12],[5,12],[6,12],[7,12],[8,12],[9,12],[10,12],[11,12],[12,12],[13,12],[18,12],[19,12],[20,12],[21,12],[22,12],[23,12],[24,12],[25,12],[26,12],[27,12],[28,12],[29,12],[0,14],[5,14],[7,14],[12,14],[19,14],[24,14],[26,14],[31,14],[0,15],[5,15],[7,15],[12,15],[19,15],[24,15],[26,15],[31,15],[0,16],[5,16],[7,16],[12,16],[19,16],[24,16],[26,16],[31,16],[2,17],[3,17],[4,17],[8,17],[9,17],[10,17],[21,17],[22,17],[23,17],[27,17],[28,17],[29,17],[2,19],[3,19],[4,19],[8,19],[9,19],[10,19],[21,19],[22,19],[23,19],[27,19],[28,19],[29,19],[0,20],[5,20],[7,20],[12,20],[19,20],[24,20],[26,20],[31,20],[0,21],[5,21],[7,21],[12,21],[19,21],[24,21],[26,21],[31,21],[0,22],[5,22],[7,22],[12,22],[19,22],[24,22],[26,22],[31,22],[2,24],[3,24],[4,24],[5,24],[6,24],[7,24],[8,24],[9,24],[10,24],[11,24],[12,24],[13,24],[18,24],[19,24],[20,24],[21,24],[22,24],[23,24],[24,24],[25,24],[26,24],[27,24],[28,24],[29,24],[3,26],[8,26],[10,26],[15,26],[16,26],[21,26],[23,26],[28,26],[3,27],[8,27],[10,27],[15,27],[16,27],[21,27],[23,27],[28,27],[3,28],[8,28],[10,28],[15,28],[16,28],[21,28],[23,28],[28,28],[5,29],[6,29],[7,29],[11,29],[12,29],[13,29],[18,29],[19,29],[20,29],[24,29],[25,29],[26,29],[5,31],[6,31],[7,31],[11,31],[12,31],[13,31],[18,31],[19,31],[20,31],[24,31],[25,31],[26,31],[3,32],[8,32],[10,32],[15,32],[16,32],[21,32],[23,32],[28,32],[3,33],[8,33],[10,33],[15,33],[16,33],[21,33],[23,33],[28,33],[3,34],[8,34],[10,34],[15,34],[16,34],[21,34],[23,34],[28,34],[5,36],[6,36],[7,36],[11,36],[12,36],[13,36],[18,36],[19,36],[20,36],[24,36],[25,36],[26,36]] },
+    };
+    let brush = BRUSHES['1x1'];
+    let brushRot = 0; // 0..3 → 0/90/180/270° clockwise
+
+    // returns brush cells rotated and centered on the click cell
+    function resolveCells() {
+      let cells = brush.cells;
+      for (let n = 0; n < brushRot; n++) {
+        let mY = 0;
+        for (let k = 0; k < cells.length; k++) if (cells[k][1] > mY) mY = cells[k][1];
+        // 90° clockwise on screen coords, kept non-negative
+        cells = cells.map(([x, y]) => [mY - y, x]);
+      }
+      let maxX = 0, maxY = 0;
+      for (let k = 0; k < cells.length; k++) {
+        if (cells[k][0] > maxX) maxX = cells[k][0];
+        if (cells[k][1] > maxY) maxY = cells[k][1];
+      }
+      const cx = maxX >> 1, cy = maxY >> 1;
+      return cells.map(([x, y]) => [x - cx, y - cy]);
+    }
+
+    // offscreen 1px-per-cell buffer, scaled up for crisp pixels
+    let off = document.createElement('canvas');
+    let offCtx = off.getContext('2d');
+    let imgData;
+
+    // ─── color helpers ──────────────────────────────────────────
+    function hexToInt(hex) { return parseInt(hex.slice(1), 16) & 0xffffff; }
+    function intToHex(v) { return '#' + (v & 0xffffff).toString(16).padStart(6, '0'); }
+
+    // ─── paint palettes ─────────────────────────────────────────
+    // h∈[0,360) s,l∈[0,1] → packed 0xRRGGBB
+    function hslToInt(h, s, l) {
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m = l - c / 2;
+      let r = 0, g = 0, b = 0;
+      if (h < 60) { r = c; g = x; }
+      else if (h < 120) { r = x; g = c; }
+      else if (h < 180) { g = c; b = x; }
+      else if (h < 240) { g = x; b = c; }
+      else if (h < 300) { r = x; b = c; }
+      else { r = c; b = x; }
+      return (((r + m) * 255 | 0) << 16) | (((g + m) * 255 | 0) << 8) | ((b + m) * 255 | 0);
+    }
+    // hue families: [loDeg, hiDeg]; wraps when lo > hi. null = grayscale.
+    const HUES = {
+      red: [350, 12], orange: [18, 42], yellow: [46, 62], green: [90, 150],
+      cyan: [165, 195], blue: [205, 245], purple: [258, 290], pink: [300, 338], gray: null,
+    };
+    function randHueColor(name) {
+      const range = HUES[name];
+      if (!range) return hslToInt(0, 0, 0.28 + Math.random() * 0.5); // gray
+      let [lo, hi] = range;
+      const span = lo <= hi ? hi - lo : (360 - lo) + hi;
+      const h = (lo + Math.random() * span) % 360;
+      return hslToInt(h, 0.55 + Math.random() * 0.45, 0.42 + Math.random() * 0.26);
+    }
+    // theme accent palettes; a painted cell gets a random swatch from the set
+    const THEMES = {
+      gruvbox:    [0xcc241d,0xd65d0e,0xd79921,0x98971a,0x689d6a,0x458588,0xb16286,0xfb4934,0xfe8019,0xfabd2f,0xb8bb26,0x8ec07c,0x83a598,0xd3869b],
+      catppuccin: [0xf38ba8,0xfab387,0xf9e2af,0xa6e3a1,0x94e2d5,0x89b4fa,0xcba6f7,0xf5c2e7,0xeba0ac,0x89dceb,0x74c7ec,0xb4befe],
+      kanagawa:   [0xc34043,0xffa066,0xdca561,0x98bb6c,0x7aa89f,0x7e9cd8,0x957fb8,0xd27e99,0x6a9589,0xe6c384],
+      nord:       [0xbf616a,0xd08770,0xebcb8b,0xa3be8c,0x88c0d0,0x81a1c1,0x5e81ac,0xb48ead,0x8fbcbb],
+      dracula:    [0xff5555,0xffb86c,0xf1fa8c,0x50fa7b,0x8be9fd,0xbd93f9,0xff79c6,0x6272a4],
+      tokyonight: [0xf7768e,0xff9e64,0xe0af68,0x9ece6a,0x73daca,0x7aa2f7,0xbb9af7,0x7dcfff],
+      everforest: [0xe67e80,0xe69875,0xdbbc7f,0xa7c080,0x83c092,0x7fbbb3,0xd699b6],
+      rosepine:   [0xeb6f92,0xf6c177,0xebbcba,0x31748f,0x9ccfd8,0xc4a7e7],
+      solarized:  [0xdc322f,0xcb4b16,0xb58900,0x859900,0x2aa198,0x268bd2,0x6c71c4,0xd33682],
+    };
+    function randThemeColor(name) { const p = THEMES[name]; return p[(Math.random() * p.length) | 0]; }
+
+    // color for one painted cell under the current paintMode (ALIVE bit set)
+    function paintCellColor(stampBase) {
+      if (paintMode === 'full-random') return (((Math.random() * 0x1000000) | 0)) | ALIVE;
+      if (HUES.hasOwnProperty(paintMode)) return randHueColor(paintMode) | ALIVE;
+      if (THEMES.hasOwnProperty(paintMode)) return randThemeColor(paintMode) | ALIVE;
+      return stampBase | ALIVE; // solid or random (shared across the stamp)
+    }
+    // perceptual luminance of a packed 0xRRGGBB (ALIVE bit ignored by the masks)
+    function lum(v) { return 0.299 * ((v >> 16) & 255) + 0.587 * ((v >> 8) & 255) + 0.114 * (v & 255); }
+
+    // color for a newly born cell, derived from its n live neighbours in _nb[0..n-1].
+    // returns a packed value with the ALIVE bit set (computed colors can be pure
+    // black, whose rgb is 0 — without ALIVE that would read as a dead cell).
+    function mergeColor(n) {
+      switch (mergeMode) {
+        case 'merge': { // per-channel average
+          let r = 0, g = 0, b = 0;
+          for (let k = 0; k < n; k++) { const v = _nb[k]; r += (v >> 16) & 255; g += (v >> 8) & 255; b += v & 255; }
+          return (((r / n) | 0) << 16 | ((g / n) | 0) << 8 | ((b / n) | 0)) | ALIVE;
+        }
+        case 'darkest': { // neighbour with lowest luminance
+          let best = _nb[0], bl = lum(best);
+          for (let k = 1; k < n; k++) { const l = lum(_nb[k]); if (l < bl) { bl = l; best = _nb[k]; } }
+          return best;
+        }
+        case 'lightest': { // neighbour with highest luminance
+          let best = _nb[0], bl = lum(best);
+          for (let k = 1; k < n; k++) { const l = lum(_nb[k]); if (l > bl) { bl = l; best = _nb[k]; } }
+          return best;
+        }
+        case 'darker': { // per-channel min (may be a new color)
+          let r = 255, g = 255, b = 255;
+          for (let k = 0; k < n; k++) { const v = _nb[k]; r = Math.min(r, (v >> 16) & 255); g = Math.min(g, (v >> 8) & 255); b = Math.min(b, v & 255); }
+          return (r << 16 | g << 8 | b) | ALIVE;
+        }
+        case 'lighter': { // per-channel max (may be a new color)
+          let r = 0, g = 0, b = 0;
+          for (let k = 0; k < n; k++) { const v = _nb[k]; r = Math.max(r, (v >> 16) & 255); g = Math.max(g, (v >> 8) & 255); b = Math.max(b, v & 255); }
+          return (r << 16 | g << 8 | b) | ALIVE;
+        }
+        case 'full-random': // ignore neighbours, pick any color
+          return ((Math.random() * 0x1000000) | 0) | ALIVE;
+        case 'random':
+        default:
+          return _nb[(Math.random() * n) | 0];
+      }
+    }
+
+    // ─── grid lifecycle ─────────────────────────────────────────
+    function allocate(c, r) {
+      cols = c; rows = r;
+      if (edgesWrap) { simCols = cols; simRows = rows; offX = 0; offY = 0; }
+      else { offX = MARGIN; offY = MARGIN; simCols = cols + 2 * MARGIN; simRows = rows + 2 * MARGIN; }
+      cur  = new Int32Array(simCols * simRows);
+      next = new Int32Array(simCols * simRows);
+      off.width = cols; off.height = rows;
+      imgData = offCtx.createImageData(cols, rows);
+      layout();
+    }
+    // sim-array index from visible cell coords
+    function si(x, y) { return (y + offY) * simCols + (x + offX); }
+
+    function layout() {
+      const pad = 8;
+      const availW = stage.clientWidth  - pad * 2;
+      const availH = stage.clientHeight - pad * 2;
+      cellSize = Math.max(1, Math.floor(Math.min(availW / cols, availH / rows)));
+      canvas.width  = cols * cellSize;
+      canvas.height = rows * cellSize;
+      ctx.imageSmoothingEnabled = false;
+      render();
+    }
+
+    // ─── render ─────────────────────────────────────────────────
+    function render() {
+      if (!imgData) return; // not allocated yet (early setup calls)
+      const data = imgData.data;
+      let alive = 0;
+      // draw only the visible window of the sim grid
+      for (let y = 0; y < rows; y++) {
+        const srow = (y + offY) * simCols + offX;
+        let p = y * cols * 4;
+        for (let x = 0; x < cols; x++, p += 4) {
+          const v = cur[srow + x];
+          if (v) {
+            data[p]     = (v >> 16) & 0xff;
+            data[p + 1] = (v >> 8)  & 0xff;
+            data[p + 2] =  v        & 0xff;
+            data[p + 3] = 255;
+            alive++;
+          } else {
+            data[p + 3] = 0;
+          }
+        }
+      }
+      offCtx.putImageData(imgData, 0, 0);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(off, 0, 0, canvas.width, canvas.height);
+
+      if (hover) drawShadow();
+
+      stat.textContent = alive + ' cells alive';
+    }
+
+    // translucent preview of the brush at the hovered cell
+    function drawShadow() {
+      const cells = resolveCells();
+      const r = (pencilColor >> 16) & 255, g = (pencilColor >> 8) & 255, b = pencilColor & 255;
+      ctx.fillStyle = `rgba(${r},${g},${b},.4)`;
+      for (let k = 0; k < cells.length; k++) {
+        let x = hover.x + cells[k][0], y = hover.y + cells[k][1];
+        if (edgesWrap) { x = (x % cols + cols) % cols; y = (y % rows + rows) % rows; }
+        else if (x < 0 || x >= cols || y < 0 || y >= rows) continue;
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+      }
+    }
+
+    // ─── game of life step ──────────────────────────────────────
+    // edgesWrap true = toroidal; false = bounded (off-grid neighbours dead)
+    const _nb = new Int32Array(8); // reused live-neighbour color buffer
+    function step() {
+      const wrap = edgesWrap, W = simCols, H = simRows;
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          let count = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            let ny = y + dy;
+            if (ny < 0 || ny >= H) { if (!wrap) continue; ny = ny < 0 ? H - 1 : 0; }
+            const base = ny * W;
+            for (let dx = -1; dx <= 1; dx++) {
+              if (!dx && !dy) continue;
+              let nx = x + dx;
+              if (nx < 0 || nx >= W) { if (!wrap) continue; nx = nx < 0 ? W - 1 : 0; }
+              const v = cur[base + nx];
+              if (v) _nb[count++] = v;
+            }
+          }
+          const idx = y * W + x;
+          const self = cur[idx];
+          if (self) {
+            // survive on 2 or 3 — keep own color
+            next[idx] = (count === 2 || count === 3) ? self : 0;
+          } else if (count === 3) {
+            // born — derive color from the 3 live neighbours per the merge mode
+            next[idx] = mergeColor(count);
+          } else {
+            next[idx] = 0;
+          }
+        }
+      }
+      const tmp = cur; cur = next; next = tmp;
+    }
+
+    // ─── animation loop (fixed-step accumulator) ────────────────
+    let playing = false;
+    let stepsPerSec = 12;
+    let acc = 0, last = 0, raf = 0;
+
+    function loop(t) {
+      if (!playing) return;
+      if (!last) last = t;
+      acc += (t - last) / 1000;
+      last = t;
+      const dt = 1 / stepsPerSec;
+      let did = false, guard = 0;
+      while (acc >= dt && guard < 8) { step(); acc -= dt; did = true; guard++; }
+      if (acc > dt) acc = dt; // drop backlog
+      if (did) render();
+      raf = requestAnimationFrame(loop);
+    }
+
+    function setPlaying(on) {
+      playing = on;
+      const b = $('play');
+      b.textContent = on ? '❚❚ pause' : '▶ play';
+      b.classList.toggle('playing', on);
+      if (on) { last = 0; acc = 0; raf = requestAnimationFrame(loop); }
+      else cancelAnimationFrame(raf);
+    }
+
+    // ─── painting ───────────────────────────────────────────────
+    let painting = false, paintErase = false, lastPx = -1, lastPy = -1;
+    let hover = null; // {x,y} cell under cursor, for the shadow preview
+
+    function cellAt(ev) {
+      const rect = canvas.getBoundingClientRect();
+      const cx = ev.clientX - rect.left;
+      const cy = ev.clientY - rect.top;
+      const x = Math.floor(cx / cellSize);
+      const y = Math.floor(cy / cellSize);
+      if (x < 0 || y < 0 || x >= cols || y >= rows) return null;
+      return { x, y };
+    }
+
+    // stamp the current brush centered on (cx,cy); wraps if edges are toroidal
+    function stamp(cx, cy, erase) {
+      const cells = resolveCells();
+      // solid/random share one color across the whole stamp; hue/theme/full-random vary per cell
+      const stampBase = paintMode === 'random' ? ((Math.random() * 0x1000000) | 0) : pencilColor;
+      for (let k = 0; k < cells.length; k++) {
+        let x = cx + offX + cells[k][0], y = cy + offY + cells[k][1];
+        if (edgesWrap) { x = (x % simCols + simCols) % simCols; y = (y % simRows + simRows) % simRows; }
+        else if (x < 0 || x >= simCols || y < 0 || y >= simRows) continue;
+        cur[y * simCols + x] = erase ? 0 : paintCellColor(stampBase);
+      }
+    }
+
+    // draw line between two cells so fast drags don't skip
+    function stampLine(x0, y0, x1, y1, erase) {
+      let dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+      let sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+      let err = dx - dy;
+      while (true) {
+        stamp(x0, y0, erase);
+        if (x0 === x1 && y0 === y1) break;
+        const e2 = 2 * err;
+        if (e2 > -dy) { err -= dy; x0 += sx; }
+        if (e2 <  dx) { err += dx; y0 += sy; }
+      }
+    }
+
+    function onDown(ev) {
+      const c = cellAt(ev);
+      if (!c) return;
+      ev.preventDefault();
+      painting = true;
+      paintErase = ev.button === 2;
+      stamp(c.x, c.y, paintErase);
+      lastPx = c.x; lastPy = c.y;
+      render();
+    }
+    function onMove(ev) {
+      const c = cellAt(ev);
+      hover = c;
+      // hold-drag keeps stamping the current brush (patterns leave a trail too);
+      // re-stamp only when the cursor crosses into a new cell
+      if (painting && c && (c.x !== lastPx || c.y !== lastPy)) {
+        ev.preventDefault();
+        stampLine(lastPx, lastPy, c.x, c.y, paintErase);
+        lastPx = c.x; lastPy = c.y;
+      }
+      render();
+    }
+    function onUp() { painting = false; }
+
+    canvas.addEventListener('mousedown', onDown);
+    canvas.addEventListener('mousemove', onMove);
+    canvas.addEventListener('mouseleave', () => { hover = null; render(); });
+    window.addEventListener('mouseup', onUp);
+    canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+    // ─── toolbar wiring ─────────────────────────────────────────
+    $('play').addEventListener('click', () => setPlaying(!playing));
+    $('step').addEventListener('click', () => { setPlaying(false); step(); render(); });
+    $('clear').addEventListener('click', () => { setPlaying(false); cur.fill(0); next.fill(0); resetColors(); render(); });
+    $('random').addEventListener('click', () => {
+      const bg = randDarkHex();
+      $('bg').value = bg;
+      setBgColor(bg);
+      const bgInt = parseInt(bg.slice(1), 16);
+      cur.fill(0);
+      for (let y = 0; y < rows; y++)
+        for (let x = 0; x < cols; x++)
+          if (Math.random() < 0.32) cur[si(x, y)] = randCellColor(bgInt) | ALIVE;
+      render();
+      paintRandomButton();
+    });
+
+    // tri-color random button, reshuffled on load and on each hit
+    function randHex() { return '#' + (Math.random() * 0x1000000 | 0).toString(16).padStart(6, '0'); }
+    // dark background: each channel kept low
+    function randDarkHex() {
+      const r = Math.random() * 56 | 0, g = Math.random() * 56 | 0, b = Math.random() * 56 | 0;
+      return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+    }
+    // random live color that is never exactly the current background
+    function randCellColor(bgInt) {
+      let v;
+      do { v = Math.random() * 0x1000000 | 0; } while (v === bgInt);
+      return v;
+    }
+    function paintRandomButton() {
+      const btn = $('random');
+      const a = randHex(), b = randHex(), c = randHex();
+      btn.style.background = `linear-gradient(90deg, ${a} 0 33.33%, ${b} 0 66.66%, ${c} 0 100%)`;
+      btn.style.borderColor = 'transparent';
+      btn.style.color = '#fff';
+      btn.style.textShadow = '0 1px 2px rgba(0,0,0,.75)';
+    }
+
+    $('speed').addEventListener('input', e => {
+      stepsPerSec = +e.target.value;
+      $('speed-val').textContent = stepsPerSec + '/s';
+    });
+
+    $('pencil').addEventListener('input', e => {
+      pencilColor = hexToInt(e.target.value);
+    });
+
+    // paint-mode dropdown (same themed dropdown as brush / merge)
+    const PAINT_MENU = [
+      ['basic',  [['solid','solid (pencil)'],['random','random'],['full-random','full random']]],
+      ['hue',    [['red','red'],['orange','orange'],['yellow','yellow'],['green','green'],['cyan','cyan'],['blue','blue'],['purple','purple'],['pink','pink'],['gray','gray']]],
+      ['themes', [['gruvbox','gruvbox'],['catppuccin','catppuccin'],['kanagawa','kanagawa'],['nord','nord'],['dracula','dracula'],['tokyonight','tokyo night'],['everforest','everforest'],['rosepine','rosé pine'],['solarized','solarized']]],
+    ];
+    const paintMenu = $('paint-menu');
+    paintMenu.innerHTML = PAINT_MENU
+      .map(([grp, opts]) => `<div class="opt-group">${grp}</div>` +
+        opts.map(([v, label]) => `<button class="opt" data-v="${v}">${label}</button>`).join(''))
+      .join('');
+    function setPaint(v, label) {
+      paintMode = v;
+      $('paint-label').textContent = label;
+      paintMenu.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', o.dataset.v === v));
+    }
+    $('paint-btn').addEventListener('click', e => { e.stopPropagation(); paintMenu.classList.toggle('open'); });
+    paintMenu.addEventListener('click', e => {
+      const b = e.target.closest('.opt');
+      if (!b) return;
+      setPaint(b.dataset.v, b.textContent);
+      paintMenu.classList.remove('open');
+    });
+    document.addEventListener('click', () => paintMenu.classList.remove('open'));
+    setPaint('solid', 'solid (pencil)');
+
+    // custom brush dropdown (themed, scrollable)
+    const BRUSH_MENU = [
+      ['freehand',    [['1x1','1×1'],['2x2','2×2'],['3x3','3×3']]],
+      ['still lifes', [['block','block'],['beehive','beehive'],['loaf','loaf'],['boat','boat'],['tub','tub'],['ship','ship'],['pond','pond'],['longboat','long boat'],['barge','barge'],['mango','mango'],['snake','snake'],['carrier','aircraft carrier'],['eater','eater / fishhook']]],
+      ['oscillators', [['blinker','blinker'],['toad','toad'],['beacon','beacon'],['clock','clock'],['figure8','figure eight'],['penta','pentadecathlon'],['pulsar','pulsar']]],
+      ['spaceships',  [['glider','glider'],['lwss','lwss (light)'],['mwss','mwss (medium)'],['hwss','hwss (heavy)']]],
+      ['chaotic',     [['rpento','r-pentomino'],['pihepto','pi-heptomino'],['herschel','herschel'],['acorn','acorn'],['diehard','diehard']]],
+      ['guns',        [['gun','gosper glider gun']]],
+      ['fun',         [['flower','flower'],['explosion','explosion'],['bigexplosion','big explosion'],['heart','heart'],['cross','cross'],['ring','ring'],['xmark','x']]],
+    ];
+    const brushMenu = $('brush-menu');
+    (function buildBrushMenu() {
+      let html = '';
+      for (const [grp, opts] of BRUSH_MENU) {
+        html += `<div class="opt-group">${grp}</div>`;
+        for (const [v, label] of opts) html += `<button class="opt" data-v="${v}">${label}</button>`;
+      }
+      brushMenu.innerHTML = html;
+    })();
+    function setBrush(v, label) {
+      brush = BRUSHES[v] || BRUSHES['1x1'];
+      $('brush-label').textContent = label;
+      brushMenu.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', o.dataset.v === v));
+      render();
+    }
+    $('brush-btn').addEventListener('click', e => { e.stopPropagation(); brushMenu.classList.toggle('open'); });
+    brushMenu.addEventListener('click', e => {
+      const b = e.target.closest('.opt');
+      if (!b) return;
+      setBrush(b.dataset.v, b.textContent);
+      brushMenu.classList.remove('open');
+    });
+    document.addEventListener('click', () => brushMenu.classList.remove('open'));
+    setBrush('1x1', '1×1');
+
+    $('rotate').addEventListener('click', () => {
+      brushRot = (brushRot + 1) & 3;
+      render();
+    });
+
+    // merge-mode dropdown (same themed dropdown as the brush picker)
+    const MERGE_MODES = [
+      ['random',      'random'],
+      ['full-random', 'full random'],
+      ['merge',       'merge (average)'],
+      ['darkest',  'darkest'],
+      ['lightest', 'lightest'],
+      ['darker',   'darker (min)'],
+      ['lighter',  'lighter (max)'],
+    ];
+    const mergeMenu = $('merge-menu');
+    mergeMenu.innerHTML = MERGE_MODES
+      .map(([v, label]) => `<button class="opt" data-v="${v}">${label}</button>`)
+      .join('');
+    function setMerge(v, label) {
+      mergeMode = v;
+      $('merge-label').textContent = label;
+      mergeMenu.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', o.dataset.v === v));
+    }
+    $('merge-btn').addEventListener('click', e => { e.stopPropagation(); mergeMenu.classList.toggle('open'); });
+    mergeMenu.addEventListener('click', e => {
+      const b = e.target.closest('.opt');
+      if (!b) return;
+      setMerge(b.dataset.v, b.textContent);
+      mergeMenu.classList.remove('open');
+    });
+    document.addEventListener('click', () => mergeMenu.classList.remove('open'));
+    setMerge('random', 'random');
+
+    // grid-size inputs: digits only, and snap into [20,400] on blur/enter
+    ['cols', 'rows'].forEach(id => {
+      const el = $(id);
+      el.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
+      el.addEventListener('change', e => { e.target.value = clampInt(e.target.value, 20, 400, 20); });
+    });
+
+    function setBgColor(hex) {
+      bgColor = hex;
+      canvas.style.background = hex;
+      $('bg-swatch').style.background = hex;
+    }
+    $('bg').addEventListener('input', e => setBgColor(e.target.value));
+
+    // reset pencil + background to their defaults
+    function resetColors() {
+      pencilColor = DEFAULT_PENCIL;
+      $('pencil').value = intToHex(DEFAULT_PENCIL);
+      $('bg').value = DEFAULT_BG;
+      setBgColor(DEFAULT_BG);
+    }
+
+    $('apply-size').addEventListener('click', () => {
+      const c = clampInt($('cols').value, 20, 400, 80);
+      const r = clampInt($('rows').value, 20, 400, 56);
+      $('cols').value = c; $('rows').value = r;
+      setPlaying(false);
+      edgesWrap = $('edges').checked;
+      allocate(c, r); // always resets the board, like a grid-size change
+    });
+
+    function clampInt(v, lo, hi, def) {
+      v = parseInt(v, 10);
+      if (isNaN(v)) return def;
+      return Math.max(lo, Math.min(hi, v));
+    }
+
+    // ─── keyboard ───────────────────────────────────────────────
+    window.addEventListener('keydown', e => {
+      if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
+      if (e.code === 'Space') { e.preventDefault(); setPlaying(!playing); }
+      else if (e.key === 's') { setPlaying(false); step(); render(); }
+      else if (e.key === 'c') { setPlaying(false); cur.fill(0); resetColors(); render(); }
+    });
+
+    // ─── resize ─────────────────────────────────────────────────
+    let resizeT;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(layout, 100);
+    });
+
+    // ─── boot ───────────────────────────────────────────────────
+    setBgColor(bgColor);
+    paintRandomButton();
+    allocate(cols, rows);
+    render();
+  })();
+  </script>
+</body>
+</html>
