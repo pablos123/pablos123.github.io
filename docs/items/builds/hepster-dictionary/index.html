@@ -785,146 +785,169 @@
         `<a href="#letter-${l}" data-letter="${l}">${l}</a>`).join("");
     }
 
-    // The full entry DOM for the active scope + toggle state is built ONCE by rebuild().
-    // Typing then only flips node visibility and repaints the highlight (applySearch) — no
-    // per-keystroke innerHTML, which is what made mobile typing lag.
-    let records = [];        // [{ el, sectionEl, m, srcEls }] parallel to the .entry nodes
+    // Windowed rendering: a search computes the full match list in memory (cheap substring
+    // tests over the prebuilt index), but only a CHUNK of entries is ever in the DOM. More
+    // are appended as the sentinel scrolls into view. Small DOM = every keystroke is fast,
+    // so there's no debounce — typing filters synchronously.
+    const CHUNK = 60;
+    let matched = [];        // [{ m, sources }] to render, letter-ordered
+    let renderPos = 0;       // index of the next entry to render into the DOM
     let curQuery = "";
+    let curQL = "";
+    let openSectionEl = null, openLetter = null;   // the letter-group currently accepting entries
     const emptyEl = document.createElement("div");
     emptyEl.className = "empty";
     // CSS Custom Highlight API paints matches without touching the DOM. Degrades to no
     // highlight (text still filters correctly) where unsupported (iOS < 17.2).
     const HL_OK = typeof CSS !== "undefined" && CSS.highlights && typeof Highlight !== "undefined";
 
-    function rebuild() {
-      const fullIndex = buildIndex(activeId);
-      // words/phrases toggles decide which headwords get built at all.
-      const kindOK = (m) => m.kind === "phrase" ? show.phrases : show.words;
+    // The sentinel sits at the bottom of the list; when it scrolls near the viewport the
+    // observer appends the next chunk. rootMargin pre-loads before it's actually visible,
+    // and also auto-fills short lists (keeps firing until the viewport is covered).
+    const sentinel = document.createElement("div");
+    sentinel.style.height = "1px";
+    const observer = new IntersectionObserver(ents => {
+      if (ents.some(e => e.isIntersecting)) renderChunk();
+    }, { root: entriesEl, rootMargin: "800px 0px" });
 
-      const refLine = (lbl, arr) => (arr && arr.length)
-        ? `<div class="ref"><span class="ref-label">${lbl}</span> ` +
-          arr.map(s => `<span class="synref">${escHtml(s)}</span>`).join(", ") +
-          `</div>`
-        : "";
+    const refLine = (lbl, arr) => (arr && arr.length)
+      ? `<div class="ref"><span class="ref-label">${lbl}</span> ` +
+        arr.map(s => `<span class="synref">${escHtml(s)}</span>`).join(", ") +
+        `</div>`
+      : "";
 
-      const meta = [];       // merged entries, in the same order as the .entry nodes
-      let html = "";
-      for (const l of ALPHA) {
-        const items = fullIndex[l].filter(kindOK);
-        if (!items.length) continue;
-        html += `<section class="letter-group" data-letter="${l}"><h2 class="letter" id="letter-${l}">${l}</h2>`;
-        for (const m of items) {
-          // Provenance: a colored dot per source dict beside the (single-color) headword;
-          // a word in both dicts gets two dots.
-          const dots = show.markers ? m.sources.map(src => {
-            const dict = DICT_BY_ID[src.dictId];
-            return `<span class="dot" style="background:${dict.color}" title="${escHtml(dict.name)}"></span>`;
-          }).join("") : "";
-          html += `<div class="entry"><span class="term">${escHtml(m.term)}</span>${dots}`;
-          // Multi-dict headword: each def block gets a dict-colored left bar.
-          const multi = show.markers && m.sources.length > 1;
-          for (const src of m.sources) {
-            const block = multi
-              ? ` class="src-block tinted" style="--c:${DICT_BY_ID[src.dictId].color}"`
-              : ` class="src-block"`;
-            html += `<div${block}>` +
-                      buildSenses(src.senses, m.term, "") +
-                      (show.syn ? refLine("syn.", src.syn) : "") +
-                      (show.abbrv ? refLine("abbrv.", src.abbrv) : "") +
-                    `</div>`;
-          }
-          html += `</div>`;
-          meta.push(m);
-        }
-        html += `</section>`;
+    // HTML for a single merged entry. `sources` is the subset to show (all of them on a
+    // headword hit; only the matching blocks on a body-only hit). Highlight is painted
+    // separately by the Highlight API, so senses are built with an empty query here.
+    function entryHTML(item) {
+      const m = item.m;
+      const dots = show.markers ? m.sources.map(src => {
+        const dict = DICT_BY_ID[src.dictId];
+        return `<span class="dot" style="background:${dict.color}" title="${escHtml(dict.name)}"></span>`;
+      }).join("") : "";
+      let html = `<div class="entry"><span class="term">${escHtml(m.term)}</span>${dots}`;
+      const multi = show.markers && item.sources.length > 1;
+      for (const src of item.sources) {
+        const block = multi
+          ? ` class="src-block tinted" style="--c:${DICT_BY_ID[src.dictId].color}"`
+          : ` class="src-block"`;
+        html += `<div${block}>` +
+                  buildSenses(src.senses, m.term, "") +
+                  (show.syn ? refLine("syn.", src.syn) : "") +
+                  (show.abbrv ? refLine("abbrv.", src.abbrv) : "") +
+                `</div>`;
       }
-      entriesEl.innerHTML = html;
-      entriesEl.appendChild(emptyEl);
-
-      // Zip the freshly built nodes back to their merged entries for the search path.
-      records = [];
-      entriesEl.querySelectorAll(".entry").forEach((el, i) => {
-        records.push({
-          el,
-          sectionEl: el.closest(".letter-group"),
-          m: meta[i],
-          srcEls: el.querySelectorAll(".src-block"),
-        });
-      });
-
-      applySearch(curQuery);
+      return html + `</div>`;
     }
 
-    function applySearch(q) {
-      curQuery = q;
-      const query = q.trim();
-      const ql = query.toLowerCase();
-
-      const counts = new Map();        // sectionEl -> visible entry count
-      let count = 0;
-      for (const r of records) {
-        const m = r.m;
-        let matched, showAll;
-        if (!ql) { matched = true; showAll = true; }
-        else if (m._term.includes(ql)) { matched = true; showAll = true; }
-        else {
-          // No headword hit: show only the source blocks whose body matches.
-          showAll = false;
-          let any = false;
-          m.sources.forEach((src, i) => {
-            const hit = sourceMatches(src, ql);
-            r.srcEls[i].hidden = !hit;
-            if (hit) any = true;
-          });
-          matched = any;
+    // Compute the full match list for the current scope + toggles + query. `total` is the
+    // scope size after the words/phrases filter (the count denominator), independent of q.
+    function computeMatched(ql) {
+      const idx = buildIndex(activeId);
+      const list = [];
+      let total = 0;
+      for (const l of ALPHA) {
+        for (const m of idx[l]) {
+          if (m.kind === "phrase" ? !show.phrases : !show.words) continue;
+          total++;
+          if (!ql || m._term.includes(ql)) { list.push({ m, sources: m.sources }); continue; }
+          const hit = m.sources.filter(src => sourceMatches(src, ql));
+          if (hit.length) list.push({ m, sources: hit });
         }
-        if (showAll) for (const se of r.srcEls) se.hidden = false;
-        r.el.hidden = !matched;
-        if (matched) { count++; counts.set(r.sectionEl, (counts.get(r.sectionEl) || 0) + 1); }
       }
+      return { list, total };
+    }
 
-      const present = new Set();
-      entriesEl.querySelectorAll(".letter-group").forEach(se => {
-        const c = counts.get(se) || 0;
-        se.hidden = !c;
-        if (c) present.add(se.dataset.letter);
-      });
+    // Append entries into the right letter-group, opening a new section when the letter
+    // changes (a letter's entries can straddle a chunk boundary — openLetter carries over).
+    function renderChunk() {
+      const end = Math.min(renderPos + CHUNK, matched.length);
+      for (; renderPos < end; renderPos++) {
+        const item = matched[renderPos];
+        const l = item.m.letter;
+        if (l !== openLetter) {
+          const sec = document.createElement("section");
+          sec.className = "letter-group";
+          sec.dataset.letter = l;
+          sec.innerHTML = `<h2 class="letter" id="letter-${l}">${l}</h2>`;
+          entriesEl.insertBefore(sec, sentinel);
+          openSectionEl = sec;
+          openLetter = l;
+        }
+        openSectionEl.insertAdjacentHTML("beforeend", entryHTML(item));
+      }
+      if (renderPos >= matched.length) {
+        observer.unobserve(sentinel);
+        sentinel.style.display = "none";
+      } else {
+        sentinel.style.display = "";
+        observer.observe(sentinel);
+      }
+      paintHighlight(curQL);
+    }
 
-      countEl.textContent = count + " / " + records.length;
+    // A new search / scope / toggle: recompute matches, reset the DOM to the first chunk.
+    function runSearch(q) {
+      curQuery = q;
+      curQL = q.trim().toLowerCase();
+      const { list, total } = computeMatched(curQL);
+      matched = list;
+      renderPos = 0;
+      openSectionEl = null;
+      openLetter = null;
+
+      countEl.textContent = matched.length + " / " + total;
+      const present = new Set(matched.map(it => it.m.letter));
       railEl.querySelectorAll("a").forEach(a =>
         a.classList.toggle("dim", !present.has(a.dataset.letter)));
 
-      emptyEl.hidden = !!count;
-      if (!count) emptyEl.innerHTML = `no jive found for &ldquo;${escHtml(query)}&rdquo;.`;
+      observer.unobserve(sentinel);
+      entriesEl.textContent = "";
+      entriesEl.appendChild(sentinel);
 
-      paintHighlight(ql);
+      if (!matched.length) {
+        sentinel.style.display = "none";
+        emptyEl.hidden = false;
+        emptyEl.innerHTML = `no jive found for &ldquo;${escHtml(q.trim())}&rdquo;.`;
+        entriesEl.appendChild(emptyEl);
+        if (HL_OK) CSS.highlights.set("dict-search", new Highlight());
+        return;
+      }
+      emptyEl.hidden = true;
+      entriesEl.scrollTop = 0;
+      renderChunk();
     }
 
-    // Repaint the search highlight over visible, matching text via the Highlight API —
-    // ranges only, no DOM writes, so it stays cheap as you type.
+    // Rail jump: the target letter may live past the rendered window, so render forward
+    // until its section exists (or the list runs out), then scroll to it.
+    function jumpToLetter(letter) {
+      let guard = 0;
+      while (renderPos < matched.length &&
+             !document.getElementById("letter-" + letter) && guard++ < 500) {
+        renderChunk();
+      }
+      const t = document.getElementById("letter-" + letter);
+      if (t) t.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+
+    // Repaint the search highlight over the rendered window via the Highlight API — ranges
+    // only, no DOM writes. Everything in the DOM is a match, so the walk is over the window,
+    // which stays small. 1-char queries are skipped (near-everything would highlight).
     function paintHighlight(ql) {
       if (!HL_OK) return;
       const hl = new Highlight();
-      // A 1-char query highlights most of the dictionary — thousands of ranges for no real
-      // value, and the spike that makes backspace-hold janky. Paint only for 2+ chars; the
-      // filter itself still works at 1 char.
       if (ql.length >= 2) {
-        for (const r of records) {
-          if (r.el.hidden) continue;
-          const walker = document.createTreeWalker(r.el, NodeFilter.SHOW_TEXT);
-          let node;
-          while ((node = walker.nextNode())) {
-            const sb = node.parentElement.closest(".src-block");
-            if (sb && sb.hidden) continue;     // don't highlight inside a hidden source block
-            const text = node.nodeValue.toLowerCase();
-            let idx = text.indexOf(ql);
-            while (idx !== -1) {
-              const range = document.createRange();
-              range.setStart(node, idx);
-              range.setEnd(node, idx + ql.length);
-              hl.add(range);
-              idx = text.indexOf(ql, idx + ql.length);
-            }
+        const walker = document.createTreeWalker(entriesEl, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+          const text = node.nodeValue.toLowerCase();
+          let idx = text.indexOf(ql);
+          while (idx !== -1) {
+            const range = document.createRange();
+            range.setStart(node, idx);
+            range.setEnd(node, idx + ql.length);
+            hl.add(range);
+            idx = text.indexOf(ql, idx + ql.length);
           }
         }
       }
@@ -935,34 +958,17 @@
     const search = document.getElementById("search");
     const clearBtn = document.getElementById("clear");
     const syncClear = () => { clearBtn.hidden = !search.value; };
-    // The only costly case is a HELD backspace: its auto-repeat fires events ~30ms apart,
-    // and each shrinking query grows the result set. Defer just that — collapse the rapid
-    // burst into one trailing run. Everything else (forward typing, a single deliberate
-    // backspace, deleting to empty) runs immediately. Discrete presses land >80ms apart, so
-    // inter-event timing tells a held key from a tapped one. Skipped when nothing changed.
-    const GAP = 120, BURST = 80;
-    let timer = 0, lastInput = "", lastEvt = 0;
-    function runSearch() {
-      if (search.value === lastInput) return;
-      lastInput = search.value;
-      applySearch(search.value);
-    }
+    // No debounce: windowed rendering keeps the DOM small, so every keystroke filters and
+    // repaints the first chunk synchronously — fast even on a held backspace.
     search.addEventListener("input", () => {
       syncClear();
-      clearTimeout(timer);
-      const now = performance.now();
-      const heldRepeat = now - lastEvt < BURST;   // auto-repeat, not a discrete keystroke
-      lastEvt = now;
-      // shrinking (lastInput hasn't advanced, so longer) AND rapid → held backspace
-      if (search.value.length >= lastInput.length || !heldRepeat) runSearch();
-      else timer = setTimeout(runSearch, GAP);
+      runSearch(search.value);
     });
     clearBtn.addEventListener("click", () => {
       search.value = "";
-      lastInput = "";
       syncClear();
       search.focus();
-      applySearch("");
+      runSearch("");
     });
     const controlsEl = document.getElementById("controls");
     const ctlToggle = document.getElementById("ctl-toggle");
@@ -978,14 +984,13 @@
       show[key] = !show[key];
       btn.classList.toggle("active", show[key]);
       btn.setAttribute("aria-pressed", String(show[key]));
-      rebuild();        // toggles change built content (and search semantics), not just visibility
+      runSearch(curQuery);   // toggles change built content (and search semantics)
     });
     railEl.addEventListener("click", e => {
       const a = e.target.closest("a");
       if (!a) return;
       e.preventDefault();
-      const t = document.getElementById("letter-" + a.dataset.letter);
-      if (t) t.scrollIntoView({ behavior: "auto", block: "start" });
+      jumpToLetter(a.dataset.letter);
     });
     // Long-press a chip to open its info modal (the on-chip ⓘ is hidden on mobile).
     // A fired long-press suppresses the click that would otherwise select the chip.
@@ -1008,7 +1013,7 @@
       if (!chip) return;
       activeId = chip.dataset.id;
       updateChips();
-      rebuild();        // scope change rebuilds the entry list
+      runSearch(curQuery);   // scope change rebuilds the entry list
     });
     document.getElementById("modal-close").addEventListener("click", closeModal);
     modalEl.addEventListener("click", e => { if (e.target === modalEl) closeModal(); });
@@ -1033,7 +1038,7 @@
       }
       buildRail();
       buildChips();
-      rebuild();
+      runSearch(search.value);
     }
     boot();
   </script>
