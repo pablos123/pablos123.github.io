@@ -58,8 +58,15 @@
 
     header .title {
       font-size: 13px;
-      color: var(--fg2);
+      color: var(--yellow);
       letter-spacing: 0.08em;
+    }
+    header .subtitle {
+      font-size: 11px;
+      color: var(--gray);
+    }
+    @media (max-width: 768px) {
+      header .subtitle { display: none; }
     }
 
     .panes {
@@ -211,6 +218,12 @@
     }
     #tooltip .copy-row:hover { background: var(--bg2); color: var(--fg); }
     #tooltip .copy-row.copied { color: var(--green); }
+    #tooltip .rlbl {
+      color: var(--gray);
+      font-size: 9px;
+      letter-spacing: 0.06em;
+      margin-right: 8px;
+    }
 
     .empty {
       color: var(--gray);
@@ -257,7 +270,7 @@
       background: var(--bg1);
       border-top: 1px solid var(--bg2);
       border-radius: 14px 14px 0 0;
-      padding: 8px 16px calc(16px + env(safe-area-inset-bottom));
+      padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
       z-index: 1600;
       transform: translateY(110%);
       transition: transform 0.22s ease;
@@ -265,20 +278,25 @@
     }
     #sheet.open { transform: translateY(0); }
 
-    .sheet-handle {
-      width: 38px;
-      height: 4px;
-      border-radius: 2px;
-      background: var(--bg2);
-      margin: 4px auto 12px;
-    }
-
     .sheet-head {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
     }
+    .sheet-close {
+      margin-left: auto;
+      align-self: flex-start;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 22px;
+      line-height: 1;
+      padding: 0 4px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .sheet-close:hover { color: var(--fg); }
     .sheet-preview {
       width: 40px;
       height: 40px;
@@ -311,8 +329,19 @@
       cursor: pointer;
       text-align: left;
     }
-    .sheet-row .lbl { color: var(--gray); font-size: 11px; }
+    .sheet-row .lbl { color: var(--gray); font-size: 11px; letter-spacing: 0.06em; }
+    .sheet-row .val { word-break: break-all; }
     .sheet-row:active { background: var(--bg2); }
+    .sheet-row.copied { border-color: var(--green); color: var(--green); }
+    .sheet-row.copied .lbl { color: var(--green); }
+
+    .sheet-hint {
+      text-align: center;
+      color: var(--gray);
+      font-size: 10px;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
 
     /* ── Toast ───────────────────────────────────────────────────────────── */
     #toast {
@@ -398,10 +427,11 @@
 <body>
   <header>
     <span class="title">color extractor</span>
+    <span class="subtitle">paste anything with colors &mdash; pull the palette</span>
   </header>
   <div class="panes">
     <div class="left">
-      <textarea id="source" placeholder="paste or type something with colors here" spellcheck="false"></textarea>
+      <textarea id="source" placeholder="paste CSS, code, anything with colors&hellip;" spellcheck="false"></textarea>
     </div>
     <div class="right">
       <div class="filters">
@@ -409,7 +439,7 @@
         <label class="filter-label"><input type="checkbox" id="f-rgb"   checked> rgb/rgba</label>
         <label class="filter-label"><input type="checkbox" id="f-hsl"   checked> hsl/hsla</label>
         <label class="filter-label"><input type="checkbox" id="f-named" checked> named</label>
-        <button id="pin-btn">pin</button>
+        <button id="pin-btn" title="save these colors as a palette">pin</button>
       </div>
       <div class="palette">
         <div class="swatches" id="swatches"></div>
@@ -420,14 +450,15 @@
 
   <div id="sheet-backdrop"></div>
   <div id="sheet">
-    <div class="sheet-handle"></div>
     <div class="sheet-head">
       <div class="sheet-preview" id="sheet-preview"></div>
       <div class="sheet-orig" id="sheet-orig"></div>
+      <button class="sheet-close" id="sheet-close" aria-label="close">&times;</button>
     </div>
     <button class="sheet-row" id="sheet-hex"><span class="lbl">HEX</span><span class="val"></span></button>
     <button class="sheet-row" id="sheet-rgb"><span class="lbl">RGB</span><span class="val"></span></button>
     <button class="sheet-row" id="sheet-hsl"><span class="lbl">HSL</span><span class="val"></span></button>
+    <div class="sheet-hint">tap a row to copy</div>
   </div>
 
   <div id="toast"></div>
@@ -603,12 +634,12 @@
     function copyRow(btn) {
       const value = btn.dataset.copy;
       const done = () => {
-        const prev = btn.textContent;
+        const prev = btn.innerHTML;
         tip.style.width = tip.offsetWidth + 'px';
         btn.textContent = 'copied!';
         btn.classList.add('copied');
         setTimeout(() => {
-          btn.textContent = prev;
+          btn.innerHTML = prev;
           btn.classList.remove('copied');
           tip.style.width = '';
         }, 900);
@@ -632,12 +663,12 @@
     }
 
     function populateTip(w) {
-      const row = v => `<button class="copy-row" data-copy="${escHtml(v)}">${escHtml(v)}</button>`;
+      const row = (lbl, v) => `<button class="copy-row" data-copy="${escHtml(v)}"><span class="rlbl">${lbl}</span>${escHtml(v)}</button>`;
       tip.innerHTML =
         `<span class="orig">${escHtml(w.dataset.orig)}</span>` +
-        row(w.dataset.hex) +
-        row(w.dataset.rgb) +
-        row(w.dataset.hsl);
+        row('HEX', w.dataset.hex) +
+        row('RGB', w.dataset.rgb) +
+        row('HSL', w.dataset.hsl);
     }
 
     function cancelHide() { if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; } }
@@ -717,21 +748,16 @@
     }
 
     backdrop.addEventListener('click', closeSheet);
+    document.getElementById('sheet-close').addEventListener('click', closeSheet);
 
-    // scrolling / swipe gesture dismisses the sheet
-    function closeSheetOnScroll() {
-      if (sheet.classList.contains('open')) closeSheet();
-    }
-    // backdrop covers the screen while open, so the scroll gesture lands here
-    backdrop.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
-    sheet.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
-    document.querySelector('.palette').addEventListener('scroll', closeSheetOnScroll, { passive: true });
-    window.addEventListener('scroll', closeSheetOnScroll, { passive: true });
-    window.addEventListener('wheel',  closeSheetOnScroll, { passive: true });
     Object.values(sheetRows).forEach(row => {
       row.addEventListener('click', () => {
         const value = row.dataset.copy;
-        const done = () => showToast('copied ' + value);
+        const done = () => {
+          showToast('copied ' + value);
+          row.classList.add('copied');
+          setTimeout(() => row.classList.remove('copied'), 900);
+        };
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(value).then(done).catch(() => fallbackCopy(value, done));
         } else {
@@ -755,7 +781,7 @@
     function render(colors) {
       const el = document.getElementById('swatches');
       if (!colors.length) {
-        el.innerHTML = '<span class="empty">no colors found</span>';
+        el.innerHTML = '<span class="empty">no colors found in that text</span>';
         return;
       }
       el.innerHTML = colors.map(c =>
@@ -884,7 +910,8 @@
     function update() {
       const text = document.getElementById('source').value;
       if (!text.trim()) {
-        document.getElementById('swatches').innerHTML = '';
+        document.getElementById('swatches').innerHTML =
+          '<span class="empty">paste some text on the left to see its colors</span>';
         return;
       }
       render(parseColors(text, getFilters()));
