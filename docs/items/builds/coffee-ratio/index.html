@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#282828">
+  <title>coffee ratio calculator</title>
+  <style>
+    :root {
+      --bg:     #282828;
+      --bg1:    #3c3836;
+      --bg2:    #504945;
+      --bg3:    #665c54;
+      --fg:     #ebdbb2;
+      --fg2:    #d5c4a1;
+      --gray:   #928374;
+      --yellow: #d79921;
+      --orange: #d65d0e;
+      --red:    #cc241d;
+      --green:  #98971a;
+      --blue:   #458588;
+      --aqua:   #689d6a;
+      --purple: #b16286;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: max(22px, env(safe-area-inset-top)) 16px
+               max(32px, env(safe-area-inset-bottom));
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    header, main, footer {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    header { margin-bottom: 24px; }
+    .title {
+      font-size: 16px;
+      color: var(--yellow);
+      letter-spacing: 0.06em;
+    }
+    .subtitle {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* ─── fields ──────────────────────────────────────────────── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .field label {
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+    }
+
+    .input-wrap {
+      display: flex;
+      align-items: stretch;
+      background: var(--bg1);
+      border: 1px solid var(--bg2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .input-wrap:focus-within { border-color: var(--blue); }
+    .input-wrap .suffix {
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      font-size: 15px;
+      color: var(--gray);
+      background: var(--bg);
+      flex-shrink: 0;
+    }
+    input[type="number"] {
+      font-family: inherit;
+      font-size: 22px;
+      color: var(--fg);
+      background: transparent;
+      border: 0;
+      outline: none;
+      padding: 15px 16px;
+      width: 100%;
+      min-width: 0;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none; margin: 0;
+    }
+
+    /* ─── custom dropdown ─────────────────────────────────────── */
+    .dropdown { position: relative; }
+
+    .dd-trigger {
+      font-family: inherit;
+      font-size: 18px;
+      color: var(--fg);
+      background: var(--bg1);
+      border: 1px solid var(--bg2);
+      border-radius: 8px;
+      padding: 15px 16px;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+    }
+    .dd-trigger:focus-visible { outline: none; border-color: var(--blue); }
+    .dropdown.open .dd-trigger { border-color: var(--blue); }
+    .dd-trigger .val { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dd-trigger .chev {
+      flex-shrink: 0;
+      width: 14px; height: 9px;
+      color: var(--gray);
+      transition: transform .15s ease;
+    }
+    .dropdown.open .dd-trigger .chev { transform: rotate(180deg); }
+
+    .dd-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      z-index: 20;
+      background: var(--bg1);
+      border: 1px solid var(--bg3);
+      border-radius: 8px;
+      padding: 6px;
+      max-height: 300px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 10px 28px rgba(0,0,0,.45);
+      display: none;
+      /* subtle, minimalist scrollbar */
+      scrollbar-width: thin;
+      scrollbar-color: var(--bg3) transparent;
+    }
+    .dd-panel::-webkit-scrollbar { width: 8px; }
+    .dd-panel::-webkit-scrollbar-track { background: transparent; }
+    .dd-panel::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+    .dd-panel::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    .dropdown.open .dd-panel { display: block; }
+
+    .dd-opt {
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--fg2);
+      background: transparent;
+      border: 0;
+      border-radius: 6px;
+      width: 100%;
+      padding: 13px 12px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .dd-opt:hover, .dd-opt.active { background: var(--bg2); }
+    .dd-opt.selected { color: var(--bg); background: var(--yellow); }
+    .dd-opt.sep { margin-top: 4px; border-top: 1px solid var(--bg2); border-radius: 0 0 6px 6px; padding-top: 15px; }
+
+    /* custom-ratio row, revealed only when "Custom" is picked */
+    .custom-row { display: none; }
+    .custom-row.show { display: flex; }
+    .custom-row .field { flex: 1; }
+
+    .brew-row {
+      display: flex;
+      gap: 14px;
+    }
+    .brew-row .field { flex: 1; min-width: 0; }
+
+    /* ─── references table ────────────────────────────────────── */
+    .refs { margin-top: 34px; }
+    .refs h2 {
+      font-size: 12px;
+      font-weight: normal;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+    .refs table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .refs th {
+      text-align: left;
+      font-weight: normal;
+      color: var(--gray);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      padding: 0 10px 8px;
+      border-bottom: 1px solid var(--bg2);
+    }
+    .refs th.r { text-align: right; white-space: nowrap; }
+    .refs td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--bg1);
+      vertical-align: top;
+    }
+    .refs tbody tr:last-child td { border-bottom: 0; }
+    .refs td.r { color: var(--yellow); white-space: nowrap; text-align: right; width: 1%; }
+    .refs td.range { color: var(--gray); white-space: nowrap; text-align: right; width: 1%; }
+    .refs td.d { color: var(--fg2); line-height: 1.5; }
+    .refs .disclaimer {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .ref-toggle {
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--gray);
+      background: transparent;
+      border: 1px solid var(--bg2);
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-top: 18px;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+      transition: color .1s, border-color .1s;
+    }
+    .ref-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .ref-toggle:hover { color: var(--fg2); border-color: var(--bg3); }
+    .ref-toggle[aria-expanded="true"] { color: var(--yellow); border-color: var(--bg3); }
+    .ref-toggle .chev {
+      flex-shrink: 0;
+      width: 14px; height: 9px;
+      color: var(--gray);
+      transition: transform .15s ease;
+    }
+    .ref-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); color: var(--yellow); }
+    .grind-wrap { margin-top: 14px; }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    footer .out { color: var(--fg2); font-size: 13px; }
+    .note { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">coffee ratio calculator</div>
+  </header>
+
+  <main>
+    <div class="field">
+      <label id="ratioLabel">ratio</label>
+      <div class="dropdown" id="dropdown">
+        <button type="button" class="dd-trigger" id="ddTrigger"
+                aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ratioLabel">
+          <span class="val" id="ddVal">—</span>
+          <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="dd-panel" id="ddPanel" role="listbox" aria-labelledby="ratioLabel"></div>
+      </div>
+    </div>
+
+    <div class="custom-row" id="customRow">
+      <div class="field">
+        <label for="ratio">custom ratio &mdash; 1&#8239;:</label>
+        <div class="input-wrap">
+          <input id="ratio" type="number" inputmode="decimal" min="0" step="0.5" value="16">
+        </div>
+      </div>
+    </div>
+
+    <div class="brew-row">
+      <div class="field">
+        <label for="coffee">coffee</label>
+        <div class="input-wrap">
+          <input id="coffee" type="number" inputmode="decimal" min="0" step="0.1" value="16">
+          <span class="suffix">g</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="water">water</label>
+        <div class="input-wrap">
+          <input id="water" type="number" inputmode="decimal" min="0" step="1">
+          <span class="suffix">g</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="refs">
+      <h2>brew ratio references</h2>
+      <table>
+        <thead>
+          <tr><th>method</th><th class="r">typical</th><th class="r">range</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="d">Ristretto</td>              <td class="r">1:1</td>  <td class="range">1:1&ndash;2:3</td></tr>
+          <tr><td class="d">Espresso</td>               <td class="r">1:2</td>  <td class="range">2:3&ndash;2:5</td></tr>
+          <tr><td class="d">Lungo</td>                  <td class="r">1:4</td>  <td class="range">2:5&ndash;1:4</td></tr>
+          <tr><td class="d">Cold brew concentrate</td> <td class="r">1:5</td>  <td class="range">1:4&ndash;1:6</td></tr>
+          <tr><td class="d">Moka pot</td>              <td class="r">1:10</td> <td class="range">1:7&ndash;1:12</td></tr>
+          <tr><td class="d">Turkish</td>               <td class="r">1:10</td> <td class="range">1:8&ndash;1:12</td></tr>
+          <tr><td class="d">Cold brew</td>             <td class="r">1:11</td> <td class="range">1:8&ndash;1:15</td></tr>
+          <tr><td class="d">French press</td>          <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
+          <tr><td class="d">AeroPress</td>             <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
+          <tr><td class="d">Siphon</td>                <td class="r">1:15</td> <td class="range">1:12&ndash;1:16</td></tr>
+          <tr><td class="d">Pour-over</td>             <td class="r">1:15</td> <td class="range">1:14&ndash;1:16</td></tr>
+          <tr><td class="d">Chemex</td>                <td class="r">1:15</td> <td class="range">1:14&ndash;1:17</td></tr>
+          <tr><td class="d">V60</td>                   <td class="r">1:16</td> <td class="range">1:14&ndash;1:18</td></tr>
+          <tr><td class="d">Drip / auto-drip</td>      <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
+          <tr><td class="d">Steep-and-release</td>     <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
+          <tr><td class="d">Cupping</td>               <td class="r">1:18</td> <td class="range">1:17&ndash;1:19</td></tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="ref-toggle" id="grindToggle" aria-expanded="false" aria-controls="grindTable">
+        <span>timemore chestnut reference</span>
+        <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+          <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="grindTable" class="grind-wrap" hidden>
+        <table>
+          <thead>
+            <tr><th>brew method</th><th class="r">rotations from zero</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="d">Turkish</td>               <td class="r">0&ndash;3.6</td></tr>
+            <tr><td class="d">Espresso</td>              <td class="r">2.8&ndash;8</td></tr>
+            <tr><td class="d">Moka pot</td>              <td class="r">7.6&ndash;15.4</td></tr>
+            <tr><td class="d">AeroPress</td>             <td class="r">6.4&ndash;23.4</td></tr>
+            <tr><td class="d">V60</td>                   <td class="r">8.6&ndash;16.4</td></tr>
+            <tr><td class="d">Pour-over</td>             <td class="r">8.8&ndash;22.6</td></tr>
+            <tr><td class="d">Siphon</td>                <td class="r">8&ndash;19.2</td></tr>
+            <tr><td class="d">Filter machine</td>        <td class="r">6&ndash;21.8</td></tr>
+            <tr><td class="d">French press</td>          <td class="r">16.4&ndash;24</td></tr>
+            <tr><td class="d">Cupping</td>               <td class="r">10.2&ndash;20.4</td></tr>
+            <tr><td class="d">Steep-and-release</td>     <td class="r">10&ndash;19.8</td></tr>
+            <tr><td class="d">Cold brew</td>             <td class="r">19.2&ndash;24</td></tr>
+            <tr><td class="d">Cold drip</td>             <td class="r">19.8&ndash;24</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    "use strict";
+
+    const DECIMALS = 1;
+    const CUSTOM = "custom";
+    const FALLBACK = [8, 12, 14, 15, 16, 17, 18];
+
+    const dropdown  = document.getElementById("dropdown");
+    const trigger   = document.getElementById("ddTrigger");
+    const panel     = document.getElementById("ddPanel");
+    const ddVal     = document.getElementById("ddVal");
+    const customRow = document.getElementById("customRow");
+    const ratioEl   = document.getElementById("ratio");
+    const coffeeEl  = document.getElementById("coffee");
+    const waterEl   = document.getElementById("water");
+
+    let options = [];      // [{ value, label, ratio|null }]
+    let selected = CUSTOM;
+
+    function fmt(n) {
+      if (!isFinite(n)) return "";
+      return String(Number(n.toFixed(DECIMALS)));
+    }
+    function num(el) {
+      const v = parseFloat(el.value);
+      return isFinite(v) ? v : NaN;
+    }
+
+    function currentRatio() {
+      if (selected === CUSTOM) return num(ratioEl);
+      const opt = options.find(o => o.value === selected);
+      return opt ? opt.ratio : NaN;
+    }
+
+    // ─── dropdown open/close ────────────────────────────────────
+    function openDD() {
+      dropdown.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
+      const sel = panel.querySelector(".dd-opt.selected") || panel.firstElementChild;
+      if (sel) { sel.classList.add("active"); sel.scrollIntoView({ block: "nearest" }); }
+      document.addEventListener("click", onOutside, true);
+    }
+    function closeDD() {
+      dropdown.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
+      for (const o of panel.children) o.classList.remove("active");
+      document.removeEventListener("click", onOutside, true);
+    }
+    function onOutside(e) { if (!dropdown.contains(e.target)) closeDD(); }
+
+    trigger.addEventListener("click", () => {
+      dropdown.classList.contains("open") ? closeDD() : openDD();
+    });
+    trigger.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (!dropdown.classList.contains("open")) openDD();
+        moveActive(1);
+      }
+    });
+    panel.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeDD(); trigger.focus(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); moveActive(1); }
+      else if (e.key === "ArrowUp")   { e.preventDefault(); moveActive(-1); }
+      else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const act = panel.querySelector(".dd-opt.active");
+        if (act) choose(act.dataset.value);
+      }
+    });
+    function moveActive(dir) {
+      const items = [...panel.children];
+      let i = items.findIndex(o => o.classList.contains("active"));
+      i = (i + dir + items.length) % items.length;
+      items.forEach(o => o.classList.remove("active"));
+      items[i].classList.add("active");
+      items[i].scrollIntoView({ block: "nearest" });
+      panel.setAttribute("tabindex", "-1");
+      panel.focus();
+    }
+
+    // ─── selection ──────────────────────────────────────────────
+    function choose(value) {
+      selected = value;
+      const opt = options.find(o => o.value === value);
+      ddVal.textContent = opt ? opt.label : "Custom…";
+      for (const el of panel.children)
+        el.classList.toggle("selected", el.dataset.value === value);
+      customRow.classList.toggle("show", value === CUSTOM);
+      closeDD();
+      if (value === CUSTOM) ratioEl.focus();
+      recompute("ratio");
+    }
+
+    function renderPanel() {
+      panel.innerHTML = "";
+      options.forEach(o => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "dd-opt" + (o.value === CUSTOM ? " sep" : "");
+        btn.dataset.value = o.value;
+        btn.setAttribute("role", "option");
+        btn.textContent = o.label;
+        btn.addEventListener("click", () => choose(o.value));
+        btn.addEventListener("mousemove", () => {
+          for (const el of panel.children) el.classList.remove("active");
+          btn.classList.add("active");
+        });
+        panel.appendChild(btn);
+      });
+    }
+
+    // ─── calculator (model A) ───────────────────────────────────
+    function recompute(source) {
+      const ratio = currentRatio();
+      if (source === "water") {
+        const water = num(waterEl);
+        if (ratio > 0 && isFinite(water)) coffeeEl.value = fmt(water / ratio);
+        else if (!isFinite(water)) coffeeEl.value = "";
+      } else {
+        const coffee = num(coffeeEl);
+        if (ratio > 0 && isFinite(coffee)) waterEl.value = fmt(coffee * ratio);
+        else if (!isFinite(coffee)) waterEl.value = "";
+      }
+    }
+
+    ratioEl .addEventListener("input", () => recompute("ratio"));
+    coffeeEl.addEventListener("input", () => recompute("coffee"));
+    waterEl .addEventListener("input", () => recompute("water"));
+
+    // ─── grind reference toggle ─────────────────────────────────
+    const grindToggle = document.getElementById("grindToggle");
+    const grindTable  = document.getElementById("grindTable");
+    grindToggle.addEventListener("click", () => {
+      const open = grindTable.hidden;
+      grindTable.hidden = !open;
+      grindToggle.setAttribute("aria-expanded", String(open));
+    });
+
+    // ─── boot ───────────────────────────────────────────────────
+    // recipes.json = array of ratio numbers, e.g. [8,12,15,16]. Served over
+    // HTTP by shtatic locally and GitHub Pages in production, so fetch works.
+    // On failure (e.g. file://) fall back to a built-in list.
+    async function boot() {
+      let ratios = FALLBACK;
+      try {
+        const res = await fetch("recipes.json");
+        if (!res.ok) throw new Error(String(res.status));
+        const data = await res.json();
+        const clean = (Array.isArray(data) ? data : [])
+          .map(Number).filter(n => isFinite(n) && n > 0);
+        if (clean.length) ratios = clean;
+        else throw new Error("empty");
+      } catch (err) {
+        ratios = FALLBACK;   // fetch failed (e.g. file://) — use built-in list
+      }
+      options = ratios.map(r => ({ value: `r${r}`, label: `1:${r}`, ratio: r }));
+      options.push({ value: CUSTOM, label: "Custom…", ratio: null });
+      renderPanel();
+      // default to 1:16 if present, else first ratio
+      const def = options.find(o => o.ratio === 16) || options[0];
+      choose(def.value);
+    }
+    boot();
+  </script>
+</body>
+</html>
