@@ -160,10 +160,12 @@
       scrollbar-width: thin;
       scrollbar-color: var(--bg3) transparent;
     }
-    .dd-panel::-webkit-scrollbar { width: 8px; }
-    .dd-panel::-webkit-scrollbar-track { background: transparent; }
-    .dd-panel::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
-    .dd-panel::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    /* themed, rounded scrollbars everywhere */
+    * { scrollbar-width: thin; scrollbar-color: var(--bg3) transparent; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gray); }
     .dropdown.open .dd-panel { display: block; }
 
     .dd-opt {
@@ -254,15 +256,15 @@
       gap: 12px;
     }
     .ref-toggle:hover { color: var(--fg2); border-color: var(--bg3); }
-    .ref-toggle[aria-expanded="true"] { color: var(--yellow); border-color: var(--bg3); }
+    .ref-toggle[aria-expanded="true"] { border-color: var(--bg3); }
     .ref-toggle .chev {
       flex-shrink: 0;
       width: 14px; height: 9px;
       color: var(--gray);
       transition: transform .15s ease;
     }
-    .ref-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); color: var(--yellow); }
-    .grind-wrap { margin-top: 14px; }
+    .ref-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+    .ref-wrap { margin-top: 14px; }
 
     footer {
       margin-top: 30px;
@@ -321,7 +323,13 @@
     </div>
 
     <section class="refs">
-      <h2>brew ratio references</h2>
+      <button type="button" class="ref-toggle" id="brewToggle" aria-expanded="false" aria-controls="brewTable">
+        <span>brew ratio references</span>
+        <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+          <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <div id="brewTable" class="ref-wrap" hidden>
       <table>
         <thead>
           <tr><th>method</th><th class="r">typical</th><th class="r">range</th></tr>
@@ -345,6 +353,7 @@
           <tr><td class="d">Cupping</td>               <td class="r">1:18</td> <td class="range">1:17&ndash;1:19</td></tr>
         </tbody>
       </table>
+      </div>
 
       <button type="button" class="ref-toggle" id="grindToggle" aria-expanded="false" aria-controls="grindTable">
         <span>timemore chestnut reference</span>
@@ -352,7 +361,7 @@
           <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
-      <div id="grindTable" class="grind-wrap" hidden>
+      <div id="grindTable" class="ref-wrap" hidden>
         <table>
           <thead>
             <tr><th>brew method</th><th class="r">rotations from zero</th></tr>
@@ -507,14 +516,18 @@
     coffeeEl.addEventListener("input", () => recompute("coffee"));
     waterEl .addEventListener("input", () => recompute("water"));
 
-    // ─── grind reference toggle ─────────────────────────────────
-    const grindToggle = document.getElementById("grindToggle");
-    const grindTable  = document.getElementById("grindTable");
-    grindToggle.addEventListener("click", () => {
-      const open = grindTable.hidden;
-      grindTable.hidden = !open;
-      grindToggle.setAttribute("aria-expanded", String(open));
-    });
+    // ─── reference toggles ──────────────────────────────────────
+    function wireToggle(btnId, tableId) {
+      const btn = document.getElementById(btnId);
+      const tbl = document.getElementById(tableId);
+      btn.addEventListener("click", () => {
+        const open = tbl.hidden;
+        tbl.hidden = !open;
+        btn.setAttribute("aria-expanded", String(open));
+      });
+    }
+    wireToggle("brewToggle", "brewTable");
+    wireToggle("grindToggle", "grindTable");
 
     // ─── boot ───────────────────────────────────────────────────
     // Hardcoded ratio list — one option per ratio, plus Custom.
