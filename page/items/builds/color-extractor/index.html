@@ -750,6 +750,17 @@
     backdrop.addEventListener('click', closeSheet);
     document.getElementById('sheet-close').addEventListener('click', closeSheet);
 
+    // Scroll / swipe anywhere dismisses the sheet — a common bottom-sheet gesture. (The
+    // grab-handle that *looked* draggable is gone; the gesture itself stays.)
+    function closeSheetOnScroll() {
+      if (sheet.classList.contains('open')) closeSheet();
+    }
+    backdrop.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
+    sheet.addEventListener('touchmove', closeSheetOnScroll, { passive: true });
+    document.querySelector('.palette').addEventListener('scroll', closeSheetOnScroll, { passive: true });
+    window.addEventListener('scroll', closeSheetOnScroll, { passive: true });
+    window.addEventListener('wheel',  closeSheetOnScroll, { passive: true });
+
     Object.values(sheetRows).forEach(row => {
       row.addEventListener('click', () => {
         const value = row.dataset.copy;
