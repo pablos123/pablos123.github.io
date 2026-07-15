@@ -156,16 +156,10 @@
       -webkit-overflow-scrolling: touch;
       box-shadow: 0 10px 28px rgba(0,0,0,.45);
       display: none;
-      /* subtle, minimalist scrollbar */
-      scrollbar-width: thin;
-      scrollbar-color: var(--bg3) transparent;
+      /* scroll, but no visible scrollbar */
+      scrollbar-width: none;
     }
-    /* themed, rounded scrollbars everywhere */
-    * { scrollbar-width: thin; scrollbar-color: var(--bg3) transparent; }
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    .dd-panel::-webkit-scrollbar { display: none; }
     .dropdown.open .dd-panel { display: block; }
 
     .dd-opt {
@@ -180,7 +174,10 @@
       cursor: pointer;
       text-align: left;
     }
-    .dd-opt:hover, .dd-opt.active { background: var(--bg2); }
+    /* highlight only with a real pointer — avoids sticky grey rows on touch */
+    @media (hover: hover) and (pointer: fine) {
+      .dd-opt:hover, .dd-opt.active { background: var(--bg2); }
+    }
     .dd-opt.selected { color: var(--bg); background: var(--yellow); }
     .dd-opt.sep { margin-top: 4px; border-top: 1px solid var(--bg2); border-radius: 0 0 6px 6px; padding-top: 15px; }
 
@@ -196,7 +193,7 @@
     .brew-row .field { flex: 1; min-width: 0; }
 
     /* ─── references table ────────────────────────────────────── */
-    .refs { margin-top: 34px; }
+    .refs { margin-top: 14px; }
     .refs h2 {
       font-size: 12px;
       font-weight: normal;
