@@ -382,7 +382,7 @@
 
     const DECIMALS = 1;
     const CUSTOM = "custom";
-    const FALLBACK = [8, 12, 14, 15, 16, 17, 18];
+    const RATIOS = [8, 12, 14, 15, 16, 17, 18];
 
     const dropdown  = document.getElementById("dropdown");
     const trigger   = document.getElementById("ddTrigger");
@@ -517,23 +517,9 @@
     });
 
     // ─── boot ───────────────────────────────────────────────────
-    // recipes.json = array of ratio numbers, e.g. [8,12,15,16]. Served over
-    // HTTP by shtatic locally and GitHub Pages in production, so fetch works.
-    // On failure (e.g. file://) fall back to a built-in list.
-    async function boot() {
-      let ratios = FALLBACK;
-      try {
-        const res = await fetch("recipes.json");
-        if (!res.ok) throw new Error(String(res.status));
-        const data = await res.json();
-        const clean = (Array.isArray(data) ? data : [])
-          .map(Number).filter(n => isFinite(n) && n > 0);
-        if (clean.length) ratios = clean;
-        else throw new Error("empty");
-      } catch (err) {
-        ratios = FALLBACK;   // fetch failed (e.g. file://) — use built-in list
-      }
-      options = ratios.map(r => ({ value: `r${r}`, label: `1:${r}`, ratio: r }));
+    // Hardcoded ratio list — one option per ratio, plus Custom.
+    function boot() {
+      options = RATIOS.map(r => ({ value: `r${r}`, label: `1:${r}`, ratio: r }));
       options.push({ value: CUSTOM, label: "Custom…", ratio: null });
       renderPanel();
       // default to 1:16 if present, else first ratio
