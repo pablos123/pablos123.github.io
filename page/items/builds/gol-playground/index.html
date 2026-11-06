@@ -6,315 +6,483 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>game of life playground</title>
   <style>
+    /* icewm-ish desktop: gray bevels, steel-blue titles, plain slate root */
     :root {
-      --bg:     #282828;
-      --bg1:    #3c3836;
-      --bg2:    #504945;
-      --bg3:    #665c54;
-      --fg:     #ebdbb2;
-      --fg2:    #d5c4a1;
-      --gray:   #928374;
-      --yellow: #d79921;
-      --orange: #d65d0e;
-      --red:    #cc241d;
-      --green:  #98971a;
-      --blue:   #458588;
-      --aqua:   #689d6a;
-      --purple: #b16286;
+      --root:  #3b4a5c;
+      --face:  #c4c4c4;
+      --face2: #b4b4b4;
+      --hi:    #ffffff;
+      --lite:  #e0e0e0;
+      --shade: #848484;
+      --dark:  #101010;
+      --act1:  #2d4f7c;
+      --act2:  #6b8fbf;
+      --sel:   #2d4f7c;
+      --bad:   #b01818;
+      --term:  #0c0c0c;
+      --tfg:   #d8d8d8;
+      --tgreen:#7fd27f;
+      --tdim:  #7a7a7a;
+      --tyel:  #e6c35c;
+      --mono:  'DejaVu Sans Mono', /* only the xterm */ 'Bitstream Vera Sans Mono', 'Liberation Mono', ui-monospace, monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      -webkit-user-select: none;
-      user-select: none;
-    }
+    html, body { -webkit-user-select: none; user-select: none; }
 
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
-      height: 100vh;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      height: 100vh; height: 100dvh; overflow: hidden;
+      background: var(--root); color: #000;
+      font: 12px 'DejaVu Sans', 'Bitstream Vera Sans', Verdana, sans-serif;
+      display: grid; grid-template-rows: 1fr 28px;
     }
 
-    header {
-      padding: 8px 16px;
-      background: var(--bg1);
-      border-bottom: 1px solid var(--bg2);
-      flex-shrink: 0;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    header .title { font-size: 13px; letter-spacing: .5px; color: var(--fg); }
-    header .hint  { font-size: 11px; color: var(--gray); }
+    /* bevels */
+    .raised { background: var(--face); box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--lite), inset -2px -2px var(--shade), inset 2px 2px var(--hi); }
+    .sunken { box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark); }
+    .pressed { background: var(--face2); box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--dark), inset -2px -2px var(--lite), inset 2px 2px var(--shade); }
 
-    /* ─── toolbar ─────────────────────────────────────────────── */
-    .toolbar {
-      flex-shrink: 0;
-      background: var(--bg1);
-      border-bottom: 1px solid var(--bg2);
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      font-size: 12px;
+    /* classic scrollbars: dotted trough, beveled thumb and arrow buttons.
+       (chrome/webkit; firefox only takes the colors) */
+    .pages-in, .menu, .xterm { scrollbar-color: var(--face) #d8d8d8; }
+    @supports selector(::-webkit-scrollbar) { .pages-in, .menu, .xterm { scrollbar-color: auto; } }
+    .pages-in::-webkit-scrollbar, .menu::-webkit-scrollbar, .xterm::-webkit-scrollbar { width: 16px; }
+    .pages-in::-webkit-scrollbar-track, .menu::-webkit-scrollbar-track, .xterm::-webkit-scrollbar-track { background: repeating-conic-gradient(var(--face) 0 25%, var(--hi) 0 50%) 0 0 / 2px 2px; }
+    .pages-in::-webkit-scrollbar-thumb, .menu::-webkit-scrollbar-thumb, .xterm::-webkit-scrollbar-thumb {
+      background: var(--face); border: 1px solid; border-color: var(--lite) var(--dark) var(--dark) var(--lite);
+      box-shadow: inset 1px 1px var(--hi), inset -1px -1px var(--shade); min-height: 20px;
     }
-    .group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding-right: 8px;
-      border-right: 1px solid var(--bg2);
+    .pages-in::-webkit-scrollbar-button:single-button, .menu::-webkit-scrollbar-button:single-button, .xterm::-webkit-scrollbar-button:single-button {
+      display: block; height: 16px; border: 1px solid; border-color: var(--lite) var(--dark) var(--dark) var(--lite);
+      box-shadow: inset 1px 1px var(--hi), inset -1px -1px var(--shade);
     }
-    .group:last-child { border-right: 0; padding-right: 0; }
-    .group .lbl { color: var(--gray); font-size: 11px; }
+    .pages-in::-webkit-scrollbar-button:single-button:vertical:decrement, .menu::-webkit-scrollbar-button:single-button:vertical:decrement, .xterm::-webkit-scrollbar-button:single-button:vertical:decrement { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpolygon points='3,9 7,5 11,9' fill='%23000'/%3E%3C/svg%3E") center / 14px 14px no-repeat, var(--face); }
+    .pages-in::-webkit-scrollbar-button:single-button:vertical:increment, .menu::-webkit-scrollbar-button:single-button:vertical:increment, .xterm::-webkit-scrollbar-button:single-button:vertical:increment { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpolygon points='3,5 7,9 11,5' fill='%23000'/%3E%3C/svg%3E") center / 14px 14px no-repeat, var(--face); }
+    .pages-in::-webkit-scrollbar-button:single-button:active, .menu::-webkit-scrollbar-button:single-button:active, .xterm::-webkit-scrollbar-button:single-button:active { border-color: var(--dark) var(--lite) var(--lite) var(--dark); box-shadow: none; }
 
+    /* ─── desktop toys: flakes behind the windows, penguins + snow piles on top ── */
+    #fx-back, #fx-front { position: fixed; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+    #fx-back { z-index: 0; }
+    #fx-front { z-index: 40; }
+    body.over-penguin, body.over-penguin * { cursor: grab !important; }
+    body.holding-penguin, body.holding-penguin * { cursor: grabbing !important; }
+    .slot, .taskbar { position: relative; z-index: 1; }
+    .slot:has(.menu.open) { z-index: 30; } /* an open dropdown goes over the other windows */
+    /* hidden taskbar: everything goes except the arrow that brings it back;
+       its row stays reserved, so the windows keep their size */
+    body.bar-hidden .taskbar { background: transparent; box-shadow: none; pointer-events: none; }
+    body.bar-hidden #hide-btn { pointer-events: auto; }
+    body.bar-hidden .taskbar > :not(.applets), body.bar-hidden .applets > :not(#hide-btn) { visibility: hidden; }
+    .hidebtn { width: 16px; border: none; cursor: pointer; display: grid; place-items: center; padding: 0; }
+    .hidebtn i { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid #000; }
+    body.bar-hidden .hidebtn i { border-top: none; border-bottom: 5px solid #000; }
+    .snowbtn { width: 26px; border: none; cursor: pointer; display: grid; place-items: center; }
+    .snowbtn.on { background: var(--face2); box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--dark), inset -2px -2px var(--lite), inset 2px 2px var(--shade); }
+
+    /* ─── desktop + tiled windows ───────────────────────────── */
+    .desktop {
+      position: relative; min-height: 0; padding: 32px 8px 8px; gap: 8px; /* top strip: room for penguins and snow on the title bars */
+      display: grid; grid-template-columns: 1fr 390px; grid-template-rows: 1fr 210px;
+      grid-template-areas: "life ctl" "life term";
+    }
+    .slot { min-height: 0; min-width: 0; display: flex; }
+    .slot[data-win=life] { grid-area: life; }
+    .slot[data-win=ctl]  { grid-area: ctl; }
+    .slot[data-win=term] { grid-area: term; }
+    .slot.min { visibility: hidden; }
+
+    .win { flex: 1; display: flex; flex-direction: column; min-height: 0; min-width: 0; padding: 3px; }
+    .title {
+      height: 20px; flex-shrink: 0; display: flex; align-items: center; gap: 4px; padding: 0 2px 0 2px;
+      color: #dcdcdc; font-weight: bold; background: linear-gradient(90deg, #7a7a7a, #a8a8a8);
+    }
+    .win.focus .title { color: #fff; background: linear-gradient(90deg, var(--act1), var(--act2)); }
+    .title .t { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .tb { width: 16px; height: 16px; flex-shrink: 0; display: grid; place-items: center; cursor: pointer; }
+    .tb:active { box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--dark); }
+    .tb i { display: block; background: #000; }
+    .tb .g-min { width: 7px; height: 2px; margin-top: 6px; }
+    .tb .g-x   { width: 9px; height: 9px; background: linear-gradient(45deg, transparent 43%, #000 43% 57%, transparent 57%), linear-gradient(-45deg, transparent 43%, #000 43% 57%, transparent 57%); }
+
+    /* app icons (title bars + taskbar) */
+    .ico { width: 16px; height: 16px; flex-shrink: 0; display: inline-block; }
+    .ico-life {
+      background:
+        linear-gradient(#7fd27f, #7fd27f) 7px 2px / 3px 3px no-repeat,
+        linear-gradient(#7fd27f, #7fd27f) 11px 6px / 3px 3px no-repeat,
+        linear-gradient(#7fd27f, #7fd27f) 3px 10px / 11px 3px no-repeat,
+        #101010;
+      box-shadow: inset 0 0 0 1px #000;
+    }
+    .ico-desk {   /* old 4:3 crt: chunky case, slate screen, neck and foot */
+      background:
+        linear-gradient(#3b4a5c, #3b4a5c) 4px 3px / 8px 6px no-repeat,
+        linear-gradient(#e8e8e8, #e8e8e8) 3px 2px / 10px 8px no-repeat,
+        linear-gradient(#000, #000) 2px 1px / 12px 10px no-repeat,
+        linear-gradient(#000, #000) 6px 11px / 4px 2px no-repeat,
+        linear-gradient(#000, #000) 4px 13px / 8px 2px no-repeat;
+    }
+    .ico-ctl {
+      background:
+        linear-gradient(#000, #000) 2px 4px / 12px 1px no-repeat,
+        linear-gradient(#000, #000) 2px 11px / 12px 1px no-repeat,
+        linear-gradient(#2d4f7c, #2d4f7c) 4px 2px / 3px 5px no-repeat,
+        linear-gradient(#2d4f7c, #2d4f7c) 9px 9px / 3px 5px no-repeat,
+        var(--lite);
+      box-shadow: inset 0 0 0 1px #000;
+    }
+    .ico-term {
+      background:
+        linear-gradient(#7fd27f, #7fd27f) 7px 10px / 5px 2px no-repeat,
+        linear-gradient(135deg, transparent 2.5px, #7fd27f 2.5px 4px, transparent 4px) 3px 4px / 4px 4px no-repeat,
+        linear-gradient(45deg, transparent 2.5px, #7fd27f 2.5px 4px, transparent 4px) 3px 7px / 4px 4px no-repeat,
+        #101010;
+      box-shadow: inset 0 0 0 1px #000;
+    }
+
+    /* ─── life window ───────────────────────────────────────── */
+    .stage {
+      flex: 1; min-height: 0; position: relative; margin: 3px 3px 2px;
+      background: repeating-conic-gradient(#3a3a3a 0 25%, #2c2c2c 0 50%) 0 0 / 4px 4px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .stage.dragover { outline: 2px dashed var(--tyel); outline-offset: -6px; }
+    #board { image-rendering: pixelated; image-rendering: crisp-edges; cursor: crosshair; outline: 1px solid #000; box-shadow: 0 0 0 2px #6a6a6a; }
+    .statusbar { display: flex; gap: 2px; padding: 0 1px; flex-shrink: 0; }
+    .statusbar > span { padding: 3px 7px; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    /* numbers keep their place: equal-width digits in fixed, right-aligned slots */
+    .statusbar { font-variant-numeric: tabular-nums; }
+    .statusbar .n { display: inline-block; text-align: right; }
+    .statusbar .seg { display: inline-block; }
+    .statusbar #stat { flex: 0 0 150px; }
+    .statusbar .hint { flex: 1; color: #444; }
+
+    /* ─── controls window: notebook ─────────────────────────── */
+    .tabs { display: flex; padding: 5px 5px 0; flex-shrink: 0; }
+    .tab { padding: 3px 7px; margin-right: 1px; cursor: pointer; background: var(--face);
+      box-shadow: inset 1px 1px var(--hi), inset -1px 0 var(--dark), inset -2px 0 var(--shade); }
+    /* the selected tab reaches 2px into the page below, covering its top edge, so the two read as one */
+    .tab.on { padding-bottom: 7px; margin-bottom: -4px; position: relative; top: -2px; z-index: 1; }
+    .pages { flex: 1; margin: 0 5px 5px; padding: 2px; min-height: 0; display: flex; }
+    .pages-in { flex: 1; min-height: 0; overflow-y: auto; padding: 6px; }
+    .page { display: none; }
+    .page.on { display: block; }
+    fieldset { border: 2px groove var(--lite); padding: 6px 8px 8px; margin-bottom: 9px; }
+    legend { padding: 0 3px; margin-left: 2px; }
+    .row { display: flex; align-items: center; gap: 6px; margin-top: 7px; flex-wrap: wrap; }
+    .row:first-child { margin-top: 0; }
+    .lbl { min-width: 58px; }
+    .val { min-width: 46px; text-align: right; }
+    .keys { display: grid; grid-template-columns: minmax(118px, max-content) 1fr; gap: 1px 12px; } /* same column in every section; grows if a font is wider */
+    /* key cells are flex rows of fixed-height caps, so nothing depends on text baselines */
+    .keys > span:nth-child(odd) { display: flex; align-items: center; gap: 4px; min-height: 22px; white-space: nowrap; }
+    .keys > span:nth-child(even) { display: flex; align-items: center; min-height: 22px; }
+    .pic-name { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: #444; }
+    kbd { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box;
+      min-width: 20px; height: 18px; padding: 0 5px; line-height: 1; font: 11px 'DejaVu Sans', Verdana, sans-serif; background: var(--face);
+      box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hi), inset -2px -2px var(--shade); }
+
+    /* buttons */
     button.btn {
-      font-family: inherit;
-      font-size: 12px;
-      color: var(--fg);
-      background: var(--bg2);
-      border: 1px solid var(--bg3);
-      border-radius: 4px;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: background .12s, color .12s, border-color .12s;
-      white-space: nowrap;
+      font: 12px 'DejaVu Sans', Verdana, sans-serif; color: #000; min-width: 60px; height: 24px; padding: 0 9px;
+      border: none; cursor: pointer; white-space: nowrap; background: var(--face);
+      box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--lite), inset -2px -2px var(--shade), inset 2px 2px var(--hi);
     }
-    button.btn:hover  { background: var(--bg3); }
-    button.btn:active { transform: translateY(1px); }
-    button.btn.active { background: var(--yellow); color: var(--bg); border-color: var(--yellow); }
-    button.btn.primary { background: var(--green); color: var(--bg); border-color: var(--green); }
-    button.btn.primary.playing { background: var(--orange); border-color: var(--orange); }
-    /* fixed width so the toolbar doesn't shift between play/pause labels */
-    #play { min-width: 84px; text-align: center; }
+    button.btn.sm { min-width: 26px; padding: 0 6px; }
+    button:focus, input[type=checkbox]:focus, input[type=range]:focus { outline: none; }
+    button:focus-visible, input[type=checkbox]:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+    input[type=checkbox]:focus-visible { outline-offset: 1px; }
+    button.btn:active, button.btn.active, button.btn.playing {
+      background: var(--face2); box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--dark), inset -2px -2px var(--lite), inset 2px 2px var(--shade);
+    }
+    button.btn.primary { outline: 1px solid #000; outline-offset: -1px; }
+    button.btn:disabled { color: var(--shade); text-shadow: 1px 1px var(--hi); cursor: default; pointer-events: none; }
+    #play { width: 78px; min-width: 0; text-align: left; padding: 0 10px; }
 
-    .swatch {
-      width: 26px; height: 26px;
-      border-radius: 4px;
-      border: 1px solid var(--bg3);
-      padding: 0;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-    }
-    .swatch input[type=color] {
-      position: absolute; inset: -4px;
-      width: calc(100% + 8px); height: calc(100% + 8px);
-      border: 0; padding: 0; cursor: pointer;
-      background: none;
-    }
-
-    input[type=range] {
-      -webkit-appearance: none; appearance: none;
-      width: 110px; height: 4px;
-      background: var(--bg3);
-      border-radius: 2px;
-      cursor: pointer;
-    }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--yellow); cursor: pointer; border: 0;
-    }
-    input[type=range]::-moz-range-thumb {
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--yellow); cursor: pointer; border: 0;
-    }
-
+    /* text fields */
     input.num {
-      font-family: inherit; font-size: 12px;
-      width: 52px;
-      color: var(--fg);
-      background: var(--bg2);
-      border: 1px solid var(--bg3);
-      border-radius: 4px;
-      padding: 4px 6px;
+      font: 12px 'DejaVu Sans', Verdana, sans-serif; width: 56px; height: 22px; padding: 0 5px; color: #000; background: #fff; border: none;
+      box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark);
       -webkit-user-select: text; user-select: text;
     }
-    /* custom brush dropdown */
-    .dropdown { position: relative; }
+    input.num:focus { outline: 1px dotted #000; outline-offset: -4px; }
+    input.num.bad { color: var(--bad); background: #fde8e8; }
+    input.num.sec { width: 46px; }
+
+    /* combo boxes (custom dropdowns); menus are fixed-positioned by js */
+    .dropdown { position: relative; flex: 1; display: flex; min-width: 0; }
     .sel-btn {
-      width: 172px;
-      display: inline-flex; align-items: center; justify-content: space-between;
-      gap: 10px;
+      flex: 1; min-width: 0; height: 22px; padding: 0 22px 0 5px; text-align: left; position: relative;
+      font: 12px 'DejaVu Sans', Verdana, sans-serif; color: #000; background: #fff; border: none; cursor: pointer;
+      box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark);
+      display: flex; align-items: center;
     }
-    .sel-btn #brush-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left; }
-    .sel-btn .caret { color: var(--gray); font-size: 10px; flex-shrink: 0; }
+    .sel-btn > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sel-btn .caret {
+      position: absolute; right: 2px; top: 2px; bottom: 2px; width: 17px; font-size: 0; background: var(--face);
+      box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hi), inset -2px -2px var(--shade);
+    }
+    .sel-btn .caret::after { content: ''; position: absolute; left: 4px; top: 6px; width: 9px; height: 5px; background: #000; clip-path: polygon(0 0, 100% 0, 50% 100%); }
     .menu {
-      position: absolute; top: calc(100% + 4px); left: 0;
-      z-index: 5;
-      min-width: 190px;
-      max-height: 320px;
-      overflow-y: auto;
-      background: var(--bg1);
-      border: 1px solid var(--bg3);
-      border-radius: 6px;
-      padding: 4px;
-      box-shadow: 0 10px 28px rgba(0,0,0,.45);
-      display: none;
-      scrollbar-width: thin;
-      scrollbar-color: var(--bg3) transparent;
+      position: fixed; z-index: 50; min-width: 160px; max-height: 50vh; overflow-y: auto; display: none; padding: 1px;
+      background: var(--face); border: 2px solid; border-color: var(--hi) var(--dark) var(--dark) var(--hi); box-shadow: 2px 2px 0 rgba(0,0,0,.35);
     }
     .menu.open { display: block; }
-    .opt-group {
-      font-size: 10px; text-transform: uppercase; letter-spacing: .6px;
-      color: var(--gray); padding: 7px 8px 3px;
-    }
-    .opt {
-      display: block; width: 100%; text-align: left;
-      font-family: inherit; font-size: 12px; color: var(--fg);
-      background: none; border: 0; border-radius: 4px;
-      padding: 5px 8px; cursor: pointer;
-    }
-    .opt:hover { background: var(--bg3); }
-    .opt.active { background: var(--yellow); color: var(--bg); }
-    .menu::-webkit-scrollbar { width: 8px; }
-    .menu::-webkit-scrollbar-track { background: transparent; }
-    .menu::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
-    .menu::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    .opt-group { padding: 5px 8px 2px; color: var(--shade); font-size: 11px; border-top: 1px solid var(--shade); box-shadow: 0 -1px var(--hi); margin-top: 3px; }
+    .opt-group:first-child { border-top: none; box-shadow: none; margin-top: 0; }
+    .opt { display: block; width: 100%; text-align: left; padding: 3px 16px; border: none; background: none; cursor: pointer;
+      font: 12px 'DejaVu Sans', Verdana, sans-serif; color: #000; }
+    .opt:hover { background: var(--sel); color: #fff; }
+    .opt.active { font-weight: bold; }
 
-    /* themed scrollbars everywhere (json textarea, etc.) */
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 5px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    /* trackbars */
+    input[type=range] { -webkit-appearance: none; appearance: none; flex: 1; min-width: 60px; height: 20px; background: transparent; cursor: pointer; }
+    input[type=range]::-webkit-slider-runnable-track { height: 6px; background: #b0b0b0;
+      box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark); }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 18px; margin-top: -6px; background: var(--face);
+      box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hi), inset -2px -2px var(--shade); }
+    input[type=range]::-moz-range-track { height: 6px; background: #b0b0b0; box-shadow: inset 1px 1px var(--dark), inset -1px -1px var(--hi); }
+    input[type=range]::-moz-range-thumb { width: 12px; height: 18px; border: none; border-radius: 0; background: var(--face);
+      box-shadow: inset -1px -1px var(--dark), inset 1px 1px var(--hi), inset -2px -2px var(--shade); }
 
-    .group .x { color: var(--gray); }
-    .chk {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 12px; color: var(--fg); cursor: pointer;
-      -webkit-user-select: none; user-select: none;
-    }
-    .chk input { accent-color: var(--yellow); cursor: pointer; }
+    /* checkboxes */
+    .chk { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; margin-right: 8px; }
+    .chk input { appearance: none; -webkit-appearance: none; width: 13px; height: 13px; background: #fff; cursor: pointer; position: relative;
+      box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark); }
+    .chk input:checked::after { content: ''; position: absolute; inset: 3px; background: var(--sel); }
 
-    /* ─── stage ───────────────────────────────────────────────── */
-    .stage {
-      flex: 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background:
-        repeating-conic-gradient(var(--bg) 0% 25%, var(--bg1) 0% 50%) 50% / 24px 24px;
-    }
-    #board {
-      image-rendering: pixelated;
-      image-rendering: crisp-edges;
-      background: var(--bg);
-      box-shadow: 0 8px 40px rgba(0,0,0,.45);
-      cursor: crosshair;
-    }
+    /* color swatches */
+    .swatch { width: 30px; height: 22px; position: relative; overflow: hidden; cursor: pointer;
+      box-shadow: inset -1px -1px var(--hi), inset 1px 1px var(--shade), inset -2px -2px var(--lite), inset 2px 2px var(--dark); }
+    .swatch input[type=color] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .x { color: #444; }
 
-    .stat {
-      position: absolute;
-      bottom: 8px; left: 12px;
-      font-size: 11px;
-      color: var(--gray);
-      background: rgba(40,40,40,.7);
-      padding: 3px 8px;
-      border-radius: 4px;
-      pointer-events: none;
+    /* ─── xterm ─────────────────────────────────────────────── */
+    .xterm-frame { flex: 1; min-height: 0; margin: 3px 3px 2px; padding: 2px; display: flex; background: var(--term); }
+    .xterm {
+      flex: 1; min-height: 0; padding: 3px 5px; overflow-y: auto;
+      background: var(--term); color: var(--tfg); font: 12px/1.45 var(--mono);
+      -webkit-user-select: text; user-select: text;
     }
-    /* ─── desktop-only gate ───────────────────────────────────── */
+    .xterm div { white-space: pre-wrap; word-break: break-all; }
+    .xterm .d { color: var(--tdim); }
+    .xterm .y { color: var(--tyel); }
+    .xterm .e { color: #ff7b7b; }
+
+    /* ─── taskbar ───────────────────────────────────────────── */
+    .taskbar {
+      display: flex; align-items: stretch; gap: 2px; padding: 2px; background: var(--face);
+      box-shadow: inset 0 1px var(--lite), inset 0 2px var(--hi);
+    }
+    .taskbar button { border: none; font: 12px 'DejaVu Sans', Verdana, sans-serif; color: #000; cursor: pointer; }
+    .startbtn { display: flex; align-items: center; gap: 5px; padding: 0 9px; font-weight: bold !important; }
+    .task { min-width: 170px; max-width: 220px; display: flex; align-items: center; gap: 5px; padding: 0 8px; overflow: hidden; white-space: nowrap; }
+    .task span:last-child { overflow: hidden; text-overflow: ellipsis; }
+    .task.on { font-weight: bold !important; }
+    .applets { margin-left: auto; display: flex; gap: 3px; align-items: stretch; }
+    #graph { width: 64px; height: 24px; background: #000; display: block; }
+    .graphbox { padding: 1px; }
+
+    /* ─── desktop-only gate ─────────────────────────────────── */
     #desktop-only {
-      display: none;
-      position: fixed; inset: 0;
-      z-index: 100;
-      background: var(--bg);
-      color: var(--fg);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-align: center;
-      padding: 24px;
+      display: none; position: fixed; inset: 0; z-index: 100; background: var(--root); color: #fff;
+      flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 24px;
     }
-    #desktop-only .do-title { font-size: 18px; letter-spacing: .5px; }
-    #desktop-only .do-text { font-size: 13px; color: var(--gray); max-width: 320px; line-height: 1.5; }
-
-    /* phones / narrow screens: hide the app, show the notice */
+    #desktop-only .do-title { font-size: 18px; font-weight: bold; }
+    #desktop-only .do-text { font-size: 13px; max-width: 320px; line-height: 1.5; }
     @media (max-width: 820px), (pointer: coarse) {
-      header, .toolbar, .stage { display: none !important; }
+      .desktop, .taskbar { display: none !important; }
       #desktop-only { display: flex; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <span class="title">game of life playground</span>
-    <span class="hint">draw pixel art · left-click paint · right-click erase · then let conway dissolve it</span>
-  </header>
+  <canvas id="fx-back"></canvas>
+  <div class="desktop" id="desktop">
 
-  <div class="toolbar">
-    <div class="group">
-      <button class="btn primary" id="play">▶ play</button>
-      <button class="btn" id="step">step</button>
-      <button class="btn" id="clear">clear</button>
-      <button class="btn" id="random">random</button>
-    </div>
-
-    <div class="group">
-      <span class="lbl">speed</span>
-      <input type="range" id="speed" min="1" max="60" value="12">
-      <span class="lbl" id="speed-val" style="width:42px">12/s</span>
-    </div>
-
-    <div class="group">
-      <span class="lbl">brush</span>
-      <div class="dropdown">
-        <button class="btn sel-btn" id="brush-btn"><span id="brush-label">1×1</span><span class="caret">▾</span></button>
-        <div class="menu" id="brush-menu"></div>
-      </div>
-      <button class="btn" id="rotate" title="rotate the brush 90°">rotate ⟳</button>
-    </div>
-
-    <div class="group">
-      <span class="lbl">merge</span>
-      <div class="dropdown">
-        <button class="btn sel-btn" id="merge-btn" style="width:132px" title="how a born cell takes its color from its 3 neighbours"><span id="merge-label">random</span><span class="caret">▾</span></button>
-        <div class="menu" id="merge-menu"></div>
+    <!-- life: the board -->
+    <div class="slot" data-win="life">
+      <div class="win raised focus">
+        <div class="title"><span class="ico ico-life"></span><span class="t" id="life-title">life</span>
+          <span class="tb raised" data-act="min" title="minimize"><i class="g-min"></i></span>
+          <span class="tb raised" data-act="min" title="close" style="margin-left:2px"><i class="g-x"></i></span>
+        </div>
+        <div class="stage sunken" id="stage">
+          <canvas id="board"></canvas>
+        </div>
+        <div class="statusbar">
+          <span class="sunken" id="stat">0 cells alive</span>
+          <span class="sunken hint">left paint · right erase · drop a picture or video</span>
+        </div>
       </div>
     </div>
 
-    <div class="group">
-      <span class="lbl">color</span>
-      <label class="swatch" style="background:#ebdbb2"><input type="color" id="pencil" value="#ebdbb2"></label>
-      <span class="lbl">bg</span>
-      <label class="swatch" id="bg-swatch" style="background:#282828"><input type="color" id="bg" value="#282828"></label>
-      <span class="lbl">paint</span>
-      <div class="dropdown">
-        <button class="btn sel-btn" id="paint-btn" style="width:150px" title="what color to paint with"><span id="paint-label">solid (pencil)</span><span class="caret">▾</span></button>
-        <div class="menu" id="paint-menu"></div>
+    <!-- controls: notebook -->
+    <div class="slot" data-win="ctl">
+      <div class="win raised">
+        <div class="title"><span class="ico ico-ctl"></span><span class="t">controls</span>
+          <span class="tb raised" data-act="min" title="minimize"><i class="g-min"></i></span>
+          <span class="tb raised" data-act="min" title="close" style="margin-left:2px"><i class="g-x"></i></span>
+        </div>
+        <div class="tabs" id="tabs">
+          <div class="tab raised on" data-tab="life">Life</div>
+          <div class="tab raised" data-tab="look">Look</div>
+          <div class="tab raised" data-tab="draw">Draw</div>
+          <div class="tab raised" data-tab="board">Board</div>
+          <div class="tab raised" data-tab="help">Help</div>
+        </div>
+        <div class="pages raised"><div class="pages-in">
+
+          <div class="page on" data-page="life">
+            <fieldset><legend>Simulation</legend>
+              <div class="row">
+                <button class="btn primary" id="play">▶ play</button>
+                <button class="btn" id="step">step</button>
+                <button class="btn" id="clear">clear</button>
+                <button class="btn" id="random">random</button>
+              </div>
+              <div class="row"><span class="lbl">speed</span><input type="range" id="speed" min="1" max="60" value="12"><span class="val" id="speed-val">12/s</span></div>
+            </fieldset>
+            <fieldset><legend>Rule</legend>
+              <div class="row">
+                <div class="dropdown">
+                  <button class="sel-btn" id="rule-btn" title="which automaton runs (e: next rule)"><span id="rule-label">conway</span><span class="caret">▾</span></button>
+                  <div class="menu" id="rule-menu"></div>
+                </div>
+                <input class="num" id="rule-text" type="text" value="B3/S23" maxlength="40" style="width:120px" spellcheck="false"
+                       title="type a rule and press enter, e.g. B3/S23 (all formats in Help)">
+              </div>
+              <div class="row"><span class="lbl">birth color</span>
+                <div class="dropdown">
+                  <button class="sel-btn" id="merge-btn" title="how a newborn cell takes its color from its parents"><span id="merge-label">random</span><span class="caret">▾</span></button>
+                  <div class="menu" id="merge-menu"></div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset><legend>Memory</legend>
+              <div class="row">
+                <input type="range" id="memory" min="0" max="20" step="0.5" value="0" title="chance per step that each cell of the pinned board comes back">
+                <span class="val" id="memory-val">0%</span>
+                <button class="btn sm" id="pin" title="pin the current board: memory brings this one back (k)">pin</button>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="page" data-page="look">
+            <fieldset><legend>Transitions</legend>
+              <div class="row"><span class="lbl">effect</span>
+                <div class="dropdown">
+                  <button class="sel-btn" id="fx-btn" title="how cells transition between generations (t)"><span id="fx-label">none</span><span class="caret">▾</span></button>
+                  <div class="menu" id="fx-menu"></div>
+                </div>
+              </div>
+              <div class="row"><span class="lbl">smooth</span><input type="range" id="smooth" min="0" max="2000" step="10" value="250" title="transition length"><span class="val" id="smooth-val">250ms</span></div>
+            </fieldset>
+            <fieldset><legend>Overlays</legend>
+              <div class="row">
+                <label class="chk" title="live cells glow (o)"><input type="checkbox" id="glow"> glow</label>
+                <label class="chk" title="draw cell grid lines (g)"><input type="checkbox" id="gridlines"> grid lines</label>
+              </div>
+            </fieldset>
+            <fieldset><legend>Background</legend>
+              <div class="row"><span class="lbl">color</span><label class="swatch" id="bg-swatch" style="background:#000000"><input type="color" id="bg" value="#000000"></label></div>
+              <div class="row"><span class="lbl">file</span>
+                <button class="btn" id="pic-btn" title="put a picture or video behind the cells (or drop one on the board)">picture/video...</button>
+                <input type="file" id="pic-file" accept="image/*,video/*" hidden>
+                <button class="btn sm" id="pic-clear" title="remove the background picture or video">clear</button>
+                <span class="pic-name" id="pic-name"></span>
+              </div>
+              <div class="row"><span class="lbl">image</span>
+                <label class="chk" title="background image in black and white"><input type="checkbox" id="img-gray"> gray</label>
+                <label class="chk" title="full brightness until the simulation starts, then fade down to dim"><input type="checkbox" id="img-reveal" checked> reveal</label>
+              </div>
+              <div class="row"><span class="lbl">dim</span><input type="range" id="img-dim" min="0" max="100" value="35" title="background image brightness"><span class="val" id="img-dim-val">35%</span>
+                <button class="btn sm" id="dim-clear" title="back to full brightness; it dims again when the simulation plays (needs reveal)">clear</button></div>
+            </fieldset>
+          </div>
+
+          <div class="page" data-page="draw">
+            <fieldset><legend>Brush</legend>
+              <div class="row">
+                <div class="dropdown">
+                  <button class="sel-btn" id="brush-btn"><span id="brush-label">1×1</span><span class="caret">▾</span></button>
+                  <div class="menu" id="brush-menu"></div>
+                </div>
+                <button class="btn" id="rotate" title="rotate the brush 90° (x)">rotate</button>
+              </div>
+            </fieldset>
+            <fieldset><legend>Colors</legend>
+              <div class="row">
+                <span class="lbl">cells</span><label class="swatch" style="background:#7fd27f"><input type="color" id="pencil" value="#7fd27f"></label>
+              </div>
+              <div class="row"><span class="lbl">paint</span>
+                <div class="dropdown">
+                  <button class="sel-btn" id="paint-btn" title="what color to paint with"><span id="paint-label">solid (pencil)</span><span class="caret">▾</span></button>
+                  <div class="menu" id="paint-menu"></div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="page" data-page="board">
+            <fieldset><legend>Size</legend>
+              <div class="row">
+                <input class="num" id="cols" type="text" inputmode="numeric" value="80" maxlength="3">
+                <span class="x">×</span>
+                <input class="num" id="rows" type="text" inputmode="numeric" value="56" maxlength="3">
+                <button class="btn" id="apply-size">apply</button>
+              </div>
+              <div class="row"><label class="chk" title="on: cells leaving one side come back on the other; off: they fly away"><input type="checkbox" id="edges" checked> edges wrap</label></div>
+            </fieldset>
+          </div>
+
+          <div class="page" data-page="help">
+            <div id="help-keys"></div>
+          </div>
+
+        </div></div>
       </div>
     </div>
 
-    <div class="group">
-      <span class="lbl">grid</span>
-      <input class="num" id="cols" type="text" inputmode="numeric" value="80">
-      <span class="x">×</span>
-      <input class="num" id="rows" type="text" inputmode="numeric" value="56">
-      <label class="chk" title="wrap = toroidal; off = infinite canvas, cells die far off-screen (applied on apply)"><input type="checkbox" id="edges" checked> edges wrap</label>
-      <button class="btn" id="apply-size">apply</button>
+    <!-- xterm: event log -->
+    <div class="slot" data-win="term">
+      <div class="win raised">
+        <div class="title"><span class="ico ico-term"></span><span class="t">xterm - tail -f /var/log/life.log</span>
+          <span class="tb raised" data-act="min" title="minimize"><i class="g-min"></i></span>
+          <span class="tb raised" data-act="min" title="close" style="margin-left:2px"><i class="g-x"></i></span>
+        </div>
+        <div class="xterm-frame sunken"><div class="xterm" id="xterm">
+          <div id="term-out"></div>
+        </div></div>
+      </div>
     </div>
   </div>
 
-  <div class="stage" id="stage">
-    <canvas id="board"></canvas>
-    <div class="stat" id="stat">— cells alive</div>
+  <div class="taskbar">
+    <button class="startbtn raised" id="menu-btn" title="show the desktop: minimize / restore all windows"><span class="ico ico-desk"></span></button>
+    <button class="task raised" data-task="life"><span class="ico ico-life"></span><span id="life-task">life</span></button>
+    <button class="task raised" data-task="ctl"><span class="ico ico-ctl"></span><span>controls</span></button>
+    <button class="task raised" data-task="term"><span class="ico ico-term"></span><span>xterm</span></button>
+    <div class="applets">
+      <button class="snowbtn raised" id="egg-btn" title="show / hide the penguins (u); click the desktop to hatch one, right-click one to kill it">
+        <svg width="14" height="16" viewBox="0 0 14 16"><path d="M7 1C3.6 1 1 6.5 1 10c0 3.4 2.7 5 6 5s6-1.6 6-5C13 6.5 10.4 1 7 1Z" fill="#f2ead6" stroke="#000"/>
+          <rect x="4" y="9" width="1.5" height="1.5" fill="#9a8f78"/><rect x="8" y="6" width="1.5" height="1.5" fill="#9a8f78"/><rect x="9" y="11" width="1.5" height="1.5" fill="#9a8f78"/></svg>
+      </button>
+      <button class="snowbtn raised" id="snow-btn" title="let it snow (n)">
+        <svg width="16" height="16" viewBox="0 0 18 18" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="square">
+          <path d="M9 1V17M2 5L16 13M2 13L16 5"/><path d="M7 2.5L9 4.5L11 2.5M7 15.5L9 13.5L11 15.5"/>
+        </svg>
+      </button>
+      <div class="graphbox sunken" title="cells alive over time"><canvas id="graph" width="64" height="24"></canvas></div>
+      <button class="hidebtn raised" id="hide-btn" title="hide the taskbar (m)"><i></i></button>
+    </div>
   </div>
+
+  <canvas id="fx-front"></canvas>
 
   <div id="desktop-only">
     <div class="do-title">desktop only</div>
-    <div class="do-text">this game of life playground needs a mouse and a wider screen — open it on a desktop.</div>
+    <div class="do-text">this game of life playground needs a mouse and a wider screen. open it on a desktop.</div>
   </div>
 
   <script>
@@ -340,7 +508,7 @@
     let cols = 80, rows = 56;                          // visible grid (user-facing)
     let simCols = 80, simRows = 56, offX = 0, offY = 0; // simulation grid + visible offset
     let cur, next;
-    const DEFAULT_PENCIL = 0xebdbb2, DEFAULT_BG = '#282828';
+    const DEFAULT_PENCIL = 0x7fd27f, DEFAULT_BG = '#000000';
     let cellSize = 8;
     let pencilColor = DEFAULT_PENCIL;
     let bgColor = DEFAULT_BG;
@@ -556,6 +724,12 @@
       next = new Int32Array(simCols * simRows);
       off.width = cols; off.height = rows;
       imgData = offCtx.createImageData(cols, rows);
+      disp = new Float32Array(cols * rows * 4);
+      field = new Float32Array(simCols * simRows);
+      fieldNext = new Float32Array(simCols * simRows);
+      anchors = null;
+      ants = [];
+      if (rule.kind === 'ant') spawnAnts();
       layout();
     }
     // sim-array index from visible cell coords
@@ -569,40 +743,251 @@
       canvas.width  = cols * cellSize;
       canvas.height = rows * cellSize;
       ctx.imageSmoothingEnabled = false;
+      buildGrid();
+      render();
+    }
+
+    // ─── background picture or video, loaded by the user ────────
+    // covers the board, cropped to fit. a video plays muted and looping behind the cells.
+    // reveal: full brightness until the simulation starts, then a fade down to the dim level.
+    let imgDim = 0.35, imgGray = false, imgReveal = true;
+    let revealT0 = 0;                     // when play first started
+    const REVEAL_MS = 900;
+    // current brightness; second value: still fading
+    function imageLevel() {
+      if (!imgReveal) return [imgDim, false];
+      if (!revealT0) return [1, false];
+      const f = Math.min(1, (performance.now() - revealT0) / REVEAL_MS);
+      return [1 + (imgDim - 1) * f, f < 1];
+    }
+    let pagePic = null, pagePicUrl = null;
+    const isVideo = el => el instanceof HTMLVideoElement;
+    const ready = im => im && (isVideo(im) ? im.readyState >= 2 && im.videoWidth : im.complete && im.naturalWidth);
+    function drawBgImage() {
+      if (!ready(pagePic)) return false;
+      const [lvl, fading] = imageLevel();
+      ctx.save();
+      ctx.filter = `brightness(${lvl}) grayscale(${imgGray ? 1 : 0})`;
+      const nw = pagePic.naturalWidth || pagePic.videoWidth, nh = pagePic.naturalHeight || pagePic.videoHeight, board = cols / rows;
+      const sw = nw / nh > board ? nh * board : nw, sh = nw / nh > board ? nh : nw / board;
+      ctx.imageSmoothingEnabled = nw > cols * 1.5;
+      ctx.drawImage(pagePic, (nw - sw) / 2, (nh - sh) / 2, sw, sh, 0, 0, cols * cellSize, rows * cellSize);
+      ctx.restore();
+      return fading;
+    }
+    function dropPagePic() {
+      if (isVideo(pagePic)) { pagePic.pause(); pagePic.removeAttribute('src'); pagePic.load(); }
+      if (pagePicUrl) URL.revokeObjectURL(pagePicUrl);
+      pagePic = pagePicUrl = null;
+    }
+    function setPicture(file) {
+      if (!file) return;
+      const video = /^video\//.test(file.type);
+      if (!video && !/^image\//.test(file.type)) { flash(`load failed: ${file.name} is not an image or a video`); return; }
+      loadBackground(URL.createObjectURL(file), file.name, video);
+    }
+    function loadBackground(url, name, video) {
+      const el = video ? document.createElement('video') : new Image();
+      const ok = () => {
+        dropPagePic();
+        pagePic = el; pagePicUrl = url;
+        revealT0 = playing ? performance.now() : 0;   // a new picture gets its reveal too
+        $('pic-name').textContent = name;
+        const w = el.naturalWidth || el.videoWidth, h = el.naturalHeight || el.videoHeight;
+        termPrint(`background ${video ? 'video' : 'picture'}: ${name} (${w}x${h}${video ? `, ${el.duration.toFixed(1)}s` : ''})`, 'd');
+        if (video) {
+          el.play().catch(() => {});
+          videoTick();
+        }
+        render();
+      };
+      const fail = () => {
+        URL.revokeObjectURL(url);
+        flash(`load failed: ${name} can't be read as ${video ? 'a video' : 'an image'}`);
+      };
+      if (video) {
+        Object.assign(el, { muted: true, loop: true, playsInline: true, preload: 'auto' });
+        el.addEventListener('loadeddata', ok, { once: true });
+        el.addEventListener('error', fail, { once: true });
+      } else {
+        el.onload = ok; el.onerror = fail;
+      }
+      el.src = url;
+    }
+    function clearPicture() {
+      if (!pagePic) return;
+      const was = isVideo(pagePic) ? 'video' : 'picture';
+      dropPagePic();
+      $('pic-name').textContent = '';
+      termPrint(`background ${was} removed`, 'd');
+      render();
+    }
+    // a background video needs the board redrawn as it plays (~30 fps), also while the simulation is paused
+    let lastRenderT = 0, videoRaf = 0;
+    function videoTick() {
+      cancelAnimationFrame(videoRaf);
+      if (!isVideo(pagePic)) return;
+      videoRaf = requestAnimationFrame(t => {
+        if (!document.hidden && t - lastRenderT > 30) render();
+        videoTick();
+      });
+    }
+
+    // ─── grid lines (prerendered overlay) ──────────────────────
+    const gridCanvas = document.createElement('canvas');
+    let showGrid = false;
+    function buildGrid() {
+      if (!showGrid || !canvas.width) return;
+      gridCanvas.width = canvas.width; gridCanvas.height = canvas.height;
+      const g = gridCanvas.getContext('2d');
+      // light lines on dark backgrounds, dark lines on light ones
+      g.strokeStyle = lum(hexToInt(bgColor)) < 128 ? 'rgba(255,255,255,.10)' : 'rgba(0,0,0,.16)';
+      g.lineWidth = 1;
+      g.beginPath();
+      for (let x = 1; x < cols; x++) { const p = x * cellSize + .5; g.moveTo(p, 0); g.lineTo(p, canvas.height); }
+      for (let y = 1; y < rows; y++) { const p = y * cellSize + .5; g.moveTo(0, p); g.lineTo(canvas.width, p); }
+      g.stroke();
+    }
+    function setShowGrid(on) {
+      showGrid = on;
+      $('gridlines').checked = on;
+      buildGrid();
       render();
     }
 
     // ─── render ─────────────────────────────────────────────────
+    // ─── transitions ("shader") ────────────────────────────────
+    // disp holds the on-screen rgba of every visible cell as floats; each
+    // frame it eases toward the sim state, so cells fade in/out instead of
+    // popping. tau values are exponential time constants in ms, derived from
+    // the smooth slider (≈95% of the way there after `smooth` ms).
+    //   none  → no easing, cells pop (original look)
+    //   fade  → symmetric fade in / fade out, colors blend
+    //   trail → quick birth, long ghost tail on death
+    //   flash → births appear white and cool down to their color
+    const TRANSITIONS = [
+      ['none',  'none'],
+      ['fade',  'fade'],
+      ['trail', 'trail'],
+      ['flash', 'flash'],
+    ];
+    let transition = 'none';
+    let smoothMs = 250;
+    let glow = false;
+    let disp = null;      // Float32Array(cols*rows*4)
+    let lastFx = 0;       // timestamp of the previous eased frame
+    let fxRaf = 0;        // settle loop while paused
+
+    function fxTaus() {
+      const t = smoothMs / 3;
+      switch (transition) {
+        case 'trail': return { aIn: t / 4, aOut: t * 4, col: t / 4, white: false };
+        case 'flash': return { aIn: 0,     aOut: t,     col: t,     white: true };
+        default:      return { aIn: t,     aOut: t,     col: t,     white: false };
+      }
+    }
+    // keep rendering while paused until every cell has settled
+    function kickFx() { if (!fxRaf && !playing) fxRaf = requestAnimationFrame(() => { fxRaf = 0; render(); }); }
+
     function render() {
       if (!imgData) return; // not allocated yet (early setup calls)
+      lastRenderT = performance.now();
       const data = imgData.data;
       let alive = 0;
+      const fx = transition !== 'none' && smoothMs > 0;
+      let kIn = 1, kOut = 1, kCol = 1, white = false, moving = false;
+      if (fx) {
+        const now = performance.now();
+        const dt = lastFx ? Math.min(100, now - lastFx) : 16;
+        lastFx = now;
+        const t = fxTaus();
+        const k = tau => tau > 0 ? 1 - Math.exp(-dt / tau) : 1;
+        kIn = k(t.aIn); kOut = k(t.aOut); kCol = k(t.col); white = t.white;
+      } else {
+        lastFx = 0;
+      }
       // draw only the visible window of the sim grid
       for (let y = 0; y < rows; y++) {
         const srow = (y + offY) * simCols + offX;
         let p = y * cols * 4;
         for (let x = 0; x < cols; x++, p += 4) {
-          const v = cur[srow + x];
+          let v = cur[srow + x];
           if (v) {
-            data[p]     = (v >> 16) & 0xff;
-            data[p + 1] = (v >> 8)  & 0xff;
-            data[p + 2] =  v        & 0xff;
-            data[p + 3] = 255;
-            alive++;
-          } else {
-            data[p + 3] = 0;
+            const st = v >>> 24;
+            if (st === 1) alive++;
+            // dying / wireworld / lenia cells are drawn dimmed or brightened
+            if (st !== 1 || rule.kind === 'lenia') v = shade(v, srow + x) | ALIVE;
           }
+          if (!fx) {
+            if (v) {
+              data[p]     = disp[p]     = (v >> 16) & 0xff;
+              data[p + 1] = disp[p + 1] = (v >> 8)  & 0xff;
+              data[p + 2] = disp[p + 2] =  v        & 0xff;
+              data[p + 3] = 255; disp[p + 3] = 1;
+            } else {
+              data[p + 3] = 0; disp[p + 3] = 0;
+            }
+            continue;
+          }
+          let a = disp[p + 3];
+          if (v) {
+            const r = (v >> 16) & 0xff, g = (v >> 8) & 0xff, b = v & 0xff;
+            if (a < 0.02) {
+              // (re)born from nothing: start from the target color, or white for flash
+              const s = white ? 255 : -1;
+              disp[p] = s < 0 ? r : s; disp[p + 1] = s < 0 ? g : s; disp[p + 2] = s < 0 ? b : s;
+            }
+            disp[p]     += (r - disp[p])     * kCol;
+            disp[p + 1] += (g - disp[p + 1]) * kCol;
+            disp[p + 2] += (b - disp[p + 2]) * kCol;
+            a += (1 - a) * kIn;
+            if (a > 0.995) a = 1;
+            if (a < 1 || Math.abs(r - disp[p]) + Math.abs(g - disp[p + 1]) + Math.abs(b - disp[p + 2]) > 1.5) moving = true;
+          } else if (a > 0) {
+            // dying: keep the last color, fade alpha out
+            a -= a * kOut;
+            if (a < 0.01) a = 0; else moving = true;
+          }
+          disp[p + 3] = a;
+          data[p] = disp[p]; data[p + 1] = disp[p + 1]; data[p + 2] = disp[p + 2];
+          data[p + 3] = a * 255;
         }
       }
       offCtx.putImageData(imgData, 0, 0);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (drawBgImage()) moving = true;
       ctx.imageSmoothingEnabled = false;
       ctx.drawImage(off, 0, 0, canvas.width, canvas.height);
 
+      // glow: additive blurred copy of the cells on top
+      if (glow) {
+        ctx.save();
+        ctx.filter = `blur(${Math.max(2, cellSize * 0.9)}px)`;
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.globalAlpha = 0.55;
+        ctx.imageSmoothingEnabled = true;
+        ctx.drawImage(off, 0, 0, canvas.width, canvas.height);
+        ctx.restore();
+      }
+
+      // skip lines when cells are too small for them to be readable
+      if (showGrid && cellSize >= 3 && gridCanvas.width === canvas.width) ctx.drawImage(gridCanvas, 0, 0);
+
+      // ants on top, so you can follow them
+      if (ants.length) {
+        ctx.fillStyle = '#ffffff';
+        for (const a of ants) {
+          const x = a.x - offX, y = a.y - offY;
+          if (x >= 0 && y >= 0 && x < cols && y < rows) ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+      }
+
       if (hover) drawShadow();
 
-      stat.textContent = alive + ' cells alive';
+      stat.innerHTML = `<span class="n" style="min-width:6ch">${alive}</span> cells alive`;
+      lastAlive = alive;
+      if (moving) kickFx(); else lastFx = 0;
     }
 
     // translucent preview of the brush at the hovered cell
@@ -618,40 +1003,380 @@
       }
     }
 
-    // ─── game of life step ──────────────────────────────────────
+    // ─── rules ──────────────────────────────────────────────────
+    // a cell is color | state << 24. state 1 = alive (== ALIVE), 0 = dead.
+    // multi-state rules use the other states:
+    //   generations (C > 2): 2..C-1 = dying, counted as dead by neighbours
+    //   wireworld:           1 = electron head, 2 = tail, 3 = conductor
     // edgesWrap true = toroidal; false = bounded (off-grid neighbours dead)
+    const MOORE = [-1,-1, 0,-1, 1,-1, -1,0, 1,0, -1,1, 0,1, 1,1];
+    const VN    = [0,-1, -1,0, 1,0, 0,1];
+    const ST = v => v >>> 24;
+
+    // turmite tables: [state][cell alive 0|1] = [write 0|1, turn (0 none, 1 right, 2 u-turn, 3 left), next state]
+    const LANGTON = [[[1, 1, 0], [0, 3, 0]]];
+    const TURMITE = [[[1, 3, 1], [1, 3, 1]], [[1, 1, 1], [0, 0, 0]]];
+
+    // [menu value, label, notation the parser understands]
+    const RULES = [
+      ['life-like', [
+        ['conway',     'conway',             'B3/S23'],
+        ['daynight',   'day & night',        'B3678/S34678'],
+        ['seeds',      'seeds',              'B2/S'],
+        ['highlife',   'highlife',           'B36/S23'],
+        ['maze',       'maze',               'B3/S12345'],
+        ['anneal',     'anneal',             'B4678/S35678'],
+        ['lwod',       'life without death', 'B3/S012345678'],
+        ['replicator', 'replicator',         'B1357/S1357'],
+        ['coral',      'coral',              'B3/S45678'],
+      ]],
+      ['multi-state', [
+        ['brian',      "brian's brain",      'B2/S/C3'],
+        ['starwars',   'star wars',          'B2/S345/C4'],
+        ['wireworld',  'wireworld',          'wireworld'],
+      ]],
+      ['1d, per row', [
+        ['rule90',     'rule 90',            'W90'],
+        ['rule184',    'rule 184',           'W184'],
+        ['rule30',     'rule 30',            'W30'],
+      ]],
+      ['agents', [
+        ['ant',        "langton's ant",      'ant'],
+        ['turmite',    'turmite',            'turmite'],
+      ]],
+      ['continuous', [
+        ['lenia',      'lenia',              'lenia'],
+      ]],
+    ];
+    const RULE_LIST = RULES.flatMap(([, opts]) => opts);
+
+    // text → rule object, or throws. accepts:
+    //   preset names/labels             conway, "day & night", brian, wireworld, lenia...
+    //   B/S notation                    B3/S23, b36/s23, S23/B3, B2/S/C3 (generations), B2/S/3
+    //   classic S/B notation            23/3, 345/2/4 (S/B/C)
+    //   von neumann neighbourhood       append V: B1/S1V, B2/S/C3V
+    //   elementary 1d (per row)         W90, R184, rule 30
+    //   agents / continuous             ant, langton, turmite, lenia
+    function parseRule(text) {
+      const raw = String(text).trim();
+      const t = raw.toLowerCase();
+      const preset = RULE_LIST.find(([v, label, n]) => t === v || t === label.toLowerCase() || t === n.toLowerCase());
+      const src = preset ? preset[2] : raw;
+      const low = src.toLowerCase();
+      if (low === 'wireworld') return { kind: 'wire', text: 'wireworld' };
+      if (low === 'ant' || low === 'langton') return { kind: 'ant', table: LANGTON, text: 'ant' };
+      if (low === 'turmite') return { kind: 'ant', table: TURMITE, text: 'turmite' };
+      if (low === 'lenia') return { kind: 'lenia', text: 'lenia' };
+      let m = low.match(/^(?:w|r|rule\s*)(\d{1,3})$/);
+      if (m) {
+        const n = +m[1];
+        if (n > 255) throw new Error('elementary rules go from 0 to 255');
+        return { kind: 'elem', n, text: 'W' + n };
+      }
+      let b, s, c, vn = false;
+      const up = src.toUpperCase().replace(/\s+/g, '');
+      if ((m = up.match(/^B([0-8]*)\/S([0-8]*)(?:\/[CG]?(\d+))?(V?)$/)))       [, b, s, c, vn] = m;
+      else if ((m = up.match(/^S([0-8]*)\/B([0-8]*)(?:\/[CG]?(\d+))?(V?)$/)))  [, s, b, c, vn] = m;
+      else if ((m = up.match(/^([0-8]*)\/([0-8]*)(?:\/(\d+))?(V?)$/)))          [, s, b, c, vn] = m;
+      else throw new Error('unknown rule "' + raw + '"');
+      vn = !!vn;
+      const C = c ? +c : 2;
+      if (C < 2 || C > 100) throw new Error('states must be 2..100');
+      const max = vn ? 4 : 8;
+      if ([...b, ...s].some(d => +d > max)) throw new Error(`von neumann counts go up to ${max}`);
+      const B = new Uint8Array(9), S = new Uint8Array(9);
+      for (const d of b) B[+d] = 1;
+      for (const d of s) S[+d] = 1;
+      const digits = arr => [...arr].map((on, i) => on ? i : '').join('');
+      const textOut = `B${digits(B)}/S${digits(S)}` + (C > 2 ? `/C${C}` : '') + (vn ? 'V' : '');
+      return { kind: 'life', B, S, C, vn, text: textOut };
+    }
+
+    let rule = parseRule('B3/S23');
     const _nb = new Int32Array(8); // reused live-neighbour color buffer
+
     function step() {
+      switch (rule.kind) {
+        case 'wire':  stepWire(); break;
+        case 'elem':  stepElem(); break;
+        case 'ant':   stepAnts(); break;
+        case 'lenia': stepLenia(); break;
+        default:      stepLife();
+      }
+      applyMemory();
+    }
+
+    // life-like + generations.
+    // neighbour rows/columns are resolved once per row/cell (-1 = off the board), and
+    // visited in MOORE / VN order so merge ties resolve the same way as a plain loop
+    function stepLife() {
       const wrap = edgesWrap, W = simCols, H = simRows;
+      const { B, S, C } = rule, vn = rule.vn;
       for (let y = 0; y < H; y++) {
+        const row = y * W;
+        const up = y > 0 ? row - W : (wrap ? (H - 1) * W : -1);
+        const dn = y < H - 1 ? row + W : (wrap ? 0 : -1);
         for (let x = 0; x < W; x++) {
-          let count = 0;
-          for (let dy = -1; dy <= 1; dy++) {
-            let ny = y + dy;
-            if (ny < 0 || ny >= H) { if (!wrap) continue; ny = ny < 0 ? H - 1 : 0; }
-            const base = ny * W;
-            for (let dx = -1; dx <= 1; dx++) {
-              if (!dx && !dy) continue;
-              let nx = x + dx;
-              if (nx < 0 || nx >= W) { if (!wrap) continue; nx = nx < 0 ? W - 1 : 0; }
-              const v = cur[base + nx];
-              if (v) _nb[count++] = v;
+          const l = x > 0 ? x - 1 : (wrap ? W - 1 : -1);
+          const r = x < W - 1 ? x + 1 : (wrap ? 0 : -1);
+          let count = 0, v;
+          if (vn) {
+            if (up >= 0) { v = cur[up + x]; if (v >>> 24 === 1) _nb[count++] = v; }
+            if (l >= 0) { v = cur[row + l]; if (v >>> 24 === 1) _nb[count++] = v; }
+            if (r >= 0) { v = cur[row + r]; if (v >>> 24 === 1) _nb[count++] = v; }
+            if (dn >= 0) { v = cur[dn + x]; if (v >>> 24 === 1) _nb[count++] = v; }
+          } else {
+            if (up >= 0) {
+              if (l >= 0) { v = cur[up + l]; if (v >>> 24 === 1) _nb[count++] = v; }
+              v = cur[up + x]; if (v >>> 24 === 1) _nb[count++] = v;
+              if (r >= 0) { v = cur[up + r]; if (v >>> 24 === 1) _nb[count++] = v; }
+            }
+            if (l >= 0) { v = cur[row + l]; if (v >>> 24 === 1) _nb[count++] = v; }
+            if (r >= 0) { v = cur[row + r]; if (v >>> 24 === 1) _nb[count++] = v; }
+            if (dn >= 0) {
+              if (l >= 0) { v = cur[dn + l]; if (v >>> 24 === 1) _nb[count++] = v; }
+              v = cur[dn + x]; if (v >>> 24 === 1) _nb[count++] = v;
+              if (r >= 0) { v = cur[dn + r]; if (v >>> 24 === 1) _nb[count++] = v; }
             }
           }
-          const idx = y * W + x;
-          const self = cur[idx];
-          if (self) {
-            // survive on 2 or 3 — keep own color
-            next[idx] = (count === 2 || count === 3) ? self : 0;
-          } else if (count === 3) {
-            // born — derive color from the 3 live neighbours per the merge mode
-            next[idx] = mergeColor(count);
+          const idx = row + x;
+          const self = cur[idx], st = ST(self);
+          if (st === 0) {
+            // born: color from the live neighbours per the merge mode
+            next[idx] = B[count] ? (count ? mergeColor(count) : pencilColor | ALIVE) : 0;
+          } else if (st === 1) {
+            // survive keeps its color; otherwise die, or start dying in generations rules
+            next[idx] = S[count] ? self : (C > 2 ? (self & 0xffffff) | (2 << 24) : 0);
           } else {
-            next[idx] = 0;
+            next[idx] = st + 1 < C ? (self & 0xffffff) | ((st + 1) << 24) : 0;
           }
         }
       }
       const tmp = cur; cur = next; next = tmp;
+    }
+
+    // wireworld: head → tail → conductor; conductor → head with 1 or 2 head neighbours
+    function stepWire() {
+      const wrap = edgesWrap, W = simCols, H = simRows;
+      for (let y = 0; y < H; y++) {
+        const row = y * W;
+        const up = y > 0 ? row - W : (wrap ? (H - 1) * W : -1);
+        const dn = y < H - 1 ? row + W : (wrap ? 0 : -1);
+        for (let x = 0; x < W; x++) {
+          const idx = row + x, self = cur[idx], st = ST(self), col = self & 0xffffff;
+          if (st === 0) { next[idx] = 0; continue; }
+          if (st === 1) { next[idx] = col | (2 << 24); continue; }
+          if (st === 2) { next[idx] = col | (3 << 24); continue; }
+          const l = x > 0 ? x - 1 : (wrap ? W - 1 : -1);
+          const r = x < W - 1 ? x + 1 : (wrap ? 0 : -1);
+          let heads = 0;
+          if (up >= 0) {
+            if (l >= 0 && cur[up + l] >>> 24 === 1) heads++;
+            if (cur[up + x] >>> 24 === 1) heads++;
+            if (r >= 0 && cur[up + r] >>> 24 === 1) heads++;
+          }
+          if (l >= 0 && cur[row + l] >>> 24 === 1) heads++;
+          if (r >= 0 && cur[row + r] >>> 24 === 1) heads++;
+          if (dn >= 0) {
+            if (l >= 0 && cur[dn + l] >>> 24 === 1) heads++;
+            if (cur[dn + x] >>> 24 === 1) heads++;
+            if (r >= 0 && cur[dn + r] >>> 24 === 1) heads++;
+          }
+          next[idx] = col | ((heads === 1 || heads === 2 ? 1 : 3) << 24);
+        }
+      }
+      const tmp = cur; cur = next; next = tmp;
+    }
+
+    // elementary (wolfram) rule applied to every row independently
+    function stepElem() {
+      const wrap = edgesWrap, W = simCols, H = simRows, n = rule.n;
+      for (let y = 0; y < H; y++) {
+        const base = y * W;
+        for (let x = 0; x < W; x++) {
+          const lx = x > 0 ? x - 1 : (wrap ? W - 1 : -1);
+          const rx = x < W - 1 ? x + 1 : (wrap ? 0 : -1);
+          const l = lx < 0 ? 0 : cur[base + lx], c = cur[base + x], r = rx < 0 ? 0 : cur[base + rx];
+          const lb = ST(l) === 1, cb = ST(c) === 1, rb = ST(r) === 1;
+          if (!((n >> ((lb << 2) | (cb << 1) | rb)) & 1)) { next[base + x] = 0; continue; }
+          if (cb) { next[base + x] = c; continue; }
+          let k = 0;
+          if (lb) _nb[k++] = l;
+          if (rb) _nb[k++] = r;
+          next[base + x] = k ? mergeColor(k) : pencilColor | ALIVE;
+        }
+      }
+      const tmp = cur; cur = next; next = tmp;
+    }
+
+    // langton's ant / turmites: agents that flip cells as they walk
+    let ants = [];
+    const ANT_MOVES = 30; // moves per ant per step
+    const DIRS = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+    function spawnAnts() {
+      ants = [];
+      const live = [];
+      for (let i = 0; i < cur.length; i++) if (ST(cur[i]) === 1) live.push(i);
+      const n = Math.max(3, Math.min(12, Math.round(cols * rows / 1500)));
+      for (let k = 0; k < n; k++) {
+        // start on the image when there is one, so the ants work through it
+        const i = live.length ? live[(Math.random() * live.length) | 0] : si((Math.random() * cols) | 0, (Math.random() * rows) | 0);
+        const c = cur[i] ? cur[i] & 0xffffff : pencilColor;
+        ants.push({ x: i % simCols, y: (i / simCols) | 0, dir: (Math.random() * 4) | 0, st: 0, color: c });
+      }
+    }
+    function stepAnts() {
+      const W = simCols, H = simRows, table = rule.table;
+      for (const a of ants) {
+        for (let m = 0; m < ANT_MOVES; m++) {
+          const idx = a.y * W + a.x;
+          const on = ST(cur[idx]) === 1 ? 1 : 0;
+          const [write, turn, nst] = table[a.st][on];
+          if (write !== on) cur[idx] = write ? a.color | ALIVE : 0;
+          a.dir = (a.dir + turn) & 3;
+          a.st = nst;
+          a.x = (a.x + DIRS[a.dir][0] + W) % W;
+          a.y = (a.y + DIRS[a.dir][1] + H) % H;
+        }
+      }
+    }
+
+    // lenia: continuous field in [0,1], ring kernel, gaussian growth (orbium-like params)
+    const LENIA = { R: 8, mu: 0.15, sigma: 0.016, dt: 0.12, show: 0.08 };
+    let field = null, fieldNext = null, leniaKernel = null;
+    let leniaLin = null, leniaW = null, leniaLinCols = 0; // kernel as linear offsets + weights for interior cells
+    function buildLeniaKernel() {
+      const R = LENIA.R, offs = [];
+      let sum = 0;
+      for (let dy = -R; dy <= R; dy++)
+        for (let dx = -R; dx <= R; dx++) {
+          const r = Math.hypot(dx, dy) / R;
+          if (r <= 0 || r >= 1) continue;
+          const w = Math.exp(4 - 1 / (r * (1 - r)));
+          offs.push(dx, dy, w); sum += w;
+        }
+      for (let k = 2; k < offs.length; k += 3) offs[k] /= sum;
+      leniaKernel = offs;
+    }
+    // board cells → field (on random, rule switch)
+    function leniaFromBoard() {
+      for (let i = 0; i < cur.length; i++) field[i] = cur[i] ? 1 : 0;
+    }
+    function stepLenia() {
+      if (!leniaKernel) buildLeniaKernel();
+      const wrap = edgesWrap, W = simCols, H = simRows, K = leniaKernel, R = LENIA.R;
+      const { mu, sigma, dt, show } = LENIA, s2 = 2 * sigma * sigma;
+      if (leniaLinCols !== W) {
+        const n = K.length / 3;
+        leniaLin = new Int32Array(n); leniaW = new Float64Array(n);
+        for (let k = 0, j = 0; k < K.length; k += 3, j++) { leniaLin[j] = K[k + 1] * W + K[k]; leniaW[j] = K[k + 2]; }
+        leniaLinCols = W;
+      }
+      const lin = leniaLin, wts = leniaW, nk = lin.length;
+      for (let y = 0; y < H; y++) {
+        const inY = y >= R && y < H - R;
+        for (let x = 0; x < W; x++) {
+          const idx = y * W + x;
+          let u = 0;
+          if (inY && x >= R && x < W - R) {
+            // whole kernel on the board: no bounds checks, same summation order
+            for (let j = 0; j < nk; j++) u += field[idx + lin[j]] * wts[j];
+          } else {
+            for (let k = 0; k < K.length; k += 3) {
+              let nx = x + K[k], ny = y + K[k + 1];
+              if (nx < 0 || nx >= W) { if (!wrap) continue; nx = nx < 0 ? nx + W : nx - W; }
+              if (ny < 0 || ny >= H) { if (!wrap) continue; ny = ny < 0 ? ny + H : ny - H; }
+              u += field[ny * W + nx] * K[k + 2];
+            }
+          }
+          const g = 2 * Math.exp(-((u - mu) * (u - mu)) / s2) - 1;
+          fieldNext[idx] = Math.min(1, Math.max(0, field[idx] + dt * g));
+        }
+      }
+      const t = field; field = fieldNext; fieldNext = t;
+      // visible cells follow the field; newcomers borrow a neighbour's color
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const idx = y * W + x;
+          if (field[idx] < show) { cur[idx] = 0; continue; }
+          if (cur[idx]) continue;
+          let col = pencilColor;
+          for (let k = 0; k < 16; k += 2) {
+            const nx = x + MOORE[k], ny = y + MOORE[k + 1];
+            if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+            const v = cur[ny * W + nx];
+            if (v) { col = v & 0xffffff; break; }
+          }
+          cur[idx] = col | ALIVE;
+        }
+      }
+    }
+
+    // fit the board to the current rule after cells were loaded or the rule changed
+    function prepareBoard() {
+      const n = cur.length;
+      if (rule.kind === 'wire') {
+        // every cell becomes copper; a few sparks start the current
+        for (let i = 0; i < n; i++) if (cur[i]) cur[i] = (cur[i] & 0xffffff) | ((Math.random() < 0.02 ? 1 : 3) << 24);
+      } else {
+        const C = rule.kind === 'life' ? rule.C : 2;
+        for (let i = 0; i < n; i++) {
+          const st = ST(cur[i]);
+          if (st > 1 && st >= C) cur[i] = (cur[i] & 0xffffff) | ALIVE; // foreign state → plain alive
+        }
+      }
+      if (rule.kind === 'ant') spawnAnts(); else ants = [];
+      if (rule.kind === 'lenia') leniaFromBoard();
+      next.fill(0);
+    }
+
+    // display color of a cell, dimmed/brightened by its state
+    function scaleRGB(c, f) {
+      return ((((c >> 16) & 255) * f) << 16) | ((((c >> 8) & 255) * f) << 8) | ((c & 255) * f);
+    }
+    function mixWhite(c, f) {
+      const r = (c >> 16) & 255, g = (c >> 8) & 255, b = c & 255;
+      return ((r + (255 - r) * f) << 16) | ((g + (255 - g) * f) << 8) | (b + (255 - b) * f);
+    }
+    function shade(v, idx) {
+      const st = ST(v), c = v & 0xffffff;
+      if (rule.kind === 'lenia') return scaleRGB(c, 0.3 + 0.7 * field[idx]);
+      if (rule.kind === 'wire') return st === 1 ? 0xffffff : st === 2 ? mixWhite(c, 0.45) : scaleRGB(c, 0.55);
+      if (st > 1) return scaleRGB(c, Math.max(0.15, 1 - (st - 1) / (rule.C - 1)));
+      return c;
+    }
+
+    // ─── memory: pinned cells come back with probability `memory` per step ───
+    let memory = 0;
+    let anchors = null; // Int32Array of [simIdx, color, ...]
+    function setAnchors(list) { anchors = list && list.length ? Int32Array.from(list) : null; }
+    function applyMemory() {
+      if (!anchors || memory <= 0) return;
+      for (let k = 0; k < anchors.length; k += 2) {
+        if (Math.random() >= memory) continue;
+        const i = anchors[k], col = anchors[k + 1] & 0xffffff;
+        const st = ST(cur[i]);
+        if (rule.kind === 'wire') { if (!st) cur[i] = col | (3 << 24); }
+        else if (st !== 1) {
+          cur[i] = col | ALIVE;
+          if (rule.kind === 'lenia') field[i] = 1;
+        }
+      }
+    }
+
+    // the clear button: only the cells (and what memory would bring back) go; colors and the background stay
+    function emptyBoard() {
+      cur.fill(0); next.fill(0);
+      if (field) field.fill(0);
+      setAnchors(null);
+      render();
+    }
+    // wipes the board (and what memory would bring back)
+    function clearBoard() {
+      cur.fill(0); next.fill(0);
+      revealT0 = 0;
+      if (field) field.fill(0);
+      setAnchors(null);
     }
 
     // ─── animation loop (fixed-step accumulator) ────────────────
@@ -668,7 +1393,8 @@
       let did = false, guard = 0;
       while (acc >= dt && guard < 8) { step(); acc -= dt; did = true; guard++; }
       if (acc > dt) acc = dt; // drop backlog
-      if (did) render();
+      // transitions animate between steps, so draw every frame
+      if (did || (transition !== 'none' && smoothMs > 0) || (pagePic && imageLevel()[1])) render();
       raf = requestAnimationFrame(loop);
     }
 
@@ -677,8 +1403,11 @@
       const b = $('play');
       b.textContent = on ? '❚❚ pause' : '▶ play';
       b.classList.toggle('playing', on);
-      if (on) { last = 0; acc = 0; raf = requestAnimationFrame(loop); }
-      else cancelAnimationFrame(raf);
+      if (on) {
+        last = 0; acc = 0; raf = requestAnimationFrame(loop);
+        if (!revealT0) revealT0 = performance.now();
+      }
+      else { cancelAnimationFrame(raf); kickFx(); } // let in-flight transitions finish
     }
 
     // ─── painting ───────────────────────────────────────────────
@@ -704,9 +1433,18 @@
         let x = cx + offX + cells[k][0], y = cy + offY + cells[k][1];
         if (edgesWrap) { x = (x % simCols + simCols) % simCols; y = (y % simRows + simRows) % simRows; }
         else if (x < 0 || x >= simCols || y < 0 || y >= simRows) continue;
-        cur[y * simCols + x] = erase ? 0 : paintCellColor(stampBase);
+        const i = y * simCols + x;
+        if (erase) { cur[i] = 0; if (field) field[i] = 0; continue; }
+        const c = paintCellColor(stampBase);
+        // wireworld paints copper (shift = electron head); lenia paints full field
+        if (rule.kind === 'wire') cur[i] = (c & 0xffffff) | ((shiftHeld ? 1 : 3) << 24);
+        else cur[i] = c;
+        if (rule.kind === 'lenia') field[i] = 1;
       }
     }
+    let shiftHeld = false;
+    window.addEventListener('keydown', e => { if (e.key === 'Shift') shiftHeld = true; });
+    window.addEventListener('keyup', e => { if (e.key === 'Shift') shiftHeld = false; });
 
     // draw line between two cells so fast drags don't skip
     function stampLine(x0, y0, x1, y1, erase) {
@@ -755,22 +1493,20 @@
     // ─── toolbar wiring ─────────────────────────────────────────
     $('play').addEventListener('click', () => setPlaying(!playing));
     $('step').addEventListener('click', () => { setPlaying(false); step(); render(); });
-    $('clear').addEventListener('click', () => { setPlaying(false); cur.fill(0); next.fill(0); resetColors(); render(); });
+    $('clear').addEventListener('click', emptyBoard);
     $('random').addEventListener('click', () => {
       const bg = randDarkHex();
       $('bg').value = bg;
       setBgColor(bg);
       const bgInt = parseInt(bg.slice(1), 16);
-      cur.fill(0);
+      clearBoard();
       for (let y = 0; y < rows; y++)
         for (let x = 0; x < cols; x++)
           if (Math.random() < 0.32) cur[si(x, y)] = randCellColor(bgInt) | ALIVE;
+      prepareBoard();
       render();
-      paintRandomButton();
     });
 
-    // tri-color random button, reshuffled on load and on each hit
-    function randHex() { return '#' + (Math.random() * 0x1000000 | 0).toString(16).padStart(6, '0'); }
     // dark background: each channel kept low
     function randDarkHex() {
       const r = Math.random() * 56 | 0, g = Math.random() * 56 | 0, b = Math.random() * 56 | 0;
@@ -781,14 +1517,6 @@
       let v;
       do { v = Math.random() * 0x1000000 | 0; } while (v === bgInt);
       return v;
-    }
-    function paintRandomButton() {
-      const btn = $('random');
-      const a = randHex(), b = randHex(), c = randHex();
-      btn.style.background = `linear-gradient(90deg, ${a} 0 33.33%, ${b} 0 66.66%, ${c} 0 100%)`;
-      btn.style.borderColor = 'transparent';
-      btn.style.color = '#fff';
-      btn.style.textShadow = '0 1px 2px rgba(0,0,0,.75)';
     }
 
     $('speed').addEventListener('input', e => {
@@ -895,19 +1623,120 @@
     document.addEventListener('click', () => mergeMenu.classList.remove('open'));
     setMerge('random', 'random');
 
+    // transition dropdown + smooth slider + glow
+    const fxMenu = $('fx-menu');
+    fxMenu.innerHTML = TRANSITIONS
+      .map(([v, label]) => `<button class="opt" data-v="${v}">${label}</button>`)
+      .join('');
+    function setTransition(v) {
+      const t = TRANSITIONS.find(([k]) => k === v);
+      if (!t) return;
+      transition = v;
+      $('fx-label').textContent = t[1];
+      fxMenu.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', o.dataset.v === v));
+      render();
+    }
+    $('fx-btn').addEventListener('click', e => { e.stopPropagation(); fxMenu.classList.toggle('open'); });
+    fxMenu.addEventListener('click', e => {
+      const b = e.target.closest('.opt');
+      if (!b) return;
+      setTransition(b.dataset.v);
+      fxMenu.classList.remove('open');
+    });
+    document.addEventListener('click', () => fxMenu.classList.remove('open'));
+    setTransition('none');
+
+    function setSmooth(ms) {
+      smoothMs = clampInt(ms, 0, 2000, smoothMs);
+      $('smooth').value = smoothMs;
+      $('smooth-val').textContent = smoothMs + 'ms';
+    }
+    $('smooth').addEventListener('input', e => { setSmooth(e.target.value); });
+    function setGlow(on) {
+      glow = on;
+      $('glow').checked = on;
+      render();
+    }
+    $('glow').addEventListener('change', e => { setGlow(e.target.checked); });
+
+    // rule dropdown + custom rule input (both go through parseRule)
+    const ruleMenu = $('rule-menu');
+    ruleMenu.innerHTML = RULES
+      .map(([grp, opts]) => `<div class="opt-group">${grp}</div>` +
+        opts.map(([v, label]) => `<button class="opt" data-v="${v}">${label}</button>`).join(''))
+      .join('');
+    function setRule(text) {
+      let r;
+      try { r = parseRule(text); }
+      catch (err) { $('rule-text').classList.add('bad'); flash(err.message); return false; }
+      rule = r;
+      const preset = RULE_LIST.find(([, , n]) => parseRule(n).text === r.text);
+      $('rule-label').textContent = preset ? preset[1] : 'custom';
+      $('rule-text').value = r.text;
+      $('rule-text').classList.remove('bad');
+      ruleMenu.querySelectorAll('.opt').forEach(o => o.classList.toggle('active', !!preset && o.dataset.v === preset[0]));
+      prepareBoard(); render(); termPrint(`rule ${$('rule-label').textContent} (${r.text})`, 'd');
+      return true;
+    }
+    $('rule-btn').addEventListener('click', e => { e.stopPropagation(); ruleMenu.classList.toggle('open'); });
+    ruleMenu.addEventListener('click', e => {
+      const b = e.target.closest('.opt');
+      if (!b) return;
+      setRule(b.dataset.v);
+      ruleMenu.classList.remove('open');
+    });
+    document.addEventListener('click', () => ruleMenu.classList.remove('open'));
+    $('rule-text').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { setRule(e.target.value); e.target.blur(); }
+      else if (e.key === 'Escape') { e.target.value = rule.text; e.target.classList.remove('bad'); e.target.blur(); }
+    });
+
+    function setMemory(pct) {
+      memory = Math.max(0, Math.min(20, +pct || 0)) / 100;
+      $('memory').value = memory * 100;
+      $('memory-val').textContent = +(memory * 100).toFixed(1) + '%';
+    }
+    $('memory').addEventListener('input', e => { setMemory(e.target.value); });
+
+    function setImgDim(pct) {
+      pct = Math.max(0, Math.min(100, Math.round(+pct || 0)));
+      imgDim = pct / 100; $('img-dim').value = pct; $('img-dim-val').textContent = pct + '%';
+      render();
+    }
+    function setImgGray(on) { imgGray = on; $('img-gray').checked = on; render(); }
+    function setImgReveal(on) { imgReveal = on; $('img-reveal').checked = on; $('dim-clear').disabled = !on; render(); }
+    $('img-dim').addEventListener('input', e => setImgDim(e.target.value));
+    $('pic-btn').addEventListener('click', () => $('pic-file').click());
+    $('pic-file').addEventListener('change', e => { setPicture(e.target.files[0]); e.target.value = ''; });
+    $('pic-clear').addEventListener('click', clearPicture);
+    $('img-gray').addEventListener('change', e => setImgGray(e.target.checked));
+    $('img-reveal').addEventListener('change', e => setImgReveal(e.target.checked));
+    // the dim's clear: the background goes bright again
+    // (already playing: it fades down right away; paused: it waits for play)
+    $('dim-clear').addEventListener('click', () => { revealT0 = playing ? performance.now() : 0; render(); });
+    $('pin').addEventListener('click', () => {
+      const list = [];
+      for (let i = 0; i < cur.length; i++) if (cur[i]) list.push(i, cur[i] & 0xffffff);
+      setAnchors(list);
+      if (memory === 0) setMemory(2);
+      flash(list.length ? `pinned ${list.length / 2} cells` : 'board is empty');
+    });
+
     // grid-size inputs: digits only, and snap into [20,400] on blur/enter
     ['cols', 'rows'].forEach(id => {
       const el = $(id);
       el.addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
-      el.addEventListener('change', e => { e.target.value = clampInt(e.target.value, 20, 400, 20); });
+      el.addEventListener('change', e => { e.target.value = clampInt(e.target.value, 20, 400, id === 'cols' ? cols : rows); });
     });
 
     function setBgColor(hex) {
       bgColor = hex;
       canvas.style.background = hex;
       $('bg-swatch').style.background = hex;
+      buildGrid();
+      render();
     }
-    $('bg').addEventListener('input', e => setBgColor(e.target.value));
+    $('bg').addEventListener('input', e => { setBgColor(e.target.value); });
 
     // reset pencil + background to their defaults
     function resetColors() {
@@ -932,24 +1761,666 @@
       return Math.max(lo, Math.min(hi, v));
     }
 
-    // ─── keyboard ───────────────────────────────────────────────
-    window.addEventListener('keydown', e => {
-      if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') return;
-      if (e.code === 'Space') { e.preventDefault(); setPlaying(!playing); }
-      else if (e.key === 's') { setPlaying(false); step(); render(); }
-      else if (e.key === 'c') { setPlaying(false); cur.fill(0); resetColors(); render(); }
+    // log line color: red errors, yellow warnings, gray info
+    function flash(msg) { termPrint(msg, /fail|unknown|must|go up|go from|nothing|empty/.test(msg) ? 'e' : /skipped|ignored/.test(msg) ? 'y' : 'd'); }
+    function setSpeed(v) {
+      stepsPerSec = clampInt(v, 1, 60, stepsPerSec);
+      $('speed').value = stepsPerSec;
+      $('speed-val').textContent = stepsPerSec + '/s';
+    }
+
+    // drop a picture or video on the board to use it as the background
+    stage.addEventListener('dragover', e => { e.preventDefault(); stage.classList.add('dragover'); });
+    stage.addEventListener('dragleave', () => stage.classList.remove('dragover'));
+    stage.addEventListener('drop', e => {
+      e.preventDefault();
+      stage.classList.remove('dragover');
+      setPicture(e.dataTransfer.files[0]);
     });
 
-    // ─── resize ─────────────────────────────────────────────────
-    let resizeT;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeT);
-      resizeT = setTimeout(layout, 100);
+    $('gridlines').addEventListener('change', e => setShowGrid(e.target.checked));
+
+    // a mouse click shouldn't leave a button / checkbox / slider focused: the next key
+    // press would draw a focus ring on it (looks stuck) and a focused field swallows keys
+    document.addEventListener('pointerup', e => {
+      const el = e.target.closest('button, input[type=checkbox], input[type=range]')
+        || (e.target.closest('label') || {}).querySelector?.('input[type=checkbox]');
+      if (el) setTimeout(() => el.blur(), 0);
     });
+
+    // ─── keyboard ───────────────────────────────────────────────
+    // one table drives both the key handler and the help tab
+    const cycle = (list, curIdx) => list[(curIdx + 1) % list.length];
+    const showTab = name => document.querySelector(`.tab[data-tab="${name}"]`).click();
+    const TAB_KEYS = ['life', 'look', 'draw', 'board', 'help'];
+    const isRange = ks => ks.length === 2 && /^\d$/.test(ks[0]) && /^\d$/.test(ks[1]);
+    const KEYS = [
+      ['simulation', [
+        [['Space'], 'play / pause', () => setPlaying(!playing)],
+        [['s'], 'one step', () => { setPlaying(false); step(); render(); }],
+        [['c'], 'clear the board', emptyBoard],
+        [['r'], 'random board', () => $('random').click()],
+        [['[', ']'], 'slower / faster', k => setSpeed(stepsPerSec + (k === ']' ? 2 : -2))],
+        [['e'], 'next rule', () => setRule(cycle(RULE_LIST, RULE_LIST.findIndex(([, , n]) => parseRule(n).text === rule.text))[0])],
+        [['k'], 'pin the board for memory', () => $('pin').click()],
+      ]],
+      ['look', [
+        [['t'], 'next transition effect', () => setTransition(cycle(TRANSITIONS, TRANSITIONS.findIndex(([v]) => v === transition))[0])],
+        [['o'], 'glow on / off', () => setGlow(!glow)],
+        [['g'], 'grid lines on / off', () => setShowGrid(!showGrid)],
+      ]],
+      ['desktop', [
+        [['n'], 'snow on / off', () => setSnow(!snowing)],
+        [['u'], 'penguins on / off', () => setPenguins(!showPenguins)],
+        [['m'], 'hide / show the taskbar', () => setBarHidden(!document.body.classList.contains('bar-hidden'))],
+      ]],
+      ['draw', [
+        [['b'], 'next brush', () => { const list = BRUSH_MENU.flatMap(([, opts]) => opts); const [v, label] = cycle(list, list.findIndex(([v]) => BRUSHES[v] === brush)); setBrush(v, label); }],
+        [['x'], 'rotate the brush', () => $('rotate').click()],
+      ]],
+      ['windows', [
+        [['1', String(TAB_KEYS.length)], 'controls tabs: life .. help', k => showTab(TAB_KEYS[+k - 1])],
+        [['h', '?'], 'this help', () => showTab('help')],
+        [['Escape'], 'close open menus', () => document.querySelectorAll('.menu.open').forEach(m => m.classList.remove('open'))],
+      ]],
+    ];
+    const KEY_NAMES = { Space: 'space', ArrowLeft: '←', ArrowRight: '→', Escape: 'esc' };
+    // which table entry a key belongs to ('1'..'7' is a range)
+    function keyEntry(key) {
+      for (const [, entries] of KEYS)
+        for (const entry of entries) {
+          const ks = entry[0];
+          if (isRange(ks) ? key.length === 1 && key >= ks[0] && key <= ks[1] : ks.includes(key)) return entry;
+        }
+      return null;
+    }
+    window.addEventListener('keydown', e => {
+      if (e.target.matches?.('input[type=text], textarea')) return; // typing in a field
+      if (e.ctrlKey || e.metaKey || e.altKey) return; // leave browser shortcuts alone
+      const key = e.code === 'Space' ? 'Space' : e.key;
+      const entry = keyEntry(key);
+      if (!entry) return;
+      e.preventDefault();
+      entry[2](key);
+    });
+    // help tab
+    $('help-keys').innerHTML = KEYS.map(([group, entries]) =>
+      `<fieldset><legend>${group}</legend><div class="keys">` +
+      entries.map(([ks, desc]) => `<span>${ks.map(k => `<kbd>${KEY_NAMES[k] || k}</kbd>`).join(isRange(ks) ? ' .. ' : ' ')}</span><span>${desc}</span>`).join('') +
+      '</div></fieldset>').join('');
+
+    // ─── desktop: windows, taskbar, xterm ──────────────────────
+    // the board follows its window's size
+    let resizeT;
+    new ResizeObserver(() => { clearTimeout(resizeT); resizeT = setTimeout(layout, 60); }).observe(stage);
+
+    const slots = {};
+    document.querySelectorAll('.slot').forEach(el => { slots[el.dataset.win] = el; });
+    function focusWin(name) {
+      document.querySelectorAll('.win').forEach(w => w.classList.toggle('focus', w.parentElement.dataset.win === name));
+    }
+    function updateTasks() {
+      document.querySelectorAll('.task').forEach(b => {
+        const shown = !slots[b.dataset.task].classList.contains('min');
+        b.classList.toggle('pressed', shown);
+        b.classList.toggle('raised', !shown);
+        b.classList.toggle('on', shown);
+      });
+    }
+    function setMin(name, on) {
+      slots[name].classList.toggle('min', on);
+      if (!on) focusWin(name);
+      updateTasks();
+    }
+    // title bar buttons
+    document.querySelectorAll('.tb').forEach(b => b.addEventListener('click', e => {
+      e.stopPropagation();
+      const name = b.closest('.slot').dataset.win;
+      setMin(name, true);
+    }));
+    document.querySelectorAll('.slot').forEach(el => el.addEventListener('mousedown', () => focusWin(el.dataset.win)));
+    // taskbar: each button minimizes / restores its window
+    document.querySelectorAll('.task').forEach(b => b.addEventListener('click', () => {
+      const name = b.dataset.task;
+      setMin(name, !slots[name].classList.contains('min'));
+    }));
+    // menu: minimize everything, or bring everything back when all are down
+    $('menu-btn').addEventListener('click', () => {
+      const anyShown = Object.values(slots).some(el => !el.classList.contains('min'));
+      Object.keys(slots).forEach(n => setMin(n, anyShown));
+      if (!anyShown) focusWin('life');
+    });
+    updateTasks();
+
+    // notebook tabs
+    $('tabs').addEventListener('click', e => {
+      const t = e.target.closest('.tab');
+      if (!t) return;
+      document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+      document.querySelectorAll('.menu.open').forEach(m => m.classList.remove('open'));
+      document.querySelectorAll('.page').forEach(p => p.classList.toggle('on', p.dataset.page === t.dataset.tab));
+    });
+
+    // combo menus are position:fixed so the scrolling notebook doesn't clip them;
+    // place them under their button (capture runs before each menu's own toggle)
+    document.addEventListener('click', e => {
+      const b = e.target.closest('.sel-btn');
+      if (!b) return;
+      const m = b.parentElement.querySelector('.menu');
+      const r = b.getBoundingClientRect();
+      m.style.minWidth = r.width + 'px';
+      m.style.left = Math.min(r.left, innerWidth - 240) + 'px';
+      const below = innerHeight - r.bottom - 8;
+      if (below < 200 && r.top > below) { m.style.top = ''; m.style.bottom = (innerHeight - r.top + 2) + 'px'; m.style.maxHeight = (r.top - 16) + 'px'; }
+      else { m.style.bottom = ''; m.style.top = (r.bottom + 2) + 'px'; m.style.maxHeight = below + 'px'; }
+      document.querySelectorAll('.menu.open').forEach(o => { if (o !== m) o.classList.remove('open'); });
+    }, true);
+
+    // cells-alive graph applet
+    let lastAlive = 0;
+    const graph = $('graph'), gctx = graph.getContext('2d'), hist = [];
+    function tickApplets() {
+      hist.push(lastAlive);
+      if (hist.length > graph.width / 2) hist.shift();
+      const max = Math.max(1, ...hist);
+      gctx.fillStyle = '#000'; gctx.fillRect(0, 0, graph.width, graph.height);
+      gctx.fillStyle = '#3c3';
+      hist.forEach((v, k) => {
+        const h = Math.max(1, Math.round(v / max * (graph.height - 2)));
+        gctx.fillRect(k * 2, graph.height - h, 2, h);
+      });
+    }
+    setInterval(tickApplets, 500);
+    tickApplets();
+
+    // ─── desktop toys: penguins (always) and snow (toggle) ───────
+    // ledges are the tops of the visible windows' title bars and of the taskbar,
+    // re-read every frame, so minimizing a window drops whatever stood on it.
+    const fxBack = $('fx-back'), fxFront = $('fx-front');
+    const bctx = fxBack.getContext('2d'), fctx = fxFront.getContext('2d');
+    const PX = 2; // sprite pixel size in css px
+    function fitFx() {
+      const dpr = window.devicePixelRatio || 1;
+      for (const c of [fxBack, fxFront]) {
+        c.width = Math.round(innerWidth * dpr); c.height = Math.round(innerHeight * dpr);
+        c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+    }
+    window.addEventListener('resize', fitFx);
+    fitFx();
+
+    function ledges() {
+      const out = [];
+      for (const [name, el] of Object.entries(slots)) {
+        if (el.classList.contains('min')) continue;
+        const r = el.querySelector('.win').getBoundingClientRect();
+        out.push({ id: name, x1: r.left, x2: r.right, y: r.top, bottom: r.bottom });
+      }
+      const floorY = document.body.classList.contains('bar-hidden') ? innerHeight : document.querySelector('.taskbar').getBoundingClientRect().top;
+      out.push({ id: 'floor', x1: 0, x2: innerWidth, y: floorY, floor: true });
+      return out;
+    }
+
+    // penguin sprites (facing right), K black, W white, Y orange
+    const SPR = {
+      walk1: ['....KKKK....', '...KKKKKK...', '..KKKKKWKK..', '..KKKKKKKYY.', '..KKKKWWWK..', '.KKKKWWWWK..', '.KKKWWWWWK..',
+              'KKKKWWWWWK..', '.KKKWWWWWK..', '.KKKWWWWWK..', '..KKWWWWK...', '...KKKKK....', '...YY.YY....'],
+      walk2: ['....KKKK....', '...KKKKKK...', '..KKKKKWKK..', '..KKKKKKKYY.', '..KKKKWWWK..', '.KKKKWWWWK..', '.KKKWWWWWK..',
+              '.KKKWWWWWK..', 'KKKKWWWWWK..', '.KKKWWWWWK..', '..KKWWWWK...', '...KKKKK....', '....YYY.....'],
+      fall:  ['....KKKK....', '.K.KKKKKK.K.', '.KKKWKKWKKK.', '..KKKYYKKK..', '..KKWWWWKK..', '..KWWWWWWK..', '..KWWWWWWK..',
+              '..KWWWWWWK..', '..KKWWWWKK..', '...KKKKKK...', '...YY..YY...', '............', '............'],
+      climb1:['....KKKK....', '...KKKKKK..K', '..KKKKKKKKK.', '..KKKKKKKK..', '.KKKKKKKKK..', 'KKKKKKKKKK..', '.KKKKKKKKK..',
+              '.KKKKKKKKK..', '.KKKKKKKKK..', '..KKKKKKK...', '...KKKKK....', '...YY.......', '............'],
+      climb2:['....KKKK....', '...KKKKKK...', '..KKKKKKKK..', 'K.KKKKKKKK..', '.KKKKKKKKK..', '.KKKKKKKKKK.', '.KKKKKKKKK..',
+              '.KKKKKKKKK..', '.KKKKKKKKK..', '..KKKKKKK...', '...KKKKK....', '......YY....', '............'],
+      wave:  ['....KKKK..K.', '...KKKKKKK..', '..KKKKKWKK..', '..KKKKKKKYY.', '..KKKKWWWK..', '.KKKKWWWWK..', '.KKKWWWWWK..',
+              '.KKKWWWWWK..', '.KKKWWWWWK..', '.KKKWWWWWK..', '..KKWWWWK...', '...KKKKK....', '...YY.YY....'],
+    };
+    Object.assign(SPR, {
+      slide: ['............', '............', '............', '............', '............', '............', '............',
+              '............', '............', '...KKKKKKK..', 'YKKKKKKKKWK.', 'YKWWWWWWKKYY', '..KKKKKKKK..'],
+      sleep: ['............', '....KKKK....', '...KKKKKK...', '..KKKKKKKK..', '..KKKKKKKYY.', '..KKKKWWWK..', '.KKKKWWWWK..',
+              '.KKKWWWWWK..', 'KKKKWWWWWK..', '.KKKWWWWWK..', '.KKKWWWWWK..', '..KKKKKKK...', '..YYYYYY....'],
+      egg:   ['............', '............', '.....EE.....', '....EEEE....', '...EEEEEE...', '...EESEEE...', '..EEEEEEEE..',
+              '..EEEEESEE..', '..ESEEEEEE..', '..EEEEEEEE..', '...EEEESE...', '....EEEE....', '............'],
+      crack: ['....EEEE....', '...EEEEEE...', '...E.EE.E...', '............', '............', '..E.EE.E.E..', '..EEEEEEEE..',
+              '..EEEEESEE..', '..ESEEEEEE..', '..EEEEEEEE..', '...EEEESE...', '....EEEE....', '............'],
+    });
+    const SPR_COL = { K: '#101010', W: '#f4f4f4', Y: '#f0a020', E: '#f2ead6', S: '#9a8f78' };
+    const SW = 12 * PX, SH = 13 * PX;
+    const sprites = {};
+    SPR.dive = SPR.fall.slice(0, 11).reverse().concat(['............', '............']);
+    for (const [name, rows] of Object.entries(SPR)) {
+      for (const flip of [false, true]) {
+        const c = document.createElement('canvas'); c.width = SW; c.height = SH;
+        const g = c.getContext('2d');
+        rows.forEach((row, y) => [...row].forEach((ch, x) => {
+          if (ch === '.') return;
+          g.fillStyle = SPR_COL[ch];
+          g.fillRect((flip ? 11 - x : x) * PX, y * PX, PX, PX);
+        }));
+        sprites[name + (flip ? '-l' : '-r')] = c;
+      }
+    }
+
+    // snow piles: per ledge, one height per 2px column
+    const piles = {};
+    let snowing = false, flakes = [];
+    // each column gets its own cap: lumpy on top, tapering off toward the ledge's ends
+    function pileFor(l) {
+      const n = Math.ceil((l.x2 - l.x1) / 2);
+      let p = piles[l.id];
+      if (!p || p.h.length !== n || Math.abs(p.x1 - l.x1) > 1) {
+        const cap = new Float32Array(n);
+        for (let i = 0; i < n; i++) {
+          const end = Math.min(1, Math.min(i, n - 1 - i) / 9);           // ~18px taper at each end
+          const lump = Math.sin(i * 0.9) * 0.8 + Math.sin(i * 0.23 + 1.7) * 1.6 + Math.sin(i * 0.071) * 1.2;
+          cap[i] = Math.max(0.5, (4 + lump * 0.4) * Math.pow(end, 0.6)); // ~2.5..5.5px
+        }
+        p = piles[l.id] = { x1: l.x1, h: new Float32Array(n), cap };
+      }
+      return p;
+    }
+    const pileAt = (l, x) => { const p = piles[l.id]; if (!p) return 0; const i = ((x - p.x1) / 2) | 0; return p.h[i] || 0; };
+    const surface = (l, x) => l.y - pileAt(l, x);
+
+    const MAX_PENGUINS = 10;
+    const penguins = [], balls = [], puffs = [];
+    const newPenguin = (st, y) => ({
+      x: 60 + Math.random() * (innerWidth - 120), y, vy: 0, dir: Math.random() < .5 ? 1 : -1,
+      st, t: 0, wait: 0,       // state, frames in it, how long to stay (idle / wave / slide)
+      on: null, edge: null,    // ledge id it stands on; window it climbs
+      from: null,              // window whose side it climbs down
+      dive: false, slip: false // falling head first / on its belly
+    });
+    const START_PENGUINS = 3;
+    for (let k = 0; k < START_PENGUINS; k++) penguins.push(newPenguin('fall', -40 - k * 60));
+    // no mouse / keys for a while: everyone on a ledge falls asleep
+    const SLEEP_AFTER = 40000;
+    let lastInput = performance.now();
+    for (const ev of ['pointermove', 'pointerdown', 'keydown', 'wheel']) window.addEventListener(ev, () => { lastInput = performance.now(); }, true);
+    const ON_LEDGE = new Set(['walk', 'idle', 'wave', 'slide', 'throw']);
+
+    function startFall(p) { p.st = 'fall'; p.vy = 0; p.on = null; p.dive = Math.random() < 0.4; }
+    function stepPenguin(p, ls) {
+      p.t++;
+      if (p.st === 'held') return;
+      const cx = p.x + SW / 2;
+      const ledge = p.on && ls.find(l => l.id === p.on);
+      const sleepy = performance.now() - lastInput > SLEEP_AFTER;
+      if (p.st === 'hatch' || p.st === 'sleep' || ON_LEDGE.has(p.st)) {
+        if (!ledge || cx < ledge.x1 || cx > ledge.x2) { if (p.st === 'hatch') p.st = 'walk'; startFall(p); return; }
+        p.y = surface(ledge, cx) - SH;
+        if (p.st === 'hatch') { if (p.t > 30) { p.st = 'walk'; p.t = 0; } return; }
+        if (p.st === 'sleep') { if (!sleepy) { p.st = 'walk'; p.t = 0; } return; }
+        if (sleepy) { p.st = 'sleep'; p.t = 0; return; }
+        if (p.st === 'idle' || p.st === 'wave') { if (p.t > p.wait) { p.st = 'walk'; p.t = 0; } return; }
+        if (p.st === 'throw') {
+          // wind up, then a snowball flies the way it faces
+          if (p.t === 8) balls.push({ x: cx + p.dir * 8, y: p.y + 8, vx: p.dir * (3 + Math.random() * 1.5), vy: -3.2 });
+          if (p.t > 16) { p.st = 'walk'; p.t = 0; }
+          return;
+        }
+        if (p.st === 'slide') {
+          // belly slide along the snow
+          p.x += p.dir * 2.6;
+          if (p.x < 0 || p.x + SW > innerWidth) { p.dir = -p.dir; p.x = Math.max(0, Math.min(innerWidth - SW, p.x)); }
+          if (p.t > p.wait || pileAt(ledge, cx) < 0.3) { p.st = 'walk'; p.t = 0; }
+          return;
+        }
+        const frontBefore = p.dir > 0 ? p.x + SW : p.x;
+        p.x += p.dir * 1.1;
+        if (p.x < 0 || p.x + SW > innerWidth) {
+          if (screenEdgeClimb(p, ledge, ls)) return;
+          if (!ledge.floor && Math.random() < 0.4) { startDescend(p, ledge, p.x < 0 ? 0 : innerWidth - SW); p.dir = -p.dir; return; }
+          p.dir = -p.dir; p.x = Math.max(0, Math.min(innerWidth - SW, p.x));
+        }
+        const frontNow = p.dir > 0 ? p.x + SW : p.x;
+        const r = Math.random();
+        const snowy = pileAt(ledge, cx) > 1;
+        if (r < 0.004) { p.st = Math.random() < .4 ? 'wave' : 'idle'; p.t = 0; p.wait = 40 + Math.random() * 80; }
+        else if (r < 0.008) p.dir = -p.dir;
+        else if (snowy && r < 0.02) { p.st = 'slide'; p.t = 0; p.wait = 40 + Math.random() * 50; return; }
+        else if ((snowy || snowing) && r < 0.023) { p.st = 'throw'; p.t = 0; return; }
+        // at the end of a window's title bar, with another window stacked right above whose side
+        // is at that same end: half the time climb up that side instead of falling off
+        if (!ledge.floor) {
+          const end = p.dir > 0 ? ledge.x2 : ledge.x1;
+          const cxNow = p.x + SW / 2, cxBefore = cxNow - p.dir * 1.1;
+          if (p.dir > 0 ? cxBefore < end - 3 && cxNow >= end - 3 : cxBefore > end + 3 && cxNow <= end + 3) {
+            const up = ls.find(w => !w.floor && w.id !== ledge.id && Math.abs((p.dir > 0 ? w.x2 : w.x1) - end) < 6
+                                    && w.bottom <= ledge.y + 1 && w.bottom >= ledge.y - SH - 12);
+            if (up && Math.random() < 0.5) {
+              p.st = 'climb'; p.edge = up.id; p.on = null; p.t = 0;
+              p.x = Math.max(0, Math.min(innerWidth - SW, end - SW / 2));
+              p.dir = -p.dir; // comes out on top facing into the window
+              return;
+            }
+            if (Math.random() < 0.4) { startDescend(p, ledge, end - SW / 2); return; }
+          }
+        }
+        // on the floor, passing a window's side (or reaching the screen edge next to one): often climb it
+        if (ledge.floor) {
+          // only a window whose side comes down to this floor can be climbed (not one floating
+          // above an empty spot, e.g. controls with xterm minimized); stacked: the lowest one
+          for (const w of ls.filter(l => !l.floor && l.bottom >= ledge.y - SH).sort((a, b) => b.y - a.y)) {
+            const edgeX = p.dir > 0 ? w.x1 : w.x2;
+            const crossed = p.dir > 0 ? frontBefore < edgeX + 1 && frontNow >= edgeX - SW / 2 && p.x < edgeX
+                                      : frontBefore > edgeX - 1 && frontNow <= edgeX + SW / 2 && p.x + SW > edgeX;
+            if (crossed && Math.random() < 0.35) {
+              p.st = 'climb'; p.edge = w.id; p.on = null; p.t = 0;
+              p.x = Math.max(0, Math.min(innerWidth - SW, p.dir > 0 ? edgeX - SW + 6 : edgeX - 6));
+              break;
+            }
+          }
+        }
+        return;
+      }
+      if (p.st === 'descend') {
+        if (!ls.some(l => l.id === p.from)) { startFall(p); return; } // its window got minimized
+        const footBefore = p.y + SH;
+        p.y += 2;
+        const foot = p.y + SH;
+        for (const l of ls) {
+          if (l.id === p.from || cx < l.x1 || cx > l.x2) continue;
+          const sy = surface(l, cx);
+          if (footBefore <= sy + 1 && foot >= sy) { p.y = sy - SH; p.st = 'walk'; p.on = l.id; p.t = 0; p.from = null; return; }
+        }
+        if (p.y > innerHeight) startFall(p);
+        return;
+      }
+      if (p.st === 'climb') {
+        const w = ls.find(l => l.id === p.edge);
+        if (!w) { startFall(p); return; }
+        p.y -= 2;
+        if (p.y + SH <= w.y) { p.st = 'walk'; p.on = w.id; p.t = 0; p.x += p.dir * (SW - 6); p.y = w.y - SH; }
+        return;
+      }
+      // falling: land on the first ledge crossed
+      const footBefore = p.y + SH;
+      p.vy = Math.min(9, p.vy + 0.45);
+      p.y += p.vy;
+      const foot = p.y + SH;
+      for (const l of ls) {
+        if (cx < l.x1 || cx > l.x2) continue;
+        const sy = surface(l, cx);
+        if (footBefore <= sy + 1 && foot >= sy) { p.y = sy - SH; p.st = p.st === 'egg' ? 'hatch' : 'walk'; p.on = l.id; p.t = 0; p.vy = 0; p.slip = false; return; }
+      }
+      if (p.y > innerHeight + 40) { p.y = -40; p.x = Math.random() * (innerWidth - SW); p.vy = 0; }
+    }
+
+    // climbing down a window's side: slow, hugging the edge, until the first ledge below
+    function startDescend(p, ledge, x) {
+      p.st = 'descend'; p.from = ledge.id; p.on = null; p.t = 0;
+      p.x = Math.max(0, Math.min(innerWidth - SW, x));
+    }
+
+    // walked into the left / right screen edge with a window's outer side right there:
+    // from the floor, climb a window that reaches down to it (the lowest of a stack);
+    // from a title bar, climb the window stacked right above it
+    function screenEdgeClimb(p, ledge, ls) {
+      if (Math.random() >= (ledge.floor ? 0.35 : 0.5)) return false;
+      const left = p.x < 0, sx = left ? 0 : innerWidth;
+      const ws = ls.filter(w => !w.floor && w.id !== ledge.id && Math.abs((left ? w.x1 : w.x2) - sx) < 14
+        && (ledge.floor ? w.bottom >= ledge.y - SH : w.bottom <= ledge.y + 1 && w.bottom >= ledge.y - SH - 12));
+      if (!ws.length) return false;
+      const w = ws.sort((a, b) => b.y - a.y)[0];
+      p.st = 'climb'; p.edge = w.id; p.on = null; p.t = 0;
+      p.x = left ? 0 : innerWidth - SW;
+      p.dir = left ? 1 : -1; // tops out facing into the window
+      return true;
+    }
+
+    function hatchPenguin(x, y) {
+      if (penguins.length >= MAX_PENGUINS) { termPrint(`no more room: ${MAX_PENGUINS} penguins max`, 'y'); return; }
+      if (!showPenguins) setPenguins(true);
+      const p = newPenguin('egg', y - SH / 2);
+      p.x = Math.max(0, Math.min(innerWidth - SW, x - SW / 2));
+      penguins.push(p);
+      termPrint(`a penguin hatched (${penguins.length}/${MAX_PENGUINS})`, 'd');
+    }
+    function removePenguin(p) {
+      penguins.splice(penguins.indexOf(p), 1);
+      puffs.push({ x: p.x + SW / 2, y: p.y + SH / 2, t: 0 });
+      termPrint(`penguin killed (${penguins.length}/${MAX_PENGUINS})`, 'd');
+    }
+    function stepBalls(ls) {
+      for (let k = balls.length - 1; k >= 0; k--) {
+        const b = balls[k], by = b.y;
+        b.vy += 0.25; b.x += b.vx; b.y += b.vy;
+        let hit = false;
+        for (const l of ls) {
+          if (b.x < l.x1 || b.x >= l.x2) continue;
+          const sy = surface(l, b.x);
+          if (by <= sy && b.y >= sy) {
+            const p = pileFor(l), i = ((b.x - l.x1) / 2) | 0;
+            for (let d = -3; d <= 3; d++) if (p.h[i + d] !== undefined) p.h[i + d] = Math.min(p.cap[i + d], p.h[i + d] + 0.6);
+            puffs.push({ x: b.x, y: sy, t: 4 });
+            hit = true; break;
+          }
+        }
+        if (hit || b.x < -10 || b.x > innerWidth + 10 || b.y > innerHeight) balls.splice(k, 1);
+      }
+      for (let k = puffs.length - 1; k >= 0; k--) if (++puffs[k].t > 14) puffs.splice(k, 1);
+    }
+    function penguinSprite(p) {
+      const side = p.dir > 0 ? '-r' : '-l';
+      if (p.st === 'held') return sprites['fall' + side];
+      if (p.st === 'egg') return sprites['egg-r'];
+      if (p.st === 'hatch') return sprites['crack-r'];
+      if (p.st === 'slide') return sprites['slide' + side];
+      if (p.st === 'sleep') return sprites['sleep' + side];
+      if (p.st === 'throw') return sprites[(p.t < 8 ? 'wave' : 'walk1') + side];
+      if (p.st === 'fall') return sprites[(p.slip ? 'slide' : p.dive ? 'dive' : 'fall') + side];
+      if (p.st === 'climb' || p.st === 'descend') return sprites[((p.t >> 3) & 1 ? 'climb1' : 'climb2') + side];
+      if (p.st === 'wave') return sprites[((p.t >> 3) & 1 ? 'wave' : 'walk1') + side];
+      if (p.st === 'idle') return sprites['walk1' + side];
+      return sprites[((p.t >> 3) & 1 ? 'walk2' : 'walk1') + side];
+    }
+
+    function spawnFlake(x, y) { flakes.push({ x, y, vy: 1.6 + Math.random() * 1.6, ph: Math.random() * 6.28, r: Math.random() < .25 ? 2 : 1.5 }); }
+    function stepSnow(ls) {
+      if (snowing && flakes.length < 500) for (let k = 0; k < 4; k++) spawnFlake(Math.random() * innerWidth, -4);
+      const live = new Set(ls.map(l => l.id));
+      // a ledge that disappeared (minimized window): its snow falls off
+      for (const id of Object.keys(piles)) {
+        if (live.has(id)) continue;
+        const p = piles[id];
+        for (let i = 0; i < p.h.length; i += 3) if (p.h[i] > 1 && flakes.length < 700) spawnFlake(p.x1 + i * 2, 20 + Math.random() * 30);
+        delete piles[id];
+      }
+      for (let k = flakes.length - 1; k >= 0; k--) {
+        const f = flakes[k];
+        const by = f.y;
+        f.ph += 0.05; f.y += f.vy; f.x += Math.sin(f.ph) * 0.4;
+        let landed = false;
+        for (const l of ls) {
+          if (f.x < l.x1 || f.x >= l.x2) continue;
+          const sy = surface(l, f.x);
+          if (by <= sy && f.y >= sy) {
+            const p = pileFor(l), i = ((f.x - l.x1) / 2) | 0;
+            // a flake spreads over its neighbours, so piles grow as soft mounds
+            const amt = 0.5 + Math.random() * 0.4;
+            for (let d = -2; d <= 2; d++) {
+              const j = i + d;
+              if (j >= 0 && j < p.h.length) p.h[j] = Math.min(p.cap[j], p.h[j] + amt * (d === 0 ? 0.4 : Math.abs(d) === 1 ? 0.2 : 0.1));
+            }
+            landed = true; break;
+          }
+        }
+        if (landed || f.y > innerHeight) { flakes[k] = flakes[flakes.length - 1]; flakes.pop(); } // order doesn't matter
+      }
+      // piles settle: steep steps slide sideways, overflow at the ends drops off
+      for (const l of ls) {
+        const p = piles[l.id]; if (!p) continue;
+        const h = p.h, cap = p.cap;
+        for (let i = 1; i < h.length - 1; i++) {
+          // gentle settling toward the neighbours' level, never above this column's cap
+          h[i] = Math.min(cap[i], h[i] + (h[i - 1] + h[i + 1] - 2 * h[i]) * 0.08);
+        }
+        if (!snowing) {
+          let left = 0;
+          for (let i = 0; i < h.length; i++) left += (h[i] = Math.max(0, h[i] - 0.2)); // melts within ~2s
+          if (!left) delete piles[l.id];
+        }
+      }
+    }
+
+    // taskbar shown: penguins standing at the bottom get bumped up onto it;
+    // taskbar hidden: whoever stood on it slips down to the screen bottom, with its snow
+    let lastFloorY = null;
+    function floorMoved(oldY, newY) {
+      const up = newY < oldY;
+      for (const p of penguins) {
+        if (p.on !== 'floor') continue;
+        p.st = 'fall'; p.on = null; p.dive = false; p.y = oldY - SH;
+        p.vy = up ? -6.5 : 0.5; p.slip = !up;
+      }
+      const pile = piles.floor;
+      if (pile && !up) for (let i = 0; i < pile.h.length; i += 3) if (pile.h[i] > 0.5 && flakes.length < 700) spawnFlake(pile.x1 + i * 2, oldY - pile.h[i]);
+      delete piles.floor;
+    }
+
+    let fxT = 0, fxIdle = false;
+    function fxLoop(t) {
+      requestAnimationFrame(fxLoop);
+      if (document.hidden || t - fxT < 33) return; // ~30 fps
+      fxT = t;
+      // nothing to animate (penguins hidden, no snow anywhere): clear once, then rest
+      if (!showPenguins && !snowing && !flakes.length && !balls.length && !puffs.length && !Object.keys(piles).length) {
+        if (!fxIdle) { bctx.clearRect(0, 0, innerWidth, innerHeight); fctx.clearRect(0, 0, innerWidth, innerHeight); fxIdle = true; lastFloorY = null; }
+        return;
+      }
+      fxIdle = false;
+      const ls = ledges();
+      const floorY = ls[ls.length - 1].y;
+      if (lastFloorY !== null && Math.abs(floorY - lastFloorY) > 2) floorMoved(lastFloorY, floorY);
+      lastFloorY = floorY;
+      stepSnow(ls);
+      if (showPenguins) for (const p of penguins) stepPenguin(p, ls); // hidden ones wait where they are
+      stepBalls(ls);
+      // behind the windows: flakes, the floor's snow and whoever is on the floor or falling;
+      // in front: snow and penguins on title bars, climbers
+      bctx.clearRect(0, 0, innerWidth, innerHeight);
+      fctx.clearRect(0, 0, innerWidth, innerHeight);
+      bctx.fillStyle = fctx.fillStyle = '#f4f6fa';
+      for (const f of flakes) bctx.fillRect(f.x, f.y, f.r, f.r);
+      for (const l of ls) {
+        const p = piles[l.id]; if (!p) continue;
+        const g = l.floor ? bctx : fctx;
+        for (let i = 0; i < p.h.length; i++) if (p.h[i] >= 0.5) g.fillRect(p.x1 + i * 2, l.y - p.h[i], 2, p.h[i]);
+      }
+      bctx.imageSmoothingEnabled = fctx.imageSmoothingEnabled = false;
+      if (showPenguins) for (const p of penguins) {
+        const front = p.st === 'climb' || p.st === 'descend' || p.st === 'held' || (p.on && p.on !== 'floor');
+        const g = front ? fctx : bctx;
+        g.drawImage(penguinSprite(p), Math.round(p.x), Math.round(p.y));
+        if (p.st === 'sleep') {
+          // little z's drifting up
+          const k = (p.t % 60) / 60;
+          g.globalAlpha = 1 - k; g.fillStyle = '#ffffff'; g.font = 'bold 10px DejaVu Sans, Verdana, sans-serif';
+          g.fillText('z', p.x + SW - 4 + k * 6, p.y + 2 - k * 14);
+          g.globalAlpha = 1;
+        }
+      }
+      fctx.fillStyle = '#f4f6fa';
+      for (const b of balls) fctx.fillRect(b.x - 1.5, b.y - 1.5, 3, 3);
+      for (const f of puffs) {
+        fctx.globalAlpha = 1 - f.t / 15;
+        for (let a = 0; a < 6; a++) {
+          const r = 3 + f.t * 1.2, ang = a * Math.PI / 3;
+          fctx.fillRect(f.x + Math.cos(ang) * r - 1.5, f.y + Math.sin(ang) * r - 1.5, 3, 3);
+        }
+        fctx.globalAlpha = 1;
+      }
+    }
+    let showPenguins = true;
+    // a penguin under the pointer that you can actually see: drawn in front,
+    // or behind but not covered by a window
+    function penguinAt(x, y) {
+      if (!showPenguins) return null;
+      for (let k = penguins.length - 1; k >= 0; k--) {
+        const p = penguins[k];
+        if (p.st === 'egg' || p.st === 'hatch') continue;
+        if (x < p.x + 3 || x > p.x + SW - 3 || y < p.y + 2 || y > p.y + SH) continue;
+        const front = p.st === 'climb' || p.st === 'descend' || (p.on && p.on !== 'floor');
+        if (front) return p;
+        const el = document.elementFromPoint(x, y);
+        if (!el || !el.closest('.slot, .taskbar')) return p;
+      }
+      return null;
+    }
+    let held = null, grabDX = 0, grabDY = 0;
+    document.addEventListener('pointerdown', e => {
+      if (e.button !== 0 && e.button !== 2) return;
+      const p = penguinAt(e.clientX, e.clientY);
+      if (!p) return;
+      e.preventDefault(); e.stopPropagation();
+      if (e.button === 2) { removePenguin(p); return; }
+      held = p; p.st = 'held'; p.on = null; p.vy = 0;
+      grabDX = e.clientX - p.x; grabDY = e.clientY - p.y;
+      document.body.classList.add('holding-penguin');
+    }, true);
+    document.addEventListener('pointermove', e => {
+      if (held) {
+        held.dir = e.movementX > 0 ? 1 : e.movementX < 0 ? -1 : held.dir;
+        held.x = e.clientX - grabDX; held.y = e.clientY - grabDY;
+        return;
+      }
+      document.body.classList.toggle('over-penguin', !!penguinAt(e.clientX, e.clientY));
+    }, true);
+    // no browser context menu anywhere on the page
+    document.addEventListener('contextmenu', e => e.preventDefault(), true);
+    document.addEventListener('pointerup', e => {
+      if (!held) return;
+      e.stopPropagation();
+      startFall(held); held = null;
+      document.body.classList.remove('holding-penguin');
+    }, true);
+    function setSnow(on) {
+      snowing = on;
+      $('snow-btn').classList.toggle('on', on);
+      termPrint(on ? 'let it snow' : 'snow stopped', 'd');
+    }
+    $('snow-btn').addEventListener('click', () => setSnow(!snowing));
+    function setPenguins(on) {
+      showPenguins = on;
+      $('egg-btn').classList.toggle('on', on);
+    }
+    $('egg-btn').addEventListener('click', () => setPenguins(!showPenguins));
+    setPenguins(true);
+    // left click on empty desktop (not a window, not the taskbar): an egg drops from there
+    document.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      if (e.target !== $('desktop') && e.target !== document.body) return;
+      hatchPenguin(e.clientX, e.clientY);
+    });
+
+    // taskbar hide / show, like minimizing a window: only the arrow stays
+    function setBarHidden(on) {
+      document.body.classList.toggle('bar-hidden', on);
+      $('hide-btn').title = on ? 'show the taskbar (m)' : 'hide the taskbar (m)';
+    }
+    $('hide-btn').addEventListener('click', () => setBarHidden(!document.body.classList.contains('bar-hidden')));
+    requestAnimationFrame(fxLoop);
+
+    // xterm: read-only event log, newest at the bottom, timestamped like a log file.
+    // keeps the last 300 lines; follows new lines unless you scrolled up to read
+    const termOut = $('term-out'), xterm = $('xterm');
+    function termPrint(text, cls) {
+      const d = new Date(), ts = [d.getHours(), d.getMinutes(), d.getSeconds()].map(v => String(v).padStart(2, '0')).join(':');
+      const div = document.createElement('div');
+      if (cls) div.className = cls;
+      div.textContent = ts + '  ' + text;
+      termOut.appendChild(div);
+      while (termOut.childNodes.length > 300) termOut.removeChild(termOut.firstChild);
+      if (follow) xterm.scrollTop = xterm.scrollHeight;
+    }
+    let follow = true; // at the bottom: keep following
+    xterm.addEventListener('scroll', () => { follow = xterm.scrollTop + xterm.clientHeight >= xterm.scrollHeight - 4; });
 
     // ─── boot ───────────────────────────────────────────────────
     setBgColor(bgColor);
-    paintRandomButton();
     allocate(cols, rows);
     render();
   })();
