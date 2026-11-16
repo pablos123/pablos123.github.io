@@ -464,9 +464,12 @@
     <button class="task raised" data-task="ctl"><span class="ico ico-ctl"></span><span>controls</span></button>
     <button class="task raised" data-task="term"><span class="ico ico-term"></span><span>xterm</span></button>
     <div class="applets">
-      <button class="snowbtn raised" id="egg-btn" title="show / hide the penguins (u); click the desktop to hatch one, right-click one to kill it">
+      <button class="snowbtn raised" id="egg-btn" title="show / hide the penguins (u); click the desktop to hatch one, right-click one to remove it">
         <svg width="14" height="16" viewBox="0 0 14 16"><path d="M7 1C3.6 1 1 6.5 1 10c0 3.4 2.7 5 6 5s6-1.6 6-5C13 6.5 10.4 1 7 1Z" fill="#f2ead6" stroke="#000"/>
           <rect x="4" y="9" width="1.5" height="1.5" fill="#9a8f78"/><rect x="8" y="6" width="1.5" height="1.5" fill="#9a8f78"/><rect x="9" y="11" width="1.5" height="1.5" fill="#9a8f78"/></svg>
+      </button>
+      <button class="snowbtn raised" id="gore-btn" title="gore: a removed penguin bursts into blood that stains the snow">
+        <svg width="12" height="16" viewBox="0 0 12 16"><path d="M6 1C6 1 1 7.5 1 10.5A5 5 0 0 0 11 10.5C11 7.5 6 1 6 1Z" fill="#b3121f" stroke="#000"/></svg>
       </button>
       <button class="snowbtn raised" id="snow-btn" title="let it snow (n)">
         <svg width="16" height="16" viewBox="0 0 18 18" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="square">
@@ -2017,7 +2020,7 @@
           const lump = Math.sin(i * 0.9) * 0.8 + Math.sin(i * 0.23 + 1.7) * 1.6 + Math.sin(i * 0.071) * 1.2;
           cap[i] = Math.max(0.5, (4 + lump * 0.4) * Math.pow(end, 0.6)); // ~2.5..5.5px
         }
-        p = piles[l.id] = { x1: l.x1, h: new Float32Array(n), cap };
+        p = piles[l.id] = { x1: l.x1, h: new Float32Array(n), cap, red: new Float32Array(n) };   // red: blood on it, 0..1
       }
       return p;
     }
@@ -2026,6 +2029,8 @@
 
     const MAX_PENGUINS = 10;
     const penguins = [], balls = [], puffs = [];
+    const blood = [];          // gore: drops flying from a removed penguin
+    let gore = false;
     const newPenguin = (st, y) => ({
       x: 60 + Math.random() * (innerWidth - 120), y, vy: 0, dir: Math.random() < .5 ? 1 : -1,
       st, t: 0, wait: 0,       // state, frames in it, how long to stay (idle / wave / slide)
@@ -2039,9 +2044,11 @@
     const SLEEP_AFTER = 40000;
     let lastInput = performance.now();
     for (const ev of ['pointermove', 'pointerdown', 'keydown', 'wheel']) window.addEventListener(ev, () => { lastInput = performance.now(); }, true);
-    const ON_LEDGE = new Set(['walk', 'idle', 'wave', 'slide', 'throw']);
+    const ON_LEDGE = new Set(['walk', 'idle', 'wave', 'slide', 'throw', 'dizzy']);
+    // dizzy for 1.5..2.5 s: after a snowball hit or a hard landing
+    const makeDizzy = p => { p.st = 'dizzy'; p.t = 0; p.wait = 45 + Math.random() * 30; };   // frames, ~30 per second
 
-    function startFall(p) { p.st = 'fall'; p.vy = 0; p.on = null; p.dive = Math.random() < 0.4; }
+    function startFall(p) { p.st = 'fall'; p.vy = 0; p.on = null; p.dive = Math.random() < 0.4; p.fallY0 = p.y; }
     function stepPenguin(p, ls) {
       p.t++;
       if (p.st === 'held') return;
@@ -2053,11 +2060,13 @@
         p.y = surface(ledge, cx) - SH;
         if (p.st === 'hatch') { if (p.t > 30) { p.st = 'walk'; p.t = 0; } return; }
         if (p.st === 'sleep') { if (!sleepy) { p.st = 'walk'; p.t = 0; } return; }
+        if (p.st === 'dizzy') { if (p.t > p.wait) { p.st = 'walk'; p.t = 0; } return; }
+        if (gore && p.lame && Math.random() < 0.01) blood.push({ x: cx, y: p.y + SH - 3, vx: 0, vy: 0.5, r: 2 });
         if (sleepy) { p.st = 'sleep'; p.t = 0; return; }
         if (p.st === 'idle' || p.st === 'wave') { if (p.t > p.wait) { p.st = 'walk'; p.t = 0; } return; }
         if (p.st === 'throw') {
           // wind up, then a snowball flies the way it faces
-          if (p.t === 8) balls.push({ x: cx + p.dir * 8, y: p.y + 8, vx: p.dir * (3 + Math.random() * 1.5), vy: -3.2 });
+          if (p.t === 8) balls.push({ x: cx + p.dir * 8, y: p.y + 8, vx: p.dir * (3 + Math.random() * 1.5), vy: -3.2, from: p });
           if (p.t > 16) { p.st = 'walk'; p.t = 0; }
           return;
         }
@@ -2069,7 +2078,8 @@
           return;
         }
         const frontBefore = p.dir > 0 ? p.x + SW : p.x;
-        p.x += p.dir * 1.1;
+        const pace = p.lame ? 0.5 : 1.1;
+        p.x += p.dir * pace;
         if (p.x < 0 || p.x + SW > innerWidth) {
           if (screenEdgeClimb(p, ledge, ls)) return;
           if (!ledge.floor && Math.random() < 0.4) { startDescend(p, ledge, p.x < 0 ? 0 : innerWidth - SW); p.dir = -p.dir; return; }
@@ -2080,17 +2090,17 @@
         const snowy = pileAt(ledge, cx) > 1;
         if (r < 0.004) { p.st = Math.random() < .4 ? 'wave' : 'idle'; p.t = 0; p.wait = 40 + Math.random() * 80; }
         else if (r < 0.008) p.dir = -p.dir;
-        else if (snowy && r < 0.02) { p.st = 'slide'; p.t = 0; p.wait = 40 + Math.random() * 50; return; }
+        else if (snowy && !p.lame && r < 0.02) { p.st = 'slide'; p.t = 0; p.wait = 40 + Math.random() * 50; return; }
         else if ((snowy || snowing) && r < 0.023) { p.st = 'throw'; p.t = 0; return; }
         // at the end of a window's title bar, with another window stacked right above whose side
         // is at that same end: half the time climb up that side instead of falling off
         if (!ledge.floor) {
           const end = p.dir > 0 ? ledge.x2 : ledge.x1;
-          const cxNow = p.x + SW / 2, cxBefore = cxNow - p.dir * 1.1;
+          const cxNow = p.x + SW / 2, cxBefore = cxNow - p.dir * pace;
           if (p.dir > 0 ? cxBefore < end - 3 && cxNow >= end - 3 : cxBefore > end + 3 && cxNow <= end + 3) {
             const up = ls.find(w => !w.floor && w.id !== ledge.id && Math.abs((p.dir > 0 ? w.x2 : w.x1) - end) < 6
                                     && w.bottom <= ledge.y + 1 && w.bottom >= ledge.y - SH - 12);
-            if (up && Math.random() < 0.5) {
+            if (up && !p.lame && Math.random() < 0.5) {
               p.st = 'climb'; p.edge = up.id; p.on = null; p.t = 0;
               p.x = Math.max(0, Math.min(innerWidth - SW, end - SW / 2));
               p.dir = -p.dir; // comes out on top facing into the window
@@ -2107,7 +2117,7 @@
             const edgeX = p.dir > 0 ? w.x1 : w.x2;
             const crossed = p.dir > 0 ? frontBefore < edgeX + 1 && frontNow >= edgeX - SW / 2 && p.x < edgeX
                                       : frontBefore > edgeX - 1 && frontNow <= edgeX + SW / 2 && p.x + SW > edgeX;
-            if (crossed && Math.random() < 0.35) {
+            if (crossed && !p.lame && Math.random() < 0.35) {
               p.st = 'climb'; p.edge = w.id; p.on = null; p.t = 0;
               p.x = Math.max(0, Math.min(innerWidth - SW, p.dir > 0 ? edgeX - SW + 6 : edgeX - 6));
               break;
@@ -2144,7 +2154,7 @@
       for (const l of ls) {
         if (cx < l.x1 || cx > l.x2) continue;
         const sy = surface(l, cx);
-        if (footBefore <= sy + 1 && foot >= sy) { p.y = sy - SH; p.st = p.st === 'egg' ? 'hatch' : 'walk'; p.on = l.id; p.t = 0; p.vy = 0; p.slip = false; return; }
+        if (footBefore <= sy + 1 && foot >= sy) { const hard = p.st !== 'egg' && p.vy >= 6, drop = sy - SH - (p.fallY0 ?? sy - SH), pushed = p.pushed; p.y = sy - SH; p.st = p.st === 'egg' ? 'hatch' : 'walk'; p.on = l.id; p.t = 0; p.vy = 0; p.slip = false; p.pushed = false; if (hard) hardLanding(p, drop, pushed); return; }
       }
       if (p.y > innerHeight + 40) { p.y = -40; p.x = Math.random() * (innerWidth - SW); p.vy = 0; }
     }
@@ -2179,17 +2189,45 @@
       penguins.push(p);
       termPrint(`a penguin hatched (${penguins.length}/${MAX_PENGUINS})`, 'd');
     }
+    // gore: dropped or knocked from more than half the screen, it dies; any other hard landing
+    // cripples it (it bleeds, limps, can't climb any more). without gore it's only dizzy
+    function hardLanding(p, drop, pushed) {
+      if (gore && pushed && drop > innerHeight * 0.5) { p.splat = true; return; }   // removed after this frame's steps
+      makeDizzy(p);
+      if (!gore) return;
+      for (let k = 0; k < 12; k++) blood.push({ x: p.x + SW / 2, y: p.y + SH - 3, vx: (Math.random() - 0.5) * 4, vy: -1 - Math.random() * 2.5, r: 2 });
+      if (!p.lame) { p.lame = true; termPrint(`penguin crippled`, 'e'); }
+    }
+    function splatPenguin(p) {
+      penguins.splice(penguins.indexOf(p), 1);
+      for (let k = 0; k < 60; k++) blood.push({ x: p.x + SW / 2, y: p.y + SH - 4, vx: (Math.random() - 0.5) * 9, vy: -1 - Math.random() * 4, r: Math.random() < .3 ? 3 : 2 });
+      termPrint(`penguin killed (fell) (${penguins.length}/${MAX_PENGUINS})`, 'e');
+    }
     function removePenguin(p) {
       penguins.splice(penguins.indexOf(p), 1);
-      puffs.push({ x: p.x + SW / 2, y: p.y + SH / 2, t: 0 });
-      termPrint(`penguin killed (${penguins.length}/${MAX_PENGUINS})`, 'd');
+      const cx = p.x + SW / 2, cy = p.y + SH / 2;
+      if (gore) {
+        for (let k = 0; k < 40; k++) blood.push({ x: cx, y: cy, vx: (Math.random() - 0.5) * 7, vy: -1.5 - Math.random() * 5, r: Math.random() < .3 ? 3 : 2 });
+        termPrint(`penguin killed (${penguins.length}/${MAX_PENGUINS})`, 'e');
+      } else {
+        puffs.push({ x: cx, y: cy, t: 0 });
+        termPrint(`penguin removed (${penguins.length}/${MAX_PENGUINS})`, 'd');
+      }
     }
     function stepBalls(ls) {
       for (let k = balls.length - 1; k >= 0; k--) {
         const b = balls[k], by = b.y;
         b.vy += 0.25; b.x += b.vx; b.y += b.vy;
         let hit = false;
-        for (const l of ls) {
+        if (showPenguins) for (const p of penguins) {
+          if (p === b.from || b.x < p.x + 2 || b.x > p.x + SW - 2 || b.y < p.y + 2 || b.y > p.y + SH) continue;
+          if (p.st === 'climb' || p.st === 'descend') { p.pushed = true; startFall(p); }   // knocked off the wall
+          else if (ON_LEDGE.has(p.st) || p.st === 'sleep') makeDizzy(p);
+          else continue;                                                // eggs, falling or held ones: it flies past
+          puffs.push({ x: b.x, y: b.y, t: 4 });
+          hit = true; break;
+        }
+        for (const l of hit ? [] : ls) {
           if (b.x < l.x1 || b.x >= l.x2) continue;
           const sy = surface(l, b.x);
           if (by <= sy && b.y >= sy) {
@@ -2202,6 +2240,25 @@
         if (hit || b.x < -10 || b.x > innerWidth + 10 || b.y > innerHeight) balls.splice(k, 1);
       }
       for (let k = puffs.length - 1; k >= 0; k--) if (++puffs[k].t > 14) puffs.splice(k, 1);
+      // blood drops: where they land on snow, it turns red
+      for (let k = blood.length - 1; k >= 0; k--) {
+        const b = blood[k], by = b.y;
+        b.vy += 0.3; b.x += b.vx; b.y += b.vy;
+        let hit = false;
+        for (const l of ls) {
+          if (b.x < l.x1 || b.x >= l.x2) continue;
+          const sy = surface(l, b.x);
+          if (by <= sy && b.y >= sy) {
+            const p = piles[l.id];
+            if (p) {
+              const i = ((b.x - l.x1) / 2) | 0;
+              for (let d = -1; d <= 1; d++) if (p.h[i + d] > 0.3) p.red[i + d] = Math.min(1, p.red[i + d] + (d ? 0.5 : 1));
+            }
+            hit = true; break;
+          }
+        }
+        if (hit || b.x < -10 || b.x > innerWidth + 10 || b.y > innerHeight) blood.splice(k, 1);
+      }
     }
     function penguinSprite(p) {
       const side = p.dir > 0 ? '-r' : '-l';
@@ -2215,6 +2272,7 @@
       if (p.st === 'climb' || p.st === 'descend') return sprites[((p.t >> 3) & 1 ? 'climb1' : 'climb2') + side];
       if (p.st === 'wave') return sprites[((p.t >> 3) & 1 ? 'wave' : 'walk1') + side];
       if (p.st === 'idle') return sprites['walk1' + side];
+      if (p.st === 'dizzy') return sprites['walk1' + side];
       return sprites[((p.t >> 3) & 1 ? 'walk2' : 'walk1') + side];
     }
 
@@ -2243,7 +2301,10 @@
             const amt = 0.5 + Math.random() * 0.4;
             for (let d = -2; d <= 2; d++) {
               const j = i + d;
-              if (j >= 0 && j < p.h.length) p.h[j] = Math.min(p.cap[j], p.h[j] + amt * (d === 0 ? 0.4 : Math.abs(d) === 1 ? 0.2 : 0.1));
+              if (j >= 0 && j < p.h.length) {
+                p.h[j] = Math.min(p.cap[j], p.h[j] + amt * (d === 0 ? 0.4 : Math.abs(d) === 1 ? 0.2 : 0.1));
+                p.red[j] *= 0.97;   // fresh snow slowly covers the blood
+              }
             }
             landed = true; break;
           }
@@ -2287,7 +2348,7 @@
       if (document.hidden || t - fxT < 33) return; // ~30 fps
       fxT = t;
       // nothing to animate (penguins hidden, no snow anywhere): clear once, then rest
-      if (!showPenguins && !snowing && !flakes.length && !balls.length && !puffs.length && !Object.keys(piles).length) {
+      if (!showPenguins && !snowing && !flakes.length && !balls.length && !puffs.length && !blood.length && !Object.keys(piles).length) {
         if (!fxIdle) { bctx.clearRect(0, 0, innerWidth, innerHeight); fctx.clearRect(0, 0, innerWidth, innerHeight); fxIdle = true; lastFloorY = null; }
         return;
       }
@@ -2298,6 +2359,7 @@
       lastFloorY = floorY;
       stepSnow(ls);
       if (showPenguins) for (const p of penguins) stepPenguin(p, ls); // hidden ones wait where they are
+      for (const p of penguins.filter(p => p.splat)) splatPenguin(p);
       stepBalls(ls);
       // behind the windows: flakes, the floor's snow and whoever is on the floor or falling;
       // in front: snow and penguins on title bars, climbers
@@ -2308,13 +2370,30 @@
       for (const l of ls) {
         const p = piles[l.id]; if (!p) continue;
         const g = l.floor ? bctx : fctx;
-        for (let i = 0; i < p.h.length; i++) if (p.h[i] >= 0.5) g.fillRect(p.x1 + i * 2, l.y - p.h[i], 2, p.h[i]);
+        for (let i = 0; i < p.h.length; i++) {
+          if (p.h[i] < 0.5) continue;
+          const r = p.red[i];   // white snow, tinted toward blood red
+          g.fillStyle = r > 0.02 ? `rgb(${244 - 81 * r | 0},${246 - 228 * r | 0},${250 - 219 * r | 0})` : '#f4f6fa';
+          g.fillRect(p.x1 + i * 2, l.y - p.h[i], 2, p.h[i]);
+        }
       }
       bctx.imageSmoothingEnabled = fctx.imageSmoothingEnabled = false;
       if (showPenguins) for (const p of penguins) {
         const front = p.st === 'climb' || p.st === 'descend' || p.st === 'held' || (p.on && p.on !== 'floor');
         const g = front ? fctx : bctx;
-        g.drawImage(penguinSprite(p), Math.round(p.x), Math.round(p.y));
+        const tilt = p.st === 'dizzy' ? Math.sin(p.t * 0.2) * 0.2 : p.lame && p.st === 'walk' ? ((p.t >> 3) & 1 ? 0.14 * p.dir : 0) : 0;
+        if (tilt) {
+          g.save(); g.translate(Math.round(p.x) + SW / 2, Math.round(p.y) + SH); g.rotate(tilt);   // around its feet
+          g.drawImage(penguinSprite(p), -SW / 2, -SH);
+          g.restore();
+        } else g.drawImage(penguinSprite(p), Math.round(p.x), Math.round(p.y));
+        if (p.st === 'dizzy') {
+          g.fillStyle = '#ffd84a';
+          for (let k = 0; k < 3; k++) {
+            const a = p.t * 0.15 + k * 2.09, sx = p.x + SW / 2 + Math.cos(a) * 9, sy = p.y - 3 + Math.sin(a) * 3;
+            g.fillRect(sx - 1, sy - 2, 2, 4); g.fillRect(sx - 2, sy - 1, 4, 2);   // a little plus-shaped star
+          }
+        }
         if (p.st === 'sleep') {
           // little z's drifting up
           const k = (p.t % 60) / 60;
@@ -2333,6 +2412,8 @@
         }
         fctx.globalAlpha = 1;
       }
+      fctx.fillStyle = '#b3121f';
+      for (const b of blood) fctx.fillRect(b.x - b.r / 2, b.y - b.r / 2, b.r, b.r);
     }
     let showPenguins = true;
     // a penguin under the pointer that you can actually see: drawn in front,
@@ -2374,7 +2455,7 @@
     document.addEventListener('pointerup', e => {
       if (!held) return;
       e.stopPropagation();
-      startFall(held); held = null;
+      held.pushed = true; startFall(held); held = null;
       document.body.classList.remove('holding-penguin');
     }, true);
     function setSnow(on) {
@@ -2383,6 +2464,13 @@
       termPrint(on ? 'let it snow' : 'snow stopped', 'd');
     }
     $('snow-btn').addEventListener('click', () => setSnow(!snowing));
+    // gore (off by default): a removed penguin bursts into blood instead of a puff
+    function setGore(on) {
+      gore = on;
+      $('gore-btn').classList.toggle('on', on);
+      termPrint(on ? 'gore on' : 'gore off', 'd');
+    }
+    $('gore-btn').addEventListener('click', () => setGore(!gore));
     function setPenguins(on) {
       showPenguins = on;
       $('egg-btn').classList.toggle('on', on);
