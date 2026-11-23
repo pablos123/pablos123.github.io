@@ -1213,13 +1213,22 @@
       applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
     applyTheme(document.documentElement.dataset.theme);
 
-    // A tapped control should never stay focused (and look pressed) after the pointer
-    // leaves it — including when switching windows and coming back.
-    document.addEventListener('pointerup', e => {
-      const el = e.target.closest('button, .filter-label');
-      if (!el) return;
-      if (el.tagName === 'BUTTON') el.blur();
-      else el.querySelector('input')?.blur();
+    // A tapped control must never keep a focus ring / pressed look, including
+    // after switching windows or tabs and coming back.
+    function clearStickyFocus() {
+      const el = document.activeElement;
+      if (el && el !== document.body && typeof el.blur === "function") el.blur();
+    }
+    window.addEventListener("blur", clearStickyFocus);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) clearStickyFocus();
+    });
+    document.addEventListener("pointerup", event => {
+      if (event.target.closest?.("a, button, label, input[type=checkbox], input[type=range]")) {
+        const active = document.activeElement;
+        if (active?.matches?.("a, button, input[type=checkbox], input[type=range]"))
+          setTimeout(() => active.blur(), 0);
+      }
     });
 
     // Chrome does not expose :active on scrollbar thumbs, so detect a grab on the

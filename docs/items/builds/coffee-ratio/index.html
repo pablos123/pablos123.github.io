@@ -21,6 +21,14 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    input { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
 
     html { -webkit-text-size-adjust: 100%; }
 
@@ -113,6 +121,7 @@
       color: var(--muted);
       letter-spacing: .12em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .input-wrap {
@@ -519,7 +528,7 @@
               </div>
             </div>
             <div class="field">
-              <label for="water">water &middot; calculated</label>
+              <label for="water">water</label>
               <div class="input-wrap">
                 <input id="water" type="text" readonly tabindex="-1" title="calculated from coffee and ratio">
                 <span class="suffix">g</span>
@@ -629,6 +638,24 @@
 
   <script>
     "use strict";
+
+    // A tapped control must never keep a focus ring / pressed look, including
+    // after switching windows or tabs and coming back.
+    function clearStickyFocus() {
+      const el = document.activeElement;
+      if (el && el !== document.body && typeof el.blur === "function") el.blur();
+    }
+    window.addEventListener("blur", clearStickyFocus);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) clearStickyFocus();
+    });
+    document.addEventListener("pointerup", event => {
+      if (event.target.closest?.("a, button, label, input[type=checkbox], input[type=range]")) {
+        const active = document.activeElement;
+        if (active?.matches?.("a, button, input[type=checkbox], input[type=range]"))
+          setTimeout(() => active.blur(), 0);
+      }
+    });
 
     const DECIMALS = 1;
     const RATIOS = [8, 12, 14, 15, 16, 17, 18];

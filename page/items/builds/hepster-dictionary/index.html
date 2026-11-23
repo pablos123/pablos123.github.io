@@ -1527,7 +1527,8 @@
     }
     boot();
 
-    // A focus ring must not linger after switching windows or tabs.
+    // A tapped control must never keep a focus ring / pressed look, including
+    // after switching windows or tabs and coming back.
     function clearStickyFocus() {
       const el = document.activeElement;
       if (el && el !== document.body && typeof el.blur === "function") el.blur();
@@ -1535,6 +1536,13 @@
     window.addEventListener("blur", clearStickyFocus);
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) clearStickyFocus();
+    });
+    document.addEventListener("pointerup", event => {
+      if (event.target.closest?.("a, button, label, input[type=checkbox], input[type=range]")) {
+        const active = document.activeElement;
+        if (active?.matches?.("a, button, input[type=checkbox], input[type=range]"))
+          setTimeout(() => active.blur(), 0);
+      }
     });
   </script>
 </body>
