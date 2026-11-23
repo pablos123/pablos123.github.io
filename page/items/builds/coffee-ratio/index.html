@@ -4,24 +4,20 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/shared/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#282828">
+  <meta name="theme-color" content="#f3ead8">
   <title>coffee ratio calculator</title>
   <style>
     :root {
-      --bg:     #282828;
-      --bg1:    #3c3836;
-      --bg2:    #504945;
-      --bg3:    #665c54;
-      --fg:     #ebdbb2;
-      --fg2:    #d5c4a1;
-      --gray:   #928374;
-      --yellow: #d79921;
-      --orange: #d65d0e;
-      --red:    #cc241d;
-      --green:  #98971a;
-      --blue:   #458588;
-      --aqua:   #689d6a;
-      --purple: #b16286;
+      --paper:  #e8dcc4;
+      --card:   #f3ead8;
+      --cream:  #fbf6e9;
+      --ink:    #2e251c;
+      --muted:  #877760;
+      --line:   #cbb99a;
+      --red:    #b34530;
+      --coffee: #4a2c1a;
+      --brew:   #a86034;
+      --fill:   72%;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,8 +25,11 @@
     html { -webkit-text-size-adjust: 100%; }
 
     body {
-      background: var(--bg);
-      color: var(--fg);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,.35) 0, transparent 40%),
+        radial-gradient(circle at 82% 78%, rgba(120,88,48,.08) 0, transparent 45%),
+        var(--paper);
+      color: var(--ink);
       font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
       min-height: 100dvh;
       display: flex;
@@ -41,72 +40,113 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    header, main, footer {
+    /* ─── the ticket ─────────────────────────────────────────── */
+    .ticket {
+      position: relative;
       width: 100%;
       max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      box-shadow: 0 2px 0 rgba(120,90,50,.18), 0 14px 34px rgba(60,40,20,.12);
     }
+    .ticket-head {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 19px 22px 17px;
+      border-bottom: 2px dashed var(--line);
+    }
+    /* the two little notches where you'd tear the stub off */
+    .ticket-head::before, .ticket-head::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      width: 14px; height: 14px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+    }
+    .ticket-head::before { left: -8px; }
+    .ticket-head::after  { right: -8px; }
 
-    header { margin-bottom: 24px; }
+    .head-copy { min-width: 0; flex: 1; }
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
     .title {
-      font-size: 16px;
-      color: var(--yellow);
-      letter-spacing: 0.06em;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: -.02em;
     }
     .subtitle {
-      font-size: 12px;
-      color: var(--gray);
-      margin-top: 5px;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
       line-height: 1.5;
     }
-
-    main {
+    .ticket-body {
+      padding: 22px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
     }
 
-    /* ─── fields ──────────────────────────────────────────────── */
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
+    /* ─── fields + cup, side by side ─────────────────────────── */
+    .measure {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 108px;
+      gap: 16px;
+      align-items: end;
     }
+    .fields { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+    .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
     .field label {
-      font-size: 12px;
-      color: var(--gray);
-      letter-spacing: 0.04em;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
     .input-wrap {
       display: flex;
       align-items: stretch;
-      background: var(--bg1);
-      border: 1px solid var(--bg2);
-      border-radius: 8px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 3px;
       overflow: hidden;
     }
-    .input-wrap:focus-within { border-color: var(--blue); }
+    .input-wrap:focus-within { border-color: var(--red); }
     .input-wrap .suffix {
       display: flex;
       align-items: center;
-      padding: 0 15px;
-      font-size: 15px;
-      color: var(--gray);
-      background: var(--bg);
+      padding: 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--card);
+      border-left: 1px solid var(--line);
       flex-shrink: 0;
     }
-    input[type="number"] {
+    input[type="number"], input[type="text"] {
       font-family: inherit;
-      font-size: 22px;
-      color: var(--fg);
+      font-size: 21px;
+      color: var(--ink);
       background: transparent;
       border: 0;
       outline: none;
-      padding: 15px 16px;
+      padding: 13px 14px;
       width: 100%;
       min-width: 0;
       -moz-appearance: textfield;
     }
+    input[readonly] { background: var(--card); color: var(--muted); cursor: default; }
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
       -webkit-appearance: none; margin: 0;
@@ -117,12 +157,12 @@
 
     .dd-trigger {
       font-family: inherit;
-      font-size: 18px;
-      color: var(--fg);
-      background: var(--bg1);
-      border: 1px solid var(--bg2);
-      border-radius: 8px;
-      padding: 15px 16px;
+      font-size: 17px;
+      color: var(--ink);
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 14px 14px;
       width: 100%;
       cursor: pointer;
       display: flex;
@@ -131,13 +171,13 @@
       gap: 12px;
       text-align: left;
     }
-    .dd-trigger:focus-visible { outline: none; border-color: var(--blue); }
-    .dropdown.open .dd-trigger { border-color: var(--blue); }
+    .dd-trigger:focus-visible { outline: none; border-color: var(--red); }
+    .dropdown.open .dd-trigger { border-color: var(--red); }
     .dd-trigger .val { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .dd-trigger .chev {
       flex-shrink: 0;
       width: 14px; height: 9px;
-      color: var(--gray);
+      color: var(--muted);
       transition: transform .15s ease;
     }
     .dropdown.open .dd-trigger .chev { transform: rotate(180deg); }
@@ -147,17 +187,16 @@
       top: calc(100% + 6px);
       left: 0; right: 0;
       z-index: 20;
-      background: var(--bg1);
-      border: 1px solid var(--bg3);
-      border-radius: 8px;
-      padding: 6px;
+      background: var(--cream);
+      border: 1px solid var(--muted);
+      border-radius: 3px;
+      padding: 5px;
       max-height: 300px;
       overflow-y: auto;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 10px 28px rgba(0,0,0,.45);
+      box-shadow: 0 10px 28px rgba(60,40,20,.3);
       display: none;
-      /* scroll, but no visible scrollbar */
       scrollbar-width: none;
     }
     .dd-panel::-webkit-scrollbar { display: none; }
@@ -165,257 +204,639 @@
 
     .dd-opt {
       font-family: inherit;
-      font-size: 16px;
-      color: var(--fg2);
+      font-size: 15px;
+      color: var(--ink);
       background: transparent;
       border: 0;
-      border-radius: 6px;
+      border-radius: 2px;
       width: 100%;
-      padding: 13px 12px;
+      padding: 12px 11px;
       cursor: pointer;
       text-align: left;
     }
-    /* highlight only with a real pointer — avoids sticky grey rows on touch */
     @media (hover: hover) and (pointer: fine) {
-      .dd-opt:hover, .dd-opt.active { background: var(--bg2); }
+      .dd-opt:hover, .dd-opt.active { background: var(--card); }
     }
-    .dd-opt.selected { color: var(--bg); background: var(--yellow); }
-    .dd-opt.sep { margin-top: 4px; border-top: 1px solid var(--bg2); border-radius: 0 0 6px 6px; padding-top: 15px; }
+    .dd-opt.selected { color: var(--cream); background: var(--red); }
 
-    /* custom-ratio row, revealed only when "Custom" is picked */
-    .custom-row { display: none; }
-    .custom-row.show { display: flex; }
-    .custom-row .field { flex: 1; }
+    .brew-row { display: flex; gap: 10px; }
+    .brew-row .field { flex: 1 1 0; width: 0; min-width: 0; }
 
-    .brew-row {
+    /* ─── cup illustration ───────────────────────────────────── */
+    .cup-card {
+      align-self: stretch;
+      background: var(--card);
+      border: 1px dashed var(--line);
+      border-radius: 3px;
+      padding: 9px 8px 10px;
       display: flex;
-      gap: 14px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
-    .brew-row .field { flex: 1; min-width: 0; }
+    .steam {
+      height: 16px;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .steam i {
+      width: 2px; height: 13px;
+      background: var(--muted);
+      border-radius: 2px;
+      animation: steam 2.8s ease-in-out infinite;
+      opacity: .5;
+    }
+    .steam i:nth-child(2) { animation-delay: .7s; height: 16px; }
+    .steam i:nth-child(3) { animation-delay: 1.4s; }
+    @keyframes steam {
+      0%, 100% { transform: translateY(2px); opacity: .3; }
+      50%      { transform: translateY(-3px); opacity: .75; }
+    }
+    .cup {
+      position: relative;
+      width: 60px; height: 54px;
+      border: 2px solid var(--ink);
+      border-top-width: 3px;
+      border-radius: 3px 3px 20px 20px;
+      background: var(--cream);
+    }
+    .cup::after {
+      content: '';
+      position: absolute;
+      right: -15px; top: 11px;
+      width: 15px; height: 23px;
+      border: 2px solid var(--ink);
+      border-left: 0;
+      border-radius: 0 12px 12px 0;
+    }
+    .liquid {
+      position: absolute;
+      left: 2px; right: 2px; bottom: 2px;
+      height: var(--fill);
+      background: linear-gradient(180deg, #c0793e, var(--brew));
+      border-radius: 0 0 17px 17px;
+      transition: height .35s ease;
+    }
+    .liquid::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 4px; right: 4px;
+      height: 2px;
+      background: rgba(255,255,255,.35);
+      border-radius: 50%;
+    }
+    .liquid .grounds {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 8px;
+      background: var(--coffee);
+      border-radius: 0 0 17px 17px;
+    }
+    .saucer {
+      width: 82px; height: 6px;
+      margin-top: 4px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--cream);
+    }
+    .cup-meta {
+      margin-top: 3px;
+      text-align: center;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .cup-meta strong {
+      display: block;
+      color: var(--red);
+      font-size: 11px;
+      letter-spacing: .13em;
+    }
 
-    /* ─── references table ────────────────────────────────────── */
-    .refs { margin-top: 14px; }
+    /* ─── references ─────────────────────────────────────────── */
+    .refs { border-top: 2px dashed var(--line); padding-top: 17px; }
     .refs h2 {
-      font-size: 12px;
+      font-size: 10px;
       font-weight: normal;
-      color: var(--gray);
-      letter-spacing: 0.04em;
+      color: var(--muted);
+      letter-spacing: .14em;
+      text-transform: uppercase;
       margin-bottom: 10px;
     }
-    .refs table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
+    .refs table { width: 100%; border-collapse: collapse; font-size: 12px; }
     .refs th {
       text-align: left;
       font-weight: normal;
-      color: var(--gray);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      padding: 0 10px 8px;
-      border-bottom: 1px solid var(--bg2);
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 0 8px 8px;
+      border-bottom: 1px solid var(--line);
     }
     .refs th.r { text-align: right; white-space: nowrap; }
     .refs td {
-      padding: 8px 10px;
-      border-bottom: 1px solid var(--bg1);
+      padding: 7px 8px;
+      border-bottom: 1px dashed var(--line);
       vertical-align: top;
     }
     .refs tbody tr:last-child td { border-bottom: 0; }
-    .refs td.r { color: var(--yellow); white-space: nowrap; text-align: right; width: 1%; }
-    .refs td.range { color: var(--gray); white-space: nowrap; text-align: right; width: 1%; }
-    .refs td.d { color: var(--fg2); line-height: 1.5; }
+    .refs td.r { color: var(--red); white-space: nowrap; text-align: right; width: 1%; }
+    .refs td.range { color: var(--muted); white-space: nowrap; text-align: right; width: 1%; }
+    .refs td.d { color: var(--ink); line-height: 1.5; }
     .refs .disclaimer {
-      font-size: 11px;
-      color: var(--gray);
-      margin-top: 10px;
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 12px;
       line-height: 1.6;
+      font-style: italic;
     }
 
     .ref-toggle {
       font-family: inherit;
-      font-size: 12px;
-      color: var(--gray);
+      font-size: 10px;
+      color: var(--muted);
       background: transparent;
-      border: 1px solid var(--bg2);
-      border-radius: 6px;
-      padding: 10px 12px;
-      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 12px;
+      margin-top: 12px;
       width: 100%;
       cursor: pointer;
       text-align: left;
+      letter-spacing: .1em;
+      text-transform: uppercase;
       transition: color .1s, border-color .1s;
     }
+    .ref-toggle:first-child { margin-top: 0; }
     .ref-toggle {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
-    .ref-toggle:hover { color: var(--fg2); border-color: var(--bg3); }
-    .ref-toggle[aria-expanded="true"] { border-color: var(--bg3); }
+    .ref-toggle:hover { color: var(--ink); border-color: var(--muted); }
+    .ref-toggle[aria-expanded="true"] { border-color: var(--muted); color: var(--ink); }
+    .ref-toggle.has-selection #tareLabel { color: var(--red); }
     .ref-toggle .chev {
       flex-shrink: 0;
       width: 14px; height: 9px;
-      color: var(--gray);
+      color: var(--muted);
       transition: transform .15s ease;
     }
     .ref-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
     .ref-wrap { margin-top: 14px; }
 
-    footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: var(--gray);
-      line-height: 1.7;
+    /* ─── tare correction ────────────────────────────────────── */
+    .tare-panel .tare-help {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
     }
-    footer .out { color: var(--fg2); font-size: 13px; }
-    .note { color: var(--orange); }
+    .tare-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 6px;
+      padding: 10px 11px;
+      font-family: inherit;
+      font-size: 12px;
+      color: var(--ink);
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .tare-item .name { flex: 1; }
+    .tare-item .grams { color: var(--red); }
+    .tare-item[aria-pressed="true"] { border-color: var(--red); }
+    .tare-total {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 2px dashed var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 10px;
+    }
+    .tare-total .cap {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+    }
+    .tare-total strong {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 24px;
+      line-height: 1;
+      color: var(--red);
+    }
+    .tare-total small { width: 100%; font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+    /* ─── stub ───────────────────────────────────────────────── */
+    .stub {
+      position: relative;
+      border-top: 2px dashed var(--line);
+      padding: 13px 22px 15px;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-align: center;
+    }
+    /* torn-off ticket edge */
+    .stub::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 100%;
+      height: 10px;
+      background:
+        linear-gradient(45deg, transparent 50%, var(--card) 50%) 0 0 / 12px 12px repeat-x,
+        linear-gradient(-45deg, transparent 50%, var(--card) 50%) 6px 0 / 12px 12px repeat-x;
+    }
+
+    @media (max-width: 400px) {
+      .title { font-size: 24px; }
+      .measure { grid-template-columns: minmax(0, 1fr) 88px; gap: 10px; }
+      .cup { width: 50px; height: 46px; }
+      .cup::after { right: -13px; width: 13px; height: 20px; }
+      .saucer { width: 70px; }
+      .steam { gap: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <div class="title">coffee ratio calculator</div>
-  </header>
+  <div class="ticket">
+    <header class="ticket-head">
+      <div class="head-copy">
+        <div class="eyebrow">brew station</div>
+        <div class="title">coffee ratio calculator</div>
+        <div class="subtitle">a little ticket for getting the water right</div>
+      </div>
+    </header>
 
-  <main>
-    <div class="field">
-      <label id="ratioLabel">ratio</label>
-      <div class="dropdown" id="dropdown">
-        <button type="button" class="dd-trigger" id="ddTrigger"
-                aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ratioLabel">
-          <span class="val" id="ddVal">—</span>
+    <main class="ticket-body">
+      <div class="measure">
+        <div class="fields">
+          <div class="field">
+            <label id="ratioLabel">preset</label>
+            <div class="dropdown" id="dropdown">
+              <button type="button" class="dd-trigger" id="ddTrigger"
+                      aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ratioLabel">
+                <span class="val" id="ddVal">&mdash;</span>
+                <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+                  <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <div class="dd-panel" id="ddPanel" role="listbox" aria-labelledby="ratioLabel"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ratio">ratio &mdash; 1&#8239;:</label>
+            <div class="input-wrap">
+              <input id="ratio" type="text" inputmode="decimal" maxlength="4" value="16">
+            </div>
+          </div>
+
+          <div class="brew-row">
+            <div class="field">
+              <label for="coffee">coffee</label>
+              <div class="input-wrap">
+                <input id="coffee" type="text" inputmode="decimal" maxlength="4" value="16">
+                <span class="suffix">g</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="water">water &middot; calculated</label>
+              <div class="input-wrap">
+                <input id="water" type="text" readonly tabindex="-1" title="calculated from coffee and ratio">
+                <span class="suffix">g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cup-card">
+          <div class="steam" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="cup" aria-hidden="true">
+            <div class="liquid" id="brewFill"><span class="grounds"></span></div>
+          </div>
+          <div class="saucer" aria-hidden="true"></div>
+          <div class="cup-meta">
+            <strong id="strengthLabel" aria-live="polite">&mdash;</strong>
+            <span id="ratioReadout">1:16</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="refs tare">
+        <button type="button" class="ref-toggle" id="tareToggle" aria-expanded="false" aria-controls="tarePanel">
+          <span id="tareLabel">forgot to tare?</span>
           <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
             <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
-        <div class="dd-panel" id="ddPanel" role="listbox" aria-labelledby="ratioLabel"></div>
-      </div>
-    </div>
-
-    <div class="custom-row" id="customRow">
-      <div class="field">
-        <label for="ratio">custom ratio &mdash; 1&#8239;:</label>
-        <div class="input-wrap">
-          <input id="ratio" type="number" inputmode="decimal" min="0" step="0.5" value="16">
+        <div id="tarePanel" class="ref-wrap tare-panel" hidden>
+          <p class="tare-help">pick what is still on the scale — it gets added to the water.</p>
+          <div class="tare-list" id="tareList"></div>
+          <div class="tare-total">
+            <span class="cap">scale target</span>
+            <strong id="scaleTarget" aria-live="polite">&mdash;</strong>
+            <small id="tareExplain">no correction</small>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <div class="brew-row">
-      <div class="field">
-        <label for="coffee">coffee</label>
-        <div class="input-wrap">
-          <input id="coffee" type="number" inputmode="decimal" min="0" step="0.1" value="16">
-          <span class="suffix">g</span>
+      <section class="refs">
+        <button type="button" class="ref-toggle" id="brewToggle" aria-expanded="false" aria-controls="brewTable">
+          <span>brew ratio references</span>
+          <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div id="brewTable" class="ref-wrap" hidden>
+          <table>
+            <thead>
+              <tr><th>method</th><th class="r">typical</th><th class="r">range</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="d">Ristretto</td>              <td class="r">1:1</td>  <td class="range">1:1&ndash;2:3</td></tr>
+              <tr><td class="d">Espresso</td>               <td class="r">1:2</td>  <td class="range">2:3&ndash;2:5</td></tr>
+              <tr><td class="d">Lungo</td>                  <td class="r">1:4</td>  <td class="range">2:5&ndash;1:4</td></tr>
+              <tr><td class="d">Cold brew concentrate</td> <td class="r">1:5</td>  <td class="range">1:4&ndash;1:6</td></tr>
+              <tr><td class="d">Moka pot</td>              <td class="r">1:10</td> <td class="range">1:7&ndash;1:12</td></tr>
+              <tr><td class="d">Turkish</td>               <td class="r">1:10</td> <td class="range">1:8&ndash;1:12</td></tr>
+              <tr><td class="d">Cold brew</td>             <td class="r">1:11</td> <td class="range">1:8&ndash;1:15</td></tr>
+              <tr><td class="d">French press</td>          <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
+              <tr><td class="d">AeroPress</td>             <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
+              <tr><td class="d">Siphon</td>                <td class="r">1:15</td> <td class="range">1:12&ndash;1:16</td></tr>
+              <tr><td class="d">Pour-over</td>             <td class="r">1:15</td> <td class="range">1:14&ndash;1:16</td></tr>
+              <tr><td class="d">Chemex</td>                <td class="r">1:15</td> <td class="range">1:14&ndash;1:17</td></tr>
+              <tr><td class="d">V60</td>                   <td class="r">1:16</td> <td class="range">1:14&ndash;1:18</td></tr>
+              <tr><td class="d">Drip / auto-drip</td>      <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
+              <tr><td class="d">Steep-and-release</td>     <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
+              <tr><td class="d">Cupping</td>               <td class="r">1:18</td> <td class="range">1:17&ndash;1:19</td></tr>
+            </tbody>
+          </table>
+          <p class="disclaimer">ratios are a starting point, not a commandment &mdash; taste decides.</p>
         </div>
-      </div>
-      <div class="field">
-        <label for="water">water</label>
-        <div class="input-wrap">
-          <input id="water" type="number" inputmode="decimal" min="0" step="1">
-          <span class="suffix">g</span>
+
+        <button type="button" class="ref-toggle" id="grindToggle" aria-expanded="false" aria-controls="grindTable">
+          <span>timemore chestnut reference</span>
+          <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
+            <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div id="grindTable" class="ref-wrap" hidden>
+          <table>
+            <thead>
+              <tr><th>brew method</th><th class="r">rotations from zero</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="d">Turkish</td>               <td class="r">0&ndash;3.6</td></tr>
+              <tr><td class="d">Espresso</td>              <td class="r">2.8&ndash;8</td></tr>
+              <tr><td class="d">Moka pot</td>              <td class="r">7.6&ndash;15.4</td></tr>
+              <tr><td class="d">AeroPress</td>             <td class="r">6.4&ndash;23.4</td></tr>
+              <tr><td class="d">V60</td>                   <td class="r">8.6&ndash;16.4</td></tr>
+              <tr><td class="d">Pour-over</td>             <td class="r">8.8&ndash;22.6</td></tr>
+              <tr><td class="d">Siphon</td>                <td class="r">8&ndash;19.2</td></tr>
+              <tr><td class="d">Filter machine</td>        <td class="r">6&ndash;21.8</td></tr>
+              <tr><td class="d">French press</td>          <td class="r">16.4&ndash;24</td></tr>
+              <tr><td class="d">Cupping</td>               <td class="r">10.2&ndash;20.4</td></tr>
+              <tr><td class="d">Steep-and-release</td>     <td class="r">10&ndash;19.8</td></tr>
+              <tr><td class="d">Cold brew</td>             <td class="r">19.2&ndash;24</td></tr>
+              <tr><td class="d">Cold drip</td>             <td class="r">19.8&ndash;24</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
 
-    <section class="refs">
-      <button type="button" class="ref-toggle" id="brewToggle" aria-expanded="false" aria-controls="brewTable">
-        <span>brew ratio references</span>
-        <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
-          <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <div id="brewTable" class="ref-wrap" hidden>
-      <table>
-        <thead>
-          <tr><th>method</th><th class="r">typical</th><th class="r">range</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="d">Ristretto</td>              <td class="r">1:1</td>  <td class="range">1:1&ndash;2:3</td></tr>
-          <tr><td class="d">Espresso</td>               <td class="r">1:2</td>  <td class="range">2:3&ndash;2:5</td></tr>
-          <tr><td class="d">Lungo</td>                  <td class="r">1:4</td>  <td class="range">2:5&ndash;1:4</td></tr>
-          <tr><td class="d">Cold brew concentrate</td> <td class="r">1:5</td>  <td class="range">1:4&ndash;1:6</td></tr>
-          <tr><td class="d">Moka pot</td>              <td class="r">1:10</td> <td class="range">1:7&ndash;1:12</td></tr>
-          <tr><td class="d">Turkish</td>               <td class="r">1:10</td> <td class="range">1:8&ndash;1:12</td></tr>
-          <tr><td class="d">Cold brew</td>             <td class="r">1:11</td> <td class="range">1:8&ndash;1:15</td></tr>
-          <tr><td class="d">French press</td>          <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
-          <tr><td class="d">AeroPress</td>             <td class="r">1:15</td> <td class="range">1:12&ndash;1:18</td></tr>
-          <tr><td class="d">Siphon</td>                <td class="r">1:15</td> <td class="range">1:12&ndash;1:16</td></tr>
-          <tr><td class="d">Pour-over</td>             <td class="r">1:15</td> <td class="range">1:14&ndash;1:16</td></tr>
-          <tr><td class="d">Chemex</td>                <td class="r">1:15</td> <td class="range">1:14&ndash;1:17</td></tr>
-          <tr><td class="d">V60</td>                   <td class="r">1:16</td> <td class="range">1:14&ndash;1:18</td></tr>
-          <tr><td class="d">Drip / auto-drip</td>      <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
-          <tr><td class="d">Steep-and-release</td>     <td class="r">1:16</td> <td class="range">1:14&ndash;1:17</td></tr>
-          <tr><td class="d">Cupping</td>               <td class="r">1:18</td> <td class="range">1:17&ndash;1:19</td></tr>
-        </tbody>
-      </table>
-      </div>
-
-      <button type="button" class="ref-toggle" id="grindToggle" aria-expanded="false" aria-controls="grindTable">
-        <span>timemore chestnut reference</span>
-        <svg class="chev" viewBox="0 0 14 9" aria-hidden="true">
-          <path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <div id="grindTable" class="ref-wrap" hidden>
-        <table>
-          <thead>
-            <tr><th>brew method</th><th class="r">rotations from zero</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="d">Turkish</td>               <td class="r">0&ndash;3.6</td></tr>
-            <tr><td class="d">Espresso</td>              <td class="r">2.8&ndash;8</td></tr>
-            <tr><td class="d">Moka pot</td>              <td class="r">7.6&ndash;15.4</td></tr>
-            <tr><td class="d">AeroPress</td>             <td class="r">6.4&ndash;23.4</td></tr>
-            <tr><td class="d">V60</td>                   <td class="r">8.6&ndash;16.4</td></tr>
-            <tr><td class="d">Pour-over</td>             <td class="r">8.8&ndash;22.6</td></tr>
-            <tr><td class="d">Siphon</td>                <td class="r">8&ndash;19.2</td></tr>
-            <tr><td class="d">Filter machine</td>        <td class="r">6&ndash;21.8</td></tr>
-            <tr><td class="d">French press</td>          <td class="r">16.4&ndash;24</td></tr>
-            <tr><td class="d">Cupping</td>               <td class="r">10.2&ndash;20.4</td></tr>
-            <tr><td class="d">Steep-and-release</td>     <td class="r">10&ndash;19.8</td></tr>
-            <tr><td class="d">Cold brew</td>             <td class="r">19.2&ndash;24</td></tr>
-            <tr><td class="d">Cold drip</td>             <td class="r">19.8&ndash;24</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
+    <footer class="stub">built for the morning rush</footer>
+  </div>
 
   <script>
     "use strict";
 
     const DECIMALS = 1;
-    const CUSTOM = "custom";
     const RATIOS = [8, 12, 14, 15, 16, 17, 18];
+    const VALUE_MIN = 1;
+    const VALUE_MAX = 99.9;
+    const STORE_KEY = "coffee-ratio-state";
+    const TARE_WEIGHTS = [
+      { id: "bottom",      label: "aeropress bottom part", grams: 82.5  },
+      { id: "filter",      label: "aeropress filter",      grams: 15    },
+      { id: "top",         label: "aeropress top part",     grams: 86    },
+      { id: "bigEspresso", label: "big espresso cup",       grams: 157.5 },
+      { id: "blackClay",   label: "black clay cup",         grams: 260.5 },
+      { id: "crockery",    label: "generic crockery cup",   grams: 333   },
+      { id: "glassCup",    label: "glass cup",              grams: 304   },
+      { id: "tinyCup",     label: "tiny glass cup",         grams: 252   }
+    ];
 
     const dropdown  = document.getElementById("dropdown");
     const trigger   = document.getElementById("ddTrigger");
     const panel     = document.getElementById("ddPanel");
     const ddVal     = document.getElementById("ddVal");
-    const customRow = document.getElementById("customRow");
     const ratioEl   = document.getElementById("ratio");
     const coffeeEl  = document.getElementById("coffee");
     const waterEl   = document.getElementById("water");
+    const brewFill  = document.getElementById("brewFill");
+    const strength  = document.getElementById("strengthLabel");
+    const readout   = document.getElementById("ratioReadout");
+    const tareToggle  = document.getElementById("tareToggle");
+    const tareLabel   = document.getElementById("tareLabel");
+    const tareList    = document.getElementById("tareList");
+    const scaleTarget = document.getElementById("scaleTarget");
+    const tareExplain = document.getElementById("tareExplain");
 
-    let options = [];      // [{ value, label, ratio|null }]
-    let selected = CUSTOM;
+    let options = [];      // [{ value, label, ratio }]
+    let lastGoodRatio = 16;
+    let exactCoffee = 16;        // coffee is always the source of truth
+    let tareSelected = new Set();
 
     function fmt(n) {
       if (!isFinite(n)) return "";
       return String(Number(n.toFixed(DECIMALS)));
     }
     function num(el) {
-      const v = parseFloat(el.value);
-      return isFinite(v) ? v : NaN;
+      const v = parseFloat(String(el.value).replace(",", "."));
+      return isFinite(v) && v >= 0 ? v : NaN;
+    }
+    function rawValue(el) {
+      return parseFloat(String(el.value).replace(",", "."));
+    }
+    function rawRatio() {
+      return rawValue(ratioEl);
+    }
+    // shared by ratio and coffee: 1–2 digits + at most one decimal -> 8, 16, 1.5, 99.9
+    function sanitizeDecimalInput(el) {
+      let v = String(el.value).replace(",", ".");
+      v = v.replace(/[^0-9.]/g, "");
+      const dot = v.indexOf(".");
+      const hasDot = dot !== -1;
+      const intPart = (hasDot ? v.slice(0, dot) : v).replace(/^0+(?=\d)/, "").slice(0, 2);
+      const frac = hasDot ? v.slice(dot + 1).replace(/\./g, "").slice(0, 1) : "";
+      v = intPart + (hasDot ? "." + frac : "");
+      if (v !== el.value) {
+        const pos = Math.min(el.selectionStart ?? v.length, v.length);
+        el.value = v;
+        try { el.setSelectionRange(pos, pos); } catch (_) {}
+      }
+    }
+    // keep the displayed number inside 1–99.9 so it always matches the math
+    function normalizeInput(el) {
+      sanitizeDecimalInput(el);
+      const raw = rawValue(el);
+      if (isFinite(raw) && (raw < VALUE_MIN || raw > VALUE_MAX))
+        el.value = fmt(clampValue(raw));
+    }
+    function clampValue(n) {
+      return Math.min(VALUE_MAX, Math.max(VALUE_MIN, n));
     }
 
     function currentRatio() {
-      if (selected === CUSTOM) return num(ratioEl);
-      const opt = options.find(o => o.value === selected);
-      return opt ? opt.ratio : NaN;
+      const raw = rawRatio();
+      return isFinite(raw) ? clampValue(raw) : lastGoodRatio;
+    }
+
+    // the input is the source of truth: known ratio -> 1:N, anything else -> custom...
+    function syncPreset() {
+      const raw = rawRatio();
+      const match = isFinite(raw) && options.find(o => Math.abs(o.ratio - raw) < 1e-6);
+      ddVal.textContent = match ? match.label : "custom...";
+      for (const el of panel.children)
+        el.classList.toggle("selected", !!match && el.dataset.value === match.value);
+    }
+
+    // ─── silently correct nonsense, keep the math on the last good value ──
+    function checkRatio(commit) {
+      const raw = rawRatio();
+      const ok = isFinite(raw) && raw >= VALUE_MIN && raw <= VALUE_MAX;
+      if (ok) {
+        lastGoodRatio = raw;
+      } else if (commit) {
+        lastGoodRatio = isFinite(raw) ? clampValue(raw) : lastGoodRatio;
+        ratioEl.value = fmt(lastGoodRatio);
+      }
+      syncPreset();
+    }
+    function checkCoffee(commit) {
+      const raw = rawValue(coffeeEl);
+      const ok = isFinite(raw) && raw >= VALUE_MIN && raw <= VALUE_MAX;
+      if (ok) {
+        exactCoffee = raw;
+      } else if (commit) {
+        exactCoffee = isFinite(raw) ? clampValue(raw) : exactCoffee;
+        coffeeEl.value = fmt(exactCoffee);
+      }
+    }
+
+    // ─── remember the last ratio (best-effort: private mode may block it) ─
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        if (!raw) return null;
+        const state = JSON.parse(raw);
+        return state && typeof state === "object" ? state : null;
+      } catch (_) {
+        return null;
+      }
+    }
+    function saveState() {
+      try {
+        const raw = rawRatio();
+        localStorage.setItem(STORE_KEY, JSON.stringify({
+          ratio: isFinite(raw) ? fmt(clampValue(raw)) : fmt(lastGoodRatio),
+          coffee: isFinite(exactCoffee) ? String(exactCoffee) : "",
+          tare: {
+            selected: [...tareSelected]
+          }
+        }));
+      } catch (_) {
+        // no storage available — the calculator still works
+      }
+    }
+
+    // ─── tare correction ──────────────────────────────────────────────────
+    function renderTareList() {
+      tareList.innerHTML = "";
+      TARE_WEIGHTS.forEach(w => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tare-item";
+        btn.dataset.id = w.id;
+        btn.setAttribute("aria-pressed", "false");
+        btn.innerHTML = '<span class="name"></span><span class="grams"></span>';
+        btn.querySelector(".name").textContent = w.label;
+        btn.querySelector(".grams").textContent = fmt(w.grams) + " g";
+        btn.addEventListener("click", () => toggleTare(w.id));
+        tareList.appendChild(btn);
+      });
+    }
+
+    function selectedWeights() {
+      return TARE_WEIGHTS.filter(w => tareSelected.has(w.id))
+        .map(w => ({ label: w.label, grams: w.grams }));
+    }
+
+    function updateTareButtons() {
+      tareList.querySelectorAll(".tare-item").forEach(btn =>
+        btn.setAttribute("aria-pressed", String(tareSelected.has(btn.dataset.id))));
+      const n = tareSelected.size;
+      tareLabel.textContent = "forgot to tare?" + (n ? " \u00b7 " + n + " selected" : "");
+      tareToggle.classList.toggle("has-selection", n > 0);
+    }
+
+    function toggleTare(id) {
+      if (tareSelected.has(id)) tareSelected.delete(id);
+      else tareSelected.add(id);
+      updateTareButtons();
+      updateScaleTarget();
+      saveState();
+    }
+
+    function updateScaleTarget() {
+      const parts = selectedWeights();
+      const sum = parts.reduce((total, p) => total + p.grams, 0);
+      const water = num(waterEl);
+      if (!isFinite(water) || water <= 0) {
+        scaleTarget.textContent = "\u2014";
+        tareExplain.textContent = "add coffee first";
+        return;
+      }
+      const target = water + sum;
+      scaleTarget.textContent = fmt(target) + " g";
+      tareExplain.textContent = sum
+        ? parts.map(p => p.label.toLowerCase()).join(", ") + " (" + fmt(sum) + " g)"
+        : "no correction";
+    }
+
+    // ─── cup visual: fill level and strength word follow the ratio ────────
+    function updateCup() {
+      const ratio = currentRatio();
+      const r = isFinite(ratio) && ratio > 0 ? ratio : 16;
+      const fill = Math.min(78, 14 + (r / 18) * 64);
+      brewFill.style.setProperty("--fill", fmt(fill) + "%");
+      readout.textContent = "1:" + fmt(r);
+      strength.textContent =
+        r < 4  ? "very strong" :
+        r < 10 ? "strong"      :
+        r < 14 ? "bold"        :
+        r < 17 ? "balanced"    :
+        r < 20 ? "light"       : "very light";
     }
 
     // ─── dropdown open/close ────────────────────────────────────
@@ -465,17 +886,16 @@
       panel.focus();
     }
 
-    // ─── selection ──────────────────────────────────────────────
+    // ─── preset selection: just fills the always-visible input ────────────
     function choose(value) {
-      selected = value;
       const opt = options.find(o => o.value === value);
-      ddVal.textContent = opt ? opt.label : "Custom…";
-      for (const el of panel.children)
-        el.classList.toggle("selected", el.dataset.value === value);
-      customRow.classList.toggle("show", value === CUSTOM);
+      if (!opt) return;
+      ratioEl.value = fmt(opt.ratio);
+      lastGoodRatio = opt.ratio;
       closeDD();
-      if (value === CUSTOM) ratioEl.focus();
-      recompute("ratio");
+      syncPreset();
+      saveState();
+      recompute();
     }
 
     function renderPanel() {
@@ -483,7 +903,7 @@
       options.forEach(o => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "dd-opt" + (o.value === CUSTOM ? " sep" : "");
+        btn.className = "dd-opt";
         btn.dataset.value = o.value;
         btn.setAttribute("role", "option");
         btn.textContent = o.label;
@@ -496,23 +916,27 @@
       });
     }
 
-    // ─── calculator (model A) ───────────────────────────────────
-    function recompute(source) {
+    // ─── calculator: coffee is the source, water is always derived ────────
+    function fitWater() {
+      const len = waterEl.value.length;
+      waterEl.style.fontSize = len > 9 ? "11px" : len > 7 ? "14px" : len > 5 ? "17px" : "";
+    }
+    function recompute() {
       const ratio = currentRatio();
-      if (source === "water") {
-        const water = num(waterEl);
-        if (ratio > 0 && isFinite(water)) coffeeEl.value = fmt(water / ratio);
-        else if (!isFinite(water)) coffeeEl.value = "";
-      } else {
-        const coffee = num(coffeeEl);
-        if (ratio > 0 && isFinite(coffee)) waterEl.value = fmt(coffee * ratio);
-        else if (!isFinite(coffee)) waterEl.value = "";
-      }
+      updateCup();
+      if (ratio > 0 && isFinite(exactCoffee)) waterEl.value = fmt(exactCoffee * ratio);
+      else waterEl.value = "";
+      fitWater();
+      updateScaleTarget();
     }
 
-    ratioEl .addEventListener("input", () => recompute("ratio"));
-    coffeeEl.addEventListener("input", () => recompute("coffee"));
-    waterEl .addEventListener("input", () => recompute("water"));
+    ratioEl .addEventListener("input",  () => { normalizeInput(ratioEl);  checkRatio(false);  saveState(); recompute(); });
+    ratioEl .addEventListener("change", () => { normalizeInput(ratioEl);  checkRatio(true);   saveState(); recompute(); });
+    ratioEl .addEventListener("blur",   () => { normalizeInput(ratioEl);  checkRatio(true);   saveState(); recompute(); });
+
+    coffeeEl.addEventListener("input",  () => { normalizeInput(coffeeEl); checkCoffee(false); saveState(); recompute(); });
+    coffeeEl.addEventListener("change", () => { normalizeInput(coffeeEl); checkCoffee(true);  saveState(); recompute(); });
+    coffeeEl.addEventListener("blur",   () => { normalizeInput(coffeeEl); checkCoffee(true);  saveState(); recompute(); });
 
     // ─── reference toggles ──────────────────────────────────────
     function wireToggle(btnId, tableId) {
@@ -524,18 +948,44 @@
         btn.setAttribute("aria-expanded", String(open));
       });
     }
+    wireToggle("tareToggle", "tarePanel");
     wireToggle("brewToggle", "brewTable");
     wireToggle("grindToggle", "grindTable");
 
     // ─── boot ───────────────────────────────────────────────────
-    // Hardcoded ratio list — one option per ratio, plus Custom.
     function boot() {
       options = RATIOS.map(r => ({ value: `r${r}`, label: `1:${r}`, ratio: r }));
-      options.push({ value: CUSTOM, label: "Custom…", ratio: null });
       renderPanel();
-      // default to 1:16 if present, else first ratio
-      const def = options.find(o => o.ratio === 16) || options[0];
-      choose(def.value);
+      renderTareList();
+
+      const saved = loadState();
+      if (saved) {
+        const raw = parseFloat(String(saved.ratio ?? saved.custom).replace(",", "."));
+        if (isFinite(raw)) {
+          lastGoodRatio = clampValue(raw);
+          ratioEl.value = fmt(lastGoodRatio);
+        }
+        const savedCoffee = parseFloat(String(saved.coffee ?? coffeeEl.value));
+        if (isFinite(savedCoffee)) {
+          exactCoffee = clampValue(savedCoffee);
+          coffeeEl.value = fmt(exactCoffee);
+        }
+        const tare = saved.tare;
+        if (tare && typeof tare === "object") {
+          const validIds = new Set(TARE_WEIGHTS.map(w => w.id));
+          tareSelected = new Set(
+            Array.isArray(tare.selected)
+              ? tare.selected.filter(id => validIds.has(id))
+              : []
+          );
+        }
+      }
+      normalizeInput(ratioEl);
+      normalizeInput(coffeeEl);
+      updateTareButtons();
+      checkRatio(true);
+      checkCoffee(true);
+      recompute();
     }
     boot();
   </script>
