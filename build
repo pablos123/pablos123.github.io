@@ -168,7 +168,7 @@ function snapshot_pages {
 }
 
 function serve {
-    python3 -m http.server "${SERVER_PORT}" --directory "${DOCS_DIR}" &
+    python3 -m http.server "${SERVER_PORT}" --bind 0.0.0.0 --directory "${DOCS_DIR}" &
     server_pid=$!
     sleep 2
 

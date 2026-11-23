@@ -15,8 +15,9 @@
       --muted:  #877760;
       --line:   #cbb99a;
       --red:    #b34530;
-      --coffee: #4a2c1a;
       --brew:   #a86034;
+      --liquid-top:    #c0793e;
+      --liquid-bottom: #a86034;
       --fill:   72%;
     }
 
@@ -285,7 +286,7 @@
       position: absolute;
       left: 2px; right: 2px; bottom: 2px;
       height: var(--fill);
-      background: linear-gradient(180deg, #c0793e, var(--brew));
+      background: linear-gradient(180deg, var(--liquid-top), var(--liquid-bottom));
       border-radius: 0 0 17px 17px;
       transition: height .35s ease;
     }
@@ -296,20 +297,6 @@
       height: 2px;
       background: rgba(255,255,255,.35);
       border-radius: 50%;
-    }
-    .liquid .grounds {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 8px;
-      background: var(--coffee);
-      border-radius: 0 0 17px 17px;
-    }
-    .saucer {
-      width: 82px; height: 6px;
-      margin-top: 4px;
-      border: 2px solid var(--ink);
-      border-radius: 50%;
-      background: var(--cream);
     }
     .cup-meta {
       margin-top: 3px;
@@ -477,7 +464,6 @@
       .measure { grid-template-columns: minmax(0, 1fr) 88px; gap: 10px; }
       .cup { width: 50px; height: 46px; }
       .cup::after { right: -13px; width: 13px; height: 20px; }
-      .saucer { width: 70px; }
       .steam { gap: 4px; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -540,9 +526,8 @@
         <div class="cup-card">
           <div class="steam" aria-hidden="true"><i></i><i></i><i></i></div>
           <div class="cup" aria-hidden="true">
-            <div class="liquid" id="brewFill"><span class="grounds"></span></div>
+            <div class="liquid" id="brewFill"></div>
           </div>
-          <div class="saucer" aria-hidden="true"></div>
           <div class="cup-meta">
             <strong id="strengthLabel" aria-live="polite">&mdash;</strong>
             <span id="ratioReadout">1:16</span>
@@ -851,12 +836,41 @@
         : "no correction";
     }
 
-    // ─── cup visual: fill level and strength word follow the ratio ────────
+    // ─── cup visual: fill, colour and strength word follow the ratio ──────
+    // darker brown for a strong brew (low ratio), lighter as it gets diluted
+    const STRENGTH_STOPS = [
+      { r: 1,   c: [58,  30,  14]  },
+      { r: 4,   c: [104, 56,  26]  },
+      { r: 8,   c: [140, 78,  38]  },
+      { r: 16,  c: [168, 96,  52]  },
+      { r: 24,  c: [192, 121, 62]  },
+      { r: 50,  c: [214, 160, 106] },
+      { r: 100, c: [232, 201, 160] }
+    ];
+    function mixRGB(a, b, t) {
+      return a.map((v, i) => Math.round(v + (b[i] - v) * t));
+    }
+    function strengthColor(r) {
+      const x = Math.log(Math.max(1, r));
+      for (let i = 1; i < STRENGTH_STOPS.length; i++) {
+        const hi = STRENGTH_STOPS[i];
+        if (x <= Math.log(hi.r)) {
+          const lo = STRENGTH_STOPS[i - 1];
+          const t = (x - Math.log(lo.r)) / (Math.log(hi.r) - Math.log(lo.r));
+          return mixRGB(lo.c, hi.c, Math.min(1, Math.max(0, t)));
+        }
+      }
+      return STRENGTH_STOPS[STRENGTH_STOPS.length - 1].c;
+    }
     function updateCup() {
       const ratio = currentRatio();
       const r = isFinite(ratio) && ratio > 0 ? ratio : 16;
       const fill = Math.min(78, 14 + (r / 18) * 64);
       brewFill.style.setProperty("--fill", fmt(fill) + "%");
+      const base = strengthColor(r);
+      brewFill.style.setProperty("--liquid-bottom", "rgb(" + base.join(",") + ")");
+      brewFill.style.setProperty("--liquid-top",
+        "rgb(" + mixRGB(base, [255, 255, 255], 0.18).join(",") + ")");
       readout.textContent = "1:" + fmt(r);
       strength.textContent =
         r < 4  ? "very strong" :
