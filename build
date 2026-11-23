@@ -57,8 +57,13 @@ function make_index {
 ·<br>
 <a href='https://github.com/pablos123'>GitHub</a><br>" "${DOCS_DIR}/index.html"
 
-    # Home page needs no Home link, so reuse that header slot for About me.
     sed -i 's@SHARED_DIR@./shared@;/BACK_BUTTON/d;s@<a href="/">Home</a> |@<a href="./items/aboutme.html">About me</a>@' "${DOCS_DIR}/index.html"
+}
+
+function make_404 {
+    render "$(cat "${PAGE_DIR}/404.template")" "${DOCS_DIR}/404.html"
+
+    sed -i 's@SHARED_DIR@/shared@;/BACK_BUTTON/d;s@<a href="/">Home</a> |@<a href="/">Home</a>@' "${DOCS_DIR}/404.html"
 }
 
 function make_aboutme {
@@ -150,7 +155,9 @@ function build {
     log "Building"
     rm --recursive --force "${DOCS_DIR}/items" "${DOCS_DIR}/index.html"
     mkdir --parents "${DOCS_DIR}/items"
+    cp -- "${PAGE_DIR}/robots.txt" "${DOCS_DIR}/robots.txt"
     make_index
+    make_404
     make_aboutme
     make_words
     make_builds

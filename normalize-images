@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Normalize every raster image in this repo to PNG; originals go to a per-run backup dir in /tmp.
 
 set -Eeuo pipefail
 shopt -s inherit_errexit
@@ -14,71 +15,33 @@ function warn {
 
 function require_commands {
     local -a missing=()
-    local cmd
-    for cmd in "$@"; do
-        if ! command -v "${cmd}" >/dev/null; then
-            missing+=("${cmd}")
+    local command_name
+    for command_name in "$@"; do
+        if ! command -v "${command_name}" >/dev/null; then
+            missing+=("${command_name}")
         fi
     done
 
     ((${#missing[@]} == 0)) || die "missing commands: ${missing[*]}"
 }
 
-require_commands chmod cmp find grep head mktemp mv rm sed sort wc
-
-declare -r SCRIPT_NAME="${BASH_SOURCE[0]##*/}"
-
-if command -v magick >/dev/null; then
-    declare -ra IMAGE_COMMAND=(magick)
-    declare -ra IDENTIFY_COMMAND=(magick identify)
-    declare -ra COMPARE_COMMAND=(magick compare)
-elif command -v convert >/dev/null; then
-    declare -ra IMAGE_COMMAND=(convert)
-    declare -ra IDENTIFY_COMMAND=(identify)
-    declare -ra COMPARE_COMMAND=(compare)
-else
-    die "ImageMagick is required"
-fi
-
-declare -r DRY_RUN_SUMMARY='DRY RUN - nothing written'
-
-declare -ra TEXT_INCLUDES=(
-    --include='*.html' --include='*.htm' --include='*.md'
-    --include='*.markdown' --include='*.css' --include='*.js'
-    --include='*.mjs' --include='*.json' --include='*.yml'
-    --include='*.yaml' --include='*.txt' --include='*.xml'
-    --include='*.toml' --include='*.py' --include='*.sh'
-    --include='*.bash' --include='*.lua' --include='*.vim'
-    --include='*.template'
-)
+require_commands chmod cmp convert dirname find head identify mkdir mktemp mv rm sort
 
 declare -ra PNG_EXCLUDES=(
     -define 'png:exclude-chunks=gAMA,cHRM,pHYs,tEXt,zTXt,iTXt,tIME,bKGD,hIST'
 )
 
-function usage {
-    printf '%s\n' \
-        'Usage: normalize-images [--dry-run] [--keep-originals]' \
-        '' \
-        'Convert and normalize every raster image in this repository to PNG.' \
-        '' \
-        '  --dry-run         show what would change, write nothing' \
-        '  --keep-originals  keep the source files after conversion'
-}
+declare -ra CONVERT_FLAGS=(
+    -auto-orient -strip -depth 8 -colorspace sRGB
+    -define png:compression-level=9 "${PNG_EXCLUDES[@]}"
+)
 
-function sed_pattern {
-    printf '%s' "$1" | sed -e 's/[][\.^$*\\]/\\&/g' -e 's/|/\\|/g'
-}
+function main {
+    local run_backup_dir
+    run_backup_dir="$(mktemp -d /tmp/normalize-images.XXXXXX)"
 
-function sed_replace {
-    printf '%s' "$1" | sed -e 's/[&\\]/\\&/g' -e 's/|/\\|/g'
-}
-
-function collect_images {
-    local -n images_ref="$1"
-
-    # shellcheck disable=SC2034  # nameref is populated for the caller
-    mapfile -d '' -t images_ref < <(
+    local -a images
+    mapfile -d '' -t images < <(
         find . -path './.git' -prune -o -path './node_modules' -prune -o \
             -path './vendor' -prune -o -type f \( \
             -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' \
@@ -86,225 +49,58 @@ function collect_images {
             -o -iname '*.webp' -o -iname '*.gif' -o -iname '*.avif' \
             -o -iname '*.ico' \) -print0 | sort --zero-terminated
     )
-}
-
-function property {
-    local format="$1"
-    local image_path="$2"
-    local value
-
-    value="$("${IDENTIFY_COMMAND[@]}" -format "${format}" "${image_path}" 2>/dev/null | head -1)"
-    printf '%s' "${value}"
-}
-
-function reference_count {
-    local file="$1"
-    local name="$2"
-    local count
-
-    count="$(grep -oiF -- "${name}" "${file}" | wc -l || true)"
-    printf '%s' "${count}"
-}
-
-function main {
-    local dry_run=0
-    local keep_originals=0
-    local arg
-    for arg in "$@"; do
-        case "${arg}" in
-            --dry-run) dry_run=1 ;;
-            --keep-originals) keep_originals=1 ;;
-            -h | --help)
-                usage
-                return 0
-                ;;
-            *) die "Unknown option: ${arg}" ;;
-        esac
-    done
-
-    local -a images
-    collect_images images
 
     local -i converted=0
-    local -i rewritten=0
     local -i unchanged=0
     local -i skipped=0
-    local -i references=0
 
     local source_path
     for source_path in "${images[@]}"; do
         local relative="${source_path#./}"
         local target="${source_path%.*}.png"
-        local -i same
-        if [[ "${source_path}" == "${target}" ]]; then
-            same=1
-        else
-            same=0
-        fi
-        local source_name="${source_path##*/}"
-        local target_name="${target##*/}"
 
-        if ((!same)) && [[ -e "${target}" ]]; then
-            warn "${relative}: ${target_name} already exists, skipping"
+        if [[ "${target}" != "${source_path}" && -e "${target}" ]]; then
+            warn "${relative}: ${target##*/} already exists, skipping"
             ((++skipped))
             continue
         fi
 
         local frames
-        frames="$(property '%n' "${source_path}")"
+        frames="$(identify -format '%n' "${source_path}" 2>/dev/null | head -1)"
         if [[ "${frames:-1}" != 1 ]]; then
             warn "${relative}: skipped (${frames:-?} frames would lose data)"
             ((++skipped))
             continue
         fi
 
-        local profiles
-        profiles="$(property '%[profiles]' "${source_path}")"
-        if [[ ",${profiles}," == *,icc,* ]]; then
-            warn "${relative}: skipped (ICC profile would be lost)"
-            ((++skipped))
-            continue
-        fi
-
-        local opaque
-        opaque="$(property '%[opaque]' "${source_path}")"
-        local orientation
-        orientation="$(property '%[orientation]' "${source_path}")"
-
-        local -a flags=(
-            -strip -depth 8 -colorspace sRGB
-            -define png:compression-level=9 "${PNG_EXCLUDES[@]}"
-        )
-        case "${orientation}" in
-            TopLeft | Undefined | '') ;;
-            *) flags+=(-auto-orient -orient TopLeft) ;;
-        esac
-        if [[ "${opaque}" == true ]]; then
-            flags+=(-alpha off)
-        fi
-
-        local ref
-        ref="$(mktemp "${target}.ref.XXXXXX")"
-        if ! "${IMAGE_COMMAND[@]}" "${source_path}" -auto-orient "PNG:${ref}" 2>/dev/null; then
-            warn "${relative}: skipped (could not build comparison image)"
-            rm --force "${ref}"
-            ((++skipped))
-            continue
-        fi
-
-        local tmp
-        tmp="$(mktemp "${target}.XXXXXX")"
-        if ! "${IMAGE_COMMAND[@]}" "${source_path}" "${flags[@]}" "PNG:${tmp}" 2>/dev/null; then
+        local normalized_image
+        normalized_image="$(mktemp "${target}.XXXXXX")"
+        if ! convert "${source_path}" "${CONVERT_FLAGS[@]}" "PNG:${normalized_image}" 2>/dev/null; then
             warn "${relative}: skipped (conversion failed)"
-            rm --force "${ref}" "${tmp}"
+            rm --force "${normalized_image}"
             ((++skipped))
             continue
         fi
 
-        local ae
-        ae="$("${COMPARE_COMMAND[@]}" -metric AE "${ref}" "${tmp}" null: 2>&1 || true)"
-        if [[ "${ae}" =~ ^([0-9]+) ]]; then
-            ae="${BASH_REMATCH[1]}"
-        else
-            ae='?'
-        fi
-        if [[ "${ae}" != 0 ]]; then
-            "${IMAGE_COMMAND[@]}" "${source_path}" -strip -depth 8 \
-                -define png:compression-level=9 "${PNG_EXCLUDES[@]}" \
-                "PNG:${tmp}" 2>/dev/null || true
-            ae="$("${COMPARE_COMMAND[@]}" -metric AE "${ref}" "${tmp}" null: 2>&1 || true)"
-            if [[ "${ae}" =~ ^([0-9]+) ]]; then
-                ae="${BASH_REMATCH[1]}"
-            else
-                ae='?'
-            fi
-        fi
-        if [[ "${ae}" != 0 ]]; then
-            warn "${relative}: skipped (${ae} pixels differ after conversion)"
-            rm --force "${ref}" "${tmp}"
-            ((++skipped))
-            continue
-        fi
-
-        local old_size
-        old_size="$(wc --bytes <"${source_path}")"
-        local new_size
-        new_size="$(wc --bytes <"${tmp}")"
-
-        if ((same)) && cmp --silent "${source_path}" "${tmp}"; then
+        if cmp --silent "${source_path}" "${normalized_image}"; then
             printf '  = %s: already normalized\n' "${relative}"
-            rm --force "${ref}" "${tmp}"
+            rm --force "${normalized_image}"
             ((++unchanged))
             continue
         fi
 
-        if ((dry_run)); then
-            if ((same)); then
-                printf '  ~ %s: would rewrite in place (%s -> %s bytes)\n' \
-                    "${relative}" "${old_size}" "${new_size}"
-            else
-                printf '  > %s: would convert to %s (%s -> %s bytes)\n' \
-                    "${relative}" "${target_name}" "${old_size}" "${new_size}"
-            fi
-            rm --force "${ref}" "${tmp}"
-            if ((same)); then
-                ((++rewritten))
-            else
-                ((++converted))
-            fi
-            continue
-        fi
-
-        rm --force "${ref}"
-        chmod --reference="${source_path}" "${tmp}"
-        mv --force "${tmp}" "${target}"
-
-        if ((same)); then
-            printf '  ~ %s: rewrote in place (%s -> %s bytes)\n' \
-                "${relative}" "${old_size}" "${new_size}"
-            ((++rewritten))
-            continue
-        fi
-
-        printf '  + %s -> %s (%s -> %s bytes)\n' \
-            "${relative}" "${target#./}" "${old_size}" "${new_size}"
+        chmod --reference="${source_path}" "${normalized_image}"
+        local backup_path="${run_backup_dir}/${relative}"
+        mkdir -p -- "$(dirname -- "${backup_path}")"
+        mv -- "${source_path}" "${backup_path}"
+        mv -- "${normalized_image}" "${target}"
         ((++converted))
-
-        local pattern
-        pattern="$(sed_pattern "${source_name}")"
-        local replacement
-        replacement="$(sed_replace "${target_name}")"
-        local -a reference_files
-        mapfile -d '' -t reference_files < <(
-            grep -rliZ "${TEXT_INCLUDES[@]}" --exclude-dir=.git \
-                --exclude-dir=node_modules --exclude-dir=vendor \
-                -- "${source_name}" . || true
-        )
-
-        local textfile
-        local -i count
-        for textfile in "${reference_files[@]}"; do
-            if [[ "${textfile}" == "./${SCRIPT_NAME}" ]]; then
-                continue
-            fi
-            count="$(reference_count "${textfile}" "${source_name}")"
-            sed --in-place "s|${pattern}|${replacement}|gI" "${textfile}"
-            printf '      references: %s (%d)\n' "${textfile#./}" "${count}"
-            references=$((references + count))
-        done
-
-        if ((!keep_originals)); then
-            rm --force "${source_path}"
-            printf '      removed %s\n' "${relative}"
-        fi
+        printf '  + %s -> %s\n' "${relative}" "${target#./}"
     done
 
-    local summary='done'
-    if ((dry_run)); then
-        summary="${DRY_RUN_SUMMARY}"
-    fi
-    printf '\n%s: %d converted, %d rewritten, %d already normalized, %d references updated, %d skipped\n' \
-        "${summary}" "${converted}" "${rewritten}" "${unchanged}" "${references}" "${skipped}"
+    printf '\ndone: %d converted, %d already normalized, %d skipped\n' \
+        "${converted}" "${unchanged}" "${skipped}"
+    printf 'the original images are in %s\n' "${run_backup_dir}"
 }
 
-main "$@"
+main

@@ -38,12 +38,24 @@ a:focus:not(:focus-visible) {
 }
 
 figure {
-  margin: 0;
+  margin: 0 0 1.2em;
+}
+
+figcaption {
+  margin-top: 0.3em;
+  font-size: 70%;
+  text-align: right;
 }
 
 img {
   height: auto;
   max-width: 100%;
+}
+
+code,
+kbd,
+samp {
+  font-size: 0.8em;
 }
 
 .menu {
@@ -66,11 +78,27 @@ img {
   display: flex;
   margin: 0 auto 0 auto;
   padding: 0 5% 0 5%;
-  max-width: 1200px;
+  max-width: 68ch;
   flex-direction: column;
   align-items: start;
   text-align: start;
+  line-height: 1.6;
   user-select: text;
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.article p {
+  margin: 0 0 1.2em;
+}
+
+.article li + li {
+  margin-top: 0.35em;
 }
 
 /* Tablet and below */

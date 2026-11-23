@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="robots" content="noai, noimageai" />
+    <link rel="icon" type="image/png" href="/shared/icon.png" />
+    <link rel="stylesheet" href="/shared/style.css" />
+    <title>pablos123</title>
+  </head>
+  <body>
+    <script>
+      // A clicked link (or control) must not keep a focus ring / pressed look
+      // after switching windows, tabs, or coming back to the page.
+      function clearStickyFocus() {
+        const el = document.activeElement;
+        if (el && el !== document.body && typeof el.blur === "function") el.blur();
+      }
+
+      window.addEventListener("blur", clearStickyFocus);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) clearStickyFocus();
+      });
+      document.addEventListener("pointerup", event => {
+        if (event.target.closest?.("a, button")) clearStickyFocus();
+      });
+    </script>
+    <header>
+      <a href="/">Home</a>
+    </header>
+<main class='menu'>
+<p>Nothing here.</p>
+<a href='/'>Try Home</a><br>
+    </main>
+
+    <footer>
+      Made with <a href="https://github.com/pablos123/pablos123.github.io/blob/main/build" target="_blank">a bash script</a>
+    </footer>
+
+  </body>
+
+</html>

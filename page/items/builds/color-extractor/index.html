@@ -247,6 +247,13 @@
       letter-spacing: 0.14em;
       cursor: pointer;
     }
+    #pin-btn:disabled {
+      background: var(--paper2);
+      color: var(--muted);
+      border-color: var(--muted);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
     /* No button keeps a highlighted / selected look after a click or a window switch. */
     button:focus,
     button:focus-visible,
@@ -598,8 +605,7 @@
       .swatch { width: 44px; height: 44px; }
       .swatches,
       .pin-swatches { gap: 8px; }
-      .colophon { padding: 5px 12px; font-size: 8px; }
-      .colophon span:last-child { display: none; }
+      .colophon { padding: 5px 12px; font-size: 8px; letter-spacing: 0.12em; }
     }
   </style>
 </head>
@@ -627,7 +633,7 @@
         <label class="filter-label"><input type="checkbox" id="f-rgb" checked>rgb/rgba</label>
         <label class="filter-label"><input type="checkbox" id="f-hsl" checked>hsl/hsla</label>
         <label class="filter-label"><input type="checkbox" id="f-named" checked>named</label>
-        <button id="pin-btn" title="save these colors as a palette">pin</button>
+        <button id="pin-btn" title="save these colors as a palette" disabled>pin</button>
       </div>
       <div class="palette">
         <div class="swatches" id="swatches"></div>
@@ -1003,35 +1009,21 @@
       setTimeout(remove, 240); // also covers prefers-reduced-motion
     }
 
-    let emptyTimer = null;
-
     function render(colors, message = 'no colors found in that text', animate = true) {
       const el = document.getElementById('swatches');
-      if (emptyTimer) { clearTimeout(emptyTimer); emptyTimer = null; }
+      const wasEmpty = !!el.querySelector('.empty');
       el.querySelectorAll('.empty').forEach(empty => empty.remove());
-      if (!animate) el.querySelectorAll('.swatch-wrap.fading').forEach(w => w.remove());
+      // Drop anything already on its way out, including fades from an interrupted edit.
+      el.querySelectorAll('.swatch-wrap.fading').forEach(w => w.remove());
 
       if (!colors.length) {
-        const swatches = el.querySelectorAll('.swatch-wrap');
-        if (animate) {
-          swatches.forEach(w => { if (!w.classList.contains('fading')) fadeOut(w); });
-        } else {
-          swatches.forEach(w => w.remove());
-        }
-        if (animate && swatches.length) {
-          emptyTimer = setTimeout(() => {
-            emptyTimer = null;
-            const empty = document.createElement('span');
-            empty.className = 'empty';
-            empty.textContent = message;
-            el.appendChild(empty);
-          }, 240);
-        } else {
-          const empty = document.createElement('span');
-          empty.className = 'empty';
-          empty.textContent = message;
-          el.appendChild(empty);
-        }
+        // The empty note replaces the palette immediately. Never leave the last
+        // swatches fading out underneath it.
+        el.querySelectorAll('.swatch-wrap').forEach(w => w.remove());
+        const empty = document.createElement('span');
+        empty.className = 'empty';
+        empty.textContent = message;
+        el.appendChild(empty);
         return;
       }
 
@@ -1054,7 +1046,9 @@
           wrap.dataset.rgb = c.rgb;
           wrap.dataset.hsl = c.hsl;
         } else {
-          wrap = makeSwatch(c, animate);
+          // The first color after the empty note appears instantly, just like
+          // the note itself. Later additions still fade in while typing.
+          wrap = makeSwatch(c, animate && !wasEmpty);
           attachSwatchListener(wrap);
         }
         if (el.children[i] !== wrap) el.insertBefore(wrap, el.children[i] || null);
@@ -1175,14 +1169,25 @@
       };
     }
 
+    const narrow = window.matchMedia('(max-width: 768px)');
+    const pinBtn = document.getElementById('pin-btn');
+
     function update(animate = true) {
       const text = document.getElementById('source').value;
       if (!text.trim()) {
-        render([], 'paste some text on the left to see its colors', animate);
+        pinBtn.disabled = true;
+        const hint = narrow.matches
+          ? 'paste some text above to see its colors'
+          : 'paste some text on the left to see its colors';
+        render([], hint, animate);
         return;
       }
-      render(parseColors(text, getFilters()), undefined, animate);
+      const colors = parseColors(text, getFilters());
+      pinBtn.disabled = colors.length === 0;
+      render(colors, undefined, animate);
     }
+    // Keep the hint in sync when the two-panel layout flips on resize / rotation.
+    narrow.addEventListener('change', () => update(false));
 
     const src = document.getElementById('source');
     src.addEventListener('input', () => {
@@ -1192,7 +1197,7 @@
     // Filter changes swap colors instantly; the fades are only for typing.
     document.querySelectorAll('.filters input').forEach(cb =>
       cb.addEventListener('change', () => update(false)));
-    document.getElementById('pin-btn').addEventListener('click', pin);
+    pinBtn.addEventListener('click', pin);
 
     const themeBtn = document.getElementById('theme-btn');
     function applyTheme(theme) {

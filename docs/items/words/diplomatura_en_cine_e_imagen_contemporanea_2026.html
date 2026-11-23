@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- Hey! Hope you are well -->
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="robots" content="noai, noimageai" />
+    <link rel="icon" type="image/png" href="../../shared/icon.png" />
+    <link rel="stylesheet" href="../../shared/style.css" />
+    <title>pablos123</title>
+  </head>
+  <body>
+    <script>
+      // A clicked link (or control) must not keep a focus ring / pressed look
+      // after switching windows, tabs, or coming back to the page.
+      function clearStickyFocus() {
+        const el = document.activeElement;
+        if (el && el !== document.body && typeof el.blur === "function") el.blur();
+      }
+
+      window.addEventListener("blur", clearStickyFocus);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) clearStickyFocus();
+      });
+      document.addEventListener("pointerup", event => {
+        if (event.target.closest?.("a, button")) clearStickyFocus();
+      });
+    </script>
+    <header>
+      <a href="/">Home</a> |
+      <a href="./words.html">Go Back</a>
+    </header>
+<main class='article'>
+<h1 id="diplomatura-en-cine-e-imagen-contemporánea">Diplomatura en Cine
+e Imagen Contemporánea</h1>
+<p><img src="../../../shared/images/alice_experiments.png"
+title="Alice in Wonderland Experiments" /></p>
+<p>En el año 2026 cursé la Diplomatura en Cine e Imagen Contemporánea
+dictada en la Facultad de Humanidades y Artes de la Universidad Nacional
+de Rosario.</p>
+<p>Para el trabajo final realicé ciertas experimentaciones que tenía
+pensadas o pendientes hace muchos años, además de escribir algunas
+palabras introductorias.</p>
+<p><a
+href="../../../shared/docs/Trabajo_Final_Diplomatura_Cine_Saavedra.pdf">Ensayo
+Final</a></p>
+<hr />
+<p>También recopilé las <a
+href="https://letterboxd.com/pablos123/list/diplomatura-en-cine-e-imagen-contemporanea/">películas
+recomendadas durante el cursado</a>.</p>
+    </main>
+
+    <footer>
+      <a href="./words.html">Go Back</a> |
+      Made with <a href="https://github.com/pablos123/pablos123.github.io/blob/main/build" target="_blank">a bash script</a>
+    </footer>
+
+  </body>
+
+</html>

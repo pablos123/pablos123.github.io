@@ -7,29 +7,19 @@ Hi, I'm Pablo Saavedra, born in 1997 and raised in Rosario, Argentina. I'm passi
 
 I like the fact that they all involve a strong creative process and rely heavily on imagination.
 
-I also like [cinema](https://letterboxd.com/pablos123/) and autum 🍂.
+I also like [cinema](https://letterboxd.com/pablos123/) and autumn 🍂.
 
-______________________________________________________________________
+___
 
-I'm a full-stack developer with 5+ YOE, currently focusing on DevOps tasks involving Ansible, Python, and Bash. I'm employed at a company where I do a lot of hands-on coding.
+I'm a full-stack developer with six-plus years of experience, currently focusing on DevOps tasks involving Ansible, Python, Docker, Bash, and a lot more. I spend my days solving problems, thinking about architecture, and keeping everything up to date — much of it maintenance, because technical debt is tautological, but I also get to implement new features, which I really enjoy.
 
-In addition to handling maintenance work (because technical debt is tautological) I also get to implement new features, which I really enjoy.
-
-Technologies I work with regularly:
-
-- Ansible
-- Docker
-- Bash
-- Python (Django and vanilla)
-- Perl
-
-I've also worked with many other languages on [personal](https://pablos123.github.io/items/builds/builds.html) or [university](https://github.com/pablos123/dump/tree/main/lcc) projects.
+I've also worked with many other languages and tools on [personal](./builds/builds.html) projects and [other things](https://github.com/pablos123/dump).
 
 I use Linux as my daily driver both at home and at work, I enjoy learning about it and tinkering with my [environment](https://github.com/pablos123/environment).
 
 I have virtually no contact with other operating systems.
 
-______________________________________________________________________
+___
 
 Languages:
 
