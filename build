@@ -1,0 +1,195 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+shopt -s inherit_errexit
+
+function log {
+    printf '\033[1;32m==>\033[0m %s\n' "${1:-}" >&2
+}
+
+function die {
+    printf '\033[1;31m[ERROR]\033[0m %s\n' "${1:-}" >&2
+    exit 1
+}
+
+function require_commands {
+    local -a missing=()
+    local cmd
+    for cmd in "$@"; do
+        if ! command -v "${cmd}" >/dev/null; then
+            missing+=("${cmd}")
+        fi
+    done
+
+    ((${#missing[@]} == 0)) || die "missing commands: ${missing[*]}"
+}
+
+require_commands cat cp find grep ls mkdir pandoc python3 rm sed sleep
+
+declare -r PAGE_DIR="page"
+declare -r DOCS_DIR="docs"
+declare -ri SERVER_PORT=7392
+
+declare -i server_pid=0
+
+function cleanup {
+    if ((server_pid > 0)); then
+        log "Killing server"
+        kill -s KILL "${server_pid}"
+    fi
+}
+
+function render {
+    local body="$1"
+    local output="$2"
+
+    {
+        cat "${PAGE_DIR}/head.template"
+        printf '%s\n' "${body}"
+        cat "${PAGE_DIR}/tail.template"
+    } >"${output}"
+}
+
+function make_index {
+    render "<main class='menu'>
+<a href='./items/words/words.html'>Words</a><br>
+<a href='./items/builds/builds.html'>Builds</a><br>
+·<br>
+<a href='https://github.com/pablos123'>GitHub</a><br>" "${DOCS_DIR}/index.html"
+
+    # Home page needs no Home link, so reuse that header slot for About me.
+    sed -i 's@SHARED_DIR@./shared@;/BACK_BUTTON/d;s@<a href="/">Home</a> |@<a href="./items/aboutme.html">About me</a>@' "${DOCS_DIR}/index.html"
+}
+
+function make_aboutme {
+    local body
+    body="$(pandoc --from markdown --to html5 "${PAGE_DIR}/items/aboutme.md")"
+
+    render "<main class='article'>
+${body}" "${DOCS_DIR}/items/aboutme.html"
+
+    sed -i 's@SHARED_DIR@../shared@;s@BACK_BUTTON@../index.html@' "${DOCS_DIR}/items/aboutme.html"
+}
+
+function render_writeup {
+    local file="$1"
+    local output="$2"
+    local back="$3"
+
+    local title
+    read -r title <"${file}" || true
+    title="${title//#/}"
+
+    local name="${file##*/}"
+    name="${name%.*}"
+
+    local body
+    body="$(pandoc --from markdown --to html5 "${file}")"
+
+    render "<main class='article'>
+${body}" "${output}"
+
+    sed -i "s@SHARED_DIR@../../shared@;s@BACK_BUTTON@${back}@" "${output}"
+
+    printf "<a href='./%s.html'>%s</a><br>\n" "${name}" "${title}"
+}
+
+function make_words {
+    mkdir --parents "${DOCS_DIR}/items/words"
+
+    local menu="<main class='menu'>"
+    local file
+    for file in "${PAGE_DIR}/items/words/"*.md; do
+        local name="${file##*/}"
+        local link
+        link="$(render_writeup "${file}" "${DOCS_DIR}/items/words/${name%.md}.html" "./words.html")"
+        menu="${menu}${link}"
+    done
+
+    render "${menu}" "${DOCS_DIR}/items/words/words.html"
+
+    sed -i 's@SHARED_DIR@../../shared@;s@BACK_BUTTON@../../index.html@' "${DOCS_DIR}/items/words/words.html"
+}
+
+function make_builds {
+    mkdir --parents "${DOCS_DIR}/items/builds"
+
+    local playground="<h2 class='section'>playground</h2>"
+    local dir
+    for dir in "${PAGE_DIR}/items/builds/"*/; do
+        [[ -d "${dir}" ]] || continue
+
+        local name="${dir%/}"
+        name="${name##*/}"
+
+        local title
+        title="$(grep --only-matching '<title>[^<]*' "${dir}index.html")"
+        title="${title#<title>}"
+
+        cp --recursive "${dir}" "${DOCS_DIR}/items/builds/"
+
+        playground="${playground}<a href='./${name}/index.html'>${title}</a><br>"
+    done
+
+    local workshop="<h2 class='section'>workshop</h2>"
+    local file
+    for file in "${PAGE_DIR}/items/builds/"*.md; do
+        [[ -e "${file}" ]] || continue
+        local name="${file##*/}"
+        local link
+        link="$(render_writeup "${file}" "${DOCS_DIR}/items/builds/${name%.md}.html" "./builds.html")"
+        workshop="${workshop}${link}"
+    done
+
+    render "<main class='menu'>${playground}${workshop}" "${DOCS_DIR}/items/builds/builds.html"
+
+    sed -i 's@SHARED_DIR@../../shared@;s@BACK_BUTTON@../../index.html@' "${DOCS_DIR}/items/builds/builds.html"
+}
+
+function build {
+    log "Building"
+    rm --recursive --force "${DOCS_DIR}/items" "${DOCS_DIR}/index.html"
+    mkdir --parents "${DOCS_DIR}/items"
+    make_index
+    make_aboutme
+    make_words
+    make_builds
+}
+
+function snapshot_pages {
+    find "${PAGE_DIR}" -type f -exec ls -l --time=atime --full-time {} +
+}
+
+function serve {
+    python3 -m http.server "${SERVER_PORT}" --directory "${DOCS_DIR}" &
+    server_pid=$!
+    sleep 2
+
+    local snapshot
+    snapshot="$(snapshot_pages)"
+
+    while true; do
+        local current
+        current="$(snapshot_pages)"
+        if [[ "${snapshot}" != "${current}" ]]; then
+            log "Files modified"
+            build
+            snapshot="${current}"
+        fi
+        sleep 1
+    done
+}
+
+function main {
+    [[ -d "${PAGE_DIR}" ]] || die "${PAGE_DIR} directory not found"
+
+    build
+
+    if [[ "${1:-}" == "-s" || "${1:-}" == "--serve" ]]; then
+        serve
+    fi
+}
+
+trap cleanup EXIT
+
+main "$@"

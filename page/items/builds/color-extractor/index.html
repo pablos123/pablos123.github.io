@@ -4,21 +4,38 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/shared/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4efe4">
   <title>color extractor</title>
+  <script>
+    document.documentElement.dataset.theme =
+      localStorage.getItem('color-extractor-theme') === 'dark' ? 'dark' : 'light';
+  </script>
   <style>
     :root {
-      --bg:     #282828;
-      --bg1:    #3c3836;
-      --bg2:    #504945;
-      --fg:     #ebdbb2;
-      --fg2:    #d5c4a1;
-      --gray:   #928374;
-      --yellow: #d79921;
-      --orange: #d65d0e;
-      --red:    #cc241d;
-      --green:  #98971a;
-      --blue:   #458588;
-      --purple: #b16286;
+      --paper:   #f4efe4;
+      --paper2:  #eae3d4;
+      --ink:     #1a1a18;
+      --muted:   #7d7568;
+      --shadow:  #1a1a18;
+      --shade:   26, 26, 24;
+      --red:     #d6342a;
+      --blue:    #6d9dff;
+      --yellow:  #f2c217;
+      --green:   #2e7d50;
+      --accent2: var(--yellow);
+    }
+    :root[data-theme="dark"] {
+      --paper:   #1c1c1a;
+      --paper2:  #292925;
+      --ink:     #f4efe4;
+      --muted:   #9d9587;
+      --shadow:  #000000;
+      --shade:   0, 0, 0;
+      --red:     #f0574a;
+      --blue:    #1f4fa3;
+      --yellow:  #ffd54a;
+      --green:   #63ce92;
+      --accent2: var(--blue);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,222 +52,324 @@
       user-select: text;
     }
 
+    html { -webkit-text-size-adjust: 100%; }
+
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Futura, 'Avenir Next', 'Century Gothic', 'Helvetica Neue', Arial, sans-serif;
       height: 100vh;
       height: 100dvh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    header {
-      padding: 10px 20px;
-      background: var(--bg1);
-      border-bottom: 1px solid var(--bg2);
+    /* ── Masthead: a little poster at the top of the page ─────────────────── */
+    .masthead {
       flex-shrink: 0;
       display: flex;
-      align-items: baseline;
-      gap: 12px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      padding: 13px 22px 11px;
+      background: var(--paper);
+      border-bottom: 3px solid var(--ink);
+    }
+    .masthead-copy { min-width: 0; }
+    .title {
+      font-size: clamp(22px, 3.2vw, 38px);
+      line-height: 0.95;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+    .subtitle {
+      margin-top: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--muted);
+    }
+    .subtitle::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 8px;
+      background: var(--red);
+      vertical-align: 1px;
     }
 
-    header .title {
-      font-size: 13px;
-      color: var(--yellow);
-      letter-spacing: 0.08em;
-    }
-    header .subtitle {
-      font-size: 11px;
-      color: var(--gray);
-    }
-    @media (max-width: 768px) {
-      header .subtitle { display: none; }
+    #theme-btn {
+      margin-left: auto;
+      flex-shrink: 0;
+      padding: 7px 12px;
+      background: var(--paper);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--shadow);
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      cursor: pointer;
     }
 
+    /* ── Panels ───────────────────────────────────────────────────────────── */
     .panes {
       display: flex;
       flex: 1;
       overflow: hidden;
     }
-
     .left {
-      flex: 0 0 60%;
+      flex: 0 0 58%;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      border-right: 2px solid var(--bg2);
+      border-right: 3px solid var(--ink);
+    }
+    .right {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 15px;
+      background: var(--paper2);
+      border-bottom: 2px solid var(--ink);
+    }
+    .panel-title {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
     }
 
     textarea {
       flex: 1;
-      background: var(--bg);
-      color: var(--fg);
+      min-height: 0;
+      width: 100%;
+      background: var(--paper);
+      color: var(--ink);
       border: none;
       outline: none;
       resize: none;
-      padding: 20px;
-      font-family: inherit;
+      padding: 20px 24px;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
       font-size: 13px;
-      line-height: 1.7;
-      caret-color: var(--yellow);
+      line-height: 28px;
+      caret-color: var(--red);
     }
-
     textarea::placeholder {
-      color: var(--gray);
-      opacity: 0.4;
+      color: var(--muted);
+      opacity: 0.65;
     }
 
-    .right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      background: var(--bg);
+    /* Chrome ignores ::-webkit-scrollbar rules when scrollbar-width/color are
+       set, so those properties are only for browsers without the pseudo-elements. */
+    @supports not selector(::-webkit-scrollbar) {
+      textarea,
+      .palette {
+        scrollbar-width: thin;
+        scrollbar-color: var(--ink) var(--paper2);
+      }
     }
+    textarea::-webkit-scrollbar,
+    .palette::-webkit-scrollbar { width: 5px; height: 5px; }
+    textarea::-webkit-scrollbar-track,
+    .palette::-webkit-scrollbar-track { background: var(--paper2); }
+    textarea::-webkit-scrollbar-thumb,
+    .palette::-webkit-scrollbar-thumb {
+      background: var(--ink);
+      border-width: 0;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    body.dragging-scrollbar textarea::-webkit-scrollbar-thumb,
+    body.dragging-scrollbar .palette::-webkit-scrollbar-thumb { cursor: grabbing; }
 
+    /* ── Filter toggles ───────────────────────────────────────────────────── */
     .filters {
-      padding: 10px 16px;
-      background: var(--bg1);
-      border-bottom: 1px solid var(--bg2);
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
       flex-shrink: 0;
-    }
-
-    .filter-label {
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      color: var(--fg2);
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+    }
+    .filter-label {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       cursor: pointer;
       user-select: none;
+      transition: opacity 0.18s ease;
     }
-
+    .filter-label:has(input:not(:checked)) { opacity: 0.4; }
     .filter-label input[type="checkbox"] {
-      accent-color: var(--yellow);
-      cursor: pointer;
-      width: 13px;
-      height: 13px;
+      position: absolute;
+      opacity: 0;
+      width: 1px;
+      height: 1px;
     }
 
+    #pin-btn {
+      margin-left: auto;
+      flex-shrink: 0;
+      padding: 7px 13px;
+      background: var(--accent2);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--shadow);
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+    }
+    /* No button keeps a highlighted / selected look after a click or a window switch. */
+    button:focus,
+    button:focus-visible,
+    label:focus,
+    label:focus-within,
+    label:focus-visible,
+    input:focus,
+    input:focus-visible {
+      outline: none;
+    }
+
+    /* ── Palette ──────────────────────────────────────────────────────────── */
     .palette {
       flex: 1;
       overflow-y: auto;
-      padding: 16px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--bg2) var(--bg);
+      padding: 18px;
+      background-color: var(--paper);
+      background-image: radial-gradient(rgba(var(--shade), 0.1) 1px, transparent 1px);
+      background-size: 16px 16px;
     }
 
-    .palette::-webkit-scrollbar { width: 6px; }
-    .palette::-webkit-scrollbar-track { background: var(--bg); }
-    .palette::-webkit-scrollbar-thumb { background: var(--bg2); border-radius: 3px; }
-
-    .swatches {
+    .swatches,
+    .pin-swatches {
       display: flex;
       flex-wrap: wrap;
-      gap: 3px;
+      gap: 10px;
     }
-
-    .swatch-wrap {
-      position: relative;
+    @keyframes swatch-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
-
+    @keyframes swatch-out {
+      from { opacity: 1; }
+      to   { opacity: 0; }
+    }
+    .swatch-wrap { position: relative; }
+    .swatch-wrap.fresh { animation: swatch-in 220ms ease-out both; }
+    .swatch-wrap.fading {
+      animation: swatch-out 200ms ease-in both;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .swatch-wrap.fresh,
+      .swatch-wrap.fading { animation: none; }
+    }
     .swatch {
-      width: 44px;
-      height: 44px;
-      border-radius: 3px;
-      cursor: default;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--shadow);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-
     .swatch-wrap:hover .swatch {
-      transform: scale(1.15);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transform: translate(-2px, -2px) rotate(-3deg);
+      box-shadow: 5px 5px 0 var(--shadow);
       z-index: 10;
       position: relative;
     }
-
-    /* touch devices: no sticky hover-enlarge after tap */
     @media (hover: none) {
       .swatch-wrap:hover .swatch {
         transform: none;
-        box-shadow: none;
+        box-shadow: 3px 3px 0 var(--shadow);
         z-index: auto;
       }
     }
 
+    .empty {
+      display: inline-block;
+      padding: 12px 14px;
+      border: 2px dashed var(--ink);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+    }
+
+    /* ── Hover tooltip ────────────────────────────────────────────────────── */
     #tooltip {
       display: none;
       position: fixed;
-      background: var(--bg1);
-      border: 1px solid var(--bg2);
-      border-radius: 4px;
-      padding: 8px 11px;
+      min-width: 210px;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 6px 6px 0 var(--shadow);
+      padding: 0;
       font-size: 11px;
-      line-height: 2;
-      white-space: nowrap;
       z-index: 1000;
       pointer-events: auto;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
     }
-
     #tooltip .orig {
-      color: var(--yellow);
-      font-weight: bold;
       display: block;
-      margin-bottom: 2px;
+      padding: 8px 10px;
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      word-break: break-all;
     }
-
     #tooltip .copy-row {
       display: block;
       width: 100%;
       text-align: left;
       background: none;
       border: none;
+      border-top: 1px solid rgba(var(--shade), 0.25);
       font: inherit;
-      color: var(--fg2);
+      color: var(--ink);
       cursor: pointer;
-      padding: 1px 5px;
-      border-radius: 3px;
+      padding: 6px 10px;
     }
-    #tooltip .copy-row:hover { background: var(--bg2); color: var(--fg); }
+    #tooltip .copy-row:hover {
+      background: var(--paper2);
+      color: var(--ink);
+    }
     #tooltip .copy-row.copied { color: var(--green); }
     #tooltip .rlbl {
-      color: var(--gray);
+      color: var(--red);
       font-size: 9px;
-      letter-spacing: 0.06em;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       margin-right: 8px;
-    }
-
-    .empty {
-      color: var(--gray);
-      font-size: 12px;
-      opacity: 0.45;
-    }
-
-    /* ── Responsive ──────────────────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .panes { flex-direction: column; }
-      .left  { flex: 0 0 42vh; border-right: none; border-bottom: 2px solid var(--bg2); }
-      /* roomier targets, fewer mis-taps */
-      .swatch         { width: 46px; height: 46px; }
-      .swatches,
-      .pin-swatches   { gap: 7px; }
-      /* keep filters on one scrollable line instead of wrapping cramped */
-      .filters {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 14px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-      }
-      .filters::-webkit-scrollbar { display: none; }
-      .filter-label { white-space: nowrap; }
-      .pin-remove   { font-size: 20px; padding: 0 8px; }
     }
 
     /* ── Bottom sheet (touch copy) ───────────────────────────────────────── */
@@ -258,7 +377,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.45);
+      background: rgba(var(--shade), 0.55);
       z-index: 1500;
     }
     #sheet-backdrop.open { display: block; }
@@ -268,14 +387,13 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--bg1);
-      border-top: 1px solid var(--bg2);
-      border-radius: 14px 14px 0 0;
-      padding: 16px 16px calc(16px + env(safe-area-inset-bottom));
+      background: var(--paper);
+      border-top: 3px solid var(--ink);
+      padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
       z-index: 1600;
       transform: translateY(110%);
       transition: transform 0.22s ease;
-      box-shadow: 0 -6px 24px rgba(0,0,0,0.5);
+      box-shadow: 0 -8px 0 rgba(var(--shade), 0.12);
     }
     #sheet.open { transform: translateY(0); }
 
@@ -283,32 +401,34 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .sheet-close {
       margin-left: auto;
       align-self: flex-start;
-      background: none;
-      border: none;
-      color: var(--gray);
-      font-size: 22px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      font-size: 20px;
       line-height: 1;
-      padding: 0 4px;
+      width: 34px;
+      height: 34px;
       cursor: pointer;
       font-family: inherit;
     }
-    .sheet-close:hover { color: var(--fg); }
     .sheet-preview {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
+      width: 44px;
+      height: 44px;
       flex-shrink: 0;
-      border: 1px solid var(--bg2);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--shadow);
     }
     .sheet-orig {
       font-size: 13px;
-      color: var(--yellow);
-      font-weight: bold;
+      color: var(--ink);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       word-break: break-all;
     }
 
@@ -319,29 +439,44 @@
       gap: 12px;
       width: 100%;
       min-height: 48px;
-      background: var(--bg);
-      border: 1px solid var(--bg2);
-      border-radius: 6px;
-      color: var(--fg);
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--shadow);
+      color: var(--ink);
       font: inherit;
       font-size: 13px;
       padding: 0 14px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       cursor: pointer;
       text-align: left;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
-    .sheet-row .lbl { color: var(--gray); font-size: 11px; letter-spacing: 0.06em; }
-    .sheet-row .val { word-break: break-all; }
-    .sheet-row:active { background: var(--bg2); }
-    .sheet-row.copied { border-color: var(--green); color: var(--green); }
+    .sheet-row .lbl {
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+    .sheet-row .val {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      word-break: break-all;
+    }
+    .sheet-row.copied {
+      background: var(--paper2);
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+    .sheet-row.copied { border-color: var(--green); }
     .sheet-row.copied .lbl { color: var(--green); }
 
     .sheet-hint {
       text-align: center;
-      color: var(--gray);
-      font-size: 10px;
-      opacity: 0.6;
-      margin-top: 2px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-top: 4px;
     }
 
     /* ── Toast ───────────────────────────────────────────────────────────── */
@@ -350,12 +485,12 @@
       left: 50%;
       bottom: 24px;
       transform: translate(-50%, 20px);
-      background: var(--bg2);
-      color: var(--fg);
+      background: var(--ink);
+      color: var(--paper);
+      border-left: 5px solid var(--yellow);
       font-size: 12px;
-      padding: 8px 14px;
-      border-radius: 6px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      padding: 9px 14px;
+      box-shadow: 4px 4px 0 rgba(var(--shade), 0.25);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s ease, transform 0.18s ease;
@@ -366,86 +501,138 @@
       transform: translate(-50%, 0);
     }
 
-    /* ── Pin button ──────────────────────────────────────────────────────── */
-    #pin-btn {
-      margin-left: auto;
-      background: var(--bg2);
-      color: var(--fg2);
-      border: none;
-      border-radius: 3px;
-      padding: 3px 10px;
-      font-family: inherit;
-      font-size: 12px;
-      cursor: pointer;
-      user-select: none;
-      flex-shrink: 0;
-    }
-    #pin-btn:hover { background: var(--bg); color: var(--fg); }
-
     /* ── Pinned groups ───────────────────────────────────────────────────── */
     .pin-divider {
-      height: 1px;
-      background: var(--bg2);
-      margin: 14px 0 8px;
+      position: relative;
+      height: 0;
+      border-top: 3px solid var(--ink);
+      margin: 18px 0 12px;
     }
-
+    .pin-divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -5px;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+    }
     .pin-header {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
-
     .pin-name {
       font-size: 11px;
-      color: var(--gray);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--ink);
       flex: 1;
       outline: none;
       cursor: text;
       white-space: nowrap;
       overflow: hidden;
     }
-    .pin-name:focus { color: var(--fg2); }
-
+    .pin-name:focus { box-shadow: 0 0 0 2px var(--blue); }
     .pin-remove {
-      background: none;
-      border: none;
-      color: var(--gray);
+      width: 24px;
+      height: 24px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      color: var(--ink);
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1;
-      padding: 0 2px;
       font-family: inherit;
     }
-    .pin-remove:hover { color: var(--red); }
 
-    .pin-swatches {
+    /* ── Colophon ────────────────────────────────────────────────────────── */
+    .colophon {
+      flex-shrink: 0;
       display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
+      align-items: center;
+      gap: 14px;
+      padding: 6px 20px;
+      background: var(--paper2);
+      border-top: 3px solid var(--ink);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    .colophon .motifs {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .colophon .motifs i { width: 8px; height: 8px; }
+    .colophon .motifs i:nth-child(1) { background: var(--red); }
+    .colophon .motifs i:nth-child(2) { background: var(--accent2); }
+    .colophon span:last-child { margin-left: auto; color: var(--muted); }
+
+    /* ── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .masthead { padding: 10px 14px; }
+      .title { font-size: clamp(18px, 5.5vw, 26px); }
+      .subtitle { font-size: 9px; letter-spacing: 0.08em; }
+
+      .panes { flex-direction: column; }
+      .left {
+        flex: 0 0 40vh;
+        border-right: none;
+        border-bottom: 3px solid var(--ink);
+      }
+      .panel-head { padding: 7px 12px; }
+      .filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 7px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .filters::-webkit-scrollbar { display: none; }
+      .filter-label { white-space: nowrap; flex-shrink: 0; }
+      .palette { padding: 14px; }
+      .swatch { width: 44px; height: 44px; }
+      .swatches,
+      .pin-swatches { gap: 8px; }
+      .colophon { padding: 5px 12px; font-size: 8px; }
+      .colophon span:last-child { display: none; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <span class="title">color extractor</span>
-    <span class="subtitle">paste anything with colors &mdash; pull the palette</span>
+  <header class="masthead">
+    <div class="masthead-copy">
+      <h1 class="title">color extractor</h1>
+      <p class="subtitle">paste anything with colors &mdash; pull the palette</p>
+    </div>
+    <button id="theme-btn" type="button" title="switch theme">dark</button>
   </header>
   <div class="panes">
-    <div class="left">
+    <section class="left">
+      <div class="panel-head">
+        <span class="panel-title">the source</span>
+      </div>
       <textarea id="source" placeholder="paste CSS, code, anything with colors&hellip;" spellcheck="false"></textarea>
-    </div>
-    <div class="right">
+    </section>
+    <section class="right">
+      <div class="panel-head">
+        <span class="panel-title">the palette</span>
+      </div>
       <div class="filters">
-        <label class="filter-label"><input type="checkbox" id="f-hex"   checked> hex</label>
-        <label class="filter-label"><input type="checkbox" id="f-rgb"   checked> rgb/rgba</label>
-        <label class="filter-label"><input type="checkbox" id="f-hsl"   checked> hsl/hsla</label>
-        <label class="filter-label"><input type="checkbox" id="f-named" checked> named</label>
+        <label class="filter-label"><input type="checkbox" id="f-hex" checked>hex</label>
+        <label class="filter-label"><input type="checkbox" id="f-rgb" checked>rgb/rgba</label>
+        <label class="filter-label"><input type="checkbox" id="f-hsl" checked>hsl/hsla</label>
+        <label class="filter-label"><input type="checkbox" id="f-named" checked>named</label>
         <button id="pin-btn" title="save these colors as a palette">pin</button>
       </div>
       <div class="palette">
         <div class="swatches" id="swatches"></div>
       </div>
-    </div>
+    </section>
   </div>
   <div id="tooltip"></div>
 
@@ -463,6 +650,11 @@
   </div>
 
   <div id="toast"></div>
+
+  <footer class="colophon" aria-hidden="true">
+    <span class="motifs"><i></i><i></i></span>
+    <span>a little color machine</span>
+  </footer>
 
   <script>
     // ─── Conversion utilities ───────────────────────────────────────────────────
@@ -635,15 +827,8 @@
     function copyRow(btn) {
       const value = btn.dataset.copy;
       const done = () => {
-        const prev = btn.innerHTML;
-        tip.style.width = tip.offsetWidth + 'px';
-        btn.textContent = 'copied!';
         btn.classList.add('copied');
-        setTimeout(() => {
-          btn.innerHTML = prev;
-          btn.classList.remove('copied');
-          tip.style.width = '';
-        }, 900);
+        setTimeout(() => btn.classList.remove('copied'), 900);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(value).then(done).catch(() => fallbackCopy(value, done));
@@ -778,33 +963,107 @@
       });
     });
 
-    function attachSwatchListeners(container) {
-      container.querySelectorAll('.swatch-wrap').forEach(w => {
-        if (isTouch) {
-          w.addEventListener('click', () => openSheet(w));
-        } else {
-          w.addEventListener('mouseenter', showTip);
-          w.addEventListener('mousemove',  moveTip);
-          w.addEventListener('mouseleave', scheduleHide);
-        }
-      });
+    function attachSwatchListener(w) {
+      if (isTouch) {
+        w.addEventListener('click', () => openSheet(w));
+      } else {
+        w.addEventListener('mouseenter', showTip);
+        w.addEventListener('mousemove',  moveTip);
+        w.addEventListener('mouseleave', scheduleHide);
+      }
     }
 
-    function render(colors) {
+    function attachSwatchListeners(container) {
+      container.querySelectorAll('.swatch-wrap').forEach(attachSwatchListener);
+    }
+
+    function makeSwatch(c, animate = true) {
+      const wrap = document.createElement('div');
+      wrap.className = animate ? 'swatch-wrap fresh' : 'swatch-wrap';
+      wrap.dataset.orig = c.original;
+      wrap.dataset.hex = c.hex;
+      wrap.dataset.rgb = c.rgb;
+      wrap.dataset.hsl = c.hsl;
+      if (animate) {
+        wrap.addEventListener('animationend', () => wrap.classList.remove('fresh'), { once: true });
+      }
+
+      const swatch = document.createElement('div');
+      swatch.className = 'swatch';
+      swatch.style.background = c.hex;
+      wrap.appendChild(swatch);
+      return wrap;
+    }
+
+    function fadeOut(w) {
+      w.classList.remove('fresh');
+      w.classList.add('fading');
+      const remove = () => w.remove();
+      w.addEventListener('animationend', remove, { once: true });
+      setTimeout(remove, 240); // also covers prefers-reduced-motion
+    }
+
+    let emptyTimer = null;
+
+    function render(colors, message = 'no colors found in that text', animate = true) {
       const el = document.getElementById('swatches');
+      if (emptyTimer) { clearTimeout(emptyTimer); emptyTimer = null; }
+      el.querySelectorAll('.empty').forEach(empty => empty.remove());
+      if (!animate) el.querySelectorAll('.swatch-wrap.fading').forEach(w => w.remove());
+
       if (!colors.length) {
-        el.innerHTML = '<span class="empty">no colors found in that text</span>';
+        const swatches = el.querySelectorAll('.swatch-wrap');
+        if (animate) {
+          swatches.forEach(w => { if (!w.classList.contains('fading')) fadeOut(w); });
+        } else {
+          swatches.forEach(w => w.remove());
+        }
+        if (animate && swatches.length) {
+          emptyTimer = setTimeout(() => {
+            emptyTimer = null;
+            const empty = document.createElement('span');
+            empty.className = 'empty';
+            empty.textContent = message;
+            el.appendChild(empty);
+          }, 240);
+        } else {
+          const empty = document.createElement('span');
+          empty.className = 'empty';
+          empty.textContent = message;
+          el.appendChild(empty);
+        }
         return;
       }
-      el.innerHTML = colors.map(c =>
-        `<div class="swatch-wrap"` +
-        ` data-orig="${escHtml(c.original)}"` +
-        ` data-hex="${c.hex}"` +
-        ` data-rgb="${escHtml(c.rgb)}"` +
-        ` data-hsl="${escHtml(c.hsl)}"` +
-        `><div class="swatch" style="background:${c.hex}"></div></div>`
-      ).join('');
-      attachSwatchListeners(el);
+
+      // Reuse swatches that are already on screen: only new colors fade in and only
+      // removed colors fade out, so typing never makes the whole palette blink.
+      const keep = new Set(colors.map(c => c.hex));
+      const existing = new Map();
+      for (const w of el.querySelectorAll('.swatch-wrap:not(.fading)')) existing.set(w.dataset.hex, w);
+      for (const [hex, w] of existing) {
+        if (!keep.has(hex)) { if (animate) fadeOut(w); else w.remove(); }
+      }
+
+      const used = new Set();
+      colors.forEach((c, i) => {
+        let wrap = existing.get(c.hex);
+        if (wrap && used.has(wrap)) wrap = null;
+        if (wrap) {
+          used.add(wrap);
+          wrap.dataset.orig = c.original;
+          wrap.dataset.rgb = c.rgb;
+          wrap.dataset.hsl = c.hsl;
+        } else {
+          wrap = makeSwatch(c, animate);
+          attachSwatchListener(wrap);
+        }
+        if (el.children[i] !== wrap) el.insertBefore(wrap, el.children[i] || null);
+      });
+
+      for (let i = el.children.length - 1; i >= colors.length; i--) {
+        const child = el.children[i];
+        if (!child.classList.contains('fading')) child.remove();
+      }
     }
 
     // ─── Pin state & persistence ─────────────────────────────────────────────────
@@ -865,15 +1124,11 @@
 
       const swatchesEl = document.createElement('div');
       swatchesEl.className = 'pin-swatches';
-      swatchesEl.innerHTML = entry.colors.map(c =>
-        `<div class="swatch-wrap"` +
-        ` data-orig="${escHtml(c.original)}"` +
-        ` data-hex="${c.hex}"` +
-        ` data-rgb="${escHtml(c.rgb)}"` +
-        ` data-hsl="${escHtml(c.hsl)}"` +
-        `><div class="swatch" style="background:${c.hex}"></div></div>`
-      ).join('');
-      attachSwatchListeners(swatchesEl);
+      entry.colors.forEach(c => {
+        const sw = makeSwatch(c);
+        attachSwatchListener(sw);
+        swatchesEl.appendChild(sw);
+      });
 
       wrap.appendChild(divider);
       wrap.appendChild(header);
@@ -884,7 +1139,8 @@
     function renderPinned() {
       document.querySelectorAll('.pin-group').forEach(el => el.remove());
       const palette = document.querySelector('.palette');
-      state.pinned.forEach(entry => palette.appendChild(makePinGroup(entry)));
+      // Newest palette at the top of the stack.
+      state.pinned.slice().reverse().forEach(entry => palette.appendChild(makePinGroup(entry)));
     }
 
     function pin() {
@@ -919,14 +1175,13 @@
       };
     }
 
-    function update() {
+    function update(animate = true) {
       const text = document.getElementById('source').value;
       if (!text.trim()) {
-        document.getElementById('swatches').innerHTML =
-          '<span class="empty">paste some text on the left to see its colors</span>';
+        render([], 'paste some text on the left to see its colors', animate);
         return;
       }
-      render(parseColors(text, getFilters()));
+      render(parseColors(text, getFilters()), undefined, animate);
     }
 
     const src = document.getElementById('source');
@@ -934,8 +1189,50 @@
       localStorage.setItem('color-extractor-source', src.value);
       update();
     });
-    document.querySelectorAll('.filters input').forEach(cb => cb.addEventListener('change', update));
+    // Filter changes swap colors instantly; the fades are only for typing.
+    document.querySelectorAll('.filters input').forEach(cb =>
+      cb.addEventListener('change', () => update(false)));
     document.getElementById('pin-btn').addEventListener('click', pin);
+
+    const themeBtn = document.getElementById('theme-btn');
+    function applyTheme(theme) {
+      const next = theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = theme;
+      themeBtn.textContent = next;
+      themeBtn.title = 'switch to ' + next + ' theme';
+      document.querySelector('meta[name="theme-color"]').content =
+        theme === 'dark' ? '#1c1c1a' : '#f4efe4';
+      localStorage.setItem('color-extractor-theme', theme);
+    }
+    themeBtn.addEventListener('click', () =>
+      applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+    applyTheme(document.documentElement.dataset.theme);
+
+    // A tapped control should never stay focused (and look pressed) after the pointer
+    // leaves it — including when switching windows and coming back.
+    document.addEventListener('pointerup', e => {
+      const el = e.target.closest('button, .filter-label');
+      if (!el) return;
+      if (el.tagName === 'BUTTON') el.blur();
+      else el.querySelector('input')?.blur();
+    });
+
+    // Chrome does not expose :active on scrollbar thumbs, so detect a grab on the
+    // 5px scrollbar strip and switch the cursor to a closed hand while dragging.
+    const scrollbarWidth = 5;
+    document.addEventListener('pointerdown', e => {
+      for (const el of [document.getElementById('source'), document.querySelector('.palette')]) {
+        const r = el.getBoundingClientRect();
+        if (e.clientX >= r.right - scrollbarWidth && e.clientX <= r.right &&
+            e.clientY >= r.top && e.clientY <= r.bottom) {
+          document.body.classList.add('dragging-scrollbar');
+          return;
+        }
+      }
+    }, true);
+    const endScrollbarDrag = () => document.body.classList.remove('dragging-scrollbar');
+    window.addEventListener('pointerup', endScrollbarDrag);
+    window.addEventListener('blur', endScrollbarDrag);
 
     const saved = localStorage.getItem('color-extractor-source');
     if (saved) { document.getElementById('source').value = saved; }

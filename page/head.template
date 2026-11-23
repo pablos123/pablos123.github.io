@@ -9,6 +9,22 @@
     <title>pablos123</title>
   </head>
   <body>
+    <script>
+      // A clicked link (or control) must not keep a focus ring / pressed look
+      // after switching windows, tabs, or coming back to the page.
+      function clearStickyFocus() {
+        const el = document.activeElement;
+        if (el && el !== document.body && typeof el.blur === "function") el.blur();
+      }
+
+      window.addEventListener("blur", clearStickyFocus);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) clearStickyFocus();
+      });
+      document.addEventListener("pointerup", event => {
+        if (event.target.closest?.("a, button")) clearStickyFocus();
+      });
+    </script>
     <header>
       <a href="/">Home</a> |
       <a href="BACK_BUTTON">Go Back</a>

@@ -1,6 +1,6 @@
 # Entrevista a Bill Bruford - Batería Total (2006)
 
-![Foto: James Cumpsty](../../../shared/images/bill_bruford.jpg "Bill Bruford")
+![Foto: James Cumpsty](../../../shared/images/bill_bruford.png "Bill Bruford")
 
 Bill Bruford es de los mayores referentes que tengo como baterista. En la revista número 87 de Batería Total en el año 2006 se le hizo una entrevista.
 

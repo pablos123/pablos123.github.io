@@ -4,37 +4,76 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/shared/icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   <title>hepster's dictionary</title>
   <style>
+    /* ── Paper dictionary palette ─────────────────────────────────────────────── */
     :root {
-      --bg:     #282828;
-      --bg1:    #3c3836;
-      --bg2:    #504945;
-      --fg:     #ebdbb2;
-      --fg2:    #d5c4a1;
-      --gray:   #928374;
-      --yellow: #d79921;
-      --orange: #d65d0e;
-      --red:    #cc241d;
-      --green:  #98971a;
-      --blue:   #458588;
-      --purple: #b16286;
-      --aqua:   #689d6a;
+      --bg:     #efe3c8;
+      --bg1:    #e4d4b2;
+      --bg2:    #b9a582;
+      --fg:     #1a1714;
+      --fg2:    #3a3228;
+      --gray:   #6d604d;
+      --yellow: #a33224;   /* printer's red — Calloway only */
+      --orange: #a33224;
+      --red:    #a33224;
+      --green:  #a33224;
+      --blue:   #33564f;
+      --purple: #7a4a63;
+      --aqua:   #8c2f22;
+      --mark-bg: #a33224;
+      --mark-fg: #efe3c8;
+      --font-display: 'Special Elite', 'Courier New', monospace;
+      --font-body: 'JetBrains Mono', 'Courier New', monospace;
+      --title-size: 20px;
+      --title-spacing: 0.04em;
+      --glow: none;
+      --focus-glow: 0 0 0 2px rgba(163, 50, 36, 0.22);
+      --backdrop: rgba(26, 23, 20, 0.6);
+      --grain: radial-gradient(circle, rgba(163, 50, 36, 0.13) 1px, transparent 1.6px),
+               url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+      --grain-size: 5px 5px, auto;
+      --grain-opacity: 1;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Paper grain / halftone lives on a fixed overlay so it never touches the
+       scrolled entry list. header/body get z-index 1 to stay above it. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: var(--grain);
+      background-size: var(--grain-size);
+      opacity: var(--grain-opacity);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     body {
       background: var(--bg);
       color: var(--fg);
-      font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-family: var(--font-body);
       height: 100dvh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      /* Only dictionary text is meant to be copied. */
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .entries, .modal-body, #search {
+      user-select: text;
+      -webkit-user-select: text;
     }
 
     header {
+      position: relative;
+      z-index: 1;
       padding: 14px 22px 12px;
       background: var(--bg1);
       border-bottom: 1px solid var(--bg2);
@@ -42,16 +81,99 @@
     }
 
     .title {
-      font-size: 15px;
+      font-family: var(--font-display);
+      font-size: var(--title-size);
       color: var(--yellow);
-      letter-spacing: 0.06em;
+      letter-spacing: var(--title-spacing);
+      line-height: 1.3;
     }
 
-    .subtitle {
-      font-size: 11px;
-      color: var(--gray);
-      margin-top: 3px;
-      line-height: 1.5;
+    /* Small turntable in the top right: grab the record to spin it. */
+    .deck {
+      position: absolute;
+      right: 18px;
+      top: 10px;
+      width: 108px;
+      height: 108px;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+    .platter {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: auto;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .platter.dragging { cursor: grabbing; }
+    /* The record itself spins constantly; dragging the platter just adds to it. */
+    .vinyl {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: repeating-radial-gradient(circle at center, #100c0c 0 2px, #241a1b 2px 3px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(242, 227, 194, 0.12);
+      animation: spin 5s linear infinite;
+    }
+    /* Miles on the label, cropped to the circle. */
+    .vinyl::after {
+      content: "";
+      position: absolute;
+      inset: 34%;
+      border-radius: 50%;
+      background: url("/shared/images/miles_head.png") center / cover no-repeat;
+      box-shadow: inset 0 0 0 1px rgba(26, 23, 20, 0.4), 0 0 0 2px var(--bg1);
+    }
+    /* Spindle hole stays put while the label turns beneath it. */
+    .spindle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      margin: -3px 0 0 -3px;
+      border-radius: 50%;
+      background: #14100f;
+      box-shadow: 0 0 0 1px rgba(239, 227, 200, 0.35);
+      pointer-events: none;
+      z-index: 2;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Pivot sits outside the record at the back-right corner, like a real deck. */
+    .tonearm {
+      position: absolute;
+      right: -6px;
+      top: 12px;
+      width: 78px;
+      height: 5px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--fg2), var(--bg2));
+      transform-origin: right center;
+      transform: translateY(0) rotate(-66deg);
+      transition: transform 0.3s ease-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      pointer-events: auto;
+      cursor: grab;
+      touch-action: none;
+    }
+    .tonearm.dragging { cursor: grabbing; transition: none; }
+    /* The return is animated frame by frame in JS; a CSS transition here used to
+       race with the new transform and made the arm snap back to the start. */
+    .tonearm.rewind { transition: none; }
+    /* Stylus: a compact teal rectangle at the tip of the arm. */
+    .tonearm::after {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: -1px;
+      width: 10px;
+      height: 7px;
+      border-radius: 0;
+      background: #2e7d75;
     }
 
     .controls {
@@ -82,21 +204,30 @@
     }
     /* Collapse-all button: mobile-only. */
     .ctl-toggle { display: none; }
+    /* Dictionary buttons as little ink stamps: dashed border, display type,
+       slightly off-kilter, in each dictionary's color. */
     .chip {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: var(--bg);
-      color: var(--fg2);
-      border: 1px solid var(--chip, var(--bg2));
-      border-radius: 4px;
-      padding: 4px 9px;
-      font-family: inherit;
-      font-size: 11px;
+      background: transparent;
+      color: var(--chip, var(--yellow));
+      border: 1px dashed var(--chip, var(--yellow));
+      border-radius: 2px;
+      padding: 3px 7px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       cursor: pointer;
-      line-height: 1.4;
+      line-height: 1.2;
+      white-space: nowrap;
+      opacity: 0.85;
+      transform: rotate(-2deg);
+      transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
     }
-    .chip:hover { filter: brightness(1.15); }
+    .chip:nth-child(even) { transform: rotate(2deg); }
+    .chip:hover { opacity: 1; transform: rotate(0deg) translateY(-1px); }
     .chip, .toggle, .ctl-toggle, .clear-btn, .rail a, .info-btn, .modal-close {
       user-select: none;
       -webkit-tap-highlight-color: transparent;
@@ -105,7 +236,7 @@
     .chip.active {
       background: var(--chip, var(--yellow));
       color: var(--bg);
-      border-color: var(--chip, var(--yellow));
+      opacity: 1;
     }
     .info-btn {
       cursor: pointer;
@@ -121,25 +252,59 @@
       margin-top: 12px;
     }
 
+    /* Search keeps a faint paper presence and a dotted writing rule, no box. */
     .search-box {
       position: relative;
-      flex: 1;
+      flex: 0 1 520px;
       display: flex;
+      align-items: stretch;
+      background: rgba(228, 212, 178, 0.42);
+      border-radius: 2px;
+    }
+    .search-box::after {
+      content: "";
+      position: absolute;
+      left: 30px;
+      right: 12px;
+      bottom: 5px;
+      height: 1px;
+      background: repeating-linear-gradient(90deg, rgba(109, 96, 77, 0.38) 0 5px, transparent 5px 8px);
+      pointer-events: none;
+    }
+    .search-box:focus-within::after {
+      background: repeating-linear-gradient(90deg, rgba(26, 23, 20, 0.5) 0 5px, transparent 5px 8px);
+    }
+    .search-box::before {
+      content: "⌕";
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-52%);
+      color: var(--gray);
+      font-family: var(--font-display);
+      font-size: 15px;
+      pointer-events: none;
     }
     #search {
       width: 100%;
-      background: var(--bg);
+      background: transparent;
       color: var(--fg);
-      border: 1px solid var(--bg2);
-      border-radius: 4px;
+      border: 0;
       outline: none;
-      padding: 9px 32px 9px 12px;
-      font-family: inherit;
-      font-size: 13px;
-      caret-color: var(--yellow);
+      padding: 8px 32px 8px 30px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.03em;
+      caret-color: var(--fg2);
     }
-    #search:focus { border-color: var(--yellow); }
-    #search::placeholder { color: var(--gray); opacity: 0.5; }
+    #search::placeholder { color: var(--gray); opacity: 0.65; }
+    button:focus-visible, .rail a:focus-visible {
+      outline: 2px solid var(--gray);
+      outline-offset: 2px;
+    }
+    /* No box even on focus — the caret and the darkening icon are enough. */
+    #search:focus-visible { outline: none; }
+    .search-box:focus-within::before { color: var(--fg2); }
     /* Clear (✕): shown only while the search has text, on both platforms. */
     .clear-btn {
       position: absolute;
@@ -168,8 +333,7 @@
       text-align: right;
     }
 
-    /* Filters: deliberately quieter than the dict chips. Plain-text toggles
-       (on = readable, off = dimmed + struck through). */
+    /* Filter buttons: the same stamped ink, a little quieter than the chips. */
     .toggles {
       display: flex;
       align-items: center;
@@ -177,50 +341,89 @@
       flex-wrap: wrap;
     }
     .toggle {
-      background: none;
-      border: none;
-      padding: 0;
-      font-family: inherit;
-      font-size: 11px;
-      line-height: 1.4;
-      color: var(--fg2);
+      background: transparent;
+      border: 1px dashed var(--yellow);
+      border-radius: 2px;
+      padding: 2px 5px;
+      font-family: var(--font-display);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--gray);
+      border-color: var(--gray);
       cursor: pointer;
+      white-space: nowrap;
+      opacity: 0.9;
+      transform: rotate(-2deg);
+      transition: transform 0.12s ease, opacity 0.12s ease, background 0.12s ease;
     }
-    .toggle:hover { color: var(--fg); }
+    .tgroup .toggle:nth-child(even) { transform: rotate(2deg); }
+    .toggle:hover { opacity: 1; }
+    .toggle.active { background: rgba(109, 96, 77, 0.12); color: var(--gray); }
     .toggle:not(.active) {
       color: var(--gray);
+      border-color: var(--bg2);
       text-decoration: line-through;
+      opacity: 0.6;
     }
 
     .body {
+      position: relative;
+      z-index: 1;
       flex: 1;
       display: flex;
       overflow: hidden;
     }
 
-    /* alphabet rail */
+    /* Alphabet rail as a book's thumb index: solid paper tabs stacked against
+       the spine, the current one inked. Tabs never lift off the spine. */
     .rail {
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 10px 6px;
-      gap: 1px;
+      align-items: flex-end;
+      padding: 10px 0 10px 12px;       /* tabs meet the spine */
+      gap: 0;
       background: var(--bg1);
-      border-right: 1px solid var(--bg2);
+      border-right: 2px solid var(--bg2);
+      box-shadow: inset -4px 0 6px -4px rgba(26, 23, 20, 0.28);
       overflow-y: auto;
       scrollbar-width: none;
     }
     .rail::-webkit-scrollbar { display: none; }
     .rail a {
+      position: relative;
       color: var(--gray);
       text-decoration: none;
-      font-size: 11px;
-      padding: 1px 5px;
-      border-radius: 3px;
-      line-height: 1.4;
+      font-family: var(--font-display);
+      font-size: 10px;
+      line-height: 1;
+      width: 26px;
+      padding: 4px 0;
+      margin-top: -1px;                /* barely overlapping thumb tabs */
+      text-align: center;
+      background: var(--bg);
+      border: 1px solid var(--bg2);
+      border-right: 0;                 /* attached to the spine */
+      border-radius: 4px 0 0 4px;      /* rounded outer edge of the tab */
+      box-shadow: -2px 3px 4px rgba(26, 23, 20, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: background 0.14s ease, color 0.14s ease, box-shadow 0.14s ease;
     }
-    .rail a:hover { color: var(--bg); background: var(--yellow); }
+    .rail a:first-child { margin-top: 0; }
+    .rail a:hover {
+      color: var(--fg2);
+      z-index: 3;
+    }
+    /* The current section is inked and casts a deeper shadow, but stays
+       attached to the spine like every other tab. */
+    .rail a.current, .rail a.current:hover {
+      color: var(--bg);
+      background: var(--yellow);
+      border-color: var(--yellow);
+      box-shadow: -2px 2px 3px rgba(26, 23, 20, 0.22), -1px 5px 8px rgba(26, 23, 20, 0.18);
+      z-index: 4;
+    }
     .rail a.dim { opacity: 0.25; pointer-events: none; }
 
     .entries {
@@ -228,30 +431,44 @@
       overflow-y: auto;
       padding: 18px 26px 60px;
       scrollbar-width: thin;
-      scrollbar-color: var(--bg2) transparent;
+      scrollbar-color: var(--yellow) transparent;
     }
-    .entries::-webkit-scrollbar { width: 5px; }
-    .entries::-webkit-scrollbar-track { background: transparent; }
-    .entries::-webkit-scrollbar-thumb { background: var(--bg2); border-radius: 3px; }
-    .entries::-webkit-scrollbar-thumb:hover { background: var(--gray); }
+    .entries::-webkit-scrollbar { width: 7px; }
+    .entries::-webkit-scrollbar-track { background: repeating-linear-gradient(var(--bg2) 0 1px, transparent 1px 3px); }
+    .entries::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--yellow), var(--orange));
+      border-radius: 4px;
+      border: 1px solid var(--bg);
+    }
+    .entries::-webkit-scrollbar-thumb:hover { background: var(--fg2); }
 
     .letter-group { margin-bottom: 26px; }
 
     .letter {
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 26px;
       color: var(--orange);
       border-bottom: 2px solid var(--bg2);
-      padding-bottom: 4px;
+      padding-bottom: 6px;
       margin-bottom: 12px;
       scroll-margin-top: 8px;
+      text-shadow: var(--glow);
     }
-
+    .letter::after {
+      content: "✱";
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--yellow);
+      opacity: 0.8;
+    }
     .entry {
       margin-bottom: 11px;
       line-height: 1.6;
       max-width: 760px;
     }
-
     .src-block { margin-top: 4px; }
     /* Multi-source headword: each def block marked by a dict-colored left bar. */
     .src-block.tinted {
@@ -264,6 +481,8 @@
       color: var(--aqua);
       font-weight: bold;
       font-size: 13px;
+      letter-spacing: 0.02em;
+      text-shadow: var(--glow);
     }
     /* Provenance: one dot per source dictionary, in that dict's color. */
     .dot {
@@ -325,16 +544,16 @@
     .synref { color: var(--aqua); }
 
     mark {
-      background: var(--yellow);
-      color: var(--bg);
+      background: var(--mark-bg);
+      color: var(--mark-fg);
       border-radius: 2px;
       padding: 0 1px;
     }
     /* Search highlight uses the CSS Custom Highlight API (no DOM mutation per keystroke).
        ::highlight only supports a few properties — background/color are enough. */
     ::highlight(dict-search) {
-      background: var(--yellow);
-      color: var(--bg);
+      background: var(--mark-bg);
+      color: var(--mark-fg);
     }
 
     .empty {
@@ -346,7 +565,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: var(--backdrop);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -412,6 +631,26 @@
       color: var(--gray);
       margin-top: 10px;
     }
+    .modal-title { font-family: var(--font-display); }
+
+    /* Letterpress rules and a red margin line. */
+    .entry {
+      border-left: 1px dashed rgba(163, 50, 36, 0.25);
+      padding-left: 8px;
+    }
+    .term { text-transform: uppercase; }
+    .letter-group {
+      border-bottom: 1px dashed var(--bg2);
+      padding-bottom: 14px;
+    }
+
+    /* Keep the turntable from colliding with controls on narrow desktops. */
+    @media (max-width: 900px) { .deck { display: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .vinyl { animation: none !important; }
+      .chip, .toggle, .tonearm, .rail a { transition: none !important; }
+    }
 
     /* ── Mobile ──────────────────────────────────────────────────────────────── */
     @media (max-width: 640px) {
@@ -420,7 +659,6 @@
       header { padding: 12px 14px; display: flex; flex-direction: column; }
       .controls { order: 1; }
       .title { font-size: 14px; }
-      .subtitle { display: none; }
 
       /* Controls collapse into 3 stacked rows revealed by the search-row icon:
          dictionaries, words/phrases, fields. No separators on mobile. */
@@ -434,18 +672,18 @@
         flex-shrink: 0;
         width: 36px;
         height: 36px;
-        background: var(--bg);
-        color: var(--fg2);
-        border: 1px solid var(--bg2);
-        border-radius: 4px;
+        background: transparent;
+        color: var(--yellow);
+        border: 1px dashed var(--yellow);
+        border-radius: 2px;
         font-size: 15px;
         line-height: 1;
         cursor: pointer;
+        transform: rotate(-3deg);
       }
       .ctl-toggle[aria-expanded="true"] {
         background: var(--yellow);
         color: var(--bg);
-        border-color: var(--yellow);
       }
 
       /* Hidden by default; the icon reveals them. */
@@ -462,14 +700,9 @@
       .chip { padding: 3px 8px; font-size: 11px; gap: 4px; }
       .info-btn { display: none; }
 
-      /* Pill toggles, sized to match the tinier chips. */
-      .tgroup { gap: 6px 8px; }
-      .toggle {
-        padding: 3px 8px;
-        border: 1px solid var(--bg2);
-        border-radius: 4px;
-        font-size: 11px;
-      }
+      /* Stamped toggles, sized to match the tinier chips. */
+      .tgroup { gap: 8px; }
+      .toggle { padding: 3px 7px; }
 
       /* Alphabet rail is unusable by thumb — drop it, give entries the width. */
       .rail { display: none; }
@@ -483,8 +716,15 @@
 </head>
 <body>
   <header>
+    <div class="deck">
+      <div class="platter" tabindex="0" role="button"
+           aria-label="vinyl record, drag or use arrow keys to spin">
+        <div class="vinyl" aria-hidden="true"></div>
+        <span class="spindle" aria-hidden="true"></span>
+      </div>
+      <div class="tonearm" aria-hidden="true"></div>
+    </div>
     <div class="title">The Great Hepster's Dictionary</div>
-    <div class="subtitle" id="subtitle"></div>
     <div class="controls" id="controls">
       <div class="chips" id="chips"></div>
       <span class="ctl-sep" aria-hidden="true"></span>
@@ -504,7 +744,7 @@
     </div>
     <div class="search-row">
       <div class="search-box">
-        <input id="search" type="text" placeholder="search&hellip;" spellcheck="false" autocomplete="off" autofocus>
+        <input id="search" type="text" placeholder="search&hellip;" spellcheck="false" autocomplete="off">
         <button class="clear-btn" id="clear" type="button" aria-label="clear search" hidden>&times;</button>
       </div>
       <button class="ctl-toggle" id="ctl-toggle" type="button" aria-label="filters" aria-expanded="false" aria-controls="controls">&#9776;</button>
@@ -533,7 +773,7 @@
         title: 'Cab Calloway\'s "Hepster\'s Dictionary"',
         author: "Cab Calloway",
         year: 1944,
-        color: "var(--green)",
+        color: "var(--purple)",
         info: `<p>In 1938, jazz bandleader and singer <strong>Cab Calloway</strong>
                 published <mark>the first dictionary by an African-American</mark>,
                 <em>Cab Calloway's Cat-ologue: A "Hepster's" Dictionary</em>, which became
@@ -744,11 +984,9 @@
     const countEl   = document.getElementById("count");
     const railEl    = document.getElementById("rail");
     const chipsEl   = document.getElementById("chips");
-    const subtitleEl = document.getElementById("subtitle");
 
     function buildChips() {
-      // Each dict chip carries its color via --chip: colored border when idle, filled
-      // when active. "All" uses a neutral gray.
+      // "All" is the printer's red; each dictionary keeps its own distinct ink.
       let h = `<button class="chip" data-id="all" style="--chip:var(--yellow)">All</button>`;
       for (const d of DICTIONARIES) {
         h += `<button class="chip" data-id="${escHtml(d.id)}" style="--chip:${d.color}">${escHtml(d.name)}` +
@@ -762,9 +1000,6 @@
     function updateChips() {
       chipsEl.querySelectorAll(".chip").forEach(c =>
         c.classList.toggle("active", c.dataset.id === activeId));
-      subtitleEl.textContent = activeId === "all"
-        ? "All dictionaries"
-        : DICT_BY_ID[activeId].title;
     }
 
     const modalEl   = document.getElementById("modal");
@@ -784,7 +1019,37 @@
     function buildRail() {
       railEl.innerHTML = ALPHA.map(l =>
         `<a href="#letter-${l}" data-letter="${l}">${l}</a>`).join("");
+      currentLetter = null;
     }
+
+    // The index tab for the section at the reading line stays inked. Windowed
+    // rendering keeps every rendered heading in the DOM, so normally the last
+    // one above the line wins. At the very bottom the last heading can still be
+    // below the line, so select it explicitly — that's the section you're in.
+    let currentLetter = null;
+    function updateActiveLetter() {
+      const hs = entriesEl.querySelectorAll(".letter");
+      const atBottom = entriesEl.scrollHeight > entriesEl.clientHeight + 4 &&
+                       entriesEl.scrollTop + entriesEl.clientHeight >=
+                       entriesEl.scrollHeight - 2;
+      let letter = null;
+      if (atBottom && hs.length) letter = hs[hs.length - 1].id.slice(7);
+      if (!letter) {
+        const line = entriesEl.getBoundingClientRect().top + 16;
+        hs.forEach(h => {
+          if (h.getBoundingClientRect().top <= line) letter = h.id.slice(7);
+        });
+      }
+      if (!letter) {
+        const first = entriesEl.querySelector(".letter");
+        letter = first ? first.id.slice(7) : null;
+      }
+      if (letter === currentLetter) return;
+      currentLetter = letter;
+      railEl.querySelectorAll("a").forEach(a =>
+        a.classList.toggle("current", a.dataset.letter === letter));
+    }
+    entriesEl.addEventListener("scroll", updateActiveLetter, { passive: true });
 
     // Windowed rendering: a search computes the full match list in memory (cheap substring
     // tests over the prebuilt index), but only a CHUNK of entries is ever in the DOM. More
@@ -829,9 +1094,8 @@
       let html = `<div class="entry"><span class="term">${escHtml(m.term)}</span>${dots}`;
       const multi = show.markers && item.sources.length > 1;
       for (const src of item.sources) {
-        const block = multi
-          ? ` class="src-block tinted" style="--c:${DICT_BY_ID[src.dictId].color}"`
-          : ` class="src-block"`;
+        const dict = DICT_BY_ID[src.dictId];
+        const block = ` class="src-block${multi ? " tinted" : ""}" style="--c:${dict.color}"`;
         html += `<div${block}>` +
                   buildSenses(src.senses, m.term, "") +
                   (show.syn ? refLine("syn.", src.syn) : "") +
@@ -887,8 +1151,23 @@
       paintHighlight(curQL);
     }
 
-    // A new search / scope / toggle: recompute matches, reset the DOM to the first chunk.
-    function runSearch(q) {
+    // Entry just above the top of the viewport, plus how far into it we are.
+    // An index, not a scroll fraction: only a small window of entries is in the DOM.
+    function currentEntryAnchor() {
+      const base = entriesEl.getBoundingClientRect().top;
+      const top = entriesEl.scrollTop;
+      let idx = 0, anchorY = 0;
+      entriesEl.querySelectorAll(".entry").forEach(el => {
+        const y = el.getBoundingClientRect().top - base + top;
+        if (y <= top + 1) { idx++; anchorY = y; }
+      });
+      return { idx, offset: top - anchorY };
+    }
+
+    // A new search rebuilds from the top; filter/scope changes keep your place.
+    function runSearch(q, keepScroll = false) {
+      const { idx: anchorIdx, offset } = keepScroll
+        ? currentEntryAnchor() : { idx: 0, offset: 0 };
       curQuery = q;
       curQL = q.trim().toLowerCase();
       const { list, total } = computeMatched(curQL);
@@ -912,15 +1191,34 @@
         emptyEl.innerHTML = `no jive found for &ldquo;${escHtml(q.trim())}&rdquo;.`;
         entriesEl.appendChild(emptyEl);
         if (HL_OK) CSS.highlights.set("dict-search", new Highlight());
+        updateActiveLetter();
         return;
       }
       emptyEl.hidden = true;
-      entriesEl.scrollTop = 0;
+      if (!keepScroll || anchorIdx <= 0) {
+        entriesEl.scrollTop = 0;
+        renderChunk();
+        updateActiveLetter();
+        return;
+      }
+      // Render up to the old entry before restoring scroll, so the windowed
+      // list has the content to scroll through again.
+      const idx = Math.min(anchorIdx - 1, matched.length - 1);
       renderChunk();
+      while (renderPos < idx + CHUNK && renderPos < matched.length) renderChunk();
+      const el = entriesEl.querySelectorAll(".entry")[idx];
+      if (el) {
+        const base = entriesEl.getBoundingClientRect().top;
+        const y = el.getBoundingClientRect().top - base + entriesEl.scrollTop;
+        entriesEl.scrollTop = Math.max(0, y + offset);
+      }
+      updateActiveLetter();
     }
 
-    // Rail jump: the target letter may live past the rendered window, so render forward
-    // until its section exists (or the list runs out), then scroll to it.
+    // Rail jump: render forward until the section exists, then jump to it. A
+    // section at the render frontier may have less than a viewport below it;
+    // the browser then clamps scrollTop and the heading stops short of the top
+    // (the first jump to a letter). Keep appending until there's room for it.
     function jumpToLetter(letter) {
       let guard = 0;
       while (renderPos < matched.length &&
@@ -928,7 +1226,18 @@
         renderChunk();
       }
       const t = document.getElementById("letter-" + letter);
-      if (t) t.scrollIntoView({ behavior: "auto", block: "start" });
+      if (!t) return;
+      const base = entriesEl.getBoundingClientRect().top;
+      // Recompute each pass: new content is appended below the heading, but
+      // scroll anchoring can still nudge scrollTop while it's being added.
+      const target = () => t.getBoundingClientRect().top - base + entriesEl.scrollTop - 8;
+      while (renderPos < matched.length &&
+             target() > entriesEl.scrollHeight - entriesEl.clientHeight &&
+             guard++ < 500) {
+        renderChunk();
+      }
+      entriesEl.scrollTop = Math.max(0, target());
+      updateActiveLetter();
     }
 
     // Repaint the search highlight over the rendered window via the Highlight API — ranges
@@ -959,15 +1268,189 @@
     const search = document.getElementById("search");
     const clearBtn = document.getElementById("clear");
     const syncClear = () => { clearBtn.hidden = !search.value; };
+
+    // ─── Turntable ──────────────────────────────────────────────────────────────
+    const deckEl = document.querySelector(".deck");
+    const platterEl = document.querySelector(".platter");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let angle = 0;          // current platter rotation, degrees
+    let velocity = 0;       // degrees per animation frame
+    let dragging = false;
+    let lastPointerAngle = 0, lastMoveTime = 0, spinFrame = null;
+
+    const paint = () => { platterEl.style.transform = `rotate(${angle}deg)`; };
+
+    function tick() {
+      spinFrame = null;
+      if (dragging) return;
+      angle += velocity;
+      velocity *= 0.94;                       // friction
+      if (Math.abs(velocity) < 0.02) velocity = 0;
+      paint();
+      if (velocity) spinFrame = requestAnimationFrame(tick);
+    }
+    function startSpin() {
+      if (spinFrame === null) spinFrame = requestAnimationFrame(tick);
+    }
+    // Typing gives the record a small push, like dropping the needle.
+    function cueRecord() {
+      if (reduceMotion.matches || dragging) return;
+      velocity = Math.max(velocity, 4);
+      startSpin();
+    }
+
+    // Angle of the pointer around the platter's centre.
+    function pointerAngle(e) {
+      const r = platterEl.getBoundingClientRect();
+      return Math.atan2(e.clientY - (r.top + r.height / 2),
+                        e.clientX - (r.left + r.width / 2)) * 180 / Math.PI;
+    }
+    platterEl.addEventListener("pointerdown", e => {
+      dragging = true;
+      velocity = 0;
+      lastPointerAngle = pointerAngle(e);
+      lastMoveTime = e.timeStamp;
+      try { platterEl.setPointerCapture(e.pointerId); } catch (_) {}
+      platterEl.classList.add("dragging");
+    });
+    platterEl.addEventListener("pointermove", e => {
+      if (!dragging) return;
+      const a = pointerAngle(e);
+      let d = a - lastPointerAngle;
+      if (d > 180) d -= 360;
+      if (d < -180) d += 360;
+      angle += d;
+      const dt = Math.max(1, e.timeStamp - lastMoveTime);
+      velocity = Math.max(-30, Math.min(30, d * 16 / dt));
+      lastPointerAngle = a;
+      lastMoveTime = e.timeStamp;
+      paint();
+    });
+    function endDrag(e) {
+      if (!dragging) return;
+      dragging = false;
+      platterEl.classList.remove("dragging");
+      try { platterEl.releasePointerCapture(e.pointerId); } catch (_) {}
+      if (!reduceMotion.matches && Math.abs(velocity) > 0.2) startSpin();
+    }
+    platterEl.addEventListener("pointerup", endDrag);
+    platterEl.addEventListener("pointercancel", endDrag);
+    platterEl.addEventListener("keydown", e => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      e.preventDefault();
+      angle += e.key === "ArrowRight" ? 15 : -15;
+      paint();
+    });
+
+    // Pivot is at the back-right corner, so the arm points diagonally down-left
+    // across the record: needle starts at the bottom-right outer groove and
+    // eases inward. Grab the arm to move it yourself. It never lifts.
+    const ARM_START = -66, ARM_END = -52;
+    const armEl = document.querySelector(".tonearm");
+    let armAngle = ARM_START;
+    let armResetTimer = null, armReturnFrame = null, armDragging = false;
+
+    function paintArm() {
+      armEl.style.transform = `rotate(${armAngle.toFixed(1)}deg)`;
+    }
+
+    // CSS transitions raced with the changing transform and made the arm jump
+    // back. The return is driven frame by frame instead, with the transition
+    // switched off for its duration.
+    function stopArmReturn() {
+      if (armReturnFrame !== null) {
+        cancelAnimationFrame(armReturnFrame);
+        armReturnFrame = null;
+      }
+      armEl.classList.remove("rewind");
+    }
+    function returnArm() {
+      const from = armAngle;
+      if (reduceMotion.matches) {
+        armAngle = ARM_START;
+        paintArm();
+        armResetTimer = null;
+        return;
+      }
+      const started = performance.now(), duration = 900;
+      const ease = p => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      armEl.classList.add("rewind");
+      function frame(now) {
+        const t = Math.min(1, (now - started) / duration);
+        // One continuous sweep, no lift and no jump at either end.
+        armAngle = from + (ARM_START - from) * ease(t);
+        paintArm();
+        if (t < 1) {
+          armReturnFrame = requestAnimationFrame(frame);
+        } else {
+          armAngle = ARM_START;
+          paintArm();
+          armReturnFrame = null;
+          armEl.classList.remove("rewind");
+          armResetTimer = null;
+        }
+      }
+      armReturnFrame = requestAnimationFrame(frame);
+    }
+
+    // Where the arm's hinge sits on screen (rotation keeps it fixed).
+    function armPivot() {
+      const r = deckEl.getBoundingClientRect();
+      return {
+        x: r.left + armEl.offsetLeft + armEl.offsetWidth,
+        y: r.top + armEl.offsetTop + armEl.offsetHeight / 2
+      };
+    }
+    function moveArmToPointer(e) {
+      const p = armPivot();
+      let theta = Math.atan2(e.clientY - p.y, e.clientX - p.x) * 180 / Math.PI - 180;
+      if (theta > 180) theta -= 360;
+      if (theta < -180) theta += 360;
+      armAngle = Math.max(ARM_START, Math.min(ARM_END, theta));
+      paintArm();
+    }
+    armEl.addEventListener("pointerdown", e => {
+      if (armResetTimer !== null) { clearTimeout(armResetTimer); armResetTimer = null; }
+      stopArmReturn();
+      paintArm();
+      armDragging = true;
+      armEl.classList.add("dragging");
+      try { armEl.setPointerCapture(e.pointerId); } catch (_) {}
+      moveArmToPointer(e);
+    });
+    armEl.addEventListener("pointermove", e => {
+      if (armDragging) moveArmToPointer(e);
+    });
+    function endArmDrag(e) {
+      if (!armDragging) return;
+      armDragging = false;
+      armEl.classList.remove("dragging");
+      try { armEl.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+    armEl.addEventListener("pointerup", endArmDrag);
+    armEl.addEventListener("pointercancel", endArmDrag);
+
+    entriesEl.addEventListener("scroll", () => {
+      if (!deckEl || armDragging || armResetTimer !== null || armReturnFrame !== null) return;
+      armAngle = Math.min(ARM_END, armAngle + 0.2);
+      paintArm();
+      if (armAngle >= ARM_END) {
+        armResetTimer = setTimeout(returnArm, 450);
+      }
+    }, { passive: true });
+
     // No debounce: windowed rendering keeps the DOM small, so every keystroke filters and
     // repaints the first chunk synchronously — fast even on a held backspace.
     search.addEventListener("input", () => {
       syncClear();
+      cueRecord();
       runSearch(search.value);
     });
     clearBtn.addEventListener("click", () => {
       search.value = "";
       syncClear();
+      cueRecord();
       search.focus();
       runSearch("");
     });
@@ -985,7 +1468,7 @@
       show[key] = !show[key];
       btn.classList.toggle("active", show[key]);
       btn.setAttribute("aria-pressed", String(show[key]));
-      runSearch(curQuery);   // toggles change built content (and search semantics)
+      runSearch(curQuery, true);   // toggles change built content, keep your place
     });
     railEl.addEventListener("click", e => {
       const a = e.target.closest("a");
@@ -1012,9 +1495,10 @@
       if (info) { e.stopPropagation(); openModal(info.dataset.info); return; }
       const chip = e.target.closest(".chip");
       if (!chip) return;
+      if (activeId === chip.dataset.id) return;
       activeId = chip.dataset.id;
       updateChips();
-      runSearch(curQuery);   // scope change rebuilds the entry list
+      runSearch(curQuery, true);   // scope change, keep your place
     });
     document.getElementById("modal-close").addEventListener("click", closeModal);
     modalEl.addEventListener("click", e => { if (e.target === modalEl) closeModal(); });
@@ -1042,6 +1526,16 @@
       runSearch(search.value);
     }
     boot();
+
+    // A focus ring must not linger after switching windows or tabs.
+    function clearStickyFocus() {
+      const el = document.activeElement;
+      if (el && el !== document.body && typeof el.blur === "function") el.blur();
+    }
+    window.addEventListener("blur", clearStickyFocus);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) clearStickyFocus();
+    });
   </script>
 </body>
 </html>

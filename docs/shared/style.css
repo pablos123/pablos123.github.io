@@ -32,6 +32,11 @@ a:hover {
   text-decoration: underline;
 }
 
+/* A mouse click should not leave a focus ring behind; keyboard focus still shows. */
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
 figure {
   margin: 0;
 }

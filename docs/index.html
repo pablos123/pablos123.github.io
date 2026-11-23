@@ -9,6 +9,22 @@
     <title>pablos123</title>
   </head>
   <body>
+    <script>
+      // A clicked link (or control) must not keep a focus ring / pressed look
+      // after switching windows, tabs, or coming back to the page.
+      function clearStickyFocus() {
+        const el = document.activeElement;
+        if (el && el !== document.body && typeof el.blur === "function") el.blur();
+      }
+
+      window.addEventListener("blur", clearStickyFocus);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) clearStickyFocus();
+      });
+      document.addEventListener("pointerup", event => {
+        if (event.target.closest?.("a, button")) clearStickyFocus();
+      });
+    </script>
     <header>
       <a href="./items/aboutme.html">About me</a>
     </header>
@@ -20,7 +36,7 @@
     </main>
 
     <footer>
-      Made with <a href="https://github.com/pablos123/environment/tree/main/bin/shtatic" target="_blank">a bash script</a>
+      Made with <a href="https://github.com/pablos123/pablos123.github.io/blob/main/build" target="_blank">a bash script</a>
     </footer>
 
   </body>
